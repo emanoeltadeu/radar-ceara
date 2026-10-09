@@ -331,8 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const filtradosPorLado = todosComentarios.filter(c => {
         const cTema = (c.tema || "").toLowerCase().trim();
         const tBusca = tema.toLowerCase().trim();
-        const bateTema = cTema === tBusca || cTema.includes(tBusca) || tBusca.includes(cTema);
-        if (!bateTema) return false;
+        if (cTema !== tBusca) return false;
         if (tipoLado === "pos") return c.sentimento === "positivo" || c.tipo === "apoio";
         if (tipoLado === "neg") return c.sentimento === "negativo" || c.tipo === "ataque_oposicao" || c.tipo === "cobranca_popular" || c.tipo === "cobranca_servicos";
         return true;
@@ -341,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const filtrados = filtradosPorLado.length > 0 ? filtradosPorLado : todosComentarios.filter(c => {
         const cTema = (c.tema || "").toLowerCase().trim();
         const tBusca = tema.toLowerCase().trim();
-        return cTema === tBusca || cTema.includes(tBusca) || tBusca.includes(cTema);
+        return cTema === tBusca;
       });
 
       renderComentarios(filtrados, tema);
