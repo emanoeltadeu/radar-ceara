@@ -140,29 +140,31 @@
 
       </div>
 
-      <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR (IA GEMINI) -->
-      <div class="painel-sentimento-gemini" id="painel-sentimento-ia">
+      <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR · YOUTUBE -->
+      <div class="painel-sentimento-gemini painel-sentimento-youtube" id="painel-sentimento-yt">
         <div class="sentimento-topo">
           <div class="sentimento-titulo-wrap">
-            <span class="badge-gemini">✨ IA Generativa · gemini-3.5-flash-lite</span>
-            <h3>Temperatura das Menções & Humor Popular</h3>
-            <p class="sentimento-desc">Classificação dos comentários reais dos vídeos cearenses via IA Generativa calibrada pro contexto político do Ceará.</p>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+              <span class="badge-youtube">▶ YouTube · Canais Cearenses</span>
+            </div>
+            <h3>Temperatura das Menções & Humor Popular · YouTube</h3>
+            <p class="sentimento-desc">Classificação dos comentários dos vídeos cearenses com foco no contexto político local.</p>
           </div>
           <div class="sentimento-meta-badge">
-            <span id="sentimento-total-label">35 comentários analisados</span>
+            <span id="sentimento-yt-total-label">Comentários analisados</span>
           </div>
         </div>
 
         <!-- Barra de Sentimento Proporcional -->
         <div class="barra-sentimento-tripla">
-          <div class="barra-sentimento-seg pos" id="barra-sent-pos" style="width: 28.6%;" title="Positivo / Apoio">
-            <span class="seg-rotulo" id="rotulo-sent-pos">28,6% Positivo</span>
+          <div class="barra-sentimento-seg pos" id="barra-sent-yt-pos" style="width: 0%;" title="Positivo / Apoio">
+            <span class="seg-rotulo" id="rotulo-sent-yt-pos">0% Positivo</span>
           </div>
-          <div class="barra-sentimento-seg neu" id="barra-sent-neu" style="width: 2.9%;" title="Neutro">
-            <span class="seg-rotulo" id="rotulo-sent-neu">2,9% Neutro</span>
+          <div class="barra-sentimento-seg neu" id="barra-sent-yt-neu" style="width: 0%;" title="Neutro">
+            <span class="seg-rotulo" id="rotulo-sent-yt-neu">0% Neutro</span>
           </div>
-          <div class="barra-sentimento-seg neg" id="barra-sent-neg" style="width: 68.6%;" title="Crítica / Oposição">
-            <span class="seg-rotulo" id="rotulo-sent-neg">68,6% Crítica / Oposição</span>
+          <div class="barra-sentimento-seg neg" id="barra-sent-yt-neg" style="width: 0%;" title="Crítica / Oposição">
+            <span class="seg-rotulo" id="rotulo-sent-yt-neg">0% Crítica / Oposição</span>
           </div>
         </div>
 
@@ -174,9 +176,9 @@
             <div class="cab-card-sent">
               <span class="icone-sent">🟢</span>
               <h4>Apoio Popular & Pautas Favoráveis</h4>
-              <span class="pct-sent pos" id="pct-apoio-card">28,6%</span>
+              <span class="pct-sent pos" id="pct-apoio-card-yt">0%</span>
             </div>
-            <ul class="lista-temas-sent" id="lista-temas-pos">
+            <ul class="lista-temas-sent" id="lista-temas-pos-yt">
               <!-- Renderizado via app.js -->
             </ul>
           </div>
@@ -186,21 +188,92 @@
             <div class="cab-card-sent">
               <span class="icone-sent">🔴</span>
               <h4>Ataques de Oposição & Cobranças</h4>
-              <span class="pct-sent neg" id="pct-oposicao-card">68,6%</span>
+              <span class="pct-sent neg" id="pct-oposicao-card-yt">0%</span>
             </div>
-            <ul class="lista-temas-sent" id="lista-temas-neg">
+            <ul class="lista-temas-sent" id="lista-temas-neg-yt">
               <!-- Renderizado via app.js -->
             </ul>
           </div>
 
-          <!-- Coluna 3: Amostras Reais Analisadas pela IA -->
+          <!-- Coluna 3: Amostras Reais Analisadas -->
           <div class="card-sentimento card-sent-amostras">
             <div class="cab-card-sent">
               <span class="icone-sent">💬</span>
-              <h4 id="tit-col-comentarios">Comentários Reais (Amostras da IA)</h4>
-              <span class="badge-amostras" id="badge-filtro-comentarios">Auditoria em tempo real</span>
+              <h4 id="tit-col-comentarios-yt">Comentários Reais em Destaque</h4>
+              <span class="badge-amostras" id="badge-filtro-comentarios-yt">Auditoria em tempo real</span>
             </div>
-            <div class="lista-amostras-comentarios" id="lista-amostras-comentarios">
+            <div class="lista-amostras-comentarios" id="lista-amostras-comentarios-yt">
+              <!-- Renderizado via app.js -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR · INSTAGRAM -->
+      <div class="painel-sentimento-gemini painel-sentimento-instagram" id="painel-sentimento-ig" style="margin-top: 24px;">
+        <div class="sentimento-topo">
+          <div class="sentimento-titulo-wrap">
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+              <span class="badge-instagram">📸 Instagram · Redes & Mandato</span>
+            </div>
+            <h3>Temperatura das Menções & Humor Popular · Instagram</h3>
+            <p class="sentimento-desc">Classificação dos comentários dos perfis monitorados de lideranças e veículos da mídia cearense.</p>
+          </div>
+          <div class="sentimento-meta-badge">
+            <span id="sentimento-ig-total-label">Comentários analisados</span>
+          </div>
+        </div>
+
+        <!-- Barra de Sentimento Proporcional -->
+        <div class="barra-sentimento-tripla">
+          <div class="barra-sentimento-seg pos" id="barra-sent-ig-pos" style="width: 0%;" title="Positivo / Apoio">
+            <span class="seg-rotulo" id="rotulo-sent-ig-pos">0% Positivo</span>
+          </div>
+          <div class="barra-sentimento-seg neu" id="barra-sent-ig-neu" style="width: 0%;" title="Neutro">
+            <span class="seg-rotulo" id="rotulo-sent-ig-neu">0% Neutro</span>
+          </div>
+          <div class="barra-sentimento-seg neg" id="barra-sent-ig-neg" style="width: 0%;" title="Crítica / Oposição">
+            <span class="seg-rotulo" id="rotulo-sent-ig-neg">0% Crítica / Oposição</span>
+          </div>
+        </div>
+
+        <!-- Grade de Análise Inteligente -->
+        <div class="grade-sentimento-cards">
+          
+          <!-- Coluna 1: Apoio Popular -->
+          <div class="card-sentimento card-sent-pos">
+            <div class="cab-card-sent">
+              <span class="icone-sent">🟢</span>
+              <h4>Apoio Popular & Pautas Favoráveis</h4>
+              <span class="pct-sent pos" id="pct-apoio-card-ig">0%</span>
+            </div>
+            <ul class="lista-temas-sent" id="lista-temas-pos-ig">
+              <!-- Renderizado via app.js -->
+            </ul>
+          </div>
+
+          <!-- Coluna 2: Ataques de Oposição & Cobranças -->
+          <div class="card-sentimento card-sent-neg">
+            <div class="cab-card-sent">
+              <span class="icone-sent">🔴</span>
+              <h4>Ataques de Oposição & Cobranças</h4>
+              <span class="pct-sent neg" id="pct-oposicao-card-ig">0%</span>
+            </div>
+            <ul class="lista-temas-sent" id="lista-temas-neg-ig">
+              <!-- Renderizado via app.js -->
+            </ul>
+          </div>
+
+          <!-- Coluna 3: Amostras Reais Analisadas -->
+          <div class="card-sentimento card-sent-amostras">
+            <div class="cab-card-sent">
+              <span class="icone-sent">💬</span>
+              <h4 id="tit-col-comentarios-ig">Comentários Reais em Destaque</h4>
+              <span class="badge-amostras" id="badge-filtro-comentarios-ig">Auditoria em tempo real</span>
+            </div>
+            <div class="lista-amostras-comentarios" id="lista-amostras-comentarios-ig">
               <!-- Renderizado via app.js -->
             </div>
           </div>

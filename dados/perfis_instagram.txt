@@ -1,0 +1,38 @@
+# ==============================================================================
+# PERFIS DO INSTAGRAM - MONITORAMENTO DE REDES E MANDATO POPULAR CE
+# ==============================================================================
+# Este arquivo lista os perfis (@) monitorados via Apify (apify/instagram-scraper).
+# Apenas linhas iniciadas com '@' são consideradas.
+# ==============================================================================
+
+# --- MANDATO, LÉO SURICATE E CAMPO POPULAR ---
+@leosuricate
+@suricateseboso
+@elmanodefreitas
+@camilosantanaoficial
+@governodoceara
+@prefeituradefortaleza
+@rede_cuca
+@midianinja
+
+# --- IMPRENSA, JORNALISMO E NOTÍCIAS DO CEARÁ ---
+@opovoonline
+@opovocbn
+@diariodonordeste
+@gcmais
+@jornaljangadeiro
+@tvceara
+@assembleiace
+@focuspoder
+@urbnews
+@radardoceara
+@cearanoticias
+
+# --- OPOSIÇÃO E DEBATE POLÍTICO NO CEARÁ ---
+@andrefernandes
+@capitaowagnersousa
+@carmeloneto
+
+# --- TRANSPORTE E COTIDIANO URBANO DE FORTALEZA ---
+@etufortaleza
+@centraldoonibusfortaleza

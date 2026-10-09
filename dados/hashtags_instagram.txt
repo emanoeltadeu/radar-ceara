@@ -1,0 +1,10 @@
+# ==============================================================================
+# HASHTAGS DO INSTAGRAM - MONITORAMENTO DE REDES E MANDATO POPULAR CE
+# ==============================================================================
+# Este arquivo lista as hashtags (#) prioritárias monitoradas via Apify
+# com o ator dedicado 'apify/instagram-hashtag-scraper'.
+# Apenas linhas iniciadas com '#' são consideradas para monitoramento.
+# ==============================================================================
+
+# --- PAUTA PRIORITÁRIA DE MOBILIZAÇÃO POPULAR ---
+#fimda6x1

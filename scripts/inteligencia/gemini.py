@@ -257,12 +257,19 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
     for c in validos:
         vid_id = c.get("video_id", "")
         c_id = c.get("id", "")
-        link = c.get("link_origem") or (f"https://www.youtube.com/watch?v={vid_id}&lc={c_id}" if vid_id and c_id else "")
+        link = (
+            c.get("link_instagram")
+            or c.get("link_youtube")
+            or c.get("link_origem")
+            or (f"https://www.youtube.com/watch?v={vid_id}&lc={c_id}" if vid_id and c_id else "")
+        )
 
         payload_comentarios.append({
             "id": c_id,
+            "rede": c.get("rede", "youtube"),
             "video_id": vid_id,
             "video_titulo": c.get("video_titulo") or c.get("origem_titulo", ""),
+            "origem_titulo": c.get("origem_titulo") or c.get("video_titulo", ""),
             "canal": c.get("canal", ""),
             "autor": c.get("autor", "Anônimo"),
             "texto": c.get("texto", ""),
@@ -274,6 +281,7 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
             "resumo_ia": c.get("resumo_ia", ""),
             "link_yt": link,
             "link_youtube": link,
+            "link_instagram": link,
             "link_origem": link
         })
 

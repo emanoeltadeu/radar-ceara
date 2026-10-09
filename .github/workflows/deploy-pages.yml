@@ -38,10 +38,11 @@ jobs:
       - name: Instalar Dependências
         run: pip install -r requirements.txt
 
-      - name: Executar Pipeline de Inteligência (YouTube, Trends e Gemini)
+      - name: Executar Pipeline de Inteligência (YouTube, Instagram, Trends e Gemini)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
         run: |
           python scripts/gerar_radar_ce.py
 

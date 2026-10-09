@@ -10,7 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       DADOS = data;
       renderizarMonitorRedes(data.monitor_redes);
-      renderizarSentimentoIA(data.sentimento_mencoes);
+
+      // Sentimento YouTube (com fallback para sentimento_mencoes)
+      const sentYT = data.sentimento_youtube || data.sentimento_mencoes;
+      if (sentYT) {
+        renderizarBlocoSentimento(sentYT, "yt", {
+          tipoRede: "youtube",
+          nomeRede: "YouTube",
+          rotuloBtn: "Ver no YouTube ↗",
+          clsLink: "link-yt-comentario",
+          iconeOrigem: "📺"
+        });
+      }
+
+      // Sentimento Instagram
+      if (data.sentimento_instagram) {
+        renderizarBlocoSentimento(data.sentimento_instagram, "ig", {
+          tipoRede: "instagram",
+          nomeRede: "Instagram",
+          rotuloBtn: "Ver no Instagram ↗",
+          clsLink: "link-ig-comentario",
+          iconeOrigem: "📸"
+        });
+      }
+
       renderizarMetaAds(data.meta_transparencia);
       const elHora = document.getElementById("hora-atualizacao");
       if (elHora) elHora.textContent = data.gerado_em || "Atualizado";
@@ -179,26 +202,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 3.1. RENDERIZADOR DE SENTIMENTO & HUMOR POPULAR COM GEMINI
-  function renderizarSentimentoIA(sent) {
+  // 3.1. RENDERIZADOR MODULAR DE SENTIMENTO & HUMOR POPULAR (GEMINI)
+  function renderizarBlocoSentimento(sent, prefix, config = {}) {
     if (!sent) return;
 
-    const totalLabel = document.getElementById("sentimento-total-label");
+    const tipoRede = config.tipoRede || "youtube";
+    const rotuloBtn = config.rotuloBtn || (tipoRede === "instagram" ? "Ver no Instagram ↗" : "Ver no YouTube ↗");
+    const clsLink = config.clsLink || (tipoRede === "instagram" ? "link-ig-comentario" : "link-yt-comentario");
+    const iconeOrigem = config.iconeOrigem || (tipoRede === "instagram" ? "📸" : "📺");
+
+    const totalLabel = document.getElementById(`sentimento-${prefix}-total-label`);
     if (totalLabel && sent.total_analisados) {
-      totalLabel.textContent = `${sent.total_analisados} comentários analisados com ${sent.modelo || "IA"}`;
+      totalLabel.textContent = `${sent.total_analisados} comentários analisados`;
     }
 
     const pos = sent.positivo_pct || 0;
     const neu = sent.neutro_pct || 0;
     const neg = sent.negativo_pct || 0;
 
-    const barPos = document.getElementById("barra-sent-pos");
-    const barNeu = document.getElementById("barra-sent-neu");
-    const barNeg = document.getElementById("barra-sent-neg");
+    const barPos = document.getElementById(`barra-sent-${prefix}-pos`);
+    const barNeu = document.getElementById(`barra-sent-${prefix}-neu`);
+    const barNeg = document.getElementById(`barra-sent-${prefix}-neg`);
 
-    const rotPos = document.getElementById("rotulo-sent-pos");
-    const rotNeu = document.getElementById("rotulo-sent-neu");
-    const rotNeg = document.getElementById("rotulo-sent-neg");
+    const rotPos = document.getElementById(`rotulo-sent-${prefix}-pos`);
+    const rotNeu = document.getElementById(`rotulo-sent-${prefix}-neu`);
+    const rotNeg = document.getElementById(`rotulo-sent-${prefix}-neg`);
 
     if (barPos) {
       barPos.style.width = `${pos}%`;
@@ -213,28 +241,30 @@ document.addEventListener("DOMContentLoaded", () => {
       if (rotNeg) rotNeg.textContent = `${neg.toFixed(1).replace(".", ",")}% Crítica / Oposição`;
     }
 
-    const pctApoio = document.getElementById("pct-apoio-card");
-    const pctOposicao = document.getElementById("pct-oposicao-card");
+    const pctApoio = document.getElementById(`pct-apoio-card-${prefix}`);
+    const pctOposicao = document.getElementById(`pct-oposicao-card-${prefix}`);
     if (pctApoio) pctApoio.textContent = `${pos.toFixed(1).replace(".", ",")}%`;
     if (pctOposicao) pctOposicao.textContent = `${neg.toFixed(1).replace(".", ",")}%`;
 
     let temaAtivo = null;
     const todosComentarios = sent.comentarios_todos || sent.todos_comentarios || sent.amostras_destaque || [];
-    const titCol = document.getElementById("tit-col-comentarios");
-    const badgeCol = document.getElementById("badge-filtro-comentarios");
-    const listaAmostras = document.getElementById("lista-amostras-comentarios");
+    const titCol = document.getElementById(`tit-col-comentarios-${prefix}`);
+    const badgeCol = document.getElementById(`badge-filtro-comentarios-${prefix}`);
+    const listaAmostras = document.getElementById(`lista-amostras-comentarios-${prefix}`);
+    const listaPos = document.getElementById(`lista-temas-pos-${prefix}`);
+    const listaNeg = document.getElementById(`lista-temas-neg-${prefix}`);
 
     function renderComentarios(lista, temaFiltro = null) {
       if (!listaAmostras) return;
 
       if (titCol) {
-        titCol.textContent = temaFiltro ? `Comentários: "${temaFiltro}"` : "Comentários Reais (Amostras da IA)";
+        titCol.textContent = temaFiltro ? `Comentários: "${temaFiltro}"` : "Comentários Reais em Destaque";
       }
 
       if (badgeCol) {
         if (temaFiltro) {
-          badgeCol.innerHTML = `${lista.length} ${lista.length === 1 ? 'comentário' : 'comentários'} <button id="btn-limpar-filtro" class="btn-limpar-filtro" title="Limpar filtro e ver amostras">✕ Ver todos</button>`;
-          document.getElementById("btn-limpar-filtro")?.addEventListener("click", () => {
+          badgeCol.innerHTML = `${lista.length} ${lista.length === 1 ? 'comentário' : 'comentários'} <button id="btn-limpar-filtro-${prefix}" class="btn-limpar-filtro" title="Limpar filtro e ver amostras">✕ Ver todos</button>`;
+          document.getElementById(`btn-limpar-filtro-${prefix}`)?.addEventListener("click", () => {
             filtrarPorTema(null, null);
           });
         } else {
@@ -249,33 +279,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
       listaAmostras.innerHTML = lista.map(a => {
         const clsTag = a.sentimento === "positivo" ? "positivo" : (a.sentimento === "negativo" ? "negativo" : "neutro");
-        const urlDestino = a.link_yt || a.link_youtube || a.link_origem || (a.video_id && a.id ? `https://www.youtube.com/watch?v=${encodeURIComponent(a.video_id)}&lc=${encodeURIComponent(a.id)}` : "");
-        const linkYt = urlDestino ? `<a href="${escapeHtml(urlDestino)}" target="_blank" rel="noopener noreferrer" class="link-yt-comentario" title="Abrir este comentário destacado no YouTube">Ver no YouTube ↗</a>` : "";
-        const videoOrigem = a.video_titulo ? `<div class="amostra-video-origem" title="${escapeHtml(a.video_titulo)}">📺 ${escapeHtml(a.video_titulo)}</div>` : "";
+
+        // Destino inteligente para link
+        let urlDestino = a.link_origem || a.link_instagram || a.link_yt || a.link_youtube;
+        if (!urlDestino) {
+          if (a.rede === "instagram" && a.post_url) {
+            urlDestino = a.post_url;
+          } else if (a.video_id && a.id) {
+            urlDestino = `https://www.youtube.com/watch?v=${encodeURIComponent(a.video_id)}&lc=${encodeURIComponent(a.id)}`;
+          }
+        }
+
+        const linkBotao = urlDestino ? `<a href="${escapeHtml(urlDestino)}" target="_blank" rel="noopener noreferrer" class="${clsLink}" title="Abrir publicação/comentário original">${escapeHtml(rotuloBtn)}</a>` : "";
+
+        const tituloOrigem = a.origem_titulo || a.video_titulo || "";
+        const htmlOrigem = tituloOrigem ? `<div class="amostra-video-origem" title="${escapeHtml(tituloOrigem)}">${iconeOrigem} ${escapeHtml(tituloOrigem)}</div>` : "";
+
         return `
           <div class="item-amostra-comentario">
             <div class="amostra-topo">
-              <span class="amostra-autor">${escapeHtml(a.autor)}</span>
-              <span class="amostra-tag ${clsTag}">${escapeHtml(a.sentimento)}</span>
+              <span class="amostra-autor">${escapeHtml(a.autor || "@anonimo")}</span>
+              <span class="amostra-tag ${clsTag}">${escapeHtml(a.sentimento || "neutro")}</span>
             </div>
-            ${videoOrigem}
-            <div class="amostra-texto">"${escapeHtml(a.texto)}"</div>
-            ${linkYt ? `<div class="amostra-rodape">${linkYt}</div>` : ""}
+            ${htmlOrigem}
+            <div class="amostra-texto">"${escapeHtml(a.texto || "")}"</div>
+            ${linkBotao ? `<div class="amostra-rodape">${linkBotao}</div>` : ""}
           </div>
         `;
       }).join("");
     }
 
     function filtrarPorTema(tema, tipoLado) {
+      const containerGeral = document.getElementById(`painel-sentimento-${prefix}`);
+      const itensClicaveis = containerGeral ? containerGeral.querySelectorAll(".item-tema-clicavel") : [];
+
       if (temaAtivo === tema || !tema) {
         temaAtivo = null;
-        document.querySelectorAll(".item-tema-clicavel").forEach(el => el.classList.remove("ativo-pos", "ativo-neg"));
+        itensClicaveis.forEach(el => el.classList.remove("ativo-pos", "ativo-neg"));
         renderComentarios(sent.amostras_destaque || todosComentarios.slice(0, 5), null);
         return;
       }
 
       temaAtivo = tema;
-      document.querySelectorAll(".item-tema-clicavel").forEach(el => {
+      itensClicaveis.forEach(el => {
         el.classList.remove("ativo-pos", "ativo-neg");
         if (el.getAttribute("data-tema") === tema) {
           el.classList.add(tipoLado === "pos" ? "ativo-pos" : "ativo-neg");
@@ -288,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const bateTema = cTema === tBusca || cTema.includes(tBusca) || tBusca.includes(cTema);
         if (!bateTema) return false;
         if (tipoLado === "pos") return c.sentimento === "positivo" || c.tipo === "apoio";
-        if (tipoLado === "neg") return c.sentimento === "negativo" || c.tipo === "ataque_oposicao" || c.tipo === "cobranca_popular";
+        if (tipoLado === "neg") return c.sentimento === "negativo" || c.tipo === "ataque_oposicao" || c.tipo === "cobranca_popular" || c.tipo === "cobranca_servicos";
         return true;
       });
 
@@ -300,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       renderComentarios(filtrados, tema);
 
-      // Scroll suave até a coluna de comentários se estiver em tela mobile
+      // Scroll suave se estiver no mobile
       if (window.innerWidth <= 900) {
         listaAmostras?.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
@@ -318,7 +364,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    const listaPos = document.getElementById("lista-temas-pos");
     if (listaPos && sent.top_temas_positivos) {
       listaPos.innerHTML = sent.top_temas_positivos.map(t => renderItemTema(t, "pos")).join("");
       listaPos.querySelectorAll(".item-tema-clicavel").forEach(el => {
@@ -328,7 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    const listaNeg = document.getElementById("lista-temas-neg");
     if (listaNeg && sent.top_temas_negativos) {
       listaNeg.innerHTML = sent.top_temas_negativos.map(t => renderItemTema(t, "neg")).join("");
       listaNeg.querySelectorAll(".item-tema-clicavel").forEach(el => {
