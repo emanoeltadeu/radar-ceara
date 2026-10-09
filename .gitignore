@@ -56,7 +56,6 @@ wheels/
 # ARQUIVOS TEMPORÁRIOS E CACHES LOCAIS
 # ==========================================
 dados/*.html
-dados/cache_*.json
 *.log
 .coverage
 htmlcov/

@@ -14,7 +14,9 @@ import html as html_lib
 import urllib.request
 import urllib.parse
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+
+FUSO_CE = timezone(timedelta(hours=-3))
 
 def normalizar_texto(texto):
     """
@@ -162,6 +164,71 @@ def coletar_google_trends_ce_html(hours=4):
 
     return extrair_itens_trends_html(html_content)
 
+def atualizar_videos_youtube_api(cache_path):
+    """
+    O que faz:
+        Busca os vídeos políticos e sociais mais recentes do Ceará na YouTube Data API v3
+        e atualiza o cache local mantendo histórico deduplicado por ID de vídeo.
+    """
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    yt_key = os.getenv("YOUTUBE_API_KEY", "").strip()
+    if not yt_key:
+        yt_file = os.path.join(base_dir, "dados", "youtube_api_key.txt")
+        if os.path.exists(yt_file):
+            try:
+                with open(yt_file, "r", encoding="utf-8") as f:
+                    yt_key = f.read().strip()
+            except Exception:
+                pass
+    if not yt_key:
+        return
+
+    queries = [
+        "Ceará política", "Fortaleza política", "Léo Suricate",
+        "Assembleia Legislativa Ceará", "Elmano de Freitas Ceará",
+        "ônibus Fortaleza", "escala 6x1 Fortaleza"
+    ]
+
+    vids_map = {}
+    if os.path.exists(cache_path):
+        try:
+            with open(cache_path, "r", encoding="utf-8") as f:
+                for v in json.load(f):
+                    if v.get("id"):
+                        vids_map[v["id"]] = v
+        except Exception:
+            pass
+
+    for q in queries:
+        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={urllib.parse.quote(q)}&type=video&order=date&maxResults=8&key={yt_key}"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "RadarCeara/2.0"})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                for item in data.get("items", []):
+                    vid_id = item.get("id", {}).get("videoId")
+                    if not vid_id:
+                        continue
+                    snip = item.get("snippet", {})
+                    vids_map[vid_id] = {
+                        "id": vid_id,
+                        "titulo": html_lib.unescape(snip.get("title", "")),
+                        "canal": snip.get("channelTitle", ""),
+                        "desc": html_lib.unescape(snip.get("description", "")),
+                        "publishedAt": snip.get("publishedAt", "")
+                    }
+        except Exception:
+            continue
+
+    if vids_map:
+        lista_ordenada = list(vids_map.values())
+        lista_ordenada.sort(key=lambda x: x.get("publishedAt", ""), reverse=True)
+        try:
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(lista_ordenada, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+
 def carregar_corpus_videos_youtube():
     """
     O que faz:
@@ -177,6 +244,10 @@ def carregar_corpus_videos_youtube():
     """
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     cache_path = os.path.join(base_dir, "dados", "cache_youtube.json")
+    
+    # Atualiza via API se a chave estiver presente
+    atualizar_videos_youtube_api(cache_path)
+
     if not os.path.exists(cache_path):
         return []
 
@@ -319,7 +390,7 @@ def analisar_corpus_youtube(sub_vids, horas_label):
         "janela": horas_label,
         "nuvem": nuvem_out,
         "videos_mais_falados": {
-            "hora": datetime.now().strftime("%H:%M"),
+            "hora": datetime.now(FUSO_CE).strftime("%H:%M"),
             "janela": horas_label,
             "total_videos": len(sub_vids),
             "oposicao": {"titulo": "PRÓ-OPOSIÇÃO", "itens": itens_deles},
@@ -358,7 +429,7 @@ def gerar_nuvem_ceara_real():
         itens_google_4h = itens_google_24h
 
     google_trends_ce = {
-        "hora": datetime.now().strftime("%H:%M"),
+        "hora": datetime.now(FUSO_CE).strftime("%H:%M"),
         "janela": "4h",
         "itens": itens_google_4h,
         "itens_4h": itens_google_4h,

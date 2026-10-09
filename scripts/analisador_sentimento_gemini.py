@@ -13,7 +13,7 @@ import os
 import html
 import urllib.request
 import urllib.parse
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from collections import Counter
 
 # Modelo padrão do Google AI Studio configurado para este projeto
@@ -339,8 +339,27 @@ def gerar_painel_sentimento():
         except Exception:
             pass
 
-    # Caso ainda não existam comentários classificados suficientes, executa coleta em lote
-    if len(classificados) < 80:
+    gemini_key, yt_key = carregar_chaves()
+    hora_ce = datetime.now(timezone(timedelta(hours=-3))).strftime("%H:%M")
+
+    # Coleta incremental de novos comentários se chaves disponíveis
+    if yt_key and gemini_key:
+        try:
+            novos_brutos = coletar_comentarios_youtube(max_vids=25, max_comentarios_por_vid=5)
+            ja_ids = {c.get("id") for c in classificados if c.get("id")}
+            pendentes = [c for c in novos_brutos if c.get("id") and c["id"] not in ja_ids]
+            if pendentes:
+                novos_classificados = classificar_comentarios_gemini(pendentes, limite=15)
+                if novos_classificados:
+                    classificados.extend(novos_classificados)
+                    try:
+                        with open(cache_path, "w", encoding="utf-8") as f:
+                            json.dump(classificados, f, ensure_ascii=False, indent=2)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    elif len(classificados) < 80:
         comentarios = coletar_comentarios_youtube(max_vids=92)
         if comentarios:
             classificados = classificar_comentarios_gemini(comentarios, limite=80)
@@ -355,7 +374,7 @@ def gerar_painel_sentimento():
         return {
             "disponivel": False,
             "modelo": MODELO_GEMINI,
-            "hora": datetime.now().strftime("%H:%M"),
+            "hora": hora_ce,
             "total_analisados": 0,
             "positivo_pct": 0.0,
             "neutro_pct": 0.0,
@@ -425,7 +444,7 @@ def gerar_painel_sentimento():
     return {
         "disponivel": True,
         "modelo": MODELO_GEMINI,
-        "hora": datetime.now().strftime("%H:%M"),
+        "hora": hora_ce,
         "total_analisados": total,
         "positivo_pct": round((pos / total) * 100, 1),
         "neutro_pct": round((neu / total) * 100, 1),
