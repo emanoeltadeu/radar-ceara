@@ -28,15 +28,24 @@
 ```text
 ├── .github/
 │   └── workflows/
-│       └── deploy-pages.yml         # Deploy contínuo no GitHub Pages
+│       └── deploy-pages.yml         # Automação agendada nos 8 horários do Ceará
 ├── dados/
 │   ├── canais_youtube_ce.txt        # 32 canais prioritários monitorados no Ceará
+│   ├── cache_youtube.json           # Acervo persistente de vídeos políticos cearenses
+│   ├── cache_comentarios.json       # Base amostral de comentários coletados
+│   ├── cache_comentarios_classificados.json # Comentários classificados pela IA
 │   └── pautas_ceara.json            # Pautas estratégicas e munição de comunicação
 ├── scripts/
-│   ├── analisador_sentimento_gemini.py # Coleta e classificação de sentimento com Gemini
-│   ├── coletor_meta_ads.py          # Processamento de transparência de anúncios Meta
-│   ├── coletor_trends_ce.py         # Coleta do Google Trends CE e corpus do YouTube
-│   └── gerar_radar_ce.py            # Orquestrador do pipeline e gerador do radar_ce.json
+│   ├── config.py                    # Central de caminhos, fuso de Fortaleza e chaves
+│   ├── coletores/                   # CAMADA EXTRACT (Coleta pura de dados brutos)
+│   │   ├── youtube.py               # Busca de vídeos e comentários na YouTube API v3
+│   │   ├── google_trends.py         # Coleta e parsing do Google Trends CE (4h e 24h)
+│   │   └── meta_ads.py              # Processamento de prestação de contas TSE / Meta
+│   ├── inteligencia/                # CAMADA TRANSFORM (Processamento, NLP e IA)
+│   │   ├── gemini.py                # IA Generativa: Análise de sentimento e temas
+│   │   ├── nlp_nuvem.py             # Limpeza, stopwords e ponderação da nuvem/vídeos
+│   │   └── dados_eleitorais.py      # Extração DuckDB de votos do Léo por bairro (TSE 2026)
+│   └── gerar_radar_ce.py            # CAMADA LOAD (Orquestrador concorrente em paralelo)
 ├── site/
 │   ├── index.html                   # Interface do painel de monitoramento
 │   ├── style.css                    # Folha de estilos responsiva

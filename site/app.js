@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pctOposicao) pctOposicao.textContent = `${neg.toFixed(1).replace(".", ",")}%`;
 
     let temaAtivo = null;
-    const todosComentarios = sent.comentarios_todos || sent.amostras_destaque || [];
+    const todosComentarios = sent.comentarios_todos || sent.todos_comentarios || sent.amostras_destaque || [];
     const titCol = document.getElementById("tit-col-comentarios");
     const badgeCol = document.getElementById("badge-filtro-comentarios");
     const listaAmostras = document.getElementById("lista-amostras-comentarios");
@@ -249,8 +249,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       listaAmostras.innerHTML = lista.map(a => {
         const clsTag = a.sentimento === "positivo" ? "positivo" : (a.sentimento === "negativo" ? "negativo" : "neutro");
+        const urlDestino = a.link_yt || a.link_youtube || a.link_origem || (a.video_id && a.id ? `https://www.youtube.com/watch?v=${encodeURIComponent(a.video_id)}&lc=${encodeURIComponent(a.id)}` : "");
+        const linkYt = urlDestino ? `<a href="${escapeHtml(urlDestino)}" target="_blank" rel="noopener noreferrer" class="link-yt-comentario" title="Abrir este comentário destacado no YouTube">Ver no YouTube ↗</a>` : "";
         const videoOrigem = a.video_titulo ? `<div class="amostra-video-origem" title="${escapeHtml(a.video_titulo)}">📺 ${escapeHtml(a.video_titulo)}</div>` : "";
-        const linkYt = a.link_yt ? `<a href="${escapeHtml(a.link_yt)}" target="_blank" rel="noopener noreferrer" class="link-yt-comentario" title="Abrir este comentário destacado no YouTube">Ver no YouTube ↗</a>` : "";
         return `
           <div class="item-amostra-comentario">
             <div class="amostra-topo">
@@ -281,7 +282,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      const filtrados = todosComentarios.filter(c => {
+      const filtradosPorLado = todosComentarios.filter(c => {
+        const cTema = (c.tema || "").toLowerCase().trim();
+        const tBusca = tema.toLowerCase().trim();
+        const bateTema = cTema === tBusca || cTema.includes(tBusca) || tBusca.includes(cTema);
+        if (!bateTema) return false;
+        if (tipoLado === "pos") return c.sentimento === "positivo" || c.tipo === "apoio";
+        if (tipoLado === "neg") return c.sentimento === "negativo" || c.tipo === "ataque_oposicao" || c.tipo === "cobranca_popular";
+        return true;
+      });
+
+      const filtrados = filtradosPorLado.length > 0 ? filtradosPorLado : todosComentarios.filter(c => {
         const cTema = (c.tema || "").toLowerCase().trim();
         const tBusca = tema.toLowerCase().trim();
         return cTema === tBusca || cTema.includes(tBusca) || tBusca.includes(cTema);
