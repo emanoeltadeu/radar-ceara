@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let SENTIMENTO_YOUTUBE = null;
   let SENTIMENTO_INSTAGRAM = null;
 
-  // 1. Carregar radar_ce.json
-  fetch("radar_ce.json", { cache: "no-store" })
+  // 1. Carregar radar_ce.json (com timestamp dinâmico para anular cache de CDN)
+  fetch(`radar_ce.json?t=${Date.now()}`, { cache: "no-store" })
     .then(r => {
       if (!r.ok) throw new Error("Erro na rede");
       return r.json();
