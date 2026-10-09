@@ -741,6 +741,8 @@ body {
   padding: 2px;
   border-radius: 6px;
   border: 1px solid var(--linha);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .filtro-janela-btn {
   border: 0;
@@ -749,10 +751,15 @@ body {
   font-size: 10px;
   font-weight: 700;
   color: var(--tx-2);
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 4px;
   cursor: pointer;
   transition: all .15s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
 }
 .filtro-janela-btn.on {
   background: var(--tinta);

@@ -1,13 +1,13 @@
 {
-  "proximo_indice": 2,
-  "indice_rodada_anterior": 20,
+  "proximo_indice": 9,
+  "indice_rodada_anterior": 4,
   "total_perfis_cadastrados": 24,
   "lote_selecionado": [
-    "carmeloneto",
-    "etufortaleza",
-    "centraldoonibusfortaleza",
-    "suricateseboso",
-    "elmanodefreitas"
+    "prefeituradefortaleza",
+    "rede_cuca",
+    "midianinja",
+    "opovoonline",
+    "opovocbn"
   ],
-  "atualizado_em": "2026-10-09T17:24:09.333712"
+  "atualizado_em": "2026-10-09T16:15:56.223076"
 }

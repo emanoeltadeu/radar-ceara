@@ -10,7 +10,7 @@ O que faz:
 import unicodedata
 from datetime import datetime
 
-from config import FUSO_CE
+from config import FUSO_CE, calcular_idade_horas
 
 def normalizar_texto(texto):
     """
@@ -75,54 +75,24 @@ TEMAS_CAMPO_POPULAR = [
     ("Areninhas e Juventude", ["areninha", "juventude", "esporte"])
 ]
 
-def analisar_corpus_videos(sub_vids, horas_label):
-    """
-    Calcula as frequências de menções aos temas do Ceará para a janela temporal.
-    """
-    textos = [v.get("titulo", "") + " " + v.get("desc", "") for v in sub_vids]
-    full_text = normalizar_texto(" ".join(textos))
-    hora_ce = datetime.now(FUSO_CE).strftime("%H:%M")
-
-    # 1. Nuvem de Palavras
-    ocorrencias = []
-    for nome, lado, aliases in TERMOS_RADAR_NUVEM:
-        cnt = sum(full_text.count(normalizar_texto(a)) for a in aliases)
-        if cnt > 0:
-            ocorrencias.append((nome, lado, cnt))
-
-    ocorrencias.sort(key=lambda x: x[2], reverse=True)
-    max_c = ocorrencias[0][2] if ocorrencias else 1
-    nuvem_out = []
-    for n, l, c in ocorrencias[:18]:
-        peso = int(40 + round((c / max_c) * 58))
-        peso = max(38, min(98, peso))
-        nuvem_out.append({"t": n, "peso": peso, "lado": l})
-
-    # 2 e 3. Rankings de Oposição e Campo Popular com Associação de Vídeos
-    itens_deles = _extrair_ranking_temas_videos(sub_vids, "oposicao", TEMAS_OPOSICAO, videos_classificados_map)
-    itens_nossa = _extrair_ranking_temas_videos(sub_vids, "popular", TEMAS_CAMPO_POPULAR, videos_classificados_map)
-
-    return {
-        "total_videos": len(sub_vids),
-        "janela": horas_label,
-        "nuvem": nuvem_out,
-        "videos_mais_falados": {
-            "hora": hora_ce,
-            "janela": horas_label,
-            "total_videos": len(sub_vids),
-            "oposicao": {"titulo": "PRÓ-OPOSIÇÃO", "itens": itens_deles},
-            "popular": {"titulo": "CAMPO POPULAR / LÉO", "itens": itens_nossa}
-        }
-    }
-
-def _extrair_ranking_temas_videos(sub_vids, campo_alvo, temas_fallback, videos_classificados_map=None):
+def _extrair_ranking_temas_videos(sub_vids, campo_alvo, temas_fallback, videos_classificados_map=None, sub_comentarios=None):
     """
     Extrai o ranking dinâmico de temas para um campo político ('oposicao' ou 'popular'),
-    associando os vídeos correspondentes a cada tema para viabilizar interatividade no frontend.
+    associando os vídeos correspondentes e ponderando a intensidade a partir dos comentários populares.
     """
-    mapa_temas = {}  # tema -> list de vídeos
+    # 1. Agrupar comentários por ID do vídeo
+    comentarios_por_vid = {}
+    if sub_comentarios:
+        for c in sub_comentarios:
+            vid = c.get("video_id")
+            if vid:
+                if vid not in comentarios_por_vid:
+                    comentarios_por_vid[vid] = []
+                comentarios_por_vid[vid].append(c)
 
-    # 1. Agrupamento dinâmico via IA (Google Gemini)
+    mapa_temas = {}  # tema -> list de vídeos com estatísticas
+
+    # 2. Agrupamento dinâmico via IA (Google Gemini)
     if videos_classificados_map:
         for v in sub_vids:
             vid = v.get("id")
@@ -133,28 +103,38 @@ def _extrair_ranking_temas_videos(sub_vids, campo_alvo, temas_fallback, videos_c
                     if t_nome not in mapa_temas:
                         mapa_temas[t_nome] = []
                     if not any(item["id"] == vid for item in mapa_temas[t_nome]):
+                        comms_v = comentarios_por_vid.get(vid, [])
                         mapa_temas[t_nome].append({
                             "id": vid,
                             "titulo": v.get("titulo", "Vídeo no YouTube"),
                             "canal": v.get("canal", "Canal Cearense"),
                             "url": f"https://www.youtube.com/watch?v={vid}",
-                            "publishedAt": v.get("publishedAt", "")
+                            "publishedAt": v.get("publishedAt", ""),
+                            "qtd_comentarios": len(comms_v),
+                            "amostras_comentarios": [c.get("texto", "") for c in comms_v[:3]]
                         })
 
-    # 2. Complemento / Fallback com verificação por palavras-chave
+    # 3. Complemento / Fallback com verificação por palavras-chave (em títulos E comentários)
     for t_nome, aliases in temas_fallback:
         vids_match = []
+        aliases_norm = [normalizar_texto(a) for a in aliases]
         for v in sub_vids:
-            txt_v = normalizar_texto(v.get("titulo", "") + " " + (v.get("desc") or ""))
-            if any(normalizar_texto(a) in txt_v for a in aliases):
-                vid = v.get("id")
+            vid = v.get("id")
+            comms_v = comentarios_por_vid.get(vid, [])
+            textos_comms = [c.get("texto", "") for c in comms_v]
+            txt_v = normalizar_texto(v.get("titulo", "") + " " + (v.get("desc") or "") + " " + " ".join(textos_comms))
+
+            if any(a in txt_v for a in aliases_norm):
                 vids_match.append({
                     "id": vid,
                     "titulo": v.get("titulo", "Vídeo no YouTube"),
                     "canal": v.get("canal", "Canal Cearense"),
                     "url": f"https://www.youtube.com/watch?v={vid}",
-                    "publishedAt": v.get("publishedAt", "")
+                    "publishedAt": v.get("publishedAt", ""),
+                    "qtd_comentarios": len(comms_v),
+                    "amostras_comentarios": [c.get("texto", "") for c in comms_v[:3]]
                 })
+
         if vids_match:
             if t_nome not in mapa_temas:
                 mapa_temas[t_nome] = vids_match
@@ -163,38 +143,47 @@ def _extrair_ranking_temas_videos(sub_vids, campo_alvo, temas_fallback, videos_c
                     if not any(item["id"] == vm["id"] for item in mapa_temas[t_nome]):
                         mapa_temas[t_nome].append(vm)
 
-    # 3. Se nenhum tema tiver sido pontuado, carrega temas padrão com lista vazia
+    # 4. Se nenhum tema tiver sido pontuado, carrega temas padrão com lista vazia
     if not mapa_temas:
         for t_nome, _ in temas_fallback[:6]:
             mapa_temas[t_nome] = []
 
-    # 4. Cálculo de pesos relativos e porcentagens
+    # 5. Cálculo de pesos relativos e porcentagens considerando presença de vídeos e engajamento popular
     scores = []
     for t_nome, vids_list in mapa_temas.items():
-        score = len(vids_list) + (1 if len(vids_list) == 0 else 0)
-        scores.append((t_nome, score, vids_list))
+        total_comms = sum(vm.get("qtd_comentarios", 0) for vm in vids_list)
+        # Score ponderado: base por vídeo + engajamento dos comentários populares
+        score = (len(vids_list) * 2) + total_comms
+        if len(vids_list) == 0:
+            score = 1
+        scores.append((t_nome, score, total_comms, vids_list))
 
-    scores.sort(key=lambda x: (len(x[2]), x[1]), reverse=True)
-    tot = sum(s for _, s, _ in scores) or 1
+    scores.sort(key=lambda x: (x[1], len(x[3])), reverse=True)
+    tot = sum(s for _, s, _, _ in scores) or 1
 
     itens = []
-    for t_nome, s, vids_list in scores[:10]:
+    for t_nome, s, total_comms, vids_list in scores[:10]:
         pct_val = round((s / tot) * 100, 1)
         itens.append({
             "termo": t_nome,
             "pct": f"{pct_val}%".replace(".", ","),
             "valor": pct_val,
             "qtd_videos": len(vids_list),
+            "qtd_comentarios": total_comms,
             "videos": vids_list
         })
 
     return itens
 
-def analisar_corpus_videos(sub_vids, horas_label, videos_classificados_map=None):
+def analisar_corpus_videos(sub_vids, horas_label, videos_classificados_map=None, sub_comentarios=None):
     """
-    Calcula as frequências de menções aos temas do Ceará para a janela temporal.
+    Calcula as frequências de menções aos temas do Ceará para a janela temporal,
+    unindo o texto dos títulos com o vocabulário real dos comentários populares.
     """
     textos = [v.get("titulo", "") + " " + v.get("desc", "") for v in sub_vids]
+    if sub_comentarios:
+        textos.extend([c.get("texto", "") for c in sub_comentarios])
+
     full_text = normalizar_texto(" ".join(textos))
     hora_ce = datetime.now(FUSO_CE).strftime("%H:%M")
 
@@ -213,34 +202,49 @@ def analisar_corpus_videos(sub_vids, horas_label, videos_classificados_map=None)
         peso = max(38, min(98, peso))
         nuvem_out.append({"t": n, "peso": peso, "lado": l})
 
-    # Rankings com vídeos associados
-    itens_deles = _extrair_ranking_temas_videos(sub_vids, "oposicao", TEMAS_OPOSICAO, videos_classificados_map)
-    itens_nossa = _extrair_ranking_temas_videos(sub_vids, "popular", TEMAS_CAMPO_POPULAR, videos_classificados_map)
+    # Rankings com vídeos e comentários associados
+    itens_deles = _extrair_ranking_temas_videos(sub_vids, "oposicao", TEMAS_OPOSICAO, videos_classificados_map, sub_comentarios)
+    itens_nossa = _extrair_ranking_temas_videos(sub_vids, "popular", TEMAS_CAMPO_POPULAR, videos_classificados_map, sub_comentarios)
 
     return {
         "total_videos": len(sub_vids),
+        "total_comentarios": len(sub_comentarios) if sub_comentarios else 0,
         "janela": horas_label,
         "nuvem": nuvem_out,
         "videos_mais_falados": {
             "hora": hora_ce,
             "janela": horas_label,
             "total_videos": len(sub_vids),
+            "total_comentarios": len(sub_comentarios) if sub_comentarios else 0,
             "oposicao": {"titulo": "PRÓ-OPOSIÇÃO", "itens": itens_deles},
             "popular": {"titulo": "CAMPO POPULAR / LÉO", "itens": itens_nossa}
         }
     }
 
-def construir_monitor_redes(corpus_videos, itens_google_4h, itens_google_24h, videos_classificados_map=None):
+def construir_monitor_redes(corpus_videos, itens_google_4h, itens_google_24h, videos_classificados_map=None, corpus_comentarios=None):
     """
-    Consolida as 3 janelas temporais de vídeos (12h, 24h, 48h) com o Google Trends CE.
+    Consolida as janelas temporais de vídeos e comentários (1h, 2h, 12h, 24h e 7d) com o Google Trends CE.
     """
+    if corpus_comentarios is None:
+        corpus_comentarios = []
+
+    vids_1h = [v for v in corpus_videos if v.get("idade_horas", 999) <= 1] or corpus_videos[:5]
+    vids_2h = [v for v in corpus_videos if v.get("idade_horas", 999) <= 2] or corpus_videos[:8]
     vids_12h = [v for v in corpus_videos if v.get("idade_horas", 999) <= 12] or corpus_videos[:15]
     vids_24h = [v for v in corpus_videos if v.get("idade_horas", 999) <= 24] or corpus_videos[:30]
-    vids_48h = [v for v in corpus_videos if v.get("idade_horas", 999) <= 48] or corpus_videos
+    vids_7d = [v for v in corpus_videos if v.get("idade_horas", 999) <= 168] or corpus_videos
 
-    res_12h = analisar_corpus_videos(vids_12h, "12h", videos_classificados_map)
-    res_24h = analisar_corpus_videos(vids_24h, "24h", videos_classificados_map)
-    res_48h = analisar_corpus_videos(vids_48h, "48h", videos_classificados_map)
+    comms_1h = [c for c in corpus_comentarios if calcular_idade_horas(c.get("data")) <= 1] or corpus_comentarios[:20]
+    comms_2h = [c for c in corpus_comentarios if calcular_idade_horas(c.get("data")) <= 2] or corpus_comentarios[:40]
+    comms_12h = [c for c in corpus_comentarios if calcular_idade_horas(c.get("data")) <= 12] or corpus_comentarios[:80]
+    comms_24h = [c for c in corpus_comentarios if calcular_idade_horas(c.get("data")) <= 24] or corpus_comentarios[:150]
+    comms_7d = [c for c in corpus_comentarios if calcular_idade_horas(c.get("data")) <= 168] or corpus_comentarios
+
+    res_1h = analisar_corpus_videos(vids_1h, "1h", videos_classificados_map, comms_1h)
+    res_2h = analisar_corpus_videos(vids_2h, "2h", videos_classificados_map, comms_2h)
+    res_12h = analisar_corpus_videos(vids_12h, "12h", videos_classificados_map, comms_12h)
+    res_24h = analisar_corpus_videos(vids_24h, "24h", videos_classificados_map, comms_24h)
+    res_7d = analisar_corpus_videos(vids_7d, "7d", videos_classificados_map, comms_7d)
 
     if not itens_google_4h:
         itens_google_4h = itens_google_24h
@@ -257,15 +261,19 @@ def construir_monitor_redes(corpus_videos, itens_google_4h, itens_google_24h, vi
     return {
         "nuvem": res_24h["nuvem"],
         "nuvens_por_janela": {
+            "1h": res_1h["nuvem"],
+            "2h": res_2h["nuvem"],
             "12h": res_12h["nuvem"],
             "24h": res_24h["nuvem"],
-            "48h": res_48h["nuvem"]
+            "7d": res_7d["nuvem"]
         },
         "videos_mais_falados_ce": res_24h["videos_mais_falados"],
         "videos_por_janela": {
+            "1h": res_1h["videos_mais_falados"],
+            "2h": res_2h["videos_mais_falados"],
             "12h": res_12h["videos_mais_falados"],
             "24h": res_24h["videos_mais_falados"],
-            "48h": res_48h["videos_mais_falados"]
+            "7d": res_7d["videos_mais_falados"]
         },
         "google_trends_ce": google_trends_ce
     }

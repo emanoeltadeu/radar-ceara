@@ -12,11 +12,13 @@ import os
 import html
 import urllib.request
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 
 from config import (
     CACHE_YOUTUBE,
     CACHE_COMENTARIOS,
+    CANAIS_YOUTUBE,
     JANELA_MAXIMA_HORAS,
     calcular_idade_horas,
     carregar_chaves_api
@@ -28,31 +30,88 @@ TERMOS_IGNORAR_TITULO = [
     "fortaleza ec", "ceará sc", "brasileirão", "gol de", "humor"
 ]
 
-CONSULTAS_PADRAO_CEARA = [
-    "Ceará política",
-    "Fortaleza política",
-    "Léo Suricate",
-    "Assembleia Legislativa Ceará",
-    "Elmano de Freitas Ceará",
-    "ônibus Fortaleza",
-    "escala 6x1 Fortaleza"
-]
+def carregar_lista_canais_youtube(caminho=CANAIS_YOUTUBE):
+    """
+    Carrega a lista de canais monitorados do arquivo dados/canais_youtube_ce.txt.
+    """
+    if not os.path.exists(caminho):
+        return []
+    canais = []
+    try:
+        with open(caminho, "r", encoding="utf-8") as f:
+            for line in f:
+                linha = line.strip()
+                if linha and not linha.startswith("#"):
+                    canais.append(linha)
+    except Exception:
+        pass
+    return canais
 
-def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE, queries=None):
+def _extrair_videos_recentes_canal_youtube(nome_canal, max_videos=15):
+    """
+    Extrai vídeos recentes de um canal sem gastar cota da API oficial,
+    pesquisando as publicações recentes do canal no YouTube com filtro temporal.
+    """
+    query = f"{nome_canal} Ceará"
+    url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}&sp=CAI%253D"
+    vids = []
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Accept-Language": "pt-BR,pt;q=0.9"
+            }
+        )
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            html_raw = resp.read().decode("utf-8", errors="ignore")
+
+        import re
+        m = re.search(r'var ytInitialData = ({.*?});</script>', html_raw)
+        if m:
+            data = json.loads(m.group(1))
+            contents = (
+                data.get("contents", {})
+                .get("twoColumnSearchResultsRenderer", {})
+                .get("primaryContents", {})
+                .get("sectionListRenderer", {})
+                .get("contents", [])
+            )
+            for c in contents:
+                items = c.get("itemSectionRenderer", {}) .get("contents", [])
+                for it in items:
+                    vr = it.get("videoRenderer")
+                    if not vr:
+                        continue
+                    vid_id = vr.get("videoId")
+                    if not vid_id:
+                        continue
+                    tit = vr.get("title", {}).get("runs", [{}])[0].get("text", "")
+                    canal_nome = vr.get("ownerText", {}).get("runs", [{}])[0].get("text", nome_canal)
+                    vids.append({
+                        "id": vid_id,
+                        "titulo": html.unescape(tit),
+                        "canal": canal_nome,
+                        "desc": "",
+                        "publishedAt": datetime.now(timezone.utc).isoformat()
+                    })
+                    if len(vids) >= max_videos:
+                        break
+                if len(vids) >= max_videos:
+                    break
+    except Exception:
+        pass
+    return vids
+
+def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE):
     """
     O que faz:
-        Executa buscas temáticas na YouTube Data API v3 (search.list) e mescla
-        com os vídeos já existentes no cache local, deduplicando por videoId.
+        1. Varre em paralelo os canais cearenses mapeados trazendo até 15 vídeos recentes de cada (zero cota);
+        2. Mescla com o cache local, deduplicando por videoId e aplicando retenção de 7 dias.
 
     Retorno:
         list: Lista atualizada de dicionários contendo metadados dos vídeos.
     """
-    if yt_key is None:
-        yt_key = carregar_chaves_api()["youtube"]
-
-    if queries is None:
-        queries = CONSULTAS_PADRAO_CEARA
-
     vids_map = {}
     if os.path.exists(cache_path):
         try:
@@ -63,27 +122,17 @@ def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE, queries=None
         except Exception:
             pass
 
-    if yt_key:
-        for q in queries:
-            url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={urllib.parse.quote(q)}&type=video&order=date&maxResults=8&key={yt_key}"
-            try:
-                req = urllib.request.Request(url, headers={"User-Agent": "RadarCeara/2.0"})
-                with urllib.request.urlopen(req, timeout=8) as resp:
-                    data = json.loads(resp.read().decode("utf-8"))
-                    for item in data.get("items", []):
-                        vid_id = item.get("id", {}).get("videoId")
-                        if not vid_id:
-                            continue
-                        snip = item.get("snippet", {})
-                        vids_map[vid_id] = {
-                            "id": vid_id,
-                            "titulo": html.unescape(snip.get("title", "")),
-                            "canal": snip.get("channelTitle", ""),
-                            "desc": html.unescape(snip.get("description", "")),
-                            "publishedAt": snip.get("publishedAt", "")
-                        }
-            except Exception:
-                continue
+    # 1. Coleta concorrente dos canais cearenses mapeados (Até 15 vídeos por canal)
+    canais_alvo = carregar_lista_canais_youtube()
+    if canais_alvo:
+        print(f"   -> Varrendo {len(canais_alvo)} canais cearenses mapeados (paralelo com 8 threads)...")
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            resultados = list(executor.map(lambda c: _extrair_videos_recentes_canal_youtube(c, max_videos=15), canais_alvo))
+            for vids_canal in resultados:
+                for v in vids_canal:
+                    vid_id = v["id"]
+                    if vid_id not in vids_map:
+                        vids_map[vid_id] = v
 
     # Política de retenção de 7 dias: descarta vídeos fora da janela máxima
     lista_ordenada = [
@@ -123,12 +172,12 @@ def carregar_corpus_videos(cache_path=CACHE_YOUTUBE):
         if idade <= JANELA_MAXIMA_HORAS:
             vids_validos.append(v)
 
-    return vids_validos or vids[:30]
+    return vids_validos or vids[:50]
 
-def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vid=10):
+def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vid=100):
     """
     O que faz:
-        Consulta commentThreads.list para os vídeos prioritários e extrai os comentários,
+        Consulta commentThreads.list para os vídeos prioritários e extrai até 100 comentários mais curtidos,
         formatando-os no Contrato Unificado de Comentários de Redes Sociais.
 
     Retorno:
@@ -155,7 +204,7 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vi
         t = v.get("titulo", "").lower()
         if any(k in t for k in ["leo suricate", "suricate", "lula", "6x1", "onibus", "tarifa"]):
             return 0
-        if any(k in t for k in ["elmano", "governo", "ciro", "wagner", "eleições"]):
+        if any(k in t for k in ["elmano", "governo", "ciro", "wagner", "eleições", "alece"]):
             return 1
         return 2
 
@@ -172,21 +221,19 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vi
         except Exception:
             pass
 
-    novos_adicionados = 0
-    for v in alvos:
+    def _extrair_comentarios_de_um_video(v):
         vid_id = v["id"]
         v_tit = v.get("titulo", "")
         v_canal = v.get("canal", "")
-
         url = (
             f"https://www.googleapis.com/youtube/v3/commentThreads"
             f"?part=snippet&videoId={vid_id}&maxResults={max_comentarios_por_vid}"
             f"&order=relevance&key={yt_key}"
         )
-
+        encontrados = []
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "RadarCeara/2.0"})
-            with urllib.request.urlopen(req, timeout=10) as resp:
+            with urllib.request.urlopen(req, timeout=8) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 for it in data.get("items", []):
                     top = it.get("snippet", {}).get("topLevelComment", {}).get("snippet", {})
@@ -197,11 +244,10 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vi
                     texto_limpo = html.unescape(texto.replace("<br>", " ").replace("<br/>", " "))
                     texto_limpo = " ".join(texto_limpo.split())
 
-                    # Ignora comentários curtos demais ou sem conteúdo textual
                     if len(texto_limpo) < 8:
                         continue
 
-                    comentarios_existentes[c_id] = {
+                    encontrados.append({
                         "id": c_id,
                         "rede": "youtube",
                         "video_id": vid_id,
@@ -212,10 +258,16 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vi
                         "likes": top.get("likeCount", 0),
                         "data": top.get("publishedAt", ""),
                         "link_origem": f"https://www.youtube.com/watch?v={vid_id}&lc={c_id}"
-                    }
-                    novos_adicionados += 1
+                    })
         except Exception:
-            continue
+            pass
+        return encontrados
+
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        lotes_comentarios = list(executor.map(_extrair_comentarios_de_um_video, alvos))
+        for lista_c in lotes_comentarios:
+            for c in lista_c:
+                comentarios_existentes[c["id"]] = c
 
     # Política de retenção de 7 dias: descarta comentários mais antigos
     lista_final = [

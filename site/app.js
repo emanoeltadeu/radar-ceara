@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   let DADOS = null;
+  let SENTIMENTO_YOUTUBE = null;
 
   // 1. Carregar radar_ce.json
   fetch("radar_ce.json", { cache: "no-store" })
@@ -9,17 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(data => {
       DADOS = data;
+      SENTIMENTO_YOUTUBE = data.sentimento_youtube || data.sentimento_mencoes;
       renderizarMonitorRedes(data.monitor_redes);
 
-      // Sentimento YouTube (com fallback para sentimento_mencoes)
-      const sentYT = data.sentimento_youtube || data.sentimento_mencoes;
-      if (sentYT) {
-        renderizarBlocoSentimento(sentYT, "yt", {
+      // Sentimento YouTube inicial
+      if (SENTIMENTO_YOUTUBE) {
+        renderizarBlocoSentimento(SENTIMENTO_YOUTUBE, "yt", {
           tipoRede: "youtube",
           nomeRede: "YouTube",
           rotuloBtn: "Ver no YouTube ↗",
           clsLink: "link-yt-comentario",
-          iconeOrigem: "📺"
+          iconeOrigem: "📺",
+          janela: "24h"
         });
       }
 
@@ -114,8 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const vids = item.videos || [];
       if (detalheVideoContagem) {
-        const plural = vids.length === 1 ? "vídeo cearense associado" : "vídeos cearenses associados";
-        detalheVideoContagem.textContent = `${vids.length} ${plural} a esta pauta nas últimas ${janelaAtual}.`;
+        const pluralVids = vids.length === 1 ? "vídeo cearense associado" : "vídeos cearenses associados";
+        const txtComms = item.qtd_comentarios ? ` e ${item.qtd_comentarios} comentários populares analisados` : '';
+        detalheVideoContagem.textContent = `${vids.length} ${pluralVids}${txtComms} nas últimas ${janelaAtual}.`;
       }
 
       if (listaVideosDetalhe) {
@@ -133,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </svg>
               <div class="card-video-info">
                 <div class="card-video-titulo">${escapeHtml(v.titulo)}</div>
-                <div class="card-video-canal">Canal: <span>${escapeHtml(v.canal || 'YouTube')}</span> ↗</div>
+                <div class="card-video-canal">Canal: <span>${escapeHtml(v.canal || 'YouTube')}</span>${v.qtd_comentarios ? ` · 💬 ${v.qtd_comentarios} comentários` : ''} ↗</div>
               </div>
             </a>
           `).join("");
@@ -153,7 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
         listaVideoDeles.innerHTML = itensDeles.map(item => {
           const w = Math.min(100, Math.max(8, item.valor * 2.5));
           const estaAtivo = temaSelecionadoVideo === item.termo && campoSelecionadoVideo === "oposicao";
-          const qtdLabel = item.qtd_videos ? ` (${item.qtd_videos} ${item.qtd_videos === 1 ? 'vídeo' : 'vídeos'})` : '';
+          const qtdComms = item.qtd_comentarios ? ` · ${item.qtd_comentarios} 💬` : '';
+          const qtdLabel = item.qtd_videos ? ` (${item.qtd_videos} ${item.qtd_videos === 1 ? 'vídeo' : 'vídeos'}${qtdComms})` : '';
           return `
             <div class="item-video-linha ${estaAtivo ? 'ativo' : ''}" 
                  data-termo="${encodeURIComponent(item.termo)}" 
@@ -182,7 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
         listaVideoNossa.innerHTML = itensNossa.map(item => {
           const w = Math.min(100, Math.max(8, item.valor * 2.5));
           const estaAtivo = temaSelecionadoVideo === item.termo && campoSelecionadoVideo === "popular";
-          const qtdLabel = item.qtd_videos ? ` (${item.qtd_videos} ${item.qtd_videos === 1 ? 'vídeo' : 'vídeos'})` : '';
+          const qtdComms = item.qtd_comentarios ? ` · ${item.qtd_comentarios} 💬` : '';
+          const qtdLabel = item.qtd_videos ? ` (${item.qtd_videos} ${item.qtd_videos === 1 ? 'vídeo' : 'vídeos'}${qtdComms})` : '';
           return `
             <div class="item-video-linha ${estaAtivo ? 'ativo' : ''}" 
                  data-termo="${encodeURIComponent(item.termo)}" 
@@ -207,11 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Função unificada para alternar janela temporal do YouTube (12h, 24h, 48h)
+    // Função unificada para alternar janela temporal do YouTube (1h, 2h, 12h, 24h, 7d)
     function trocarJanelaYouTube(janela) {
       janelaAtualYT = janela;
       
-      ["12h", "24h", "48h"].forEach(j => {
+      ["1h", "2h", "12h", "24h", "7d"].forEach(j => {
         const btn = document.getElementById(`btn-yt-${j}`);
         if (btn) {
           if (j === janela) btn.classList.add("on");
@@ -238,15 +243,30 @@ document.addEventListener("DOMContentLoaded", () => {
           fecharDetalheVideos();
         }
       }
+
+      // Atualiza o painel de Sentimento do YouTube sincronizado com a mesma janela de tempo
+      if (SENTIMENTO_YOUTUBE) {
+        const sentYTAtual = (SENTIMENTO_YOUTUBE.por_janela && SENTIMENTO_YOUTUBE.por_janela[janela]) || SENTIMENTO_YOUTUBE;
+        renderizarBlocoSentimento(sentYTAtual, "yt", {
+          tipoRede: "youtube",
+          nomeRede: "YouTube",
+          rotuloBtn: "Ver no YouTube ↗",
+          clsLink: "link-yt-comentario",
+          iconeOrigem: "📺",
+          janela: janela
+        });
+      }
     }
 
     // Inicializar YouTube na janela padrão (24h)
     trocarJanelaYouTube("24h");
 
     // Event listeners para os botões do YouTube
+    document.getElementById("btn-yt-1h")?.addEventListener("click", () => trocarJanelaYouTube("1h"));
+    document.getElementById("btn-yt-2h")?.addEventListener("click", () => trocarJanelaYouTube("2h"));
     document.getElementById("btn-yt-12h")?.addEventListener("click", () => trocarJanelaYouTube("12h"));
     document.getElementById("btn-yt-24h")?.addEventListener("click", () => trocarJanelaYouTube("24h"));
-    document.getElementById("btn-yt-48h")?.addEventListener("click", () => trocarJanelaYouTube("48h"));
+    document.getElementById("btn-yt-7d")?.addEventListener("click", () => trocarJanelaYouTube("7d"));
 
     // Busca de Palavra
     const formBusca = document.getElementById("form-busca-palavra");
@@ -324,8 +344,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const iconeOrigem = config.iconeOrigem || (tipoRede === "instagram" ? "📸" : "📺");
 
     const totalLabel = document.getElementById(`sentimento-${prefix}-total-label`);
-    if (totalLabel && sent.total_analisados) {
-      totalLabel.textContent = `${sent.total_analisados} comentários analisados`;
+    if (totalLabel && sent.total_analisados !== undefined) {
+      const rotuloJanela = config.janela ? ` (${config.janela})` : '';
+      totalLabel.textContent = `${sent.total_analisados} comentários analisados${rotuloJanela}`;
     }
 
     const pos = sent.positivo_pct || 0;

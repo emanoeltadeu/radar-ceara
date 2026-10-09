@@ -178,11 +178,16 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
         try:
             with open(cache_path, "r", encoding="utf-8") as f:
                 dados_brutos = json.load(f)
-                # Política de retenção de 7 dias: descarta comentários históricos antigos
-                classificados = [
-                    c for c in dados_brutos
-                    if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
-                ]
+                vistos = set()
+                classificados = []
+                for c in dados_brutos:
+                    cid = c.get("id")
+                    if cid and cid not in vistos:
+                        vistos.add(cid)
+                        if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS:
+                            classificados.append(c)
+                    elif not cid and calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS:
+                        classificados.append(c)
         except Exception:
             pass
 
@@ -196,40 +201,82 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
         pendentes = [c for c in comentarios_recentes if c.get("id") and c["id"] not in ja_classificados_ids]
 
         if pendentes:
-            tamanho_sublote = 15
-            limite_novos = 30
+            tamanho_sublote = 25
+            limite_novos = 150
             pendentes_para_rodar = pendentes[:limite_novos]
 
             for i in range(0, len(pendentes_para_rodar), tamanho_sublote):
                 sublote = pendentes_para_rodar[i:i + tamanho_sublote]
                 novos_classificados = classificar_lote_comentarios_gemini(sublote, gemini_key)
                 if novos_classificados:
-                    classificados.extend(novos_classificados)
+                    for nv in novos_classificados:
+                        nid = nv.get("id")
+                        if nid and nid not in ja_classificados_ids:
+                            ja_classificados_ids.add(nid)
+                            classificados.append(nv)
+                        elif not nid:
+                            classificados.append(nv)
                 time.sleep(1)
 
             if classificados:
-                # Mantém apenas itens dentro da janela de 7 dias salvos no cache
-                classificados = [
-                    c for c in classificados
-                    if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
-                ]
                 try:
                     with open(cache_path, "w", encoding="utf-8") as f:
                         json.dump(classificados, f, ensure_ascii=False, indent=2)
                 except Exception:
                     pass
 
-    # Filtrar válidos (não descartados e estritamente dentro da janela de 7 dias)
-    validos = [
-        c for c in classificados
-        if c.get("sentimento") in ["positivo", "neutro", "negativo"]
-        and not c.get("descartado")
-        and calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
-    ]
+    # Filtrar válidos (não descartados, únicos por ID e estritamente dentro da janela de 7 dias)
+    vistos_validos = set()
+    validos = []
+    for c in classificados:
+        cid = c.get("id")
+        if (
+            c.get("sentimento") in ["positivo", "neutro", "negativo"]
+            and not c.get("descartado")
+            and calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
+        ):
+            if cid:
+                if cid not in vistos_validos:
+                    vistos_validos.add(cid)
+                    validos.append(c)
+            else:
+                validos.append(c)
 
-    if not validos:
+    # Janelas Temporais de Sentimento (1h, 2h, 12h, 24h e 7d)
+    v_1h = [c for c in validos if calcular_idade_horas(c.get("data")) <= 1]
+    v_2h = [c for c in validos if calcular_idade_horas(c.get("data")) <= 2]
+    v_12h = [c for c in validos if calcular_idade_horas(c.get("data")) <= 12]
+    v_24h = [c for c in validos if calcular_idade_horas(c.get("data")) <= 24]
+    v_7d = validos
+
+    res_1h = _calcular_metricas_sentimento(v_1h or validos[:15], "1h", hora_ce)
+    res_2h = _calcular_metricas_sentimento(v_2h or validos[:35], "2h", hora_ce)
+    res_12h = _calcular_metricas_sentimento(v_12h or validos[:80], "12h", hora_ce)
+    res_24h = _calcular_metricas_sentimento(v_24h or validos[:150], "24h", hora_ce)
+    res_7d = _calcular_metricas_sentimento(v_7d, "7d", hora_ce)
+
+    res_final = dict(res_7d)
+    res_final["por_janela"] = {
+        "1h": res_1h,
+        "2h": res_2h,
+        "12h": res_12h,
+        "24h": res_24h,
+        "7d": dict(res_7d)
+    }
+
+    return res_final
+
+def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
+    """
+    Calcula as métricas proporcionais de sentimento, temas e amostras para um subconjunto de comentários.
+    """
+    if not hora_ce:
+        hora_ce = datetime.now(FUSO_CE).strftime("%H:%M")
+
+    if not sub_validos:
         return {
             "disponivel": False,
+            "janela": janela_label,
             "modelo": MODELO_GEMINI,
             "hora": hora_ce,
             "total_analisados": 0,
@@ -244,21 +291,23 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
             },
             "top_temas_positivos": [],
             "top_temas_negativos": [],
-            "amostras_destaque": []
+            "amostras_destaque": [],
+            "todos_comentarios": [],
+            "comentarios_todos": []
         }
 
-    total = len(validos)
-    pos_lista = [c for c in validos if c.get("sentimento") == "positivo"]
-    neu_lista = [c for c in validos if c.get("sentimento") == "neutro"]
-    neg_lista = [c for c in validos if c.get("sentimento") == "negativo"]
+    total = len(sub_validos)
+    pos_lista = [c for c in sub_validos if c.get("sentimento") == "positivo"]
+    neu_lista = [c for c in sub_validos if c.get("sentimento") == "neutro"]
+    neg_lista = [c for c in sub_validos if c.get("sentimento") == "negativo"]
 
     pos = len(pos_lista)
     neu = len(neu_lista)
     neg = len(neg_lista)
 
-    apoio = sum(1 for c in validos if c.get("tipo") == "apoio")
-    cobranca = sum(1 for c in validos if c.get("tipo") == "cobranca_popular")
-    ataque = sum(1 for c in validos if c.get("tipo") == "ataque_oposicao")
+    apoio = sum(1 for c in sub_validos if c.get("tipo") == "apoio")
+    cobranca = sum(1 for c in sub_validos if c.get("tipo") == "cobranca_popular")
+    ataque = sum(1 for c in sub_validos if c.get("tipo") == "ataque_oposicao")
 
     temas_pos_cnt = Counter(c.get("tema", "").strip() for c in pos_lista if c.get("tema") and c.get("tema") != "irrelevante")
     temas_neg_cnt = Counter(c.get("tema", "").strip() for c in neg_lista if c.get("tema") and c.get("tema") != "irrelevante")
@@ -273,7 +322,7 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
     ]
 
     payload_comentarios = []
-    for c in validos:
+    for c in sub_validos:
         vid_id = c.get("video_id", "")
         c_id = c.get("id", "")
         link = (
@@ -308,6 +357,7 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
 
     return {
         "disponivel": True,
+        "janela": janela_label,
         "modelo": MODELO_GEMINI,
         "hora": hora_ce,
         "total_analisados": total,

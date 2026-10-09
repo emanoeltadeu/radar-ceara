@@ -105,7 +105,7 @@ def main():
     print("3/5 Classificando vídeos cearenses com IA e processando rankings dinâmicos...")
     chaves = carregar_chaves_api()
     videos_classificados = classificar_videos_youtube_gemini(vids, chaves.get("gemini", ""))
-    monitor_redes = construir_monitor_redes(vids, trends_4h, trends_24h, videos_classificados)
+    monitor_redes = construir_monitor_redes(vids, trends_4h, trends_24h, videos_classificados, corpus_comentarios=comentarios_yt)
 
     # 4. Inteligência Generativa (Google Gemini para YouTube e Instagram)
     print("4/5 Processando inteligência de sentimento no YouTube com Google Gemini...")
