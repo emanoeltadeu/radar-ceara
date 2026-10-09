@@ -292,8 +292,7 @@ def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
             "top_temas_positivos": [],
             "top_temas_negativos": [],
             "amostras_destaque": [],
-            "todos_comentarios": [],
-            "comentarios_todos": []
+            "todos_comentarios": []
         }
 
     total = len(sub_validos)
@@ -373,8 +372,7 @@ def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
         "top_temas_positivos": top_pos,
         "top_temas_negativos": top_neg,
         "amostras_destaque": amostras,
-        "todos_comentarios": payload_comentarios,
-        "comentarios_todos": payload_comentarios
+        "todos_comentarios": payload_comentarios
     }
 
 SYSTEM_PROMPT_VIDEOS_CE = """

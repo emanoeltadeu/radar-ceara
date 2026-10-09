@@ -135,7 +135,6 @@ def main():
         "versao": VERSAO_RADAR,
         "mandato_leo": dados_leo,
         "monitor_redes": monitor_redes,
-        "sentimento_mencoes": sentimento_youtube,
         "sentimento_youtube": sentimento_youtube,
         "sentimento_instagram": sentimento_instagram,
         "meta_transparencia": meta_ads,

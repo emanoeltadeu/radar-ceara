@@ -1,13 +1,19 @@
 {
-  "proximo_indice": 5,
-  "indice_rodada_anterior": 0,
+  "proximo_indice": 16,
+  "indice_rodada_anterior": 5,
   "total_perfis_cadastrados": 37,
   "lote_selecionado": [
-    "suricateseboso",
-    "elmanodefreitas",
-    "camilosantanaoficial",
-    "governodoceara",
-    "prefeituradefortaleza"
+    "rede_cuca",
+    "midianinja",
+    "opovoonline",
+    "opovocbn",
+    "diariodonordeste",
+    "gcmais",
+    "jornaljangadeiro",
+    "tvceara",
+    "assembleiace",
+    "focuspoder",
+    "urbnews"
   ],
-  "atualizado_em": "2026-10-09T20:15:44.422512"
+  "atualizado_em": "2026-10-09T20:51:13.310455"
 }
