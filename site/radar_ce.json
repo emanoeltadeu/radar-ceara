@@ -1,7 +1,7 @@
 {
   "titulo": "Radar Léo Suricate · Mandato Popular CE",
   "subtitulo": "Inteligência Territorial de Bairros (Chão) & Monitoramento Digital de Redes",
-  "gerado_em": "08/10/2026 às 22:46",
+  "gerado_em": "08/10/2026 às 22:47",
   "versao": "2.0.0-leo-suricate",
   "mandato_leo": {
     "resumo_eleitoral": {
@@ -499,7 +499,7 @@
       "48h": []
     },
     "videos_mais_falados_ce": {
-      "hora": "01:43",
+      "hora": "01:47",
       "janela": "24h",
       "total_videos": 0,
       "oposicao": {
@@ -615,7 +615,7 @@
     },
     "videos_por_janela": {
       "12h": {
-        "hora": "01:43",
+        "hora": "01:47",
         "janela": "12h",
         "total_videos": 0,
         "oposicao": {
@@ -730,7 +730,7 @@
         }
       },
       "24h": {
-        "hora": "01:43",
+        "hora": "01:47",
         "janela": "24h",
         "total_videos": 0,
         "oposicao": {
@@ -845,7 +845,7 @@
         }
       },
       "48h": {
-        "hora": "01:43",
+        "hora": "01:47",
         "janela": "48h",
         "total_videos": 0,
         "oposicao": {
@@ -961,7 +961,7 @@
       }
     },
     "google_trends_ce": {
-      "hora": "01:43",
+      "hora": "01:47",
       "janela": "4h",
       "itens": [
         {
@@ -977,22 +977,16 @@
           "pauta": "Busca associada: classificações de athletico-pr x atlético-mg"
         },
         {
-          "termo": "fluminense x coritiba",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "pauta": "Busca associada: fluminense football club"
-        },
-        {
           "termo": "palmeiras",
-          "volume": "100 mil+",
+          "volume": "200 mil+",
           "lado": "disputa",
           "pauta": "Busca associada: furosemida"
         },
         {
-          "termo": "náutico x novorizontino",
-          "volume": "50 mil+",
+          "termo": "fluminense x coritiba",
+          "volume": "100 mil+",
           "lado": "disputa",
-          "pauta": "Busca associada: classificações de náutico x novorizontino"
+          "pauta": "Busca associada: fluminense football club"
         },
         {
           "termo": "jogo palmeiras",
@@ -1001,28 +995,34 @@
           "pauta": "Busca associada: palmeiras vs bahia"
         },
         {
+          "termo": "classificações de náutico x novorizontino",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "pauta": "Busca associada: nautico"
+        },
+        {
           "termo": "ceara",
           "volume": "20 mil+",
           "lado": "disputa",
           "pauta": "Busca associada: ceara x"
         },
         {
-          "termo": "cury apoia flavio",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "pauta": "Busca associada: augusto cury"
-        },
-        {
           "termo": "jogo do galo",
           "volume": "10 mil+",
           "lado": "disputa",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: galo hoje"
         },
         {
           "termo": "flavio bolsonaro pesquisa datafolha",
           "volume": "5 mil+",
           "lado": "nossa",
           "pauta": "Busca associada: pesquisa lula e flávio datafolha"
+        },
+        {
+          "termo": "palmeiras fc",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "pauta": "Busca associada: gustavo henrique"
         }
       ],
       "itens_4h": [
@@ -1039,22 +1039,16 @@
           "pauta": "Busca associada: classificações de athletico-pr x atlético-mg"
         },
         {
-          "termo": "fluminense x coritiba",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "pauta": "Busca associada: fluminense football club"
-        },
-        {
           "termo": "palmeiras",
-          "volume": "100 mil+",
+          "volume": "200 mil+",
           "lado": "disputa",
           "pauta": "Busca associada: furosemida"
         },
         {
-          "termo": "náutico x novorizontino",
-          "volume": "50 mil+",
+          "termo": "fluminense x coritiba",
+          "volume": "100 mil+",
           "lado": "disputa",
-          "pauta": "Busca associada: classificações de náutico x novorizontino"
+          "pauta": "Busca associada: fluminense football club"
         },
         {
           "termo": "jogo palmeiras",
@@ -1063,28 +1057,34 @@
           "pauta": "Busca associada: palmeiras vs bahia"
         },
         {
+          "termo": "classificações de náutico x novorizontino",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "pauta": "Busca associada: nautico"
+        },
+        {
           "termo": "ceara",
           "volume": "20 mil+",
           "lado": "disputa",
           "pauta": "Busca associada: ceara x"
         },
         {
-          "termo": "cury apoia flavio",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "pauta": "Busca associada: augusto cury"
-        },
-        {
           "termo": "jogo do galo",
           "volume": "10 mil+",
           "lado": "disputa",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: galo hoje"
         },
         {
           "termo": "flavio bolsonaro pesquisa datafolha",
           "volume": "5 mil+",
           "lado": "nossa",
           "pauta": "Busca associada: pesquisa lula e flávio datafolha"
+        },
+        {
+          "termo": "palmeiras fc",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "pauta": "Busca associada: gustavo henrique"
         }
       ],
       "itens_24h": [
@@ -1101,28 +1101,28 @@
           "pauta": "Busca associada: classificações de athletico-pr x atlético-mg"
         },
         {
-          "termo": "pesquisa lula e flávio segundo turno",
-          "volume": "200 mil+",
-          "lado": "nossa",
-          "pauta": "Busca associada: datafolha segundo turno"
-        },
-        {
           "termo": "palmeiras",
           "volume": "200 mil+",
           "lado": "disputa",
           "pauta": "Busca associada: jogo do palmeiras"
         },
         {
-          "termo": "orkut",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "pauta": "Busca associada: orkut vai voltar"
+          "termo": "pesquisa lula e flávio segundo turno",
+          "volume": "200 mil+",
+          "lado": "nossa",
+          "pauta": "Busca associada: datafolha segundo turno"
         },
         {
           "termo": "fluminense x coritiba",
           "volume": "100 mil+",
           "lado": "disputa",
           "pauta": "Busca associada: fluminense x"
+        },
+        {
+          "termo": "orkut",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "pauta": "Busca associada: orkut vai voltar"
         },
         {
           "termo": "douglas ruas investigado",
@@ -1154,7 +1154,7 @@
   "sentimento_mencoes": {
     "disponivel": false,
     "modelo": "gemini-3.5-flash-lite",
-    "hora": "01:43",
+    "hora": "01:47",
     "total_analisados": 0,
     "positivo_pct": 0.0,
     "neutro_pct": 0.0,
