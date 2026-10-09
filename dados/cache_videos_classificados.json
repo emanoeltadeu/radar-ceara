@@ -9598,5 +9598,525 @@
     "tema": "Estreia Noticiário UrbNews",
     "resumo": "Lançamento de novo canal de notícias out of home.",
     "classificado_em": "2026-10-09T18:25:05.554418"
+  },
+  {
+    "id": "UOCi_34AyaI",
+    "titulo": "10 ERROS Para Não Cometer em Fortaleza (ATUALIZADO) - O Que Fazer em Fortaleza",
+    "canal": "Canal Embarcar",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Turismo e Viagens",
+    "resumo": "Dicas de turismo e erros para evitar em Fortaleza.",
+    "classificado_em": "2026-10-09T19:56:10.221416"
+  },
+  {
+    "id": "fw-xE9NoEQs",
+    "titulo": "MICHELLE BOLSONARO CHEGANDO NO CEARÁ",
+    "canal": "Renato Vicente Junior",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Agenda Política Direita",
+    "resumo": "Chegada de Michelle Bolsonaro ao Ceará.",
+    "classificado_em": "2026-10-09T19:56:10.221522"
+  },
+  {
+    "id": "zz9gIQGvESQ",
+    "titulo": "Bolsonaro ganha beijo no Ceará",
+    "canal": "Renato Vicente Junior",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Agenda Política Direita",
+    "resumo": "Jair Bolsonaro em visita ao Ceará.",
+    "classificado_em": "2026-10-09T19:56:10.221535"
+  },
+  {
+    "id": "NwMqk3s8ISQ",
+    "titulo": "BOLSONARO no CEARÁ o BOLSONARISMO MAIS VIVO como NUNCA",
+    "canal": "Renato Vicente Junior",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Agenda Política Direita",
+    "resumo": "Força do bolsonarismo durante visita ao Ceará.",
+    "classificado_em": "2026-10-09T19:56:10.221546"
+  },
+  {
+    "id": "-UbXcGE9jzw",
+    "titulo": "Caso Isabelle: entenda o que aconteceu antes da queda",
+    "canal": "O POVO",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Caso Policial e Cobertura",
+    "resumo": "Cobertura jornalística sobre o Caso Isabelle.",
+    "classificado_em": "2026-10-09T19:56:10.221558"
+  },
+  {
+    "id": "Zg_n5clHgWY",
+    "titulo": "POV: Você Virou Motorista de Ônibus Urbano e Sentiu o Peso do Volante",
+    "canal": "O Conselheiro Oculto e O Turno Invisível",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Rotina do Trabalhador",
+    "resumo": "Simulação sobre a rotina de motorista de ônibus.",
+    "classificado_em": "2026-10-09T19:56:10.221567"
+  },
+  {
+    "id": "rjy7Zsilnh0",
+    "titulo": "Movimentação no Terminal Parangaba em Fortaleza - Ce #busologo #bus #ônibusurbano #parangaba #ônibus",
+    "canal": "Fvbusologo Motorista do Amor ",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Transporte e Busologia",
+    "resumo": "Movimentação de ônibus no Terminal da Parangaba.",
+    "classificado_em": "2026-10-09T19:56:10.221578"
+  },
+  {
+    "id": "gjmk1B2TESk",
+    "titulo": "Flagra! Ônibus desgovernado destrói carro | Balanço Geral CE",
+    "canal": "GCMAIS",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Ocorrências Policiais e Trânsito",
+    "resumo": "Acidente de trânsito noticiado em telejornal.",
+    "classificado_em": "2026-10-09T19:56:10.221583"
+  },
+  {
+    "id": "gMy3ZT0JV_U",
+    "titulo": "Deputado Agenor Neto bate-boca com policiais militares em Iguatu, interior do Ceará",
+    "canal": "Nixson Nagaura",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Conflito Policial",
+    "resumo": "Discussão entre deputado e policiais em Iguatu.",
+    "classificado_em": "2026-10-09T19:56:10.221589"
+  },
+  {
+    "id": "iSKEfkwfqTc",
+    "titulo": "Capitão Wagner 22 - Jingle (Eleições 2016/ Fortaleza-CE)",
+    "canal": "Lucas Rodrigues",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Campanha Capitão Wagner",
+    "resumo": "Jingle de campanha eleitoral de Capitão Wagner.",
+    "classificado_em": "2026-10-09T19:56:10.221594"
+  },
+  {
+    "id": "RJx1xou3Bo8",
+    "titulo": "Waldemir Catanho  [ Superintendente do Detran Ceará ] - Podcast do Rubão",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Entrevistas Políticas e Institucionais",
+    "resumo": "Entrevista com o superintendente do Detran Ceará.",
+    "classificado_em": "2026-10-09T19:56:10.221598"
+  },
+  {
+    "id": "FeYcnJ0Hfcs",
+    "titulo": "Paulo André Holanda  [ Superintendente do SESI Ceará ] - Podcast do Rubão",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Entrevistas Políticas e Institucionais",
+    "resumo": "Entrevista com o superintendente do SESI Ceará.",
+    "classificado_em": "2026-10-09T19:56:10.221603"
+  },
+  {
+    "id": "LQEwFmgypW4",
+    "titulo": "Tin Gomes [ Candidato a Deputado Estadual]  - Podcast do Rubão",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Entrevistas Políticas e Institucionais",
+    "resumo": "Entrevista com o político Tin Gomes.",
+    "classificado_em": "2026-10-09T19:56:10.221608"
+  },
+  {
+    "id": "10j2ksFPxhw",
+    "titulo": "ITAPIPOCA: “FOI A MAIOR VOTAÇÃO DA HISTÓRIA DE UM DEPUTADO NA CIDADE”",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Bastidores da Política",
+    "resumo": "Análise de votação expressiva em Itapipoca.",
+    "classificado_em": "2026-10-09T19:56:10.221614"
+  },
+  {
+    "id": "U1OLLoC7G8M",
+    "titulo": "André Fernandes organiza Bloco do 22 em Fortaleza/CE📍#shorts #eleições2026 #política #ceará",
+    "canal": "Mano Bomdia",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Campanha André Fernandes",
+    "resumo": "André Fernandes organiza bloco político em Fortaleza.",
+    "classificado_em": "2026-10-09T19:56:10.221619"
+  },
+  {
+    "id": "USCnkGDCuZE",
+    "titulo": "FINAIS - 2ª COPA KAION DE FUTSAL | 2026 - JOGOS DO DIA 09/10/2026 | JUCÁS - CE",
+    "canal": "WEB TV JUCÁS FM 93,7",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Futsal e Esportes",
+    "resumo": "Transmissão de finais de futsal em Jucás.",
+    "classificado_em": "2026-10-09T19:56:13.599845"
+  },
+  {
+    "id": "ddEKzrsilyg",
+    "titulo": "ESPETÁCULO MUVUCA - COLETIVO MUVUCA - CUCA JOSÉ WALTER (ABRIL/2023)",
+    "canal": "Coletivo Muvuca",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Cultura Periférica",
+    "resumo": "Espetáculo cultural no Cuca José Walter.",
+    "classificado_em": "2026-10-09T19:56:13.599872"
+  },
+  {
+    "id": "SCh2BBPToQU",
+    "titulo": "JOGOS ESCOLARES DE FORTALEZA 2026 CHRISTUS BARÃO DE STUDART x ESCOLA SONHO DE CRIANÇA - FINAL FUTSAL",
+    "canal": "Rede Cuca",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Futsal e Esportes",
+    "resumo": "Jogos Escolares de Fortaleza, final de futsal.",
+    "classificado_em": "2026-10-09T19:56:13.599879"
+  },
+  {
+    "id": "Xdjp05oASUE",
+    "titulo": "EVENTO BENEFICENTE NO CUCA FORTALEZA #Dailyvlog",
+    "canal": "Lucas Amaral",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Vlog e Entretenimento",
+    "resumo": "Daily vlog em evento beneficente no Cuca.",
+    "classificado_em": "2026-10-09T19:56:13.599884"
+  },
+  {
+    "id": "X1bi3JKijTk",
+    "titulo": "O CICLO_cebr/\"SHOW COMPLETO CUCA JANGURUSSU 17/12/2019\"",
+    "canal": "O CICLO",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Cultura Periférica",
+    "resumo": "Show musical completo no Cuca Jangurussu.",
+    "classificado_em": "2026-10-09T19:56:13.599889"
+  },
+  {
+    "id": "byHD4XqNZT4",
+    "titulo": "Eleições 2026 Ceará: Elmano de Freitas intensifica agendas no interior do estado 🌍",
+    "canal": "TV ANC",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Campanha e Gestão Elmano",
+    "resumo": "Governador Elmano intensifica agendas no interior cearense.",
+    "classificado_em": "2026-10-09T19:56:13.599894"
+  },
+  {
+    "id": "uZqIiUGsBs0",
+    "titulo": "Ciro Gomes x Elmano de Freitas: Assista ao vivo o debate para o governo do Ceará",
+    "canal": "UOL",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Debates na Eleição",
+    "resumo": "Transmissão de debate para o governo do Ceará.",
+    "classificado_em": "2026-10-09T19:56:13.599899"
+  },
+  {
+    "id": "RNLYToNB5y8",
+    "titulo": "Ciro Gomes chega para primeiro debate das eleições de 2026 no Ceará",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Debates na Eleição",
+    "resumo": "Ciro Gomes chega para debate eleitoral.",
+    "classificado_em": "2026-10-09T19:56:13.599903"
+  },
+  {
+    "id": "WQWXlBtA528",
+    "titulo": "ALINE x DC | 1ª FASE | BATALHA DA CUFA | FORTALEZA CE",
+    "canal": "Resenha Central",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Cultura Periférica",
+    "resumo": "Batalha de rima da CUFA em Fortaleza.",
+    "classificado_em": "2026-10-09T19:56:13.599907"
+  },
+  {
+    "id": "uQDTLpewACI",
+    "titulo": "TV Meiaguarda - II Campeonato do CUCA - Semi Branca Galo - Lauro Costa x Eliseu Carvalho",
+    "canal": "MEIAGUARDA Fortaleza",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Artes Marciais",
+    "resumo": "Campeonato de jiu-jitsu no Cuca.",
+    "classificado_em": "2026-10-09T19:56:13.599912"
+  },
+  {
+    "id": "sMT-gmQAwoE",
+    "titulo": "Batalha de rap no cuca jangurussu",
+    "canal": "sr carlinhos",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Cultura Periférica",
+    "resumo": "Batalha de rap no Cuca Jangurussu.",
+    "classificado_em": "2026-10-09T19:56:13.599916"
+  },
+  {
+    "id": "Nmlz4alxGHs",
+    "titulo": "MIG vs MAH Batalha do Cuca-Barra, Fortaleza 2017",
+    "canal": "DzariaTv Oficial",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Cultura Periférica",
+    "resumo": "Batalha de rima no Cuca Barra.",
+    "classificado_em": "2026-10-09T19:56:13.599921"
+  },
+  {
+    "id": "yUy5mFvYl1Y",
+    "titulo": "🚨Extrema-direita tomou o Senado, mas cientista política explica como furar a bolha e reagir🚨",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Movimentos Sociais",
+    "resumo": "Análise política sobre avanço da extrema-direita.",
+    "classificado_em": "2026-10-09T19:56:13.599925"
+  },
+  {
+    "id": "FqVzKBR22_c",
+    "titulo": "No Focus Colloquium, Romeu Aldigueri aanalisa a direita do Ceará: \"André e Carmelo não se suportam\"",
+    "canal": "Focus Poder",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Debates e Política",
+    "resumo": "Análise sobre a articulação da direita cearense.",
+    "classificado_em": "2026-10-09T19:56:13.599930"
+  },
+  {
+    "id": "USC-AEAWB2Y",
+    "titulo": "Em encontro, Ciro Gomes abraça o bolsonarismo raiz do Ceará",
+    "canal": "Focus Poder",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Críticas à Oposição",
+    "resumo": "Análise política sobre alinhamentos da direita no Ceará.",
+    "classificado_em": "2026-10-09T19:56:13.599942"
+  },
+  {
+    "id": "SNoqKwkqreM",
+    "titulo": "Três vereadores são presos no Ceará em operação contra facção | Jornal da Band",
+    "canal": "Band Jornalismo",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Operação Policial e Prisões",
+    "resumo": "Prisão de três vereadores no Ceará em operação contra facção.",
+    "classificado_em": "2026-10-09T19:56:17.286968"
+  },
+  {
+    "id": "UMm3nubagbo",
+    "titulo": "O saldo da janela partidária no Ceará na pré-campanha eleitoral | Live PontoPoder",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Janela Partidária Ceará",
+    "resumo": "Análise do saldo da janela partidária na pré-campanha eleitoral.",
+    "classificado_em": "2026-10-09T19:56:17.286999"
+  },
+  {
+    "id": "ShhsFUEiYi0",
+    "titulo": "Capitão Wagner chega para o debate PontoPoder",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Debates Eleitorais Ceará",
+    "resumo": "Chegada de Capitão Wagner para debate político.",
+    "classificado_em": "2026-10-09T19:56:17.287005"
+  },
+  {
+    "id": "bxttv-fg4qQ",
+    "titulo": "Leo Suricate destaca combate à extrema-direita e defende políticas de transformação social",
+    "canal": "Opinião CE",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Combate à Extrema-Direita",
+    "resumo": "Leo Suricate defende políticas sociais e combate à extrema-direita.",
+    "classificado_em": "2026-10-09T19:56:17.287011"
+  },
+  {
+    "id": "8-WDuzd1wu8",
+    "titulo": "Cláudio Pinho revela pré-candidatura de Ciro em maio pelo PSDB #politica #fortaleza #notícias #ceará",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Bastidores da Política",
+    "resumo": "Cláudio Pinho revela pré-candidatura de Ciro pelo PSDB.",
+    "classificado_em": "2026-10-09T19:56:17.287016"
+  },
+  {
+    "id": "vugrWM_ObNc",
+    "titulo": "Ceará vive rotina de medo e sangue sem respostas do governo!",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Segurança e Violência",
+    "resumo": "Crítica severa à falta de respostas do governo na segurança.",
+    "classificado_em": "2026-10-09T19:56:17.287021"
+  },
+  {
+    "id": "WN1rXCFOvx0",
+    "titulo": "Ciro rebate mentiras e diz que vai acionar PF contra responsáveis #fortaleza #politica #notícias",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Declarações de Ciro Gomes",
+    "resumo": "Ciro rebate ataques e aciona Polícia Federal.",
+    "classificado_em": "2026-10-09T19:56:17.287026"
+  },
+  {
+    "id": "3AiB9iZNF1Q",
+    "titulo": "Ciro denuncia R$ 1 bi gasto com aluguel de viaturas no Ceará #fortaleza #politica #notícias",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "campo": "oposicao",
+    "tema": "Críticas à Gestão Estadual",
+    "resumo": "Ciro denuncia gasto bilionário com aluguel de viaturas no Ceará.",
+    "classificado_em": "2026-10-09T19:56:17.287031"
+  },
+  {
+    "id": "Wsf04-xXUO4",
+    "titulo": "Ciro elogia SANA 2026 e destaca potencial da juventude do Ceará #fortaleza #notícias #ceara",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Cultura e Juventude",
+    "resumo": "Ciro elogia festival SANA 2026 e a juventude cearense.",
+    "classificado_em": "2026-10-09T19:56:17.287036"
+  },
+  {
+    "id": "KIBomcgtFzg",
+    "titulo": "Ciro festeja resultado de debate ao Governo do Ceará #fortaleza #notícias #politica",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Debates Eleitorais Ceará",
+    "resumo": "Ciro comemora resultado de debate ao Governo do Ceará.",
+    "classificado_em": "2026-10-09T19:56:17.287041"
+  },
+  {
+    "id": "PqC161VhKi0",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 05.03.2026",
+    "canal": "CN7",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Noticiário Político Geral",
+    "resumo": "Cobertura jornalística diária de rádio e TV.",
+    "classificado_em": "2026-10-09T19:56:17.287046"
+  },
+  {
+    "id": "OUALyjUJ320",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 08.10.2026",
+    "canal": "CN7",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Noticiário Político Geral",
+    "resumo": "Cobertura jornalística diária de rádio e TV.",
+    "classificado_em": "2026-10-09T19:56:17.287051"
+  },
+  {
+    "id": "mCRqjC8NcPA",
+    "titulo": "Junho: mês do Orgulho LGBTQIA + e a Programação do Governo do Estado do Ceará",
+    "canal": "TV Atitude Popular",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Pautas Identitárias",
+    "resumo": "Programação do governo estadual para o mês do Orgulho LGBTQIA+.",
+    "classificado_em": "2026-10-09T19:56:17.287058"
+  },
+  {
+    "id": "mohpyIs2yh8",
+    "titulo": "Alexandre Padilha, ministro da Saúde, concede entrevista à TV Cidade Fortaleza | Balanço Geral CE",
+    "canal": "GCMAIS",
+    "desc": "",
+    "campo": "popular",
+    "tema": "Ações do Governo Federal",
+    "resumo": "Ministro Alexandre Padilha concede entrevista sobre saúde.",
+    "classificado_em": "2026-10-09T19:56:17.287068"
+  },
+  {
+    "id": "hY-CPjFhob4",
+    "titulo": "Debate Entre Ciro e Elmano Para o Governo Do Ceará | Diário do Nordeste",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Debates na Eleição",
+    "resumo": "Debate entre Ciro e Elmano para o Governo do Ceará.",
+    "classificado_em": "2026-10-09T19:56:17.287077"
+  },
+  {
+    "id": "xQh47qjWInQ",
+    "titulo": "Diário do Nordeste lança especial multimídia sobre a realização de transplantes no Ceará",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Especial de Transplantes",
+    "resumo": "Cobertura jornalística sobre transplantes realizados no Ceará.",
+    "classificado_em": "2026-10-09T19:56:19.949191"
+  },
+  {
+    "id": "mIjr929B3Ug",
+    "titulo": "Pesquisa Quaest: Qual o cenário da disputa pelo Senado no Ceará",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Pesquisa Eleitoral Senado",
+    "resumo": "Análise da Pesquisa Quaest para a disputa do Senado.",
+    "classificado_em": "2026-10-09T19:56:19.949225"
+  },
+  {
+    "id": "m78c6IqjeZo",
+    "titulo": "🔴AO VIVO | Fortaleza perde e sai da liderança; Ceará empata fora de casa | Esportes do Povo",
+    "canal": "O POVO",
+    "desc": "",
+    "campo": "ruido",
+    "tema": "Futebol Cearense",
+    "resumo": "Debate esportivo sobre os times de futebol do Ceará.",
+    "classificado_em": "2026-10-09T19:56:19.949236"
+  },
+  {
+    "id": "cBQO0ril4KQ",
+    "titulo": "Notícias, informações, dicas e mais | Jornal Jangadeiro | (28/07/2026)",
+    "canal": "Jornal Jangadeiro",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Noticiário Geral",
+    "resumo": "Jornal diário com informações gerais e notícias locais.",
+    "classificado_em": "2026-10-09T19:56:19.949247"
+  },
+  {
+    "id": "5qooYnY9RjI",
+    "titulo": "Notícias, informações, dicas e mais | Jornal Jangadeiro | (26/02/2026)",
+    "canal": "Jornal Jangadeiro",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Noticiário Geral",
+    "resumo": "Jornal diário com notícias e informações gerais.",
+    "classificado_em": "2026-10-09T19:56:19.949256"
+  },
+  {
+    "id": "lvQy7nNEax8",
+    "titulo": "Siará Tech Summit 2026 - 2º Dia | URBNEWS",
+    "canal": "UrbNews",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Tecnologia e Inovação",
+    "resumo": "Transmissão do evento Siará Tech Summit 2026.",
+    "classificado_em": "2026-10-09T19:56:19.949267"
+  },
+  {
+    "id": "sBJO3oqdJzw",
+    "titulo": "Vice-governadora do Estado do Ceará entrega ao Presidente da ALECE mensagem governamental.",
+    "canal": "Jornalismo - ALECE",
+    "desc": "",
+    "campo": "neutro",
+    "tema": "Atividades Institucionais ALECE",
+    "resumo": "Entrega de mensagem governamental à Assembleia Legislativa.",
+    "classificado_em": "2026-10-09T19:56:19.949277"
   }
 ]
