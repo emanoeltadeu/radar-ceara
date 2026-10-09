@@ -14,7 +14,13 @@ import urllib.request
 import urllib.parse
 from datetime import datetime, timezone
 
-from config import CACHE_YOUTUBE, CACHE_COMENTARIOS, carregar_chaves_api
+from config import (
+    CACHE_YOUTUBE,
+    CACHE_COMENTARIOS,
+    JANELA_MAXIMA_HORAS,
+    calcular_idade_horas,
+    carregar_chaves_api
+)
 
 # Termos para ignorar preventivamente na coleta de vídeos (evita gastar cota com fofoca/humor/futebol)
 TERMOS_IGNORAR_TITULO = [
@@ -79,7 +85,11 @@ def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE, queries=None
             except Exception:
                 continue
 
-    lista_ordenada = list(vids_map.values())
+    # Política de retenção de 7 dias: descarta vídeos fora da janela máxima
+    lista_ordenada = [
+        v for v in vids_map.values()
+        if calcular_idade_horas(v.get("publishedAt")) <= JANELA_MAXIMA_HORAS
+    ]
     lista_ordenada.sort(key=lambda x: x.get("publishedAt", ""), reverse=True)
 
     if lista_ordenada:
@@ -94,7 +104,8 @@ def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE, queries=None
 def carregar_corpus_videos(cache_path=CACHE_YOUTUBE):
     """
     O que faz:
-        Carrega os vídeos do cache e calcula a idade em horas de cada publicação.
+        Carrega os vídeos do cache, calcula a idade em horas de cada publicação
+        e filtra estritamente pela janela máxima de 7 dias.
     """
     if not os.path.exists(cache_path):
         return []
@@ -105,19 +116,14 @@ def carregar_corpus_videos(cache_path=CACHE_YOUTUBE):
     except Exception:
         return []
 
-    now = datetime.now(timezone.utc)
+    vids_validos = []
     for v in vids:
-        p = v.get("publishedAt")
-        if p:
-            try:
-                dt = datetime.fromisoformat(p.replace("Z", "+00:00"))
-                v["idade_horas"] = (now - dt).total_seconds() / 3600
-            except Exception:
-                v["idade_horas"] = 999
-        else:
-            v["idade_horas"] = 999
+        idade = calcular_idade_horas(v.get("publishedAt"))
+        v["idade_horas"] = idade
+        if idade <= JANELA_MAXIMA_HORAS:
+            vids_validos.append(v)
 
-    return vids
+    return vids_validos or vids[:30]
 
 def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vid=10):
     """
@@ -211,7 +217,11 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=35, max_comentarios_por_vi
         except Exception:
             continue
 
-    lista_final = list(comentarios_existentes.values())
+    # Política de retenção de 7 dias: descarta comentários mais antigos
+    lista_final = [
+        c for c in comentarios_existentes.values()
+        if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
+    ]
     if lista_final:
         try:
             with open(CACHE_COMENTARIOS, "w", encoding="utf-8") as f:

@@ -22,6 +22,8 @@ from config import (
     PERFIS_INSTAGRAM,
     HASHTAGS_INSTAGRAM,
     ESTADO_RODIZIO_IG,
+    JANELA_MAXIMA_HORAS,
+    calcular_idade_horas,
     carregar_chaves_api
 )
 
@@ -378,7 +380,11 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=3
         except Exception as e:
             print(f"Aviso na coleta da hashtag #{tag}: {e}")
 
-    lista_final = list(comentarios_existentes.values())
+    # Política de retenção de 7 dias: descarta comentários mais antigos
+    lista_final = [
+        c for c in comentarios_existentes.values()
+        if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
+    ]
     if lista_final:
         try:
             with open(CACHE_INSTAGRAM, "w", encoding="utf-8") as f:
@@ -390,12 +396,14 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=3
 
 def carregar_cache_instagram():
     """
-    Carrega os comentários do cache local 'dados/cache_instagram.json'.
+    Carrega os comentários do cache local 'dados/cache_instagram.json'
+    filtrados pela janela máxima de 7 dias.
     """
     if os.path.exists(CACHE_INSTAGRAM):
         try:
             with open(CACHE_INSTAGRAM, "r", encoding="utf-8") as f:
-                return json.load(f)
+                dados = json.load(f)
+                return [c for c in dados if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS]
         except Exception:
             pass
     return []

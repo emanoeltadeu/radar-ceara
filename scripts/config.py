@@ -24,6 +24,7 @@ CACHE_COMENTARIOS = os.path.join(DADOS_DIR, "cache_comentarios.json")
 CACHE_CLASSIFICADOS = os.path.join(DADOS_DIR, "cache_comentarios_classificados.json")
 CACHE_INSTAGRAM = os.path.join(DADOS_DIR, "cache_instagram.json")
 CACHE_CLASSIFICADOS_IG = os.path.join(DADOS_DIR, "cache_comentarios_classificados_ig.json")
+CACHE_VIDEOS_CLASSIFICADOS = os.path.join(DADOS_DIR, "cache_videos_classificados.json")
 PAUTAS_CEARA = os.path.join(DADOS_DIR, "pautas_ceara.json")
 CANAIS_YOUTUBE = os.path.join(DADOS_DIR, "canais_youtube_ce.txt")
 PERFIS_INSTAGRAM = os.path.join(DADOS_DIR, "perfis_instagram.txt")
@@ -32,11 +33,32 @@ ESTADO_RODIZIO_IG = os.path.join(DADOS_DIR, "estado_rodizio_ig.json")
 PERFIS_HASHTAGS_INSTAGRAM = PERFIS_INSTAGRAM  # compatibilidade reversa
 SAIDA_RADAR_JSON = os.path.join(SITE_DIR, "radar_ce.json")
 
+# Janela máxima temporal de retenção e análise (7 dias)
+JANELA_MAXIMA_DIAS = 7
+JANELA_MAXIMA_HORAS = JANELA_MAXIMA_DIAS * 24  # 168 horas
+
 # Versão da aplicação
 VERSAO_RADAR = "2.2.0-instagram"
 
 # Modelo de IA Generativa padrão
 MODELO_GEMINI = "gemini-3.5-flash-lite"
+
+def calcular_idade_horas(data_str):
+    """
+    Calcula a idade em horas de uma string de data ISO-8601 UTC.
+    Retorna 9999.0 se a data for inválida ou ausente.
+    """
+    if not data_str:
+        return 9999.0
+    try:
+        limpo = data_str.replace("Z", "+00:00")
+        dt = datetime.fromisoformat(limpo)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        agora = datetime.now(timezone.utc)
+        return max(0.0, (agora - dt).total_seconds() / 3600.0)
+    except Exception:
+        return 9999.0
 
 def carregar_chaves_api():
     """

@@ -612,6 +612,22 @@ body {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+.item-video-linha:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.item-video-linha.ativo {
+  background: rgba(0, 0, 0, 0.06);
+}
+.col-video-deles .item-video-linha.ativo {
+  border-left: 3px solid var(--pl);
+}
+.col-video-nossa .item-video-linha.ativo {
+  border-left: 3px solid var(--lula);
 }
 .item-video-dados {
   display: flex;
@@ -643,6 +659,124 @@ body {
 }
 .barra-video-fill.deles { background: var(--pl); }
 .barra-video-fill.nossa { background: var(--lula); }
+
+/* Painel Expansível de Detalhes dos Vídeos da Pauta */
+.painel-videos-detalhe {
+  margin-top: 14px;
+  padding: 12px;
+  background: var(--fundo, #f8f9fa);
+  border: 1px solid var(--linha, #e2e8f0);
+  border-radius: 8px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+.painel-videos-detalhe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.detalhe-titulo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.detalhe-badge {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.detalhe-badge.deles {
+  background: rgba(194, 65, 12, 0.15);
+  color: var(--pl, #c2410c);
+}
+.detalhe-badge.nossa {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--lula, #059669);
+}
+#detalhe-video-tema {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tinta);
+  margin: 0;
+}
+.btn-fechar-detalhe {
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--tinta-sub);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.btn-fechar-detalhe:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--tinta);
+}
+.detalhe-sub-info {
+  font-size: 11px;
+  color: var(--tinta-sub);
+  margin-bottom: 8px;
+}
+.lista-videos-detalhe {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.card-video-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--card, #ffffff);
+  border: 1px solid var(--linha, #e2e8f0);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--tinta);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.card-video-item:hover {
+  transform: translateY(-1px);
+  border-color: #ff0000;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.1);
+}
+.card-video-icone {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #ff0000;
+}
+.card-video-info {
+  flex: 1;
+  min-width: 0;
+}
+.card-video-titulo {
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 3px;
+  color: var(--tinta);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-video-canal {
+  font-size: 10.5px;
+  color: var(--tinta-sub);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-video-canal span {
+  font-weight: 600;
+}
 
 /* Painel de Sentimento com IA Gemini */
 .painel-sentimento-gemini {

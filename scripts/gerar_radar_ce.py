@@ -34,7 +34,10 @@ from coletores.youtube import (
 from coletores.google_trends import coletar_trends_ceara
 from coletores.meta_ads import coletar_meta_ads_ce
 from coletores.instagram_apify import coletar_comentarios_instagram_apify
-from inteligencia.gemini import processar_sentimento_comentarios
+from inteligencia.gemini import (
+    processar_sentimento_comentarios,
+    classificar_videos_youtube_gemini
+)
 from inteligencia.nlp_nuvem import construir_monitor_redes
 from inteligencia.dados_eleitorais import extrair_dados_leo_ceara, carregar_pautas_leo
 
@@ -94,9 +97,11 @@ def main():
     print(f"   -> YouTube: {len(vids)} vídeos no acervo | {len(comentarios_yt)} comentários")
     print(f"   -> Instagram: {len(comentarios_ig)} comentários coletados via Apify")
 
-    # 3. Inteligência e NLP (Nuvem de Termos e Proporções de Vídeos)
-    print("3/5 Processando NLP da Nuvem de Palavras e rankings políticos...")
-    monitor_redes = construir_monitor_redes(vids, trends_4h, trends_24h)
+    # 3. Inteligência e NLP (Classificação Dinâmica de Vídeos com Gemini & Nuvem de Palavras)
+    print("3/5 Classificando vídeos cearenses com IA e processando rankings dinâmicos...")
+    chaves = carregar_chaves_api()
+    videos_classificados = classificar_videos_youtube_gemini(vids, chaves.get("gemini", ""))
+    monitor_redes = construir_monitor_redes(vids, trends_4h, trends_24h, videos_classificados)
 
     # 4. Inteligência Generativa (Google Gemini para YouTube e Instagram)
     print("4/5 Processando inteligência de sentimento no YouTube com Google Gemini...")

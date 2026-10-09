@@ -1,13 +1,13 @@
 {
-  "proximo_indice": 10,
-  "indice_rodada_anterior": 5,
+  "proximo_indice": 15,
+  "indice_rodada_anterior": 10,
   "total_perfis_cadastrados": 24,
   "lote_selecionado": [
-    "rede_cuca",
-    "midianinja",
-    "opovoonline",
-    "opovocbn",
-    "diariodonordeste"
+    "gcmais",
+    "jornaljangadeiro",
+    "tvceara",
+    "assembleiace",
+    "focuspoder"
   ],
-  "atualizado_em": "2026-10-09T13:12:36.741490"
+  "atualizado_em": "2026-10-09T11:18:36.676822"
 }
