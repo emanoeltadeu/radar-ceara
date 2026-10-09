@@ -1,13 +1,13 @@
 {
-  "proximo_indice": 15,
-  "indice_rodada_anterior": 10,
+  "proximo_indice": 20,
+  "indice_rodada_anterior": 15,
   "total_perfis_cadastrados": 24,
   "lote_selecionado": [
-    "gcmais",
-    "jornaljangadeiro",
-    "tvceara",
-    "assembleiace",
-    "focuspoder"
+    "urbnews",
+    "radardoceara",
+    "cearanoticias",
+    "andrefernandes",
+    "capitaowagnersousa"
   ],
-  "atualizado_em": "2026-10-09T11:18:36.676822"
+  "atualizado_em": "2026-10-09T14:29:38.065887"
 }
