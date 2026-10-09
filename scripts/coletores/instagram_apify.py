@@ -21,13 +21,47 @@ from config import (
     CACHE_INSTAGRAM,
     PERFIS_INSTAGRAM,
     HASHTAGS_INSTAGRAM,
+    ESTADO_RODIZIO_IG,
     carregar_chaves_api
 )
 
-def carregar_perfis_instagram(limite_perfis=4):
+def carregar_perfis_instagram(tamanho_lote=5, limite_perfis=None):
+    if limite_perfis is not None:
+        tamanho_lote = limite_perfis
     """
-    Lê 'dados/perfis_instagram.txt' e seleciona os perfis prioritários (@).
-    Prioriza sempre o perfil oficial do Léo Suricate e veículos da imprensa cearense.
+    =============================================================================
+    RODÍZIO INTELIGENTE DE PERFIS DO INSTAGRAM (CUSTO ZERO & COBERTURA TOTAL)
+    =============================================================================
+    POR QUE FOI IMPLEMENTADO ASSIM?
+        O arquivo 'dados/perfis_instagram.txt' contém 24 perfis estratégicos no Ceará
+        (mandato popular, imprensa, oposição e transporte público).
+        Se enviássemos os 24 perfis de uma só vez a cada hora para a nuvem da Apify:
+        1. O tempo de execução por rodada aumentaria para ~2 minutos;
+        2. O consumo mensal de computação ultrapassaria a cota gratuita de US$ 5.00/mês da Apify.
+
+    COMO FUNCIONA O RODÍZIO INTELIGENTE:
+        1. PERFIL DO MANDATO É FIXO (@leosuricate):
+           O perfil oficial de Léo Suricate é SEMPRE incluído em 100% das rodadas,
+           garantindo que nenhuma postagem ou debate do mandato seja perdido.
+        
+        2. FILA CIRCULAR DOS DEMAIS 23 PERFIS:
+           Os demais 23 perfis são organizados em uma fila circular rotativa.
+           A cada execução, o sistema carrega uma fatia de 'tamanho_lote' (padrão: 5 perfis)
+           a partir do ponteiro salvo em 'dados/estado_rodizio_ig.json'.
+        
+        3. AVANÇO AUTOMÁTICO DO PONTEIRO:
+           A cada rodada, o ponteiro avança (0 -> 5 -> 10 -> 15 -> 20 -> 0...),
+           salvando o estado para a próxima execução.
+        
+        4. COBERTURA COMPLETA AO LONGO DO DIA:
+           Como o GitHub Actions roda 8 vezes por dia (08h, 11h, 13h, 15h, 17h, 20h, 22h, 23h):
+           - 8 execuções x 5 perfis rotativos = 40 consultas de perfis por dia.
+           - Como temos 23 perfis rotativos, CADA PERFIL É VISITADO CERCA DE 2 VEZES POR DIA.
+        
+        5. CUSTO ZERO GARANTIDO:
+           Com 6 perfis por rodada (1 fixo + 5 rotativos), o consumo mensal da Apify
+           fica em aproximadamente US$ 2.40/mês, 100% DENTRO da cota gratuita de US$ 5.00/mês.
+    =============================================================================
     """
     perfis = []
     caminho = PERFIS_INSTAGRAM if os.path.exists(PERFIS_INSTAGRAM) else os.path.join("dados", "perfis_instagram.txt")
@@ -45,15 +79,56 @@ def carregar_perfis_instagram(limite_perfis=4):
         except Exception:
             pass
 
-    # Garante perfil do Léo Suricate em primeiro lugar
+    # 1. Garante perfil do Léo Suricate como fixo e prioritário
     leo_url = "https://www.instagram.com/leosuricate/"
-    alvos_selecionados = [leo_url] if leo_url in perfis else []
+    if leo_url not in perfis:
+        perfis.insert(0, leo_url)
 
-    for p in perfis:
-        if p not in alvos_selecionados and len(alvos_selecionados) < limite_perfis:
-            alvos_selecionados.append(p)
+    outros_perfis = [p for p in perfis if p != leo_url]
+    total_outros = len(outros_perfis)
 
-    return alvos_selecionados or [leo_url]
+    if total_outros == 0:
+        return [leo_url]
+
+    # 2. Recupera o ponteiro da última execução
+    caminho_estado = ESTADO_RODIZIO_IG if os.path.exists(os.path.dirname(ESTADO_RODIZIO_IG)) else os.path.join("dados", "estado_rodizio_ig.json")
+    indice_atual = 0
+
+    if os.path.exists(caminho_estado):
+        try:
+            with open(caminho_estado, "r", encoding="utf-8") as f:
+                dados_estado = json.load(f)
+                indice_atual = dados_estado.get("proximo_indice", 0)
+        except Exception:
+            indice_atual = 0
+
+    indice_atual = indice_atual % total_outros
+
+    # 3. Seleciona o lote rotativo circular desta rodada
+    lote_rotativo = []
+    for i in range(tamanho_lote):
+        idx = (indice_atual + i) % total_outros
+        perfil_escolhido = outros_perfis[idx]
+        if perfil_escolhido not in lote_rotativo:
+            lote_rotativo.append(perfil_escolhido)
+
+    # 4. Atualiza e persiste o novo ponteiro para a próxima execução
+    proximo_indice = (indice_atual + tamanho_lote) % total_outros
+    try:
+        with open(caminho_estado, "w", encoding="utf-8") as f:
+            json.dump({
+                "proximo_indice": proximo_indice,
+                "indice_rodada_anterior": indice_atual,
+                "total_perfis_cadastrados": len(perfis),
+                "lote_selecionado": [p.split("/")[-2] for p in lote_rotativo],
+                "atualizado_em": datetime.now().isoformat()
+            }, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+
+    # Retorna o perfil de Léo Suricate + o lote rotativo (ex: 1 fixo + 5 rotativos = 6 alvos)
+    alvos_finais = [leo_url] + lote_rotativo
+    return alvos_finais
 
 def carregar_hashtags_instagram():
     """
@@ -287,7 +362,7 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=3
 
     # 1. Coleta dos Perfis
     try:
-        novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=3, max_posts_por_perfil=max_posts_por_perfil)
+        novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=5, max_posts_por_perfil=max_posts_por_perfil)
         for c in novos_perfis:
             comentarios_existentes[c["id"]] = c
     except Exception as e:

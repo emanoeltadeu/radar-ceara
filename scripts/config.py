@@ -28,6 +28,7 @@ PAUTAS_CEARA = os.path.join(DADOS_DIR, "pautas_ceara.json")
 CANAIS_YOUTUBE = os.path.join(DADOS_DIR, "canais_youtube_ce.txt")
 PERFIS_INSTAGRAM = os.path.join(DADOS_DIR, "perfis_instagram.txt")
 HASHTAGS_INSTAGRAM = os.path.join(DADOS_DIR, "hashtags_instagram.txt")
+ESTADO_RODIZIO_IG = os.path.join(DADOS_DIR, "estado_rodizio_ig.json")
 PERFIS_HASHTAGS_INSTAGRAM = PERFIS_INSTAGRAM  # compatibilidade reversa
 SAIDA_RADAR_JSON = os.path.join(SITE_DIR, "radar_ce.json")
 
