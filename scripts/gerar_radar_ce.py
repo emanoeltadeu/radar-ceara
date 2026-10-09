@@ -14,7 +14,7 @@ Integração 100% orientada a dados reais:
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import duckdb
 import pandas as pd
 
@@ -230,7 +230,7 @@ def main():
     payload = {
         "titulo": "Radar Léo Suricate · Mandato Popular CE",
         "subtitulo": "Inteligência Territorial de Bairros (Chão) & Monitoramento Digital de Redes",
-        "gerado_em": datetime.now().strftime("%d/%m/%Y às %H:%M"),
+        "gerado_em": datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M"),
         "versao": "2.0.0-leo-suricate",
         "mandato_leo": dados_leo,
         "monitor_redes": monitor_redes,
