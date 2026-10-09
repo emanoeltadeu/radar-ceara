@@ -1,30 +1,25 @@
 # 🎯 Radar Léo Suricate · Mandato Popular CE
 
-> Painel de inteligência de dados eleitorais (voto de chão em Fortaleza e interior) e monitoramento ao vivo de redes sociais (YouTube, Google Trends e Meta Ads) com análise de sentimento via IA Generativa (**Gemini 3.5 Flash-Lite**).
+> Painel de monitoramento digital em tempo real das redes sociais no Ceará (YouTube, Google Trends e Meta Ads) com análise de sentimento e descoberta de pautas via IA Generativa (**Gemini 3.5 Flash-Lite**).
 
 ---
 
 ## 🌟 Funcionalidades Principais
 
-1. **Inteligência Territorial de Bairros (Chão vs Digital):**
-   - Processamento de alta velocidade com **DuckDB** sobre os Boletins de Urna oficiais do TSE 2026.
-   - Mapeamento detalhado dos **110 bairros de Fortaleza** e municípios do interior do Ceará.
-   - Matriz estratégica automática: Bairros prioritários para *Mobilização de Chão (Plenárias e Ruas)* vs *Tráfego Pago (Reels/TikTok)*.
-
-2. **Monitor de Redes Sociais em Tempo Real (Ceará Hoje):**
+1. **Monitor de Redes Sociais em Tempo Real (Ceará Hoje):**
    - **Nuvem de Termos do Ceará:** Pesos dinâmicos por campo político baseados no corpus de vídeos cearenses da janela ativa.
    - **Mais Falados nos Vídeos:** Top 10 comparativo (*Pró-Oposição* vs *Campo Popular / Léo Suricate*) com janelas temporais de **12h, 24h e 48h**.
    - **Em Alta no Google Trends CE:** Consultas em alta no Ceará com janelas de **4h** e **24h**, ordenadas por volume real de pesquisas.
 
-3. **Temperatura das Menções & Humor Popular (IA Generativa):**
-   - Coleta de comentários reais via endpoint oficial `commentThreads.list` do YouTube Data API v3.
-   - Classificação semântica com **`gemini-3.5-flash-lite`** com System Prompt calibrado para o vocabulário e a política cearense.
-   - **Filtro de Descarte de Ruído:** Elimina automaticamente fofocas vazias, memes de figuras folclóricas (ex: Tiririca) e notícias de futebol.
+2. **Temperatura das Menções & Humor Popular (IA Generativa):**
+   - Coleta de comentários reais via endpoint oficial `commentThreads.list` do YouTube Data API v3 nos principais canais cearenses.
+   - Classificação semântica com **`gemini-3.5-flash-lite`** com System Prompt calibrado para o vocabulário e o contexto político do Ceará.
+   - **Filtro de Descarte de Ruído:** Elimina automaticamente fofocas, memes de figuras cômicas (ex: Tiririca) e notícias de futebol.
    - **Descoberta Dinâmica de Pautas:** A IA extrai livremente os gatilhos e assuntos reais da conversa popular (sem categorias rígidas).
    - **Navegação Interativa com Link Direto:** Clique em qualquer tema para filtrar os comentários na 3ª coluna e abrir o link profundo do YouTube (`&lc=`) com o comentário destacado no topo.
 
-4. **Transparência de Anúncios (Meta / Facebook / Instagram):**
-   - Extração oficial dos gastos declarados com impulsionamento no Ceará via Prestação de Contas do TSE 2026 e Relatório da Meta Ad Library.
+3. **Transparência de Anúncios (Meta / Facebook / Instagram):**
+   - Monitoramento de gastos declarados com impulsionamento de anúncios no Ceará e distribuição por município.
 
 ---
 
@@ -39,7 +34,7 @@
 │   └── pautas_ceara.json            # Pautas estratégicas e munição de comunicação
 ├── scripts/
 │   ├── analisador_sentimento_gemini.py # Coleta e classificação de sentimento com Gemini
-│   ├── coletor_meta_ads.py          # Processamento de transparência de anúncios Meta/TSE
+│   ├── coletor_meta_ads.py          # Processamento de transparência de anúncios Meta
 │   ├── coletor_trends_ce.py         # Coleta do Google Trends CE e corpus do YouTube
 │   └── gerar_radar_ce.py            # Orquestrador do pipeline e gerador do radar_ce.json
 ├── site/
@@ -48,7 +43,7 @@
 │   ├── app.js                       # Lógica de renderização e interatividade
 │   └── radar_ce.json                # JSON gerado pelo pipeline de dados
 ├── .env.example                     # Modelo de variáveis de ambiente
-├── .gitignore                       # Proteção de credenciais e exclusão de dados >6GB
+├── .gitignore                       # Proteção de credenciais e exclusão de arquivos pesados
 ├── requirements.txt                 # Dependências Python
 └── README.md                        # Documentação do projeto
 ```
@@ -118,5 +113,5 @@ Este repositório já vem com o workflow do **GitHub Actions** configurado para 
 ## 🔒 Segurança e Melhores Práticas
 
 * **Credenciais Protegidas:** O arquivo `.gitignore` bloqueia qualquer arquivo de chave (`*api_key.txt`, `.env`) de ser enviado ao GitHub.
-* **Dados Massivos:** Os arquivos brutos de votação do TSE somam mais de 6 GB e estão ignorados no Git para manter o repositório leve (menos de 2 MB).
+* **Repositório Leve:** Arquivos pesados locais e caches são ignorados no Git para manter o repositório leve (menos de 1,5 MB).
 * **Documentação das Funções:** Todas as funções Python possuem docstrings detalhadas explicando **"O que faz"** e **"Por que faz"**.
