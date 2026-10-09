@@ -201,12 +201,25 @@ def main():
 
     print("1/5 Extraindo dados oficiais do TSE de 2026 (Léo Suricate via DuckDB)...")
     dados_leo = extrair_dados_leo_ceara(caminho_bweb, caminho_bairros)
+    # Na nuvem do GitHub Actions (onde arquivos pesados de >6GB não estão versionados), preserva os dados existentes
+    if not dados_leo and os.path.exists(caminho_saida):
+        try:
+            with open(caminho_saida, "r", encoding="utf-8") as f_prev:
+                dados_leo = json.load(f_prev).get("mandato_leo", {})
+        except Exception:
+            pass
 
     print("2/5 Carregando pautas e munição de comunicação popular...")
     pautas = carregar_pautas_leo(caminho_pautas)
 
     print("3/5 Processando Relatório de Transparência da Meta e Prestação TSE...")
     meta_ads = coletar_meta_ads_ce(diretorio_base=base_dir)
+    if (not meta_ads or not meta_ads.get("top_anunciantes")) and os.path.exists(caminho_saida):
+        try:
+            with open(caminho_saida, "r", encoding="utf-8") as f_prev:
+                meta_ads = json.load(f_prev).get("meta_transparencia", meta_ads)
+        except Exception:
+            pass
 
     print("4/5 Gerando monitor de redes ao vivo (Nuvem, Vídeos e Google Trends CE)...")
     monitor_redes = gerar_nuvem_ceara_real()

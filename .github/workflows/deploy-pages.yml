@@ -1,18 +1,32 @@
-name: Deploy Radar Ceará no GitHub Pages
+name: Radar Ceará · Atualização Automática e Deploy no GitHub Pages
 
 on:
+  # Agendamento nos horários solicitados (Fuso de Fortaleza: UTC-3):
+  # 08:00 BRT -> 11:00 UTC
+  # 11:00 BRT -> 14:00 UTC
+  # 13:00 BRT -> 16:00 UTC
+  # 15:00 BRT -> 18:00 UTC
+  # 17:00 BRT -> 20:00 UTC
+  # 20:00 BRT -> 23:00 UTC
+  # 22:00 BRT -> 01:00 UTC (dia seguinte)
+  # 23:00 BRT -> 02:00 UTC (dia seguinte)
+  schedule:
+    - cron: '0 1,2,11,14,16,18,20,23 * * *'
+
+  # Disparo automático em push para a branch main
   push:
     branches:
       - main
-      - master
     paths:
       - 'site/**'
+      - 'scripts/**'
       - '.github/workflows/deploy-pages.yml'
+
+  # Permite disparar manualmente pelo botão "Run workflow" no GitHub
   workflow_dispatch:
 
-# Permissões necessárias para publicar no GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,23 +35,49 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  atualizar-e-publicar:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout do código
+      - name: Checkout do Repositório
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar Dependências
+        run: pip install -r requirements.txt
+
+      - name: Executar Pipeline de Atualização (YouTube, Google Trends e IA Gemini)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          python scripts/gerar_radar_ce.py
+
+      - name: Salvar Dados Atualizados no Repositório (se houver mudanças)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/radar_ce.json dados/cache_*.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: atualização automática de redes e sentimento [skip ci]"
+          git push origin main || echo "Sem alterações para enviar"
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Fazer upload dos arquivos do site
+      - name: Fazer Upload dos Arquivos do Site
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'site'
 
-      - name: Publicar no GitHub Pages
+      - name: Publicar Versão Atualizada no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
