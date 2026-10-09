@@ -1,13 +1,13 @@
 {
-  "proximo_indice": 20,
-  "indice_rodada_anterior": 15,
+  "proximo_indice": 2,
+  "indice_rodada_anterior": 20,
   "total_perfis_cadastrados": 24,
   "lote_selecionado": [
-    "urbnews",
-    "radardoceara",
-    "cearanoticias",
-    "andrefernandes",
-    "capitaowagnersousa"
+    "carmeloneto",
+    "etufortaleza",
+    "centraldoonibusfortaleza",
+    "suricateseboso",
+    "elmanodefreitas"
   ],
-  "atualizado_em": "2026-10-09T14:29:38.065887"
+  "atualizado_em": "2026-10-09T17:24:09.333712"
 }
