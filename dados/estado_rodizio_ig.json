@@ -1,19 +1,13 @@
 {
-  "proximo_indice": 17,
-  "indice_rodada_anterior": 6,
-  "total_perfis_cadastrados": 24,
+  "proximo_indice": 5,
+  "indice_rodada_anterior": 0,
+  "total_perfis_cadastrados": 37,
   "lote_selecionado": [
-    "midianinja",
-    "opovoonline",
-    "opovocbn",
-    "diariodonordeste",
-    "gcmais",
-    "jornaljangadeiro",
-    "tvceara",
-    "assembleiace",
-    "focuspoder",
-    "urbnews",
-    "radardoceara"
+    "suricateseboso",
+    "elmanodefreitas",
+    "camilosantanaoficial",
+    "governodoceara",
+    "prefeituradefortaleza"
   ],
-  "atualizado_em": "2026-10-09T19:54:51.578041"
+  "atualizado_em": "2026-10-09T20:15:44.422512"
 }
