@@ -269,3 +269,107 @@ def construir_monitor_redes(corpus_videos, itens_google_4h, itens_google_24h, vi
         },
         "google_trends_ce": google_trends_ce
     }
+
+def gerar_nuvem_instagram(comentarios_ig):
+    """
+    Gera a nuvem de palavras ponderada específica do Instagram a partir dos comentários
+    e legendas de posts monitorados de lideranças e veículos cearenses.
+    """
+    if not comentarios_ig:
+        return []
+
+    textos = [c.get("texto", "") + " " + c.get("origem_titulo", "") for c in comentarios_ig]
+    full_text = normalizar_texto(" ".join(textos))
+
+    ocorrencias = []
+    for nome, lado, aliases in TERMOS_RADAR_NUVEM:
+        cnt = sum(full_text.count(normalizar_texto(a)) for a in aliases)
+        if cnt > 0:
+            ocorrencias.append((nome, lado, cnt))
+
+    ocorrencias.sort(key=lambda x: x[2], reverse=True)
+    max_c = ocorrencias[0][2] if ocorrencias else 1
+    nuvem_out = []
+    for n, l, c in ocorrencias[:18]:
+        peso = int(40 + round((c / max_c) * 58))
+        peso = max(38, min(98, peso))
+        nuvem_out.append({"t": n, "peso": peso, "lado": l, "contagem": c})
+
+    return nuvem_out
+
+def gerar_ranking_posts_instagram(comentarios_ig):
+    """
+    Gera o ranking 'Mais Falados no Instagram' por campo político (Pró-Oposição vs Campo Popular / Léo),
+    avaliando tanto os comentários quanto as legendas e textos dos posts monitorados,
+    associando os posts correspondentes a cada tema para viabilizar gaveta interativa no frontend.
+    """
+    if not comentarios_ig:
+        return {
+            "total_posts": 0,
+            "oposicao": {"titulo": "PRÓ-OPOSIÇÃO", "itens": []},
+            "popular": {"titulo": "CAMPO POPULAR / LÉO", "itens": []}
+        }
+
+    # 1. Agrupar comentários por publicação (post_url)
+    posts_map = {}
+    for c in comentarios_ig:
+        url = c.get("post_url") or c.get("link_origem") or c.get("link_instagram")
+        if not url:
+            continue
+        if url not in posts_map:
+            posts_map[url] = {
+                "id": str(c.get("id", "")),
+                "url": url,
+                "titulo": c.get("origem_titulo", "Publicação no Instagram"),
+                "autor": c.get("autor", "@usuario"),
+                "data": c.get("data", ""),
+                "textos": [c.get("origem_titulo", "")]
+            }
+        posts_map[url]["textos"].append(c.get("texto", ""))
+
+    posts_list = list(posts_map.values())
+    total_posts = len(posts_list)
+
+    def _rankear_por_temas(temas_alvo):
+        ranking = []
+        for t_nome, aliases in temas_alvo:
+            posts_match = []
+            for p in posts_list:
+                texto_completo = normalizar_texto(" ".join(p["textos"]))
+                if any(normalizar_texto(a) in texto_completo for a in aliases):
+                    posts_match.append({
+                        "id": p["id"],
+                        "titulo": p["titulo"],
+                        "autor": p["autor"],
+                        "url": p["url"],
+                        "qtd_comentarios": max(0, len(p["textos"]) - 1),
+                        "data": p["data"]
+                    })
+            if posts_match:
+                ranking.append((t_nome, len(posts_match), posts_match))
+
+        ranking.sort(key=lambda x: (x[1], sum(pm["qtd_comentarios"] for pm in x[2])), reverse=True)
+        tot = sum(r[1] for r in ranking) or 1
+        out = []
+        for t_nome, score, p_list in ranking[:10]:
+            pct = round((score / tot) * 100, 1)
+            out.append({
+                "termo": t_nome,
+                "pct": f"{pct}%".replace(".", ","),
+                "valor": pct,
+                "qtd_posts": len(p_list),
+                "posts": p_list
+            })
+        return out
+
+    itens_oposicao = _rankear_por_temas(TEMAS_OPOSICAO)
+    itens_popular = _rankear_por_temas(TEMAS_CAMPO_POPULAR)
+
+    hora_ce = datetime.now(FUSO_CE).strftime("%H:%M")
+
+    return {
+        "hora": hora_ce,
+        "total_posts": total_posts,
+        "oposicao": {"titulo": "PRÓ-OPOSIÇÃO", "itens": itens_oposicao},
+        "popular": {"titulo": "CAMPO POPULAR / LÉO", "itens": itens_popular}
+    }

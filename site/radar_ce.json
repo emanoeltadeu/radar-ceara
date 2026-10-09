@@ -57572,7 +57572,859 @@
         "link_instagram": "https://www.instagram.com/p/DeRnFKzRvD_/",
         "link_origem": "https://www.instagram.com/p/DeRnFKzRvD_/"
       }
-    ]
+    ],
+    "nuvem": [
+      {
+        "t": "Lula",
+        "peso": 98,
+        "lado": "nossa",
+        "contagem": 201
+      },
+      {
+        "t": "Direita Fortaleza",
+        "peso": 65,
+        "lado": "deles",
+        "contagem": 86
+      },
+      {
+        "t": "Assembleia Legislativa",
+        "peso": 54,
+        "lado": "disputa",
+        "contagem": 50
+      },
+      {
+        "t": "Ciro Gomes",
+        "peso": 50,
+        "lado": "disputa",
+        "contagem": 35
+      },
+      {
+        "t": "Segurança e Facções",
+        "peso": 46,
+        "lado": "deles",
+        "contagem": 21
+      },
+      {
+        "t": "Carmelo Neto",
+        "peso": 46,
+        "lado": "deles",
+        "contagem": 20
+      },
+      {
+        "t": "Elmano de Freitas",
+        "peso": 44,
+        "lado": "nossa",
+        "contagem": 15
+      },
+      {
+        "t": "Cid Gomes",
+        "peso": 43,
+        "lado": "disputa",
+        "contagem": 11
+      },
+      {
+        "t": "Fim da 6x1",
+        "peso": 43,
+        "lado": "nossa",
+        "contagem": 9
+      },
+      {
+        "t": "IPVA e Tributos",
+        "peso": 42,
+        "lado": "deles",
+        "contagem": 6
+      },
+      {
+        "t": "Cultura Periférica",
+        "peso": 41,
+        "lado": "nossa",
+        "contagem": 4
+      },
+      {
+        "t": "Camilo Santana",
+        "peso": 41,
+        "lado": "nossa",
+        "contagem": 4
+      },
+      {
+        "t": "Léo Suricate",
+        "peso": 41,
+        "lado": "nossa",
+        "contagem": 2
+      },
+      {
+        "t": "Ônibus e Terminais",
+        "peso": 41,
+        "lado": "nossa",
+        "contagem": 2
+      },
+      {
+        "t": "Capitão Wagner",
+        "peso": 41,
+        "lado": "deles",
+        "contagem": 2
+      },
+      {
+        "t": "Prefeitura Fortaleza",
+        "peso": 41,
+        "lado": "disputa",
+        "contagem": 2
+      },
+      {
+        "t": "Gastos Públicos",
+        "peso": 41,
+        "lado": "deles",
+        "contagem": 2
+      },
+      {
+        "t": "Tiririca",
+        "peso": 40,
+        "lado": "disputa",
+        "contagem": 1
+      }
+    ],
+    "posts_mais_falados": {
+      "hora": "14:27",
+      "total_posts": 47,
+      "oposicao": {
+        "titulo": "PRÓ-OPOSIÇÃO",
+        "itens": [
+          {
+            "termo": "Direita Fortaleza",
+            "pct": "56,8%",
+            "valor": 56.8,
+            "qtd_posts": 21,
+            "posts": [
+              {
+                "id": "18114494417034058",
+                "titulo": "Pra cima, gente! A virada já começou! É @lulaoficial, é 1️⃣3️⃣✅",
+                "autor": "@demoraissilvac",
+                "url": "https://www.instagram.com/p/DeReH4qtowb/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T13:08:51.000Z"
+              },
+              {
+                "id": "18101409692371587",
+                "titulo": "A gente tem muito orgulho das nossas raízes, SIM! 🙂‍↕️...",
+                "autor": "@fegodefre",
+                "url": "https://www.instagram.com/p/DePatIBERew/",
+                "qtd_comentarios": 15,
+                "data": "2026-10-09T03:15:08.000Z"
+              },
+              {
+                "id": "17911745646544507",
+                "titulo": "Cuidar também é olhar para além do tratamento. 🤍🌊...",
+                "autor": "@paula_ferreir.a",
+                "url": "https://www.instagram.com/p/DeRX4gVxBo6/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T12:52:11.000Z"
+              },
+              {
+                "id": "18198085243379819",
+                "titulo": "🇧🇷 Fortaleza, 8 de outubro, 17h13 ⭐️ Jovens começam movimento para salvar o Brasil das mão...",
+                "autor": "@egilasampaio",
+                "url": "https://www.instagram.com/p/DeP1bI5p24T/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T12:46:26.000Z"
+              },
+              {
+                "id": "18107521610367432",
+                "titulo": "O Datafolha divulgou nesta quinta-feira, 8, nova pesquisa eleitoral com os números da corr...",
+                "autor": "@adrianoceara2011",
+                "url": "https://www.instagram.com/p/DeRdWmsnP2D/",
+                "qtd_comentarios": 10,
+                "data": "2026-10-09T14:01:33.000Z"
+              },
+              {
+                "id": "17910652320518330",
+                "titulo": "Renata Saldanha, campeã do Big Brother Brasil 25, ficou noiva de Maike Allan durante uma v...",
+                "autor": "@lidianacpaula",
+                "url": "https://www.instagram.com/p/DeRgcC0DpN6/",
+                "qtd_comentarios": 15,
+                "data": "2026-10-09T14:01:22.000Z"
+              },
+              {
+                "id": "17934522123401176",
+                "titulo": "Pra quem ainda não entendeu, a proposta de Flávio Bolsonaro é tirar direitos do trabalhado...",
+                "autor": "@carolinafnunes",
+                "url": "https://www.instagram.com/p/DeRnFKzRvD_/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T14:01:45.000Z"
+              },
+              {
+                "id": "17866194537671909",
+                "titulo": "#Publi A Pereira Móveis (@pereiramoveisce) amplia sua presença em Fortaleza e na Região Me...",
+                "autor": "@representantemarcoaurelio",
+                "url": "https://www.instagram.com/p/DeRnw0bDOML/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T13:59:52.000Z"
+              },
+              {
+                "id": "17993884593103851",
+                "titulo": "18/10. Pode marcar: é dia de jogar junto. ⚽️🔥...",
+                "autor": "@andrecarvalhoator",
+                "url": "https://www.instagram.com/p/DeNpfXviQ7T/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:01:40.000Z"
+              },
+              {
+                "id": "18021649601896866",
+                "titulo": "Pense bem antes de votar.\n\nVia @coolkidestudio",
+                "autor": "@lianafarias",
+                "url": "https://www.instagram.com/p/DeRqWSgkXn-/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:01:39.000Z"
+              },
+              {
+                "id": "18130486351764144",
+                "titulo": "#Chargedodia por Clayton (@claytoncharges), publicada em todas as plataformas do O POVO ne...",
+                "autor": "@denni_yy",
+                "url": "https://www.instagram.com/p/DeRoykhF088/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T14:01:33.000Z"
+              },
+              {
+                "id": "18130462543808751",
+                "titulo": "O senador Flávio Bolsonaro (PL) aparece com 52% dos votos válidos, contra 48% do president...",
+                "autor": "@chaffejuan",
+                "url": "https://www.instagram.com/p/DeQI9LVjI4m/",
+                "qtd_comentarios": 3,
+                "data": "2026-10-09T02:10:39.000Z"
+              },
+              {
+                "id": "18105153134194137",
+                "titulo": "A Polícia Civil de Sergipe investiga relatos de que um homem armado teria efetuado disparo...",
+                "autor": "@ferreiraanakelrynogueira",
+                "url": "https://www.instagram.com/p/DeRma7_EVC8/",
+                "qtd_comentarios": 7,
+                "data": "2026-10-09T14:14:16.000Z"
+              },
+              {
+                "id": "18074875973467581",
+                "titulo": "Um levantamento da Ativaweb DataLab identificou cerca de 27 milhões de manifestações hosti...",
+                "autor": "@projetodnadescobrindoobrasil",
+                "url": "https://www.instagram.com/p/DePVJlyDJ0G/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:09:24.000Z"
+              },
+              {
+                "id": "18123765449478866",
+                "titulo": "A Assembleia Legislativa do Estado do Ceará (Alece) informa que, em cumprimento à decisão ...",
+                "autor": "@anaraquelvs",
+                "url": "https://www.instagram.com/p/DeP1pH0lQ7R/",
+                "qtd_comentarios": 15,
+                "data": "2026-10-09T13:48:21.000Z"
+              },
+              {
+                "id": "17912706138282842",
+                "titulo": "🏛️ O Memorial Deputado Pontes Neto da Assembleia Legislativa do Estado do Ceará (Malce) ab...",
+                "autor": "@melsorella",
+                "url": "https://www.instagram.com/p/DeNKsl3uute/",
+                "qtd_comentarios": 10,
+                "data": "2026-10-09T00:39:17.000Z"
+              },
+              {
+                "id": "17949114945323216",
+                "titulo": "MINISTRO VAI ANALISAR POSSÍVEIS IRREGULARIDADES...",
+                "autor": "@chicovelveiculos",
+                "url": "https://www.instagram.com/p/DeRrJcXCbzp/",
+                "qtd_comentarios": 11,
+                "data": "2026-10-09T14:17:59.000Z"
+              },
+              {
+                "id": "17911175400510679",
+                "titulo": "Pronunciamento de Ciro Gomes",
+                "autor": "@maria0305",
+                "url": "https://www.instagram.com/p/DeLGD78RImz/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:13:45.000Z"
+              },
+              {
+                "id": "17933452539147960",
+                "titulo": "Um vídeo sem roteiro, sem texto produzido. Apenas liguei a câmera e falei o que estava com...",
+                "autor": "@anacarneir",
+                "url": "https://www.instagram.com/p/DeIEKMKyGKQ/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:03:24.000Z"
+              },
+              {
+                "id": "17868261798661170",
+                "titulo": "A verdade sobre o Farmácia Popular. Compartilhe esse vídeo!\n\nSiga @carmeloneto",
+                "autor": "@tiagostoledo",
+                "url": "https://www.instagram.com/p/DePXZSlix0-/",
+                "qtd_comentarios": 6,
+                "data": "2026-10-09T17:22:24.000Z"
+              },
+              {
+                "id": "17922444180442390",
+                "titulo": "🚨 O NOVO GOLPE DO LULA! Atenção: não vote antes de saber disso! \n\nSiga @carmeloneto",
+                "autor": "@delgadodayane",
+                "url": "https://www.instagram.com/p/DePwPmNi1a_/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T17:23:06.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "IPVA e Tributos",
+            "pct": "10,8%",
+            "valor": 10.8,
+            "qtd_posts": 4,
+            "posts": [
+              {
+                "id": "18021649601896866",
+                "titulo": "Pense bem antes de votar.\n\nVia @coolkidestudio",
+                "autor": "@lianafarias",
+                "url": "https://www.instagram.com/p/DeRqWSgkXn-/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:01:39.000Z"
+              },
+              {
+                "id": "18112082549127146",
+                "titulo": "O governador Elmano de Freitas (PT) prometeu enviar até o final de outubro o projeto de le...",
+                "autor": "@mauricioalvesadm",
+                "url": "https://www.instagram.com/p/DeRqPcHTzp7/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:02:13.000Z"
+              },
+              {
+                "id": "18074875973467581",
+                "titulo": "Um levantamento da Ativaweb DataLab identificou cerca de 27 milhões de manifestações hosti...",
+                "autor": "@projetodnadescobrindoobrasil",
+                "url": "https://www.instagram.com/p/DePVJlyDJ0G/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:09:24.000Z"
+              },
+              {
+                "id": "18123765449478866",
+                "titulo": "A Assembleia Legislativa do Estado do Ceará (Alece) informa que, em cumprimento à decisão ...",
+                "autor": "@anaraquelvs",
+                "url": "https://www.instagram.com/p/DeP1pH0lQ7R/",
+                "qtd_comentarios": 15,
+                "data": "2026-10-09T13:48:21.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Segurança e Facções",
+            "pct": "10,8%",
+            "valor": 10.8,
+            "qtd_posts": 4,
+            "posts": [
+              {
+                "id": "18105153134194137",
+                "titulo": "A Polícia Civil de Sergipe investiga relatos de que um homem armado teria efetuado disparo...",
+                "autor": "@ferreiraanakelrynogueira",
+                "url": "https://www.instagram.com/p/DeRma7_EVC8/",
+                "qtd_comentarios": 7,
+                "data": "2026-10-09T14:14:16.000Z"
+              },
+              {
+                "id": "18074875973467581",
+                "titulo": "Um levantamento da Ativaweb DataLab identificou cerca de 27 milhões de manifestações hosti...",
+                "autor": "@projetodnadescobrindoobrasil",
+                "url": "https://www.instagram.com/p/DePVJlyDJ0G/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:09:24.000Z"
+              },
+              {
+                "id": "18019816250729138",
+                "titulo": "A Polícia Federal e a Controladoria-Geral da União deflagraram nesta quinta-feira (8) a Op...",
+                "autor": "@selmocamargofc",
+                "url": "https://www.instagram.com/p/DeReuMwFOro/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:12:44.000Z"
+              },
+              {
+                "id": "17933452539147960",
+                "titulo": "Um vídeo sem roteiro, sem texto produzido. Apenas liguei a câmera e falei o que estava com...",
+                "autor": "@anacarneir",
+                "url": "https://www.instagram.com/p/DeIEKMKyGKQ/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:03:24.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Carmelo Neto",
+            "pct": "8,1%",
+            "valor": 8.1,
+            "qtd_posts": 3,
+            "posts": [
+              {
+                "id": "18076716878436036",
+                "titulo": "Primeira vez em Brasília como deputado federal eleito. A partir do próximo ano, essa vai s...",
+                "autor": "@inacioibp",
+                "url": "https://www.instagram.com/p/DeNqzn-jeKc/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T17:04:09.000Z"
+              },
+              {
+                "id": "17868261798661170",
+                "titulo": "A verdade sobre o Farmácia Popular. Compartilhe esse vídeo!\n\nSiga @carmeloneto",
+                "autor": "@tiagostoledo",
+                "url": "https://www.instagram.com/p/DePXZSlix0-/",
+                "qtd_comentarios": 6,
+                "data": "2026-10-09T17:22:24.000Z"
+              },
+              {
+                "id": "17922444180442390",
+                "titulo": "🚨 O NOVO GOLPE DO LULA! Atenção: não vote antes de saber disso! \n\nSiga @carmeloneto",
+                "autor": "@delgadodayane",
+                "url": "https://www.instagram.com/p/DePwPmNi1a_/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T17:23:06.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Gastos Públicos",
+            "pct": "5,4%",
+            "valor": 5.4,
+            "qtd_posts": 2,
+            "posts": [
+              {
+                "id": "18123765449478866",
+                "titulo": "A Assembleia Legislativa do Estado do Ceará (Alece) informa que, em cumprimento à decisão ...",
+                "autor": "@anaraquelvs",
+                "url": "https://www.instagram.com/p/DeP1pH0lQ7R/",
+                "qtd_comentarios": 15,
+                "data": "2026-10-09T13:48:21.000Z"
+              },
+              {
+                "id": "17915140416462361",
+                "titulo": "🌵 A Alece foi até às ruas para ouvir os cearenses sobre o Dia do Nordestino. Ao invés do L...",
+                "autor": "@lucasbrenotv",
+                "url": "https://www.instagram.com/p/DeO4jkmBfvm/",
+                "qtd_comentarios": 10,
+                "data": "2026-10-08T21:08:06.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Capitão Wagner",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "17997433920045027",
+                "titulo": "Mais de 2 milhões de cearenses acreditaram, caminharam ao nosso lado e depositaram em mim ...",
+                "autor": "@mariadoceufachotm",
+                "url": "https://www.instagram.com/p/DeHY78uxXs4/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T10:26:49.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Críticas a Elmano",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "18021649601896866",
+                "titulo": "Pense bem antes de votar.\n\nVia @coolkidestudio",
+                "autor": "@lianafarias",
+                "url": "https://www.instagram.com/p/DeRqWSgkXn-/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:01:39.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Tiririca / Crítica",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "18074875973467581",
+                "titulo": "Um levantamento da Ativaweb DataLab identificou cerca de 27 milhões de manifestações hosti...",
+                "autor": "@projetodnadescobrindoobrasil",
+                "url": "https://www.instagram.com/p/DePVJlyDJ0G/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:09:24.000Z"
+              }
+            ]
+          }
+        ]
+      },
+      "popular": {
+        "titulo": "CAMPO POPULAR / LÉO",
+        "itens": [
+          {
+            "termo": "Lula / Mobilização",
+            "pct": "64,9%",
+            "valor": 64.9,
+            "qtd_posts": 24,
+            "posts": [
+              {
+                "id": "18205646152373598",
+                "titulo": "BORA REELEGER O PRESIDENTE LULA ⭐...",
+                "autor": "@saficclara",
+                "url": "https://www.instagram.com/p/DeIq0_kNGj6/",
+                "qtd_comentarios": 50,
+                "data": "2026-10-09T11:27:52.000Z"
+              },
+              {
+                "id": "18037451771848418",
+                "titulo": "Lula é uma força da natureza!...",
+                "autor": "@vivianesobrinho",
+                "url": "https://www.instagram.com/p/DeCNR8WlHmZ/",
+                "qtd_comentarios": 17,
+                "data": "2026-10-09T09:48:26.000Z"
+              },
+              {
+                "id": "18022050626930940",
+                "titulo": "Agora é eleger o presidente @lulaoficial !!!...",
+                "autor": "@ronnynascimento9",
+                "url": "https://www.instagram.com/p/DeGRzJiNL2O/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T10:44:43.000Z"
+              },
+              {
+                "id": "17937041895124978",
+                "titulo": "A gente tá assim, ó: vooaaando nas entregas! 🚀Outubro chegou com reforço na saúde: a rede ...",
+                "autor": "@vandersonsouza0",
+                "url": "https://www.instagram.com/p/DeCVNbFuta1/",
+                "qtd_comentarios": 10,
+                "data": "2026-10-08T16:05:43.000Z"
+              },
+              {
+                "id": "18206357161374908",
+                "titulo": "Lula vai vencer ⭐️",
+                "autor": "@wholanda_jp",
+                "url": "https://www.instagram.com/p/DeRcQZUNWDZ/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T13:08:50.000Z"
+              },
+              {
+                "id": "18114494417034058",
+                "titulo": "Pra cima, gente! A virada já começou! É @lulaoficial, é 1️⃣3️⃣✅",
+                "autor": "@demoraissilvac",
+                "url": "https://www.instagram.com/p/DeReH4qtowb/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T13:08:51.000Z"
+              },
+              {
+                "id": "18198085243379819",
+                "titulo": "🇧🇷 Fortaleza, 8 de outubro, 17h13 ⭐️ Jovens começam movimento para salvar o Brasil das mão...",
+                "autor": "@egilasampaio",
+                "url": "https://www.instagram.com/p/DeP1bI5p24T/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T12:46:26.000Z"
+              },
+              {
+                "id": "18107521610367432",
+                "titulo": "O Datafolha divulgou nesta quinta-feira, 8, nova pesquisa eleitoral com os números da corr...",
+                "autor": "@adrianoceara2011",
+                "url": "https://www.instagram.com/p/DeRdWmsnP2D/",
+                "qtd_comentarios": 10,
+                "data": "2026-10-09T14:01:33.000Z"
+              },
+              {
+                "id": "17934522123401176",
+                "titulo": "Pra quem ainda não entendeu, a proposta de Flávio Bolsonaro é tirar direitos do trabalhado...",
+                "autor": "@carolinafnunes",
+                "url": "https://www.instagram.com/p/DeRnFKzRvD_/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T14:01:45.000Z"
+              },
+              {
+                "id": "17993884593103851",
+                "titulo": "18/10. Pode marcar: é dia de jogar junto. ⚽️🔥...",
+                "autor": "@andrecarvalhoator",
+                "url": "https://www.instagram.com/p/DeNpfXviQ7T/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:01:40.000Z"
+              },
+              {
+                "id": "18021649601896866",
+                "titulo": "Pense bem antes de votar.\n\nVia @coolkidestudio",
+                "autor": "@lianafarias",
+                "url": "https://www.instagram.com/p/DeRqWSgkXn-/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:01:39.000Z"
+              },
+              {
+                "id": "18130486351764144",
+                "titulo": "#Chargedodia por Clayton (@claytoncharges), publicada em todas as plataformas do O POVO ne...",
+                "autor": "@denni_yy",
+                "url": "https://www.instagram.com/p/DeRoykhF088/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T14:01:33.000Z"
+              },
+              {
+                "id": "18130462543808751",
+                "titulo": "O senador Flávio Bolsonaro (PL) aparece com 52% dos votos válidos, contra 48% do president...",
+                "autor": "@chaffejuan",
+                "url": "https://www.instagram.com/p/DeQI9LVjI4m/",
+                "qtd_comentarios": 3,
+                "data": "2026-10-09T02:10:39.000Z"
+              },
+              {
+                "id": "17884944870504313",
+                "titulo": "O jurista Miguel Reale Júnior, um dos autores do pedido de impeachment da ex-presidente Di...",
+                "autor": "@_gabrielcotrim_",
+                "url": "https://www.instagram.com/p/DeRpGWpHCci/",
+                "qtd_comentarios": 9,
+                "data": "2026-10-09T14:16:12.000Z"
+              },
+              {
+                "id": "18105153134194137",
+                "titulo": "A Polícia Civil de Sergipe investiga relatos de que um homem armado teria efetuado disparo...",
+                "autor": "@ferreiraanakelrynogueira",
+                "url": "https://www.instagram.com/p/DeRma7_EVC8/",
+                "qtd_comentarios": 7,
+                "data": "2026-10-09T14:14:16.000Z"
+              },
+              {
+                "id": "18074875973467581",
+                "titulo": "Um levantamento da Ativaweb DataLab identificou cerca de 27 milhões de manifestações hosti...",
+                "autor": "@projetodnadescobrindoobrasil",
+                "url": "https://www.instagram.com/p/DePVJlyDJ0G/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:09:24.000Z"
+              },
+              {
+                "id": "18136683235651857",
+                "titulo": "DECISÃO UNÂNIME...",
+                "autor": "@cristina_mariah21",
+                "url": "https://www.instagram.com/p/DeRnsEAnB1p/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T14:19:10.000Z"
+              },
+              {
+                "id": "17949114945323216",
+                "titulo": "MINISTRO VAI ANALISAR POSSÍVEIS IRREGULARIDADES...",
+                "autor": "@chicovelveiculos",
+                "url": "https://www.instagram.com/p/DeRrJcXCbzp/",
+                "qtd_comentarios": 11,
+                "data": "2026-10-09T14:17:59.000Z"
+              },
+              {
+                "id": "18019816250729138",
+                "titulo": "A Polícia Federal e a Controladoria-Geral da União deflagraram nesta quinta-feira (8) a Op...",
+                "autor": "@selmocamargofc",
+                "url": "https://www.instagram.com/p/DeReuMwFOro/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:12:44.000Z"
+              },
+              {
+                "id": "18117782651063210",
+                "titulo": "Agora, literalmente, o bicho vai pegar: dia 25 é Flavio 22🫡🫡",
+                "autor": "@bethafrota",
+                "url": "https://www.instagram.com/p/DeK8u0CxZK1/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T03:08:55.000Z"
+              },
+              {
+                "id": "18128263816829337",
+                "titulo": "Obrigado pelos 684 mil votos, meu Ceará! 🫶🏼",
+                "autor": "@samiaoliveira85",
+                "url": "https://www.instagram.com/p/DeGDu8Bxj0q/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T10:14:24.000Z"
+              },
+              {
+                "id": "17911175400510679",
+                "titulo": "Pronunciamento de Ciro Gomes",
+                "autor": "@maria0305",
+                "url": "https://www.instagram.com/p/DeLGD78RImz/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:13:45.000Z"
+              },
+              {
+                "id": "17933452539147960",
+                "titulo": "Um vídeo sem roteiro, sem texto produzido. Apenas liguei a câmera e falei o que estava com...",
+                "autor": "@anacarneir",
+                "url": "https://www.instagram.com/p/DeIEKMKyGKQ/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:03:24.000Z"
+              },
+              {
+                "id": "17922444180442390",
+                "titulo": "🚨 O NOVO GOLPE DO LULA! Atenção: não vote antes de saber disso! \n\nSiga @carmeloneto",
+                "autor": "@delgadodayane",
+                "url": "https://www.instagram.com/p/DePwPmNi1a_/",
+                "qtd_comentarios": 13,
+                "data": "2026-10-09T17:23:06.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Fim da 6x1",
+            "pct": "10,8%",
+            "valor": 10.8,
+            "qtd_posts": 4,
+            "posts": [
+              {
+                "id": "18235817977319058",
+                "titulo": "#fimda6x1 · Debate Popular",
+                "autor": "@manumariasz",
+                "url": "https://www.instagram.com/p/DeRb27SlRHl/",
+                "qtd_comentarios": 2,
+                "data": "2026-10-09T11:49:42.000Z"
+              },
+              {
+                "id": "18021649601896866",
+                "titulo": "Pense bem antes de votar.\n\nVia @coolkidestudio",
+                "autor": "@lianafarias",
+                "url": "https://www.instagram.com/p/DeRqWSgkXn-/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T14:01:39.000Z"
+              },
+              {
+                "id": "17949114945323216",
+                "titulo": "MINISTRO VAI ANALISAR POSSÍVEIS IRREGULARIDADES...",
+                "autor": "@chicovelveiculos",
+                "url": "https://www.instagram.com/p/DeRrJcXCbzp/",
+                "qtd_comentarios": 11,
+                "data": "2026-10-09T14:17:59.000Z"
+              },
+              {
+                "id": "18075853286727372",
+                "titulo": "#fimda6x1 · Debate Popular",
+                "autor": "@gabrielfdelmiro",
+                "url": "https://www.instagram.com/p/DeR12IxO5dM/",
+                "qtd_comentarios": 1,
+                "data": "2026-10-09T15:40:11.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Cultura Periférica",
+            "pct": "5,4%",
+            "valor": 5.4,
+            "qtd_posts": 2,
+            "posts": [
+              {
+                "id": "18205646152373598",
+                "titulo": "BORA REELEGER O PRESIDENTE LULA ⭐...",
+                "autor": "@saficclara",
+                "url": "https://www.instagram.com/p/DeIq0_kNGj6/",
+                "qtd_comentarios": 50,
+                "data": "2026-10-09T11:27:52.000Z"
+              },
+              {
+                "id": "17912706138282842",
+                "titulo": "🏛️ O Memorial Deputado Pontes Neto da Assembleia Legislativa do Estado do Ceará (Malce) ab...",
+                "autor": "@melsorella",
+                "url": "https://www.instagram.com/p/DeNKsl3uute/",
+                "qtd_comentarios": 10,
+                "data": "2026-10-09T00:39:17.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Elmano de Freitas",
+            "pct": "5,4%",
+            "valor": 5.4,
+            "qtd_posts": 2,
+            "posts": [
+              {
+                "id": "18112082549127146",
+                "titulo": "O governador Elmano de Freitas (PT) prometeu enviar até o final de outubro o projeto de le...",
+                "autor": "@mauricioalvesadm",
+                "url": "https://www.instagram.com/p/DeRqPcHTzp7/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:02:13.000Z"
+              },
+              {
+                "id": "17933452539147960",
+                "titulo": "Um vídeo sem roteiro, sem texto produzido. Apenas liguei a câmera e falei o que estava com...",
+                "autor": "@anacarneir",
+                "url": "https://www.instagram.com/p/DeIEKMKyGKQ/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:03:24.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Léo Suricate",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "18205646152373598",
+                "titulo": "BORA REELEGER O PRESIDENTE LULA ⭐...",
+                "autor": "@saficclara",
+                "url": "https://www.instagram.com/p/DeIq0_kNGj6/",
+                "qtd_comentarios": 50,
+                "data": "2026-10-09T11:27:52.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Pé-de-Meia",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "18205646152373598",
+                "titulo": "BORA REELEGER O PRESIDENTE LULA ⭐...",
+                "autor": "@saficclara",
+                "url": "https://www.instagram.com/p/DeIq0_kNGj6/",
+                "qtd_comentarios": 50,
+                "data": "2026-10-09T11:27:52.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Ônibus e Terminais",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "17993884593103851",
+                "titulo": "18/10. Pode marcar: é dia de jogar junto. ⚽️🔥...",
+                "autor": "@andrecarvalhoator",
+                "url": "https://www.instagram.com/p/DeNpfXviQ7T/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:01:40.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Areninhas e Juventude",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "17933452539147960",
+                "titulo": "Um vídeo sem roteiro, sem texto produzido. Apenas liguei a câmera e falei o que estava com...",
+                "autor": "@anacarneir",
+                "url": "https://www.instagram.com/p/DeIEKMKyGKQ/",
+                "qtd_comentarios": 14,
+                "data": "2026-10-09T14:03:24.000Z"
+              }
+            ]
+          },
+          {
+            "termo": "Camilo Santana",
+            "pct": "2,7%",
+            "valor": 2.7,
+            "qtd_posts": 1,
+            "posts": [
+              {
+                "id": "18198085243379819",
+                "titulo": "🇧🇷 Fortaleza, 8 de outubro, 17h13 ⭐️ Jovens começam movimento para salvar o Brasil das mão...",
+                "autor": "@egilasampaio",
+                "url": "https://www.instagram.com/p/DeP1bI5p24T/",
+                "qtd_comentarios": 12,
+                "data": "2026-10-09T12:46:26.000Z"
+              }
+            ]
+          }
+        ]
+      }
+    }
   },
   "meta_transparencia": {
     "fonte": "Prestação Oficial de Contas TSE 2026 (Gastos Reais Declarados com Facebook/Meta no Ceará)",

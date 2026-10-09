@@ -38,7 +38,11 @@ from inteligencia.gemini import (
     processar_sentimento_comentarios,
     classificar_videos_youtube_gemini
 )
-from inteligencia.nlp_nuvem import construir_monitor_redes
+from inteligencia.nlp_nuvem import (
+    construir_monitor_redes,
+    gerar_nuvem_instagram,
+    gerar_ranking_posts_instagram
+)
 from inteligencia.dados_eleitorais import extrair_dados_leo_ceara, carregar_pautas_leo
 
 def executar_coleta_paralela():
@@ -113,7 +117,10 @@ def main():
         comentarios_ig,
         cache_path=CACHE_CLASSIFICADOS_IG
     )
-    print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários")
+    # Gera a nuvem de palavras e o ranking dos mais falados específicos do Instagram
+    sentimento_instagram["nuvem"] = gerar_nuvem_instagram(comentarios_ig)
+    sentimento_instagram["posts_mais_falados"] = gerar_ranking_posts_instagram(comentarios_ig)
+    print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários | {len(sentimento_instagram['nuvem'])} termos na nuvem | {sentimento_instagram['posts_mais_falados']['total_posts']} posts rankeados")
 
     # 5. Consolidação e Gravação do Arquivo Final
     hora_ce = datetime.now(FUSO_CE).strftime("%d/%m/%Y às %H:%M")

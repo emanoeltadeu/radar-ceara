@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
           clsLink: "link-ig-comentario",
           iconeOrigem: "📸"
         });
+        renderizarNuvemInstagram(data.sentimento_instagram.nuvem);
+        renderizarPostsInstagram(data.sentimento_instagram.posts_mais_falados);
       }
 
       renderizarMetaAds(data.meta_transparencia);
@@ -495,6 +497,185 @@ document.addEventListener("DOMContentLoaded", () => {
     renderComentarios(sent.amostras_destaque || todosComentarios.slice(0, 5), null);
   }
 
+  // 3.B NUVEM DE PALAVRAS · INSTAGRAM
+  function renderizarNuvemInstagram(itensNuvem) {
+    const nuvemBoxIg = document.getElementById("nuvem-termos-ig");
+    const formBuscaIg = document.getElementById("form-busca-palavra-ig");
+    const inputBuscaIg = document.getElementById("input-busca-palavra-ig");
+    const resBuscaIg = document.getElementById("res-busca-palavra-ig");
+
+    if (!nuvemBoxIg || !itensNuvem || !itensNuvem.length) return;
+
+    nuvemBoxIg.innerHTML = itensNuvem.map(item => {
+      const tam = (11 + (item.peso / 100) * 14).toFixed(1);
+      const clsLado = item.lado === "nossa" ? "nossa" : (item.lado === "deles" ? "deles" : "disputa");
+      const contagemStr = item.contagem ? ` (${item.contagem} menções)` : "";
+      return `<span class="nuvem-tag ${clsLado}" style="font-size: ${tam}px;" title="Alcance: ${item.peso}/100${contagemStr}">${escapeHtml(item.t)}</span>`;
+    }).join("");
+
+    formBuscaIg?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const q = (inputBuscaIg?.value || "").toLowerCase().trim();
+      if (!q) {
+        if (resBuscaIg) resBuscaIg.textContent = "";
+        return;
+      }
+      const achou = itensNuvem.find(n => n.t.toLowerCase().includes(q));
+      if (!resBuscaIg) return;
+
+      if (achou) {
+        const infoExtra = achou.contagem ? ` com ${achou.contagem} citações detectadas` : "";
+        resBuscaIg.innerHTML = `💬 <strong>${escapeHtml(achou.t)}</strong> está entre os termos mais falados no Instagram CE${infoExtra} (peso ${achou.peso}/100).`;
+      } else {
+        resBuscaIg.innerHTML = `ℹ️ <em>"${escapeHtml(q)}"</em> não teve destaque expressivo nas publicações e comentários recentes do Instagram.`;
+      }
+    });
+  }
+
+  // 3.C MAIS FALADOS NO INSTAGRAM (RANKINGS & GAVETA INTERATIVA)
+  function renderizarPostsInstagram(dadosPosts) {
+    if (!dadosPosts) return;
+
+    const listaPostDeles = document.getElementById("itens-post-ig-deles");
+    const listaPostNossa = document.getElementById("itens-post-ig-nossa");
+    const contagemSub = document.getElementById("posts-ig-contagem-sub");
+    const painelPostDetalhe = document.getElementById("painel-posts-ig-detalhe");
+    const detalhePostBadge = document.getElementById("detalhe-post-ig-badge");
+    const detalhePostTema = document.getElementById("detalhe-post-ig-tema");
+    const detalhePostContagem = document.getElementById("detalhe-post-ig-contagem");
+    const listaPostsDetalhe = document.getElementById("lista-posts-ig-detalhe");
+    const btnFecharDetalhePosts = document.getElementById("btn-fechar-detalhe-posts-ig");
+
+    let temaSelecionadoPost = null;
+    let campoSelecionadoPost = null;
+
+    btnFecharDetalhePosts?.addEventListener("click", () => {
+      fecharDetalhePosts();
+    });
+
+    function fecharDetalhePosts() {
+      temaSelecionadoPost = null;
+      campoSelecionadoPost = null;
+      if (painelPostDetalhe) painelPostDetalhe.style.display = "none";
+      document.querySelectorAll(".item-post-ig-linha").forEach(el => el.classList.remove("ativo"));
+    }
+
+    function abrirDetalhePosts(item, campo) {
+      if (temaSelecionadoPost === item.termo && campoSelecionadoPost === campo) {
+        fecharDetalhePosts();
+        return;
+      }
+
+      temaSelecionadoPost = item.termo;
+      campoSelecionadoPost = campo;
+
+      document.querySelectorAll(".item-post-ig-linha").forEach(el => el.classList.remove("ativo"));
+      const elAtivo = document.querySelector(`.item-post-ig-linha[data-termo="${encodeURIComponent(item.termo)}"][data-campo="${campo}"]`);
+      if (elAtivo) elAtivo.classList.add("ativo");
+
+      if (painelPostDetalhe) {
+        painelPostDetalhe.style.display = "block";
+      }
+      if (detalhePostBadge) {
+        detalhePostBadge.textContent = campo === "oposicao" ? "PRÓ-OPOSIÇÃO" : "CAMPO POPULAR / LÉO";
+        detalhePostBadge.className = `detalhe-badge ${campo === "oposicao" ? "deles" : "nossa"}`;
+      }
+      if (detalhePostTema) {
+        detalhePostTema.textContent = item.termo;
+      }
+
+      const posts = item.posts || [];
+      if (detalhePostContagem) {
+        const plural = posts.length === 1 ? "post monitorado associado" : "posts monitorados associados";
+        detalhePostContagem.textContent = `${posts.length} ${plural} a esta pauta no Instagram.`;
+      }
+
+      if (listaPostsDetalhe) {
+        if (posts.length === 0) {
+          listaPostsDetalhe.innerHTML = `
+            <div style="font-size: 11.5px; color: var(--tinta-sub); padding: 8px 0;">
+              ℹ️ Nenhum post individualizado diretamente para esta pauta.
+            </div>
+          `;
+        } else {
+          listaPostsDetalhe.innerHTML = posts.map(p => `
+            <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="card-post-ig-item" title="Ver no Instagram ↗">
+              <svg class="card-post-ig-icone" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <div class="card-video-info">
+                <div class="card-video-titulo">${escapeHtml(p.titulo)}</div>
+                <div class="card-video-canal">Perfil: <span>${escapeHtml(p.autor || 'Instagram')}</span> · ${p.qtd_comentarios} comentários analisados ↗</div>
+              </div>
+            </a>
+          `).join("");
+        }
+      }
+    }
+
+    if (contagemSub && dadosPosts.total_posts) {
+      contagemSub.textContent = `${dadosPosts.total_posts} publicações do Ceará analisadas · Clique para ver os posts`;
+    }
+
+    if (listaPostDeles && dadosPosts.oposicao) {
+      const itensDeles = dadosPosts.oposicao.itens || [];
+      listaPostDeles.innerHTML = itensDeles.map(item => {
+        const w = Math.min(100, Math.max(8, item.valor * 2.5));
+        const estaAtivo = temaSelecionadoPost === item.termo && campoSelecionadoPost === "oposicao";
+        const qtdLabel = item.qtd_posts ? ` (${item.qtd_posts} ${item.qtd_posts === 1 ? 'post' : 'posts'})` : '';
+        return `
+          <div class="item-video-linha item-post-ig-linha ${estaAtivo ? 'ativo' : ''}" 
+               data-termo="${encodeURIComponent(item.termo)}" 
+               data-campo="oposicao" 
+               title="Clique para ver os posts sobre ${escapeHtml(item.termo)}">
+            <div class="item-video-dados">
+              <span>${escapeHtml(item.termo)}${qtdLabel}</span>
+              <span class="item-video-pct">${escapeHtml(item.pct)}</span>
+            </div>
+            <div class="barra-video-container">
+              <div class="barra-video-fill deles" style="width: ${w}%;"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      listaPostDeles.querySelectorAll(".item-post-ig-linha").forEach((el, idx) => {
+        el.addEventListener("click", () => {
+          abrirDetalhePosts(itensDeles[idx], "oposicao");
+        });
+      });
+    }
+
+    if (listaPostNossa && dadosPosts.popular) {
+      const itensNossa = dadosPosts.popular.itens || [];
+      listaPostNossa.innerHTML = itensNossa.map(item => {
+        const w = Math.min(100, Math.max(8, item.valor * 2.5));
+        const estaAtivo = temaSelecionadoPost === item.termo && campoSelecionadoPost === "popular";
+        const qtdLabel = item.qtd_posts ? ` (${item.qtd_posts} ${item.qtd_posts === 1 ? 'post' : 'posts'})` : '';
+        return `
+          <div class="item-video-linha item-post-ig-linha ${estaAtivo ? 'ativo' : ''}" 
+               data-termo="${encodeURIComponent(item.termo)}" 
+               data-campo="popular" 
+               title="Clique para ver os posts sobre ${escapeHtml(item.termo)}">
+            <div class="item-video-dados">
+              <span>${escapeHtml(item.termo)}${qtdLabel}</span>
+              <span class="item-video-pct">${escapeHtml(item.pct)}</span>
+            </div>
+            <div class="barra-video-container">
+              <div class="barra-video-fill nossa" style="width: ${w}%;"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      listaPostNossa.querySelectorAll(".item-post-ig-linha").forEach((el, idx) => {
+        el.addEventListener("click", () => {
+          abrirDetalhePosts(itensNossa[idx], "popular");
+        });
+      });
+    }
+  }
+
   // 4. Painel Meta Ads
   function renderizarMetaAds(meta) {
     const container = document.getElementById("painel-meta");
@@ -550,6 +731,98 @@ document.addEventListener("DOMContentLoaded", () => {
     const texto = "Confira o Radar Léo Suricate · Inteligência de dados eleitorais, chão e redes no Ceará:\n" + window.location.href;
     window.open("https://wa.me/?text=" + encodeURIComponent(texto), "_blank");
   });
+
+  // 8. CONTROLE DOS HUBS DE PLATAFORMAS (MINIMIZAR / EXPANDIR / FOCO)
+  const hubYtSec = document.getElementById("monitor-sec");
+  const hubIgSec = document.getElementById("hub-instagram-sec");
+  const cardTrends = document.querySelector(".card-transversal-google");
+  const btnToggleYt = document.getElementById("btn-toggle-hub-yt");
+  const btnToggleIg = document.getElementById("btn-toggle-hub-ig");
+  const btnToggleTrends = document.getElementById("btn-toggle-hub-trends");
+  const btnFocoTodos = document.getElementById("btn-foco-todos");
+  const btnFocoYt = document.getElementById("btn-foco-yt");
+  const btnFocoIg = document.getElementById("btn-foco-ig");
+
+  function atualizarRotuloToggle(btn, sec) {
+    if (!btn || !sec) return;
+    const rotulo = btn.querySelector(".rotulo-toggle");
+    const estaRecolhido = sec.classList.contains("recolhido");
+    if (rotulo) {
+      rotulo.textContent = estaRecolhido ? "Expandir" : "Minimizar";
+    }
+  }
+
+  function setFocoAtivo(btnAtivo) {
+    [btnFocoTodos, btnFocoYt, btnFocoIg].forEach(b => {
+      if (b) b.classList.remove("on");
+    });
+    if (btnAtivo) btnAtivo.classList.add("on");
+  }
+
+  if (btnToggleTrends && cardTrends) {
+    btnToggleTrends.addEventListener("click", () => {
+      cardTrends.classList.toggle("recolhido");
+      atualizarRotuloToggle(btnToggleTrends, cardTrends);
+    });
+  }
+
+  if (btnToggleYt && hubYtSec) {
+    btnToggleYt.addEventListener("click", () => {
+      hubYtSec.classList.toggle("recolhido");
+      atualizarRotuloToggle(btnToggleYt, hubYtSec);
+    });
+  }
+
+  if (btnToggleIg && hubIgSec) {
+    btnToggleIg.addEventListener("click", () => {
+      hubIgSec.classList.toggle("recolhido");
+      atualizarRotuloToggle(btnToggleIg, hubIgSec);
+    });
+  }
+
+  if (btnFocoTodos) {
+    btnFocoTodos.addEventListener("click", () => {
+      if (hubYtSec) {
+        hubYtSec.classList.remove("recolhido");
+        atualizarRotuloToggle(btnToggleYt, hubYtSec);
+      }
+      if (hubIgSec) {
+        hubIgSec.classList.remove("recolhido");
+        atualizarRotuloToggle(btnToggleIg, hubIgSec);
+      }
+      setFocoAtivo(btnFocoTodos);
+    });
+  }
+
+  if (btnFocoYt) {
+    btnFocoYt.addEventListener("click", () => {
+      if (hubYtSec) {
+        hubYtSec.classList.remove("recolhido");
+        atualizarRotuloToggle(btnToggleYt, hubYtSec);
+      }
+      if (hubIgSec) {
+        hubIgSec.classList.add("recolhido");
+        atualizarRotuloToggle(btnToggleIg, hubIgSec);
+      }
+      setFocoAtivo(btnFocoYt);
+      hubYtSec?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  if (btnFocoIg) {
+    btnFocoIg.addEventListener("click", () => {
+      if (hubIgSec) {
+        hubIgSec.classList.remove("recolhido");
+        atualizarRotuloToggle(btnToggleIg, hubIgSec);
+      }
+      if (hubYtSec) {
+        hubYtSec.classList.add("recolhido");
+        atualizarRotuloToggle(btnToggleYt, hubYtSec);
+      }
+      setFocoAtivo(btnFocoIg);
+      hubIgSec?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 
   // Utilitários
   function formatarNum(n) {
