@@ -1,0 +1,74 @@
+# ==========================================
+# CREDENCIAIS, SEGREDOS E CHAVES DE API
+# ==========================================
+*api_key.txt
+*token.txt
+dados/*_key.txt
+dados/*_token.txt
+.env
+.env.local
+.env.*.local
+!.env.example
+*.pem
+*.key
+*.token
+
+# ==========================================
+# AMBIENTE VIRTUAL E PYTHON
+# ==========================================
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ==========================================
+# DADOS BRUTOS MASSIVOS DO TSE (GIGABYTES)
+# ==========================================
+# Os arquivos brutos de boletins de urna e prestação de contas
+# somam mais de 6 GB e excedem o limite de 100 MB do GitHub.
+2022/
+2026/
+*.zip
+*.tar.gz
+*.csv
+
+# ==========================================
+# ARQUIVOS TEMPORÁRIOS E CACHES LOCAIS
+# ==========================================
+dados/*.html
+dados/cache_*.json
+*.log
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ==========================================
+# ARQUIVOS DE SISTEMA OPERACIONAL E IDEs
+# ==========================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

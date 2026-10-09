@@ -1,0 +1,47 @@
+# ==============================================================================
+# CANAIS DO YOUTUBE - COBERTURA POLÍTICA E SOCIAL DO CEARÁ
+# ==============================================================================
+# Este arquivo lista os canais e fontes no YouTube monitorados pelo Radar.
+# Você pode adicionar novos canais, comentar linhas com '#' ou remover canais.
+# O coletor lê automaticamente este arquivo para buscar vídeos e tendências.
+# ==============================================================================
+
+# --- IMPRENSA, JORNALISMO E NOTÍCIAS DO CEARÁ ---
+O POVO Online
+Rádio O POVO CBN
+Diário do Nordeste
+GCMAIS / TV Cidade Fortaleza
+Jornal Jangadeiro
+TV Ceará
+Jornalismo - ALECE (Assembleia Legislativa do Ceará)
+UrbNews
+Ceará Acontece
+Radar do Ceará
+TV Atitude Popular
+TV da Transparência
+Focus Poder
+Ceará Notícias
+
+# --- MANDATO, MOVIMENTOS E CAMPO POPULAR ---
+Léo Suricate / Suricate Seboso
+Mídia NINJA
+Elmano de Freitas
+Governo do Estado do Ceará
+Prefeitura de Fortaleza
+Coletivo Cuca / Juventude Fortaleza
+Batalha do Cuca / Cultura de Rua Fortaleza
+
+# --- POLÍTICA, DEBATES E OPOSIÇÃO NO CEARÁ ---
+Rubão Tv
+André Fernandes
+Capitão Wagner
+Carmelo Neto
+Direita Já
+Renato Vicente Junior
+Nixson Nagaura
+
+# --- TRANSPORTE, TERMINAIS E COTIDIANO URBANO ---
+Central do Ônibus Fortaleza
+No Ponto Fortaleza
+Zé do Bus Fortaleza
+Fvbusologo Motorista do Amor

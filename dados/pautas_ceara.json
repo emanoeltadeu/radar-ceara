@@ -1,0 +1,77 @@
+[
+  {
+    "id": "transposicao",
+    "titulo": "Águas do São Francisco e Seca no Ceará",
+    "tema": "Recursos Hídricos",
+    "gancho": "Quem realmente garantiu água para o povo cearense?",
+    "lado": "nossa",
+    "fato": "A Transposição do São Francisco foi concebida e teve 90% das obras executadas nas gestões Lula e Dilma. O Cinturão das Águas do Ceará (CAC) e a chegada das águas ao Castanhão garantem abastecimento de Fortaleza e do interior.",
+    "pergunta": "Como estaria o Ceará sem as águas do São Francisco hoje?",
+    "zap": "💧 *ÁGUA PRO CEARÁ: QUEM FEZ E QUEM PROMETEU*\n\nA Transposição do Rio São Francisco foi uma decisão de Lula. Mais de 90% das obras foram feitas nos governos do PT, trazendo água para o açude Castanhão e garantindo a torneira aberta em Fortaleza e no interior cearense.\n\nCompartilhe a verdade com quem esqueceu da história!",
+    "fonte": {
+      "nome": "Ministério da Integração / G1 CE",
+      "url": "https://g1.globo.com/ce/ceara/noticia/2023/03/10/aguas-do-rio-sao-francisco-chegam-ao-castanhao.ghtml"
+    },
+    "impacto_ce": "Abastecimento direto de mais de 4,5 milhões de cearenses na RMF e Sertão Central."
+  },
+  {
+    "id": "escala_6x1",
+    "titulo": "Fim da Escala 6x1 e Qualidade de Vida",
+    "tema": "Trabalho e Renda",
+    "gancho": "O trabalhador do comércio e serviços merece folga e dignidade",
+    "lado": "nossa",
+    "fato": "A PEC pelo fim da escala 6x1 ganhou apoio massivo da bancada progressista, enquanto a oposição e a família Bolsonaro criticaram abertamente o projeto chamando trabalhadores de improdutivos.",
+    "pergunta": "Você acha justo trabalhar 6 dias direto pra ter 1 dia só de folga?",
+    "zap": "⏰ *FIM DA ESCALA 6x1: DE QUE LADO CADA UM ESTÁ?*\n\nQuem acorda 5h da manhã pegando ônibus no Terminal da Messejana ou do Siqueira sabe o sufoco da escala 6x1. O campo de Lula apoia a redução da jornada sem redução de salário, enquanto os aliados do PL votam contra o trabalhador.\n\nTrabalhador merece tempo com a família!",
+    "fonte": {
+      "nome": "Câmara dos Deputados",
+      "url": "https://www.camara.leg.br"
+    },
+    "impacto_ce": "Mais de 600 mil trabalhadores do setor terciário na Grande Fortaleza."
+  },
+  {
+    "id": "pe_de_meia",
+    "titulo": "Programa Pé-de-Meia para Estudantes do CE",
+    "tema": "Educação",
+    "gancho": "Ceará lidera educação básica e Pé-de-Meia combate a evasão",
+    "lado": "nossa",
+    "fato": "O programa Pé-de-Meia já beneficia mais de 280 mil estudantes do ensino médio público no Ceará com até R$ 200 mensais e poupança de R$ 1.000 ao fim de cada ano letivo, reduzindo o abandono escolar.",
+    "pergunta": "Sabia que o Ceará é o estado com maior adesão e sucesso no Pé-de-Meia?",
+    "zap": "🎓 *PÉ-DE-MEIA NO CEARÁ: INCENTIVO REAL AOS JOVENS*\n\nO Ceará tem a melhor escola pública do Brasil, e agora o programa Pé-de-Meia do governo Lula garante até R$ 9.200 ao longo do ensino médio para os estudantes não largarem os estudos por necessidade.\n\nEducação é o caminho pro futuro do Ceará!",
+    "fonte": {
+      "nome": "Ministério da Educação (MEC)",
+      "url": "https://www.gov.br/mec/pt-br/pe-de-meia"
+    },
+    "impacto_ce": "Mais de 280.000 alunos do ensino médio no Ceará beneficiados."
+  },
+  {
+    "id": "seguranca_publica",
+    "titulo": "Segurança Pública e Combate ao Crime Organizado",
+    "tema": "Segurança",
+    "gancho": "Ataques da oposição vs. atuação real com a Polícia Federal",
+    "lado": "disputa",
+    "fato": "A oposição tenta explorar o tema da violência no Ceará com discurso fácil, mas esconde que o governo federal aumentou repasses do Fundo Nacional de Segurança Pública (FNSP) e bateu recorde de apreensões de drogas e armas com a Força Integrada de Combate ao Crime Organizado (FICCO-CE).",
+    "pergunta": "Segurança se resolve com armamento de facções ou com inteligência da PF e investimento nas polícias?",
+    "zap": "🛡️ *SEGURANÇA PÚBLICA NO CEARÁ: DISCURSO FÁCIL X AÇÕES REAIS*\n\nCrime organizado se combate asfixiando financeiramente as facções e apreendendo fuzis e drogas. A FICCO (Polícia Federal integrada com a PM e Civil do Ceará) bateu recordes históricos de apreensão e prisões de lideranças criminosas.\n\nNão caia em promessas mágicas de quem facilitou armas que foram parar na mão do crime!",
+    "fonte": {
+      "nome": "Ministério da Justiça e Segurança Pública (MJSP)",
+      "url": "https://www.gov.br/mj"
+    },
+    "impacto_ce": "Integração PF + Forças de Segurança estaduais no Ceará."
+  },
+  {
+    "id": "fake_farmacia_igrejas",
+    "titulo": "Combate a Fake News: Farmácia Popular e Igrejas",
+    "tema": "Checagem de Fatos",
+    "gancho": "Desmonte de boatos recorrentes no WhatsApp e grupos de bairro",
+    "lado": "alerta",
+    "fato": "Boatos afirmando que o governo vai acabar com a Farmácia Popular ou fechar templos são falsos. Em 2023-2026, a Farmácia Popular foi ampliada para distribuição 100% gratuita de remédios para asma, diabetes, hipertensão e osteoporose para beneficiários do Bolsa Família.",
+    "pergunta": "Recebeu mensagem dizendo que vão fechar igrejas ou tirar remédios? Cuidado, é golpe eleitoral!",
+    "zap": "🚨 *CUIDADO COM FAKE NEWS NO ZAP!*\n\nCircula mensagem dizendo que o governo vai tirar remédio dos idosos ou fechar igrejas. É MENTIRA deslavada.\n\nO Farmácia Popular foi EXPANDIDO: remédios de pressão, diabetes e asma são 100% gratuitos para quem mais precisa. A liberdade religiosa é garantida pela Constituição.\n\nNão repasse mentira. Compartilhe checagem!",
+    "fonte": {
+      "nome": "Ministério da Saúde / Agência Lupa",
+      "url": "https://www.gov.br/saude"
+    },
+    "impacto_ce": "Mais de 1,2 milhão de pessoas atendidas pelo Farmácia Popular no Ceará."
+  }
+]
