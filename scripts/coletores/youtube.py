@@ -212,12 +212,19 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
     alvos = vids_filtrados[:max_vids]
 
     comentarios_existentes = {}
+    datas_mais_recentes_por_video = {}
     if os.path.exists(CACHE_COMENTARIOS):
         try:
             with open(CACHE_COMENTARIOS, "r", encoding="utf-8") as f:
                 for c in json.load(f):
-                    if c.get("id"):
-                        comentarios_existentes[c["id"]] = c
+                    cid = c.get("id")
+                    if cid:
+                        comentarios_existentes[cid] = c
+                        vid = c.get("video_id")
+                        dt = c.get("data", "")
+                        if vid and dt:
+                            if vid not in datas_mais_recentes_por_video or dt > datas_mais_recentes_por_video[vid]:
+                                datas_mais_recentes_por_video[vid] = dt
         except Exception:
             pass
 
@@ -225,10 +232,16 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
         vid_id = v["id"]
         v_tit = v.get("titulo", "")
         v_canal = v.get("canal", "")
+        ultima_data_conhecida = datas_mais_recentes_por_video.get(vid_id, "")
+
+        # Se o vídeo já foi varrido e possui comentários salvos, busca os mais recentes (order=time)
+        # para pegar o que há de novo após a última data. Se for um vídeo inédito, usa order=relevance
+        # para garantir os mais representativos e curtidos.
+        ordem = "time" if ultima_data_conhecida else "relevance"
         url = (
             f"https://www.googleapis.com/youtube/v3/commentThreads"
             f"?part=snippet&videoId={vid_id}&maxResults={max_comentarios_por_vid}"
-            f"&order=relevance&key={yt_key}"
+            f"&order={ordem}&key={yt_key}"
         )
         encontrados = []
         try:
@@ -238,7 +251,14 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
                 for it in data.get("items", []):
                     top = it.get("snippet", {}).get("topLevelComment", {}).get("snippet", {})
                     c_id = it.get("id", "")
+                    c_data = top.get("publishedAt", "")
                     texto = html.unescape(top.get("textDisplay", "")).strip()
+
+                    # OTIMIZAÇÃO POR MARCA TEMPORAL (Early Exit / High-Water Mark):
+                    # Se estamos em ordem cronológica e encontramos um comentário mais antigo
+                    # ou igual ao mais recente que já tínhamos, não precisamos continuar processando
+                    if ordem == "time" and ultima_data_conhecida and c_data and c_data <= ultima_data_conhecida:
+                        break
 
                     # Sanitização de quebras de linha e HTML
                     texto_limpo = html.unescape(texto.replace("<br>", " ").replace("<br/>", " "))
@@ -256,7 +276,7 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
                         "autor": top.get("authorDisplayName", "Anônimo"),
                         "texto": texto_limpo,
                         "likes": top.get("likeCount", 0),
-                        "data": top.get("publishedAt", ""),
+                        "data": c_data,
                         "link_origem": f"https://www.youtube.com/watch?v={vid_id}&lc={c_id}"
                     })
         except Exception:

@@ -381,3 +381,49 @@ def gerar_ranking_posts_instagram(comentarios_ig):
         "oposicao": {"titulo": "PRÓ-OPOSIÇÃO", "itens": itens_oposicao},
         "popular": {"titulo": "CAMPO POPULAR / LÉO", "itens": itens_popular}
     }
+
+def construir_metricas_instagram_janelas(comentarios_ig):
+    """
+    Gera as nuvens de palavras e os rankings de posts fatiados pelas 5 janelas temporais:
+    1h, 2h, 12h, 24h e 7d. Possui fallbacks progressivos para janelas ultracurtas.
+    """
+    if not comentarios_ig:
+        comentarios_ig = []
+
+    c_1h = [c for c in comentarios_ig if calcular_idade_horas(c.get("data")) <= 1] or comentarios_ig[:15]
+    c_2h = [c for c in comentarios_ig if calcular_idade_horas(c.get("data")) <= 2] or comentarios_ig[:35]
+    c_12h = [c for c in comentarios_ig if calcular_idade_horas(c.get("data")) <= 12] or comentarios_ig[:80]
+    c_24h = [c for c in comentarios_ig if calcular_idade_horas(c.get("data")) <= 24] or comentarios_ig[:160]
+    c_7d = comentarios_ig
+
+    nuvem_1h = gerar_nuvem_instagram(c_1h)
+    nuvem_2h = gerar_nuvem_instagram(c_2h)
+    nuvem_12h = gerar_nuvem_instagram(c_12h)
+    nuvem_24h = gerar_nuvem_instagram(c_24h)
+    nuvem_7d = gerar_nuvem_instagram(c_7d)
+
+    posts_1h = gerar_ranking_posts_instagram(c_1h)
+    posts_2h = gerar_ranking_posts_instagram(c_2h)
+    posts_12h = gerar_ranking_posts_instagram(c_12h)
+    posts_24h = gerar_ranking_posts_instagram(c_24h)
+    posts_7d = gerar_ranking_posts_instagram(c_7d)
+
+    return {
+        "nuvem": nuvem_24h or nuvem_7d,
+        "nuvens_por_janela": {
+            "1h": nuvem_1h,
+            "2h": nuvem_2h,
+            "12h": nuvem_12h,
+            "24h": nuvem_24h,
+            "7d": nuvem_7d
+        },
+        "posts_mais_falados": posts_24h or posts_7d,
+        "posts_por_janela": {
+            "1h": posts_1h,
+            "2h": posts_2h,
+            "12h": posts_12h,
+            "24h": posts_24h,
+            "7d": posts_7d
+        }
+    }
+

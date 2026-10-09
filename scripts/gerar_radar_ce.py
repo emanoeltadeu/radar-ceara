@@ -41,7 +41,8 @@ from inteligencia.gemini import (
 from inteligencia.nlp_nuvem import (
     construir_monitor_redes,
     gerar_nuvem_instagram,
-    gerar_ranking_posts_instagram
+    gerar_ranking_posts_instagram,
+    construir_metricas_instagram_janelas
 )
 from inteligencia.dados_eleitorais import extrair_dados_leo_ceara, carregar_pautas_leo
 
@@ -117,9 +118,12 @@ def main():
         comentarios_ig,
         cache_path=CACHE_CLASSIFICADOS_IG
     )
-    # Gera a nuvem de palavras e o ranking dos mais falados específicos do Instagram
-    sentimento_instagram["nuvem"] = gerar_nuvem_instagram(comentarios_ig)
-    sentimento_instagram["posts_mais_falados"] = gerar_ranking_posts_instagram(comentarios_ig)
+    # Gera a nuvem de palavras e o ranking dos mais falados específicos do Instagram por janela temporal (1h, 2h, 12h, 24h, 7d)
+    metricas_ig_janelas = construir_metricas_instagram_janelas(comentarios_ig)
+    sentimento_instagram["nuvem"] = metricas_ig_janelas["nuvem"]
+    sentimento_instagram["nuvens_por_janela"] = metricas_ig_janelas["nuvens_por_janela"]
+    sentimento_instagram["posts_mais_falados"] = metricas_ig_janelas["posts_mais_falados"]
+    sentimento_instagram["posts_por_janela"] = metricas_ig_janelas["posts_por_janela"]
     print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários | {len(sentimento_instagram['nuvem'])} termos na nuvem | {sentimento_instagram['posts_mais_falados']['total_posts']} posts rankeados")
 
     # 5. Consolidação e Gravação do Arquivo Final

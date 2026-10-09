@@ -216,9 +216,13 @@ def _disparar_e_aguardar_ator(actor_id, payload, apify_token, max_espera=45):
         print(f"Aviso ao buscar dataset de {actor_id}: {e}")
         return []
 
-def coletar_comentarios_perfis_apify(apify_token, limite_perfis=3, max_posts_por_perfil=3):
+def coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_por_perfil=5):
     """
     Coleta comentários dos perfis monitorados via 'apify/instagram-scraper'.
+    1. Varre os alvos (Léo Suricate fixo + 11 rotativos = 12 perfis no total);
+    2. Coleta os últimos posts de cada um (padrão: 5 posts);
+    3. Para os posts com debate ativo (especialmente perfil de mandato e posts com alto volume de comentários),
+       extrai até 100 comentários em lote focado.
     """
     alvos = carregar_perfis_instagram(limite_perfis=limite_perfis)
     payload = {
@@ -227,14 +231,29 @@ def coletar_comentarios_perfis_apify(apify_token, limite_perfis=3, max_posts_por
         "resultsLimit": max_posts_por_perfil
     }
 
-    posts = _disparar_e_aguardar_ator("apify/instagram-scraper", payload, apify_token, max_espera=45)
+    posts = _disparar_e_aguardar_ator("apify/instagram-scraper", payload, apify_token, max_espera=60)
     comentarios = []
+    posts_para_comentarios_profundos = []
+
+    # 0. Mapeia contagem de comentários e data mais recente já existente por post no cache
+    cache_post_stats = {}
+    for c in carregar_cache_instagram():
+        url = c.get("post_url") or c.get("link_origem")
+        if url:
+            if url not in cache_post_stats:
+                cache_post_stats[url] = {"total_comentarios": 0, "ultima_data": ""}
+            cache_post_stats[url]["total_comentarios"] += 1
+            dt = c.get("data", "")
+            if dt > cache_post_stats[url]["ultima_data"]:
+                cache_post_stats[url]["ultima_data"] = dt
 
     for p in posts:
         post_url = p.get("url", "")
         post_caption = p.get("caption", "").strip()
         post_titulo = (post_caption.split("\n")[0][:90] + "...") if len(post_caption) > 90 else (post_caption or "Post no Instagram")
+        comments_count = p.get("commentsCount", 0)
 
+        # Comentários rápidos retornados diretamente no grid de posts
         for comm in p.get("latestComments", []):
             c_id = comm.get("id")
             txt = (comm.get("text") or "").strip()
@@ -256,6 +275,62 @@ def coletar_comentarios_perfis_apify(apify_token, limite_perfis=3, max_posts_por
                 "post_url": post_url,
                 "link_origem": post_url,
                 "link_instagram": post_url
+            })
+
+        # OTIMIZAÇÃO INCREMENTAL:
+        # Só aprofunda se:
+        # 1. Post é do mandato @leosuricate OU tem debate ativo (>= 8 comentários);
+        # 2. E o post ainda NÃO está no cache OU o número de comentários no Instagram aumentou em relação ao cache.
+        eh_leo = "leosuricate" in post_url.lower() or "leosuricate" in (p.get("ownerUsername") or "").lower()
+        comentarios_ja_salvos = cache_post_stats.get(post_url, {}).get("total_comentarios", 0)
+
+        # Se já coletamos todos ou quase todos os comentários deste post, não gasta requisição repetida
+        tem_novidades = comments_count > (comentarios_ja_salvos + 2) or (comentarios_ja_salvos == 0 and comments_count > 0)
+
+        if post_url and (eh_leo or comments_count >= 8) and tem_novidades:
+            posts_para_comentarios_profundos.append((post_url, post_titulo, comments_count))
+
+    # Se identificamos posts de debate ativo, extrai até 100 comentários nos top 3 posts de maior engajamento
+    if posts_para_comentarios_profundos:
+        # Ordena dando prioridade aos com mais comentários ou Léo Suricate
+        posts_ordenados = sorted(
+            posts_para_comentarios_profundos,
+            key=lambda x: (1 if "leosuricate" in x[0].lower() else 0, x[2]),
+            reverse=True
+        )[:3]
+
+        urls_debate = [p[0] for p in posts_ordenados]
+        mapa_titulos = {p[0]: p[1] for p in posts_ordenados}
+
+        payload_deep_comments = {
+            "directUrls": urls_debate,
+            "resultsType": "comments",
+            "resultsLimit": 100
+        }
+        comms_deep = _disparar_e_aguardar_ator("apify/instagram-scraper", payload_deep_comments, apify_token, max_espera=45)
+        for comm in comms_deep:
+            c_id = comm.get("id")
+            txt = (comm.get("text") or "").strip()
+            if not c_id or len(txt) < 3:
+                continue
+
+            autor = comm.get("ownerUsername") or "usuário"
+            autor_formatado = f"@{autor}" if not autor.startswith("@") else autor
+            p_url = comm.get("postUrl") or comm.get("commentUrl") or urls_debate[0]
+            p_titulo = mapa_titulos.get(p_url, "Debate no Instagram")
+
+            comentarios.append({
+                "id": str(c_id),
+                "rede": "instagram",
+                "origem_tipo": "perfil",
+                "autor": autor_formatado,
+                "texto": txt,
+                "likes": comm.get("likesCount", 0),
+                "data": comm.get("timestamp", ""),
+                "origem_titulo": p_titulo,
+                "post_url": p_url,
+                "link_origem": p_url,
+                "link_instagram": p_url
             })
 
     return comentarios
@@ -343,10 +418,10 @@ def coletar_comentarios_hashtag_apify(apify_token, tag="fimda6x1", max_posts=2):
 
     return comentarios
 
-def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=3, max_espera_segundos=45):
+def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=5, max_espera_segundos=60):
     """
     Orquestra a coleta de comentários no Instagram:
-    - Perfis oficiais e locais (apify/instagram-scraper)
+    - Perfis oficiais e locais (apify/instagram-scraper) com 12 perfis e 5 posts por perfil
     - Hashtags prioritárias como #fimda6x1 (apify/instagram-hashtag-scraper)
     - Mesclagem com o cache existente sem duplicação
     """
@@ -362,9 +437,9 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=3
         if c.get("id"):
             comentarios_existentes[c["id"]] = c
 
-    # 1. Coleta dos Perfis
+    # 1. Coleta dos Perfis (1 fixo + 11 rotativos = 12 perfis)
     try:
-        novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=5, max_posts_por_perfil=max_posts_por_perfil)
+        novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_por_perfil=max_posts_por_perfil)
         for c in novos_perfis:
             comentarios_existentes[c["id"]] = c
     except Exception as e:

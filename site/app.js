@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   let DADOS = null;
   let SENTIMENTO_YOUTUBE = null;
+  let SENTIMENTO_INSTAGRAM = null;
 
   // 1. Carregar radar_ce.json
   fetch("radar_ce.json", { cache: "no-store" })
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       DADOS = data;
       SENTIMENTO_YOUTUBE = data.sentimento_youtube || data.sentimento_mencoes;
+      SENTIMENTO_INSTAGRAM = data.sentimento_instagram;
       renderizarMonitorRedes(data.monitor_redes);
 
       // Sentimento YouTube inicial
@@ -25,17 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Sentimento Instagram
-      if (data.sentimento_instagram) {
-        renderizarBlocoSentimento(data.sentimento_instagram, "ig", {
-          tipoRede: "instagram",
-          nomeRede: "Instagram",
-          rotuloBtn: "Ver no Instagram ↗",
-          clsLink: "link-ig-comentario",
-          iconeOrigem: "📸"
-        });
-        renderizarNuvemInstagram(data.sentimento_instagram.nuvem);
-        renderizarPostsInstagram(data.sentimento_instagram.posts_mais_falados);
+      // Inicializa Hub do Instagram com seletor de janelas temporais (1h, 2h, 12h, 24h, 7d)
+      if (SENTIMENTO_INSTAGRAM) {
+        inicializarHubInstagram(SENTIMENTO_INSTAGRAM);
       }
 
       renderizarMetaAds(data.meta_transparencia);
@@ -554,7 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 3.C MAIS FALADOS NO INSTAGRAM (RANKINGS & GAVETA INTERATIVA)
-  function renderizarPostsInstagram(dadosPosts) {
+  function renderizarPostsInstagram(dadosPosts, janelaAtual = "7d") {
     if (!dadosPosts) return;
 
     const listaPostDeles = document.getElementById("itens-post-ig-deles");
@@ -608,14 +602,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const posts = item.posts || [];
       if (detalhePostContagem) {
         const plural = posts.length === 1 ? "post monitorado associado" : "posts monitorados associados";
-        detalhePostContagem.textContent = `${posts.length} ${plural} a esta pauta no Instagram.`;
+        detalhePostContagem.textContent = `${posts.length} ${plural} a esta pauta no Instagram (${janelaAtual}).`;
       }
 
       if (listaPostsDetalhe) {
         if (posts.length === 0) {
           listaPostsDetalhe.innerHTML = `
             <div style="font-size: 11.5px; color: var(--tinta-sub); padding: 8px 0;">
-              ℹ️ Nenhum post individualizado diretamente para esta pauta.
+              ℹ️ Nenhum post individualizado diretamente para esta pauta nesta janela.
             </div>
           `;
         } else {
@@ -626,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </svg>
               <div class="card-video-info">
                 <div class="card-video-titulo">${escapeHtml(p.titulo)}</div>
-                <div class="card-video-canal">Perfil: <span>${escapeHtml(p.autor || 'Instagram')}</span> · ${p.qtd_comentarios} comentários analisados ↗</div>
+                <div class="card-video-canal">Perfil: <span>${escapeHtml(p.autor || 'Instagram')}</span>${p.qtd_comentarios ? ` · 💬 ${p.qtd_comentarios} comentários` : ''} ↗</div>
               </div>
             </a>
           `).join("");
@@ -634,8 +628,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (contagemSub && dadosPosts.total_posts) {
-      contagemSub.textContent = `${dadosPosts.total_posts} publicações do Ceará analisadas · Clique para ver os posts`;
+    if (contagemSub && dadosPosts.total_posts !== undefined) {
+      contagemSub.textContent = `${dadosPosts.total_posts} publicações do Ceará analisadas (${janelaAtual}) · Clique para ver os posts`;
     }
 
     if (listaPostDeles && dadosPosts.oposicao) {
@@ -695,6 +689,59 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     }
+  }
+
+  // 3.D INICIALIZAÇÃO E CONTROLE DAS 5 JANELAS DO INSTAGRAM (1h, 2h, 12h, 24h, 7d)
+  function inicializarHubInstagram(dadosInstagram) {
+    if (!dadosInstagram) return;
+
+    let janelaAtualIG = "7d";
+
+    function trocarJanelaInstagram(janela) {
+      janelaAtualIG = janela;
+
+      ["1h", "2h", "12h", "24h", "7d"].forEach(j => {
+        const btn = document.getElementById(`btn-ig-${j}`);
+        if (btn) {
+          if (j === janela) btn.classList.add("on");
+          else btn.classList.remove("on");
+        }
+      });
+
+      const badgeHoraNuvemIg = document.getElementById("hora-nuvem-ig");
+      if (badgeHoraNuvemIg) {
+        badgeHoraNuvemIg.textContent = `Instagram · ${janela}`;
+      }
+
+      // Nuvem de Palavras
+      const nuvemDados = (dadosInstagram.nuvens_por_janela && dadosInstagram.nuvens_por_janela[janela]) || dadosInstagram.nuvem;
+      renderizarNuvemInstagram(nuvemDados);
+
+      // Ranking de Posts
+      const postsDados = (dadosInstagram.posts_por_janela && dadosInstagram.posts_por_janela[janela]) || dadosInstagram.posts_mais_falados;
+      renderizarPostsInstagram(postsDados, janela);
+
+      // Sentimento e Termômetro Popular do Instagram
+      const sentAtual = (dadosInstagram.por_janela && dadosInstagram.por_janela[janela]) || dadosInstagram;
+      renderizarBlocoSentimento(sentAtual, "ig", {
+        tipoRede: "instagram",
+        nomeRede: "Instagram",
+        rotuloBtn: "Ver no Instagram ↗",
+        clsLink: "link-ig-comentario",
+        iconeOrigem: "📸",
+        janela: janela
+      });
+    }
+
+    // Configura os ouvintes de clique nos 5 botões de tempo do Instagram
+    ["1h", "2h", "12h", "24h", "7d"].forEach(j => {
+      document.getElementById(`btn-ig-${j}`)?.addEventListener("click", () => {
+        trocarJanelaInstagram(j);
+      });
+    });
+
+    // Renderização inicial na janela de 7 dias
+    trocarJanelaInstagram("7d");
   }
 
   // 4. Painel Meta Ads
