@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function inicializarHubYouTube(dadosYouTube) {
     if (!dadosYouTube) return;
 
-    let janelaAtualYT = "2h";
+    let janelaAtualYT = "1h";
 
     function trocarJanelaYouTube(janela) {
       janelaAtualYT = janela;
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    trocarJanelaYouTube("2h");
+    trocarJanelaYouTube("1h");
   }
 
   // 3.B MONITOR DE TENDÊNCIAS (Google Trends Ceará)
@@ -586,7 +586,7 @@ Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
   function inicializarHubInstagram(dadosInstagram) {
     if (!dadosInstagram) return;
 
-    let janelaAtualIG = "2h";
+    let janelaAtualIG = "1h";
 
     function trocarJanelaInstagram(janela) {
       janelaAtualIG = janela;
@@ -621,8 +621,8 @@ Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
       });
     });
 
-    // Renderização inicial na janela padrão de 2h
-    trocarJanelaInstagram("2h");
+    // Renderização inicial na janela padrão de 1h
+    trocarJanelaInstagram("1h");
   }
 
   // 4. Painel Meta Ads
