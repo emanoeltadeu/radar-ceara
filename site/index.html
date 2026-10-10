@@ -93,7 +93,7 @@
           </svg>
           <div>
             <span class="sub-chapeu-plataforma yt">▶ Ecossistema de Vídeos</span>
-            <h2>Monitoramento YouTube (Canais Cearenses)</h2>
+            <h2>Monitoramento YouTube</h2>
           </div>
         </div>
         <div class="hub-acoes-topo">
@@ -105,90 +105,57 @@
       </div>
 
       <div class="hub-corpo" id="hub-corpo-yt">
-        <!-- GRID DUPLO SUPERIOR DO YOUTUBE (LADO A LADO) -->
-        <div class="grid-duplo-youtube">
-        
-        <!-- CARD 1: MAIS DITAS NO YOUTUBE (CE) -->
-        <div class="card-col card-nuvem">
-          <div class="card-col-topo">
-            <div class="topo-com-icone">
-              <svg class="icone-marca" width="20" height="20" viewBox="0 0 24 24" fill="#FF0000">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
+        <!-- ========================================================================= -->
+        <!-- MÓDULO DE INTELIGÊNCIA: RADAR TÁTICO (ANÁLISE EM DUAS CAMADAS: 1H & 24H)   -->
+        <!-- ========================================================================= -->
+        <div class="card-radar-tatico" id="radar-tatico-yt-card">
+          <div class="cab-radar-tatico">
+            <div class="topo-tatico-esq">
+              <span class="icone-raio">⚡</span>
               <div>
-                <h3>MAIS DITAS NO YOUTUBE (CE)</h3>
-                <p class="card-col-sub">Termos extraídos dos vídeos e comentários cearenses. Cor: <span class="cor-nossa">Campo Popular</span>, <span class="cor-deles">Oposição</span>, <span class="cor-disputa">Geral</span>.</p>
+                <div class="linha-titulo-tatico">
+                  <h3>RADAR TÁTICO</h3>
+                  <span class="badge-status-tatico" id="badge-status-dominio-yt">ANALISANDO</span>
+                </div>
+                <p class="sub-tatico">Base: Janela Urgente (última 1h de dados) + Janela Macro (últimas 24h consolidadas).</p>
               </div>
             </div>
-            <span class="hora-badge" id="hora-nuvem">YouTube · 24h</span>
-          </div>
-          <div class="nuvem-container" id="nuvem-termos">
-            <!-- Renderizado via app.js -->
-          </div>
-          <form class="busca-palavra-box" id="form-busca-palavra">
-            <input type="text" id="input-busca-palavra" placeholder="Buscar uma palavra...">
-            <button type="submit">Ver</button>
-          </form>
-          <div class="resultado-busca-palavra" id="res-busca-palavra"></div>
-        </div>
-
-        <!-- CARD 2: MAIS FALADOS NOS VÍDEOS -->
-        <div class="card-col card-videos-ce">
-          <div class="card-col-topo">
-            <div class="topo-com-icone">
-              <svg class="icone-marca" width="20" height="20" viewBox="0 0 24 24" fill="#FF0000">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              <div>
-                <h3>MAIS FALADOS NOS VÍDEOS</h3>
-                <p class="card-col-sub" id="videos-contagem-sub">Top 10 por campo político no YouTube CE (vídeos e comentários)</p>
-              </div>
-            </div>
-            <div class="filtro-janela-wrap" id="filtro-janela-yt">
-              <button type="button" id="btn-yt-1h" class="filtro-janela-btn" title="Filtrar última 1 hora no YouTube">1h</button>
-              <button type="button" id="btn-yt-2h" class="filtro-janela-btn" title="Filtrar últimas 2 horas no YouTube">2h</button>
-              <button type="button" id="btn-yt-12h" class="filtro-janela-btn" title="Filtrar últimas 12 horas no YouTube">12h</button>
-              <button type="button" id="btn-yt-24h" class="filtro-janela-btn on" title="Filtrar últimas 24 horas no YouTube">24h</button>
-              <button type="button" id="btn-yt-7d" class="filtro-janela-btn" title="Filtrar últimos 7 dias no YouTube">7d</button>
+            <div class="acoes-tatico-dir">
+              <span class="tempo-atualizacao-tatico" id="tempo-tatico-yt">Atualizado agora</span>
+              <button type="button" class="btn-copiar-tatico" id="btn-exportar-tarefas-yt" title="Copiar tarefas formatadas para colar no WhatsApp">
+                <span>📋</span> Exportar Tarefas para WhatsApp
+              </button>
             </div>
           </div>
 
-          <div class="tabela-dupla-videos">
-            <div class="col-video col-video-deles">
-              <h4 class="subtitulo-col-video deles">PRÓ-OPOSIÇÃO</h4>
-              <div class="itens-video-lista" id="itens-video-deles">
+          <div class="corpo-radar-tatico" id="corpo-radar-tatico-yt">
+            <!-- Bloco 1: Janela Urgente / Crise -->
+            <div class="bloco-tatico-urgente" id="bloco-urgente-yt">
+              <div class="subcab-tatico urgente">
+                <span class="tag-urgente" id="tag-urgente-yt">🚨 URGENTE (ÚLTIMA 1H)</span>
+                <span class="diagnostico-resumo-1h" id="diagnostico-urgente-1h-yt">Carregando diagnóstico...</span>
+              </div>
+              <div class="conteudo-tatico-alerta" id="conteudo-alerta-urgente-yt">
                 <!-- Renderizado via app.js -->
               </div>
             </div>
-            <div class="col-video col-video-nossa">
-              <h4 class="subtitulo-col-video nossa">CAMPO POPULAR / LÉO</h4>
-              <div class="itens-video-lista" id="itens-video-nossa">
+
+            <!-- Bloco 2: Janela Macro 24h / Diretriz Estratégica -->
+            <div class="bloco-tatico-macro" id="bloco-macro-yt">
+              <div class="subcab-tatico macro">
+                <span class="tag-macro">🟢 DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE DE AVANÇO</span>
+              </div>
+              <div class="conteudo-tatico-diretriz" id="conteudo-diretriz-macro-yt">
                 <!-- Renderizado via app.js -->
               </div>
             </div>
           </div>
-
-          <!-- PAINEL INTERATIVO: VÍDEOS DO TEMA SELECIONADO -->
-          <div class="painel-videos-detalhe" id="painel-videos-detalhe" style="display: none;">
-            <div class="painel-videos-detalhe-header">
-              <div class="detalhe-titulo-wrap">
-                <span class="detalhe-badge" id="detalhe-video-badge">PRÓ-OPOSIÇÃO</span>
-                <h4 id="detalhe-video-tema">Tema Selecionado</h4>
-              </div>
-              <button type="button" class="btn-fechar-detalhe" id="btn-fechar-detalhe-videos" title="Fechar">&times;</button>
-            </div>
-            <p class="detalhe-sub-info" id="detalhe-video-contagem">Clique em uma pauta acima para ver os vídeos.</p>
-            <div class="lista-videos-detalhe" id="lista-videos-detalhe">
-              <!-- Renderizado via app.js -->
-            </div>
-          </div>
-
         </div>
 
-      </div>
-
-      <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR · YOUTUBE -->
-      <div class="painel-sentimento-gemini painel-sentimento-youtube" id="painel-sentimento-yt">
+        <!-- ========================================================================= -->
+        <!-- 3. TEMPERATURA DAS MENÇÕES & HUMOR POPULAR · YOUTUBE                      -->
+        <!-- ========================================================================= -->
+        <div class="painel-sentimento-gemini painel-sentimento-youtube" id="painel-sentimento-yt">
         <div class="sentimento-topo">
           <div class="sentimento-titulo-wrap">
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
@@ -197,8 +164,17 @@
             <h3>Temperatura das Menções & Humor Popular · YouTube</h3>
             <p class="sentimento-desc">Classificação dos comentários dos vídeos cearenses com foco no contexto político local.</p>
           </div>
-          <div class="sentimento-meta-badge">
-            <span id="sentimento-yt-total-label">Comentários analisados</span>
+          <div class="sentimento-acoes-dir" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <div class="filtro-janela-wrap" id="filtro-janela-yt">
+              <button type="button" id="btn-yt-1h" class="filtro-janela-btn" title="Filtrar última 1 hora no YouTube">1h</button>
+              <button type="button" id="btn-yt-2h" class="filtro-janela-btn on" title="Filtrar últimas 2 horas no YouTube">2h</button>
+              <button type="button" id="btn-yt-12h" class="filtro-janela-btn" title="Filtrar últimas 12 horas no YouTube">12h</button>
+              <button type="button" id="btn-yt-24h" class="filtro-janela-btn" title="Filtrar últimas 24 horas no YouTube">24h</button>
+              <button type="button" id="btn-yt-7d" class="filtro-janela-btn" title="Filtrar últimos 7 dias no YouTube">7d</button>
+            </div>
+            <div class="sentimento-meta-badge">
+              <span id="sentimento-yt-total-label">Comentários analisados</span>
+            </div>
           </div>
         </div>
 
@@ -215,34 +191,34 @@
           </div>
         </div>
 
-        <!-- Grade de Análise Inteligente -->
-        <div class="grade-sentimento-cards">
+        <!-- Grade de Análise Inteligente: Balanço de Disputa & Auditoria de Comentários -->
+        <div class="grade-sentimento-cards grade-balanco-layout">
           
-          <!-- Coluna 1: Apoio Popular -->
-          <div class="card-sentimento card-sent-pos">
-            <div class="cab-card-sent">
-              <span class="icone-sent">🟢</span>
-              <h4>Apoio Popular & Pautas Favoráveis</h4>
-              <span class="pct-sent pos" id="pct-apoio-card-yt">0%</span>
+          <!-- Bloco Principal: Balanço de Disputa Narrativa (Saldo Líquido em Cartões) -->
+          <div class="card-sentimento card-balanco-disputa">
+            <div class="cab-card-balanco">
+              <div class="topo-balanco-info">
+                <span class="icone-sent">⚖️</span>
+                <div>
+                  <h4>Balanço de Disputa Narrativa (Saldo Líquido)</h4>
+                  <p class="sub-balanco" id="sub-balanco-yt">Saldo líquido de menções nas últimas 2h</p>
+                </div>
+              </div>
+              <div class="acoes-balanco-topo">
+                <div class="botoes-ord-balanco">
+                  <button type="button" id="btn-ord-vol-yt" class="btn-ord-balanco on" title="Ordenar por Volume">Volume</button>
+                  <button type="button" id="btn-ord-saldo-yt" class="btn-ord-balanco" title="Ordenar por Criticidade do Saldo">Criticidade</button>
+                </div>
+              </div>
             </div>
-            <ul class="lista-temas-sent" id="lista-temas-pos-yt">
+
+            <!-- Lista de Cartões Individuais de Pauta (Estilo Imagem 2) -->
+            <div class="lista-cards-pautas-balanco" id="tabela-balanco-yt-corpo">
               <!-- Renderizado via app.js -->
-            </ul>
+            </div>
           </div>
 
-          <!-- Coluna 2: Ataques de Oposição & Cobranças -->
-          <div class="card-sentimento card-sent-neg">
-            <div class="cab-card-sent">
-              <span class="icone-sent">🔴</span>
-              <h4>Ataques de Oposição & Cobranças</h4>
-              <span class="pct-sent neg" id="pct-oposicao-card-yt">0%</span>
-            </div>
-            <ul class="lista-temas-sent" id="lista-temas-neg-yt">
-              <!-- Renderizado via app.js -->
-            </ul>
-          </div>
-
-          <!-- Coluna 3: Amostras Reais Analisadas -->
+          <!-- Coluna 2 (Preservada): Amostras Reais Analisadas -->
           <div class="card-sentimento card-sent-amostras">
             <div class="cab-card-sent">
               <span class="icone-sent">💬</span>
@@ -255,6 +231,8 @@
           </div>
 
         </div>
+      </div>
+      <!-- FIM PAINEL SENTIMENTO YT -->
 
       </div>
       <!-- FIM HUB CORPO YT -->

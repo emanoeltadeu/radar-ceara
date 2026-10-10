@@ -200064,5 +200064,25 @@
       },
       "impacto_ce": "Mais de 1,2 milhão de pessoas atendidas pelo Farmácia Popular no Ceará."
     }
-  ]
+  ],
+  "radar_tatico_youtube": {
+    "atualizado_em": "23:46",
+    "diagnostico_urgente_1h": "Volume de comentários no YouTube cearense com predomínio de pautas populares e debate de polarização.",
+    "status_dominio": "EQUILIBRADO",
+    "alerta_imediato": {
+      "existe_crise": false,
+      "pauta": "Críticas da Oposição ao PT",
+      "detalhe": "Menções críticas contidas nos canais tradicionais de oposição sem contágio em páginas neutras.",
+      "acao_recomendada": "Monitorar canais de imprensa e manter militância ativa na defesa dos feitos de gestão estadual e federal."
+    },
+    "diretriz_estrategica_24h": {
+      "oportunidade": "Fim da Escala 6x1 / Apoio ao Mandato",
+      "detalhe": "Aceitação orgânica acima de 90% no debate de trabalhadores cearenses.",
+      "recomendacao_acao": "Produzir novos vídeos curtos (Shorts/Reels) explicando a escala e orientar impulsionamento para jovens (16-29 anos) em Fortaleza e RMF."
+    },
+    "amostra_base": {
+      "total_24h": 767,
+      "total_recente": 40
+    }
+  }
 }

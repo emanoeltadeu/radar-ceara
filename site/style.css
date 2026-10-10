@@ -1750,7 +1750,402 @@ body {
   cursor: pointer;
 }
 
+/* ==============================================================================
+   RADAR TÁTICO IA · BRIEFING EXECUTIVO (MÓDULO DE DUAS CAMADAS: 1H & 24H)
+   ============================================================================== */
+.card-radar-tatico {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+}
+.cab-radar-tatico {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F3F4F6;
+  margin-bottom: 16px;
+}
+.topo-tatico-esq {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icone-raio {
+  font-size: 24px;
+  background: #FEF3C7;
+  color: #D97706;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #FDE68A;
+}
+.linha-titulo-tatico {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.linha-titulo-tatico h3 {
+  font-family: var(--f-corpo);
+  font-size: 15px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+.badge-status-tatico {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-left: 2px;
+}
+.badge-status-tatico.dominando {
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #BBF7D0;
+}
+.badge-status-tatico.equilibrado {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+.badge-status-tatico.sob_pressao {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+  animation: pulsoCritico 2s infinite ease-in-out;
+}
+@keyframes pulsoCritico {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.97); }
+}
+.sub-tatico {
+  font-size: 11.5px;
+  color: #6B7280;
+  margin-top: 2px;
+}
+.acoes-tatico-dir {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tempo-atualizacao-tatico {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: #9CA3AF;
+}
+.btn-copiar-tatico {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #111827;
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn-copiar-tatico:hover {
+  background: #1F2937;
+  transform: translateY(-1px);
+}
+.btn-copiar-tatico:active {
+  transform: scale(0.98);
+}
+
+/* Corpo dos Insights em 2 Blocos Lado a Lado */
+.corpo-radar-tatico {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.bloco-tatico-urgente, .bloco-tatico-macro {
+  border-radius: 10px;
+  padding: 16px;
+  transition: all .2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.bloco-tatico-urgente {
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+}
+.bloco-tatico-urgente.calmo {
+  background: #F0FDF4;
+  border-color: #BBF7D0;
+}
+.bloco-tatico-macro {
+  background: #F0FDF4;
+  border: 1px solid #86EFAC;
+}
+
+.subcab-tatico {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.tag-urgente {
+  font-size: 11px;
+  font-weight: 800;
+  color: #B91C1C;
+  background: rgba(220, 38, 38, 0.12);
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+.bloco-tatico-urgente.calmo .tag-urgente {
+  color: #15803D;
+  background: rgba(22, 163, 74, 0.12);
+}
+.tag-macro {
+  font-size: 11px;
+  font-weight: 800;
+  color: #15803D;
+  background: rgba(22, 163, 74, 0.12);
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+.diagnostico-resumo-1h {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.conteudo-tatico-alerta, .conteudo-tatico-diretriz {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #374151;
+}
+.conteudo-tatico-alerta p, .conteudo-tatico-diretriz p {
+  margin-bottom: 6px;
+}
+.tatico-acao-linha {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12.5px;
+  color: #111827;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(0,0,0,0.08);
+}
+.tatico-acao-linha strong {
+  color: #B91C1C;
+  flex-shrink: 0;
+}
+.bloco-tatico-macro .tatico-acao-linha strong {
+  color: #15803D;
+}
+
+/* ==============================================================================
+   BALANÇO DE DISPUTA NARRATIVA (SALDO LÍQUIDO) - DESIGN DE CARTÕES (PRINT 2)
+   ============================================================================== */
+.grade-balanco-layout {
+  grid-template-columns: 1.6fr 1.4fr;
+  gap: 16px;
+}
+.card-balanco-disputa {
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+}
+.cab-card-balanco {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.topo-balanco-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topo-balanco-info .icone-sent {
+  font-size: 20px;
+}
+.topo-balanco-info h4 {
+  font-family: var(--f-corpo);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tinta);
+  letter-spacing: -0.01em;
+}
+.sub-balanco {
+  font-size: 11.5px;
+  color: var(--tx-2);
+  margin-top: 1px;
+}
+.botoes-ord-balanco {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #E5E7EB;
+  padding: 3px;
+  border-radius: 8px;
+}
+.btn-ord-balanco {
+  font-family: var(--f-corpo);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 0;
+  background: transparent;
+  color: #4B5563;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.btn-ord-balanco.on {
+  background: #FFFFFF;
+  color: #111827;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Lista de Cards Individuais de Pauta */
+.lista-cards-pautas-balanco {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card-pauta-item {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  position: relative;
+}
+.card-pauta-item:hover {
+  border-color: #D1D5DB;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+.card-pauta-item.ativo {
+  border-color: #3B82F6;
+  background: #F8FAFC;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Card Crítico / Campo Minado (Fundo Avermelhado Suave) */
+.card-pauta-item.pauta-critica {
+  background: #FEF2F2;
+  border-color: #FECACA;
+}
+.card-pauta-item.pauta-critica:hover {
+  border-color: #FCA5A5;
+}
+
+/* Topo do Card de Pauta */
+.card-pauta-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.card-pauta-titulo {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.25;
+}
+.card-pauta-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.badge-vol-pauta {
+  font-size: 11px;
+  font-weight: 500;
+  color: #4B5563;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.badge-saldo-pauta {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.badge-saldo-pauta.pos {
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #BBF7D0;
+}
+.badge-saldo-pauta.neu {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+.badge-saldo-pauta.neg {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+/* Barra Proporcional Pró vs Contra */
+.card-pauta-barra-wrap {
+  width: 100%;
+}
+.barra-pauta-dupla {
+  width: 100%;
+  height: 8px;
+  background: #E5E7EB;
+  border-radius: 999px;
+  display: flex;
+  overflow: hidden;
+}
+.seg-pauta-verde {
+  background: #16A34A;
+  height: 100%;
+  transition: width .4s ease;
+}
+.seg-pauta-vermelho {
+  background: #DC2626;
+  height: 100%;
+  transition: width .4s ease;
+}
+
+/* Percentuais Abaixo da Barra */
+.card-pauta-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B7280;
+  margin-top: 4px;
+}
+.lbl-verde { color: #16A34A; }
+.lbl-vermelho { color: #DC2626; }
+
 @media (max-width: 980px) {
+  .corpo-radar-tatico { grid-template-columns: 1fr; }
+  .grade-balanco-layout { grid-template-columns: 1fr; }
   .painel-triptico { grid-template-columns: 1fr; }
   .grid-duplo-youtube { grid-template-columns: 1fr; }
   .lista-google-ce-transversal { grid-template-columns: 1fr; }

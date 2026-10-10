@@ -15,16 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
       SENTIMENTO_INSTAGRAM = data.sentimento_instagram;
       renderizarMonitorRedes(data.monitor_redes);
 
-      // Sentimento YouTube inicial
+      // Sentimento YouTube inicial (janela padrão: 2h)
       if (SENTIMENTO_YOUTUBE) {
-        renderizarBlocoSentimento(SENTIMENTO_YOUTUBE, "yt", {
+        const sentInicialYT = (SENTIMENTO_YOUTUBE.por_janela && SENTIMENTO_YOUTUBE.por_janela["2h"]) || SENTIMENTO_YOUTUBE;
+        renderizarBlocoSentimento(sentInicialYT, "yt", {
           tipoRede: "youtube",
           nomeRede: "YouTube",
           rotuloBtn: "Ver no YouTube ↗",
           clsLink: "link-yt-comentario",
           iconeOrigem: "📺",
-          janela: "24h"
+          janela: "2h"
         });
+      }
+
+      // Radar Tático IA (YouTube)
+      if (data.radar_tatico_youtube) {
+        renderizarRadarTatico(data.radar_tatico_youtube, "yt");
       }
 
       // Inicializa Hub do Instagram com seletor de janelas temporais (1h, 2h, 12h, 24h, 7d)
@@ -44,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderizarMonitorRedes(monitor) {
     if (!monitor) return;
 
-    let janelaAtualYT = "24h";
+    let janelaAtualYT = "2h";
 
     // A. Renderizador da Nuvem de Palavras
     const nuvemBox = document.getElementById("nuvem-termos");
@@ -240,7 +246,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Atualiza o painel de Sentimento do YouTube sincronizado com a mesma janela de tempo
       if (SENTIMENTO_YOUTUBE) {
-        const sentYTAtual = (SENTIMENTO_YOUTUBE.por_janela && SENTIMENTO_YOUTUBE.por_janela[janela]) || SENTIMENTO_YOUTUBE;
+        let sentYTAtual = (SENTIMENTO_YOUTUBE.por_janela && SENTIMENTO_YOUTUBE.por_janela[janela]) || SENTIMENTO_YOUTUBE;
+        // Garante que a lista de comentários para auditoria e disputa narrativa esteja disponível
+        if ((!sentYTAtual.comentarios_todos || sentYTAtual.comentarios_todos.length === 0) &&
+            (!sentYTAtual.todos_comentarios || sentYTAtual.todos_comentarios.length === 0)) {
+          const todosBase = SENTIMENTO_YOUTUBE.todos_comentarios || SENTIMENTO_YOUTUBE.comentarios_todos || [];
+          sentYTAtual = { ...sentYTAtual, todos_comentarios: todosBase };
+        }
         renderizarBlocoSentimento(sentYTAtual, "yt", {
           tipoRede: "youtube",
           nomeRede: "YouTube",
@@ -252,8 +264,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Inicializar YouTube na janela padrão (24h)
-    trocarJanelaYouTube("24h");
+    // Inicializar YouTube na janela padrão (2h)
+    trocarJanelaYouTube("2h");
 
     // Event listeners para os botões do YouTube
     document.getElementById("btn-yt-1h")?.addEventListener("click", () => trocarJanelaYouTube("1h"));
@@ -443,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (temaAtivo === tema || !tema) {
         temaAtivo = null;
         itensClicaveis.forEach(el => el.classList.remove("ativo-pos", "ativo-neg"));
+        document.querySelectorAll(`#tabela-balanco-${prefix}-corpo .linha-pauta-balanco`).forEach(el => el.classList.remove("ativo"));
         renderComentarios(sent.amostras_destaque || todosComentarios.slice(0, 5), null);
         return;
       }
@@ -490,6 +503,150 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
+    // =========================================================================
+    // BALANÇO DE DISPUTA NARRATIVA (SALDO LÍQUIDO) - YOUTUBE
+    // =========================================================================
+    const tabelaBalancoCorpo = document.getElementById(`tabela-balanco-${prefix}-corpo`);
+    const subBalancoEl = document.getElementById(`sub-balanco-${prefix}`);
+    if (subBalancoEl && config.janela) {
+      subBalancoEl.textContent = `Saldo líquido de menções nas últimas ${config.janela}`;
+    }
+
+    if (tabelaBalancoCorpo) {
+      // 1. Agrupa comentários de todos os temas disponíveis
+      const temasAgrupados = {};
+      todosComentarios.forEach(c => {
+        const t = (c.tema || "Geral").trim();
+        const s = c.sentimento;
+        if (!temasAgrupados[t]) {
+          temasAgrupados[t] = { tema: t, positivo: 0, negativo: 0, neutro: 0, total: 0 };
+        }
+        if (s === "positivo") temasAgrupados[t].positivo++;
+        else if (s === "negativo") temasAgrupados[t].negativo++;
+        else if (s === "neutro") temasAgrupados[t].neutro++;
+        temasAgrupados[t].total++;
+      });
+
+      // 2. Calcula Saldo Líquido e Percentuais Proporcionais
+      const listaPautas = Object.values(temasAgrupados).map(item => {
+        const somaPróContra = item.positivo + item.negativo;
+        let saldo = 0;
+        let posPct = 0;
+        let negPct = 0;
+
+        if (somaPróContra > 0) {
+          saldo = Math.round(((item.positivo - item.negativo) / somaPróContra) * 100);
+          posPct = Math.round((item.positivo / somaPróContra) * 100);
+          negPct = Math.round((item.negativo / somaPróContra) * 100);
+        } else if (item.total > 0) {
+          posPct = 50;
+          negPct = 50;
+        }
+
+        let statusClass = "disputa";
+        let statusLabel = "EM DISPUTA";
+
+        if (saldo > 20) {
+          statusClass = "favorecido";
+          statusLabel = saldo >= 70 ? "TERRENO SEGURO" : "FAVORECIDO";
+        } else if (saldo < -20) {
+          statusClass = "minado";
+          statusLabel = saldo <= -70 ? "CRÍTICA / CONTENÇÃO" : "CAMPO MINADO";
+        }
+
+        return {
+          ...item,
+          somaPróContra,
+          saldo,
+          posPct,
+          negPct,
+          statusClass,
+          statusLabel
+        };
+      });
+
+      let modoOrdBalanco = 'volume';
+
+      function renderLinhasBalanco() {
+        let ordenadas = [...listaPautas];
+        if (modoOrdBalanco === 'volume') {
+          ordenadas.sort((a, b) => b.total - a.total);
+        } else {
+          // Criticidade: menor saldo primeiro (prioriza crises e campo minado)
+          ordenadas.sort((a, b) => a.saldo - b.saldo);
+        }
+
+        // Filtra para mostrar pautas com relevância (mínimo de volume)
+        const relevantes = ordenadas.filter(p => p.total >= 3);
+        const exibidas = relevantes.length >= 4 ? relevantes : ordenadas.slice(0, 8);
+
+        tabelaBalancoCorpo.innerHTML = exibidas.map(p => {
+          const saldoCls = p.saldo > 20 ? 'pos' : (p.saldo < -20 ? 'neg' : 'neu');
+          const sufixoSaldo = p.saldo > 20 ? 'Pró' : (p.saldo < -20 ? (p.tema.toLowerCase().includes('oposição') ? 'Contra' : 'Oposição') : 'Equilibrado');
+          const saldoFormatado = `${p.saldo > 0 ? '+' : ''}${p.saldo}% ${sufixoSaldo}`;
+          const estaAtivo = temaAtivo && temaAtivo.toLowerCase().trim() === p.tema.toLowerCase().trim();
+          const ehCritico = p.saldo < -20;
+
+          return `
+            <div class="card-pauta-item ${ehCritico ? 'pauta-critica' : ''} ${estaAtivo ? 'ativo' : ''}" data-tema="${escapeHtml(p.tema)}" title="Clique para auditar comentários de '${escapeHtml(p.tema)}'">
+              <div class="card-pauta-topo">
+                <span class="card-pauta-titulo">${escapeHtml(p.tema)}</span>
+                <div class="card-pauta-badges">
+                  <span class="badge-vol-pauta">${p.total} menções</span>
+                  <span class="badge-saldo-pauta ${saldoCls}">${saldoFormatado}</span>
+                </div>
+              </div>
+
+              <div class="card-pauta-barra-wrap">
+                <div class="barra-pauta-dupla">
+                  <div style="width: ${p.posPct}%;" class="seg-pauta-verde" title="${p.positivo} comentários pró (${p.posPct}%)"></div>
+                  <div style="width: ${p.negPct}%;" class="seg-pauta-vermelho" title="${p.negativo} comentários contra (${p.negPct}%)"></div>
+                </div>
+                <div class="card-pauta-labels">
+                  <span class="lbl-verde">${p.posPct}%</span>
+                  <span class="lbl-vermelho">${p.negPct}%</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        // Adiciona evento de clique nos cards para filtrar comentários reais
+        tabelaBalancoCorpo.querySelectorAll(".card-pauta-item").forEach(card => {
+          card.addEventListener("click", () => {
+            const temaClicado = card.getAttribute("data-tema");
+            tabelaBalancoCorpo.querySelectorAll(".card-pauta-item").forEach(el => el.classList.remove("ativo"));
+            if (temaAtivo === temaClicado) {
+              filtrarPorTema(null, null);
+            } else {
+              card.classList.add("ativo");
+              filtrarPorTema(temaClicado, "balanco");
+            }
+          });
+        });
+      }
+
+      // Configura os botões de ordenação do Balanço
+      const btnVolYt = document.getElementById(`btn-ord-vol-${prefix}`);
+      const btnSaldoYt = document.getElementById(`btn-ord-saldo-${prefix}`);
+
+      btnVolYt?.addEventListener("click", () => {
+        modoOrdBalanco = 'volume';
+        btnVolYt.classList.add("on");
+        btnSaldoYt?.classList.remove("on");
+        renderLinhasBalanco();
+      });
+
+      btnSaldoYt?.addEventListener("click", () => {
+        modoOrdBalanco = 'saldo';
+        btnSaldoYt.classList.add("on");
+        btnVolYt?.classList.remove("on");
+        renderLinhasBalanco();
+      });
+
+      renderLinhasBalanco();
+    }
+
     if (listaPos && sent.top_temas_positivos) {
       listaPos.innerHTML = sent.top_temas_positivos.map(t => renderItemTema(t, "pos")).join("");
       listaPos.querySelectorAll(".item-tema-clicavel").forEach(el => {
@@ -510,6 +667,104 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Inicializa a 3ª coluna com as amostras gerais de destaque
     renderComentarios(sent.amostras_destaque || todosComentarios.slice(0, 5), null);
+  }
+
+  // =========================================================================
+  // 3.A.2 RENDERIZADOR DO RADAR TÁTICO IA (BRIEFING EM DUAS CAMADAS: 1H & 24H)
+  // =========================================================================
+  function renderizarRadarTatico(tatico, prefix = "yt") {
+    if (!tatico) return;
+
+    const badgeStatus = document.getElementById(`badge-status-dominio-${prefix}`);
+    const tempoEl = document.getElementById(`tempo-tatico-${prefix}`);
+    const diag1hEl = document.getElementById(`diagnostico-urgente-1h-${prefix}`);
+    const conteudoUrgenteEl = document.getElementById(`conteudo-alerta-urgente-${prefix}`);
+    const conteudoMacroEl = document.getElementById(`conteudo-diretriz-macro-${prefix}`);
+    const blocoUrgente = document.getElementById(`bloco-urgente-${prefix}`);
+    const btnExportar = document.getElementById(`btn-exportar-tarefas-${prefix}`);
+
+    // 1. Status de Domínio
+    if (badgeStatus && tatico.status_dominio) {
+      const st = tatico.status_dominio.toLowerCase();
+      badgeStatus.className = `badge-status-tatico ${st}`;
+      const labels = {
+        dominando: "🟢 DOMINANDO O DEBATE",
+        equilibrado: "🟡 DEBATE EQUILIBRADO",
+        sob_pressao: "🔴 SOB PRESSÃO"
+      };
+      badgeStatus.textContent = labels[st] || tatico.status_dominio;
+    }
+
+    if (tempoEl && tatico.atualizado_em) {
+      tempoEl.textContent = `Atualizado às ${tatico.atualizado_em}`;
+    }
+
+    // 2. Diagnóstico 1h
+    if (diag1hEl && tatico.diagnostico_urgente_1h) {
+      diag1hEl.textContent = tatico.diagnostico_urgente_1h;
+    }
+
+    // 3. Alerta Imediato / Crise
+    if (conteudoUrgenteEl && tatico.alerta_imediato) {
+      const alerta = tatico.alerta_imediato;
+      if (blocoUrgente) {
+        if (!alerta.existe_crise) {
+          blocoUrgente.classList.add("calmo");
+        } else {
+          blocoUrgente.classList.remove("calmo");
+        }
+      }
+
+      conteudoUrgenteEl.innerHTML = `
+        <p><strong>Pauta em foco:</strong> <span style="font-weight:700;">${escapeHtml(alerta.pauta || "Geral")}</span> — ${escapeHtml(alerta.detalhe || "")}</p>
+        <div class="tatico-acao-linha">
+          <strong>➔ Ação Imediata:</strong>
+          <span>${escapeHtml(alerta.acao_recomendada || "Monitorar os comentários.")}</span>
+        </div>
+      `;
+    }
+
+    // 4. Diretriz Estratégica 24h
+    if (conteudoMacroEl && tatico.diretriz_estrategica_24h) {
+      const macro = tatico.diretriz_estrategica_24h;
+      conteudoMacroEl.innerHTML = `
+        <p><strong>Pauta:</strong> <span style="font-weight:700;">${escapeHtml(macro.oportunidade || "Pauta Popular")}</span> — ${escapeHtml(macro.detalhe || "")}</p>
+        <div class="tatico-acao-linha">
+          <strong>➔ Recomendação:</strong>
+          <span>${escapeHtml(macro.recomendacao_acao || "")}</span>
+        </div>
+      `;
+    }
+
+    // 5. Botão de Exportação de Tarefas para WhatsApp
+    btnExportar?.addEventListener("click", () => {
+      const alerta = tatico.alerta_imediato || {};
+      const macro = tatico.diretriz_estrategica_24h || {};
+      const hora = tatico.atualizado_em || "Agora";
+
+      const textoZap = `⚡ *RADAR TÁTICO (${hora})*
+Rede: YouTube | Status: *${tatico.status_dominio || "ANALISADO"}*
+
+🚨 *ALERTA URGENTE (ÚLTIMAS HORAS)*
+• Pauta: ${alerta.pauta || "Monitoramento"}
+• Contexto: ${alerta.detalhe || tatico.diagnostico_urgente_1h || ""}
+➔ *Ação Imediata:* ${alerta.acao_recomendada || "Seguir monitorando"}
+
+🟢 *DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE*
+• Pauta: ${macro.oportunidade || "Campo Popular"}
+• Fôlego: ${macro.detalhe || ""}
+➔ *Recomendação:* ${macro.recomendacao_acao || "Gravar cortes e orientar tráfego"}`;
+
+      navigator.clipboard.writeText(textoZap).then(() => {
+        const textoOriginal = btnExportar.innerHTML;
+        btnExportar.innerHTML = "<span>✅</span> Tarefas Copiadas!";
+        btnExportar.style.background = "#16A34A";
+        setTimeout(() => {
+          btnExportar.innerHTML = textoOriginal;
+          btnExportar.style.background = "";
+        }, 3000);
+      });
+    });
   }
 
   // 3.B NUVEM DE PALAVRAS · INSTAGRAM

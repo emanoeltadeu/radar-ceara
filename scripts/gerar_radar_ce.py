@@ -38,6 +38,7 @@ from inteligencia.gemini import (
     processar_sentimento_comentarios,
     classificar_videos_youtube_gemini
 )
+from inteligencia.radar_tatico import gerar_insights_radar_tatico_yt
 from inteligencia.nlp_nuvem import (
     construir_monitor_redes,
     gerar_nuvem_instagram,
@@ -126,6 +127,11 @@ def main():
     sentimento_instagram["posts_por_janela"] = metricas_ig_janelas["posts_por_janela"]
     print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários | {len(sentimento_instagram['nuvem'])} termos na nuvem | {sentimento_instagram['posts_mais_falados']['total_posts']} posts rankeados")
 
+    # 4.1 Radar Tático IA (Diagnóstico Urgente Recente vs Diretriz Estratégica 24h)
+    print("   -> Gerando Radar Tático IA (YouTube: Alerta Imediato + Consolidado 24h)...")
+    comentarios_classificados_yt = sentimento_youtube.get("todos_comentarios") or sentimento_youtube.get("comentarios_todos") or []
+    radar_tatico_yt = gerar_insights_radar_tatico_yt(comentarios_classificados_yt, chaves.get("gemini", ""))
+
     # 5. Consolidação e Gravação do Arquivo Final
     hora_ce = datetime.now(FUSO_CE).strftime("%d/%m/%Y às %H:%M")
     payload = {
@@ -134,6 +140,7 @@ def main():
         "gerado_em": hora_ce,
         "versao": VERSAO_RADAR,
         "mandato_leo": dados_leo,
+        "radar_tatico_youtube": radar_tatico_yt,
         "monitor_redes": monitor_redes,
         "sentimento_youtube": sentimento_youtube,
         "sentimento_instagram": sentimento_instagram,
