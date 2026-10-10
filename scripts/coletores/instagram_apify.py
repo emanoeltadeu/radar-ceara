@@ -351,10 +351,11 @@ def coletar_comentarios_hashtag_apify(apify_token, tags=None, max_posts=2):
         return []
 
     # O ator apify/instagram-hashtag-scraper aceita múltiplas hashtags numa só execução
+    limite_total_posts = max(20, max_posts * len(tags_limpas))
     payload_tag = {
         "hashtags": tags_limpas,
         "resultsType": "posts",
-        "resultsLimit": max_posts
+        "resultsLimit": limite_total_posts
     }
 
     posts_tag = _disparar_e_aguardar_ator("apify/instagram-hashtag-scraper", payload_tag, apify_token, max_espera=45)
@@ -405,12 +406,12 @@ def coletar_comentarios_hashtag_apify(apify_token, tags=None, max_posts=2):
 
     # 2. Se houver posts da hashtag com comentários que não vieram no grid, busca direto os comentários
     if posts_com_comentarios:
-        urls_para_buscar = [item[0] for item in posts_com_comentarios[:3]]
-        mapa_tag_url = {item[0]: item[1] for item in posts_com_comentarios[:3]}
+        urls_para_buscar = [item[0] for item in posts_com_comentarios[:15]]
+        mapa_tag_url = {item[0]: item[1] for item in posts_com_comentarios[:15]}
         payload_comm = {
             "directUrls": urls_para_buscar,
             "resultsType": "comments",
-            "resultsLimit": 10
+            "resultsLimit": 15
         }
         comms_extraidos = _disparar_e_aguardar_ator("apify/instagram-scraper", payload_comm, apify_token, max_espera=35)
         for comm in comms_extraidos:
