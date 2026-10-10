@@ -29,26 +29,26 @@
 @cearanoticias
 
 # --- OPOSIÇÃO E DEBATE POLÍTICO NO CEARÁ ---
-@andrefernandes
-@capitaowagnersousa
-@carmeloneto
+#@andrefernandes
+#@capitaowagnersousa
+#@carmeloneto
 
 # --- TRANSPORTE E COTIDIANO URBANO DE FORTALEZA ---
 @etufortaleza
 @centraldoonibusfortaleza
 
 # --- PARTIDO MISSÃO / MBL (CEARÁ E NACIONAL) ---
-@delegadohuggoce
-@gabrielcarvalhoce
-@sophiafechine.ce
-@ruandutrace
-@ueliton.brilhoso
-@igorpeixotoce
-@ericafreiremissao1467
-@cliciagadelhace
-@lucasoliverce
-@missaoceara
-@renansantosmbl
-@kimkataguiri
-@partidomissao
+#@delegadohuggoce
+#@gabrielcarvalhoce
+#@sophiafechine.ce
+#@ruandutrace
+#@ueliton.brilhoso
+#@igorpeixotoce
+#@ericafreiremissao1467
+#@cliciagadelhace
+#@lucasoliverce
+#@missaoceara
+#@renansantosmbl
+#@kimkataguiri
+#@partidomissao
 

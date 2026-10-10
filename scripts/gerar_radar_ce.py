@@ -34,21 +34,11 @@ from coletores.youtube import (
 from coletores.google_trends import coletar_trends_ceara
 from coletores.meta_ads import coletar_meta_ads_ce
 from coletores.instagram_apify import coletar_comentarios_instagram_apify
-from inteligencia.gemini import (
-    processar_sentimento_comentarios,
-    classificar_videos_youtube_gemini
-)
+from inteligencia.gemini import processar_sentimento_comentarios
 from inteligencia.radar_tatico import (
     gerar_insights_radar_tatico_yt,
     gerar_insights_radar_tatico_ig
 )
-from inteligencia.nlp_nuvem import (
-    construir_monitor_redes,
-    gerar_nuvem_instagram,
-    gerar_ranking_posts_instagram,
-    construir_metricas_instagram_janelas
-)
-from inteligencia.dados_eleitorais import extrair_dados_leo_ceara, carregar_pautas_leo
 
 def executar_coleta_paralela():
     """
@@ -95,40 +85,34 @@ def main():
     print("🚀 Iniciando Pipeline Modular do Radar Ceará (ETL)...")
     hora_inicio = datetime.now()
 
-    # 1. Extração Eleitoral e Pautas (Dados Oficiais TSE)
-    print("1/5 Carregando chão eleitoral dos bairros e pautas populares...")
-    dados_leo = extrair_dados_leo_ceara()
-    pautas = carregar_pautas_leo()
-
-    # 2. Coleta Concorrente de Redes (YouTube, Instagram, Google Trends e Meta)
-    print("2/5 Executando coleta paralela de redes (YouTube, Instagram, Trends e Meta)...")
+    # 1. Coleta Concorrente de Redes (YouTube, Instagram, Google Trends e Meta)
+    print("1/4 Executando coleta paralela de redes (YouTube, Instagram, Trends e Meta)...")
     vids, comentarios_yt, comentarios_ig, trends_4h, trends_24h, meta_ads = executar_coleta_paralela()
     print(f"   -> YouTube: {len(vids)} vídeos no acervo | {len(comentarios_yt)} comentários")
     print(f"   -> Instagram: {len(comentarios_ig)} comentários coletados via Apify")
 
-    # 3. Inteligência e NLP (Classificação Dinâmica de Vídeos com Gemini & Nuvem de Palavras)
-    print("3/5 Classificando vídeos cearenses com IA e processando rankings dinâmicos...")
+    # 2. Inteligência Territorial e Monitor de Tendências Transversais
+    print("2/4 Consolidando tendências de busca no Ceará (Google Trends)...")
     chaves = carregar_chaves_api()
-    videos_classificados = classificar_videos_youtube_gemini(vids, chaves.get("gemini", ""))
-    monitor_redes = construir_monitor_redes(vids, trends_4h, trends_24h, videos_classificados, corpus_comentarios=comentarios_yt)
+    monitor_redes = {
+        "google_trends_ce": {
+            "itens_4h": trends_4h,
+            "itens_24h": trends_24h,
+            "itens": trends_4h if trends_4h else trends_24h
+        }
+    }
 
-    # 4. Inteligência Generativa (Google Gemini para YouTube e Instagram)
-    print("4/5 Processando inteligência de sentimento no YouTube com Google Gemini...")
+    # 3. Inteligência Generativa (Google Gemini para YouTube e Instagram)
+    print("3/4 Processando inteligência de sentimento no YouTube com Google Gemini...")
     sentimento_youtube = processar_sentimento_comentarios(comentarios_yt)
     print(f"   -> YouTube analisado: {sentimento_youtube.get('total_analisados', 0)} comentários")
 
-    print("5/5 Processando inteligência de sentimento no Instagram com Google Gemini...")
+    print("4/4 Processando inteligência de sentimento no Instagram com Google Gemini...")
     sentimento_instagram = processar_sentimento_comentarios(
         comentarios_ig,
         cache_path=CACHE_CLASSIFICADOS_IG
     )
-    # Gera a nuvem de palavras e o ranking dos mais falados específicos do Instagram por janela temporal (1h, 2h, 12h, 24h, 7d)
-    metricas_ig_janelas = construir_metricas_instagram_janelas(comentarios_ig)
-    sentimento_instagram["nuvem"] = metricas_ig_janelas["nuvem"]
-    sentimento_instagram["nuvens_por_janela"] = metricas_ig_janelas["nuvens_por_janela"]
-    sentimento_instagram["posts_mais_falados"] = metricas_ig_janelas["posts_mais_falados"]
-    sentimento_instagram["posts_por_janela"] = metricas_ig_janelas["posts_por_janela"]
-    print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários | {len(sentimento_instagram['nuvem'])} termos na nuvem | {sentimento_instagram['posts_mais_falados']['total_posts']} posts rankeados")
+    print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários")
 
     # 4.1 Radar Tático IA (Diagnóstico Urgente Recente vs Diretriz Estratégica 24h)
     print("   -> Gerando Radar Tático IA (YouTube: Alerta Imediato + Consolidado 24h)...")
@@ -146,14 +130,12 @@ def main():
         "subtitulo": "Inteligência Territorial de Bairros (Chão) & Monitoramento Digital de Redes",
         "gerado_em": hora_ce,
         "versao": VERSAO_RADAR,
-        "mandato_leo": dados_leo,
         "radar_tatico_youtube": radar_tatico_yt,
         "radar_tatico_instagram": radar_tatico_ig,
         "monitor_redes": monitor_redes,
         "sentimento_youtube": sentimento_youtube,
         "sentimento_instagram": sentimento_instagram,
-        "meta_transparencia": meta_ads,
-        "pautas_estrategicas": pautas
+        "meta_transparencia": meta_ads
     }
 
     os.makedirs(os.path.dirname(SAIDA_RADAR_JSON), exist_ok=True)
