@@ -6,5 +6,11 @@
 # Apenas linhas iniciadas com '#' são consideradas para monitoramento.
 # ==============================================================================
 
-# --- PAUTA PRIORITÁRIA DE MOBILIZAÇÃO POPULAR ---
+# --- PAUTA PRIORITÁRIA DE MOBILIZAÇÃO POPULAR E ELEITORAL ---
 #fimda6x1
+#boralula
+#boralula13
+#lula13
+#lulapresidente2026
+#boravirar13
+#boravirar

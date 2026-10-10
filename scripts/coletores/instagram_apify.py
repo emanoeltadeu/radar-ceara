@@ -335,25 +335,45 @@ def coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_po
 
     return comentarios
 
-def coletar_comentarios_hashtag_apify(apify_token, tag="fimda6x1", max_posts=2):
+def coletar_comentarios_hashtag_apify(apify_token, tags=None, max_posts=2):
     """
-    Coleta posts e comentários da hashtag via 'apify/instagram-hashtag-scraper'
+    Coleta posts e comentários das hashtags via 'apify/instagram-hashtag-scraper'
     e complementa com 'apify/instagram-scraper' (comments) caso necessário.
+    Suporta receber uma tag única (str) ou lista de tags (list).
     """
+    if tags is None:
+        tags = ["fimda6x1"]
+    elif isinstance(tags, str):
+        tags = [tags]
+
+    tags_limpas = [t.lstrip("#").strip() for t in tags if t.strip()]
+    if not tags_limpas:
+        return []
+
+    # O ator apify/instagram-hashtag-scraper aceita múltiplas hashtags numa só execução
     payload_tag = {
-        "hashtags": [tag.lstrip("#").strip()],
+        "hashtags": tags_limpas,
         "resultsType": "posts",
         "resultsLimit": max_posts
     }
 
-    posts_tag = _disparar_e_aguardar_ator("apify/instagram-hashtag-scraper", payload_tag, apify_token, max_espera=35)
+    posts_tag = _disparar_e_aguardar_ator("apify/instagram-hashtag-scraper", payload_tag, apify_token, max_espera=45)
     comentarios = []
     posts_com_comentarios = []
+
+    # Mapeamento de URLs já vistas no cache para evitar buscar comentários de posts antigos
+    cache_post_urls = set()
+    for c in carregar_cache_instagram():
+        u = c.get("post_url") or c.get("link_origem")
+        if u:
+            cache_post_urls.add(u)
 
     for p in posts_tag:
         p_url = p.get("url") or p.get("postUrl") or ""
         p_caption = (p.get("caption") or "").strip()
         p_comments_count = p.get("commentsCount", 0)
+        p_hashtag = p.get("inputHashtag") or p.get("hashtag") or tags_limpas[0]
+        tag_formatada = f"#{p_hashtag.lstrip('#')}"
 
         # 1. Verifica se já vieram latestComments
         latest = p.get("latestComments", [])
@@ -370,27 +390,29 @@ def coletar_comentarios_hashtag_apify(apify_token, tag="fimda6x1", max_posts=2):
                     "id": str(c_id),
                     "rede": "instagram",
                     "origem_tipo": "hashtag",
-                    "hashtag": f"#{tag}",
+                    "hashtag": tag_formatada,
                     "autor": autor_formatado,
                     "texto": txt,
                     "likes": comm.get("likesCount", 0),
                     "data": comm.get("timestamp", ""),
-                    "origem_titulo": f"#{tag} · {p_caption[:80]}..." if len(p_caption) > 80 else f"#{tag}",
+                    "origem_titulo": f"{tag_formatada} · {p_caption[:80]}..." if len(p_caption) > 80 else tag_formatada,
                     "post_url": p_url,
                     "link_origem": p_url,
                     "link_instagram": p_url
                 })
-        elif p_url and p_comments_count > 0:
-            posts_com_comentarios.append(p_url)
+        elif p_url and p_comments_count > 0 and p_url not in cache_post_urls:
+            posts_com_comentarios.append((p_url, tag_formatada))
 
     # 2. Se houver posts da hashtag com comentários que não vieram no grid, busca direto os comentários
     if posts_com_comentarios:
+        urls_para_buscar = [item[0] for item in posts_com_comentarios[:3]]
+        mapa_tag_url = {item[0]: item[1] for item in posts_com_comentarios[:3]}
         payload_comm = {
-            "directUrls": posts_com_comentarios[:2],
+            "directUrls": urls_para_buscar,
             "resultsType": "comments",
-            "resultsLimit": 5
+            "resultsLimit": 10
         }
-        comms_extraidos = _disparar_e_aguardar_ator("apify/instagram-scraper", payload_comm, apify_token, max_espera=30)
+        comms_extraidos = _disparar_e_aguardar_ator("apify/instagram-scraper", payload_comm, apify_token, max_espera=35)
         for comm in comms_extraidos:
             c_id = comm.get("id")
             txt = (comm.get("text") or "").strip()
@@ -400,17 +422,18 @@ def coletar_comentarios_hashtag_apify(apify_token, tag="fimda6x1", max_posts=2):
             autor = comm.get("ownerUsername") or "usuário"
             autor_formatado = f"@{autor}" if not autor.startswith("@") else autor
             p_url = comm.get("postUrl") or comm.get("commentUrl") or ""
+            tag_fmt = mapa_tag_url.get(p_url, tag_formatada)
 
             comentarios.append({
                 "id": str(c_id),
                 "rede": "instagram",
                 "origem_tipo": "hashtag",
-                "hashtag": f"#{tag}",
+                "hashtag": tag_fmt,
                 "autor": autor_formatado,
                 "texto": txt,
                 "likes": comm.get("likesCount", 0),
                 "data": comm.get("timestamp", ""),
-                "origem_titulo": f"#{tag} · Debate Popular",
+                "origem_titulo": f"{tag_fmt} · Debate Popular",
                 "post_url": p_url,
                 "link_origem": p_url,
                 "link_instagram": p_url
@@ -422,7 +445,7 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=5
     """
     Orquestra a coleta de comentários no Instagram:
     - Perfis oficiais e locais (apify/instagram-scraper) com 12 perfis e 5 posts por perfil
-    - Hashtags prioritárias como #fimda6x1 (apify/instagram-hashtag-scraper)
+    - Hashtags prioritárias e de mobilização (apify/instagram-hashtag-scraper)
     - Mesclagem com o cache existente sem duplicação
     """
     if apify_token is None:
@@ -445,15 +468,16 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=5
     except Exception as e:
         print(f"Aviso na coleta de perfis do Instagram: {e}")
 
-    # 2. Coleta das Hashtags (ex: #fimda6x1)
+    # 2. Coleta das Hashtags (ex: #fimda6x1, #boralula, #lula13, etc.)
     tags = carregar_hashtags_instagram()
-    for tag in tags[:1]:  # Focado inicialmente na hashtag prioritária
+    if tags:
         try:
-            novos_tag = coletar_comentarios_hashtag_apify(apify_token, tag=tag, max_posts=2)
+            # Envia as hashtags cadastradas em uma única chamada agregada ao ator
+            novos_tag = coletar_comentarios_hashtag_apify(apify_token, tags=tags, max_posts=2)
             for c in novos_tag:
                 comentarios_existentes[c["id"]] = c
         except Exception as e:
-            print(f"Aviso na coleta da hashtag #{tag}: {e}")
+            print(f"Aviso na coleta de hashtags do Instagram: {e}")
 
     # Política de retenção de 7 dias: descarta comentários mais antigos
     lista_final = [

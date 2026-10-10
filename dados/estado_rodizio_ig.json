@@ -1,19 +1,19 @@
 {
-  "proximo_indice": 16,
-  "indice_rodada_anterior": 5,
+  "proximo_indice": 27,
+  "indice_rodada_anterior": 16,
   "total_perfis_cadastrados": 37,
   "lote_selecionado": [
-    "rede_cuca",
-    "midianinja",
-    "opovoonline",
-    "opovocbn",
-    "diariodonordeste",
-    "gcmais",
-    "jornaljangadeiro",
-    "tvceara",
-    "assembleiace",
-    "focuspoder",
-    "urbnews"
+    "radardoceara",
+    "cearanoticias",
+    "andrefernandes",
+    "capitaowagnersousa",
+    "carmeloneto",
+    "etufortaleza",
+    "centraldoonibusfortaleza",
+    "delegadohuggoce",
+    "gabrielcarvalhoce",
+    "sophiafechine.ce",
+    "ruandutrace"
   ],
-  "atualizado_em": "2026-10-09T20:51:13.310455"
+  "atualizado_em": "2026-10-09T22:08:49.380917"
 }
