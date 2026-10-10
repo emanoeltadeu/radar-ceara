@@ -259,86 +259,51 @@
       </div>
 
       <div class="hub-corpo" id="hub-corpo-ig">
-        <!-- GRID DUPLO SUPERIOR DO INSTAGRAM (LADO A LADO) -->
-        <div class="grid-duplo-instagram">
-
-          <!-- CARD 1: MAIS DITAS NO INSTAGRAM (CE) -->
-          <div class="card-col card-nuvem card-nuvem-instagram">
-            <div class="card-col-topo">
-              <div class="topo-com-icone">
-                <svg class="icone-marca" width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                <div>
-                  <h3>MAIS DITAS NO INSTAGRAM (CE)</h3>
-                  <p class="card-col-sub">Termos extraídos dos comentários e posts monitorados. Cor: <span class="cor-nossa">Campo Popular</span>, <span class="cor-deles">Oposição</span>, <span class="cor-disputa">Geral</span>.</p>
+        <!-- ========================================================================= -->
+        <!-- MÓDULO DE INTELIGÊNCIA: RADAR TÁTICO · INSTAGRAM                          -->
+        <!-- ========================================================================= -->
+        <div class="card-radar-tatico" id="radar-tatico-ig-card">
+          <div class="cab-radar-tatico">
+            <div class="topo-tatico-esq">
+              <span class="icone-raio">⚡</span>
+              <div>
+                <div class="linha-titulo-tatico">
+                  <h3>RADAR TÁTICO</h3>
+                  <span class="badge-status-tatico" id="badge-status-dominio-ig">ANALISANDO</span>
                 </div>
+                <p class="sub-tatico">Base: Janela Urgente (última 1h de dados) + Janela Macro (últimas 24h consolidadas).</p>
               </div>
-              <span class="hora-badge" id="hora-nuvem-ig">Instagram · 7 dias</span>
             </div>
-            <div class="nuvem-container" id="nuvem-termos-ig">
-              <!-- Renderizado via app.js -->
+            <div class="acoes-tatico-dir">
+              <span class="tempo-atualizacao-tatico" id="tempo-tatico-ig">Atualizado agora</span>
+              <button type="button" class="btn-copiar-tatico" id="btn-exportar-tarefas-ig" title="Copiar tarefas formatadas para colar no WhatsApp">
+                <span>📋</span> Exportar Tarefas para WhatsApp
+              </button>
             </div>
-            <form class="busca-palavra-box" id="form-busca-palavra-ig">
-              <input type="text" id="input-busca-palavra-ig" placeholder="Buscar palavra no Instagram...">
-              <button type="submit">Ver</button>
-            </form>
-            <div class="resultado-busca-palavra" id="res-busca-palavra-ig"></div>
           </div>
 
-          <!-- CARD 2: MAIS FALADOS NO INSTAGRAM -->
-          <div class="card-col card-posts-ig">
-            <div class="card-col-topo">
-              <div class="topo-com-icone">
-                <svg class="icone-marca" width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                <div>
-                  <h3>MAIS FALADOS NO INSTAGRAM</h3>
-                  <p class="card-col-sub" id="posts-ig-contagem-sub">Top pautas por campo político no Instagram CE</p>
-                </div>
+          <div class="corpo-radar-tatico" id="corpo-radar-tatico-ig">
+            <!-- Bloco 1: Janela Urgente / Crise -->
+            <div class="bloco-tatico-urgente" id="bloco-urgente-ig">
+              <div class="subcab-tatico urgente">
+                <span class="tag-urgente" id="tag-urgente-ig">🚨 URGENTE (ÚLTIMA 1H)</span>
+                <span class="diagnostico-resumo-1h" id="diagnostico-urgente-1h-ig">Carregando diagnóstico...</span>
               </div>
-              <div class="filtro-janela-wrap" id="filtro-janela-ig">
-                <button type="button" id="btn-ig-1h" class="filtro-janela-btn" title="Filtrar última 1 hora no Instagram">1h</button>
-                <button type="button" id="btn-ig-2h" class="filtro-janela-btn" title="Filtrar últimas 2 horas no Instagram">2h</button>
-                <button type="button" id="btn-ig-12h" class="filtro-janela-btn" title="Filtrar últimas 12 horas no Instagram">12h</button>
-                <button type="button" id="btn-ig-24h" class="filtro-janela-btn" title="Filtrar últimas 24 horas no Instagram">24h</button>
-                <button type="button" id="btn-ig-7d" class="filtro-janela-btn on" title="Filtrar últimos 7 dias no Instagram">7d</button>
-              </div>
-            </div>
-
-            <div class="tabela-dupla-videos">
-              <div class="col-video col-video-deles">
-                <h4 class="subtitulo-col-video deles">PRÓ-OPOSIÇÃO</h4>
-                <div class="itens-video-lista" id="itens-post-ig-deles">
-                  <!-- Renderizado via app.js -->
-                </div>
-              </div>
-              <div class="col-video col-video-nossa">
-                <h4 class="subtitulo-col-video nossa">CAMPO POPULAR / LÉO</h4>
-                <div class="itens-video-lista" id="itens-post-ig-nossa">
-                  <!-- Renderizado via app.js -->
-                </div>
-              </div>
-            </div>
-
-            <!-- PAINEL INTERATIVO: PUBLICAÇÕES DO TEMA SELECIONADO NO INSTAGRAM -->
-            <div class="painel-videos-detalhe" id="painel-posts-ig-detalhe" style="display: none;">
-              <div class="painel-videos-detalhe-header">
-                <div class="detalhe-titulo-wrap">
-                  <span class="detalhe-badge" id="detalhe-post-ig-badge">PRÓ-OPOSIÇÃO</span>
-                  <h4 id="detalhe-post-ig-tema">Tema Selecionado</h4>
-                </div>
-                <button type="button" class="btn-fechar-detalhe" id="btn-fechar-detalhe-posts-ig" title="Fechar">&times;</button>
-              </div>
-              <p class="detalhe-sub-info" id="detalhe-post-ig-contagem">Clique em uma pauta acima para ver os posts.</p>
-              <div class="lista-videos-detalhe" id="lista-posts-ig-detalhe">
+              <div class="conteudo-tatico-alerta" id="conteudo-alerta-urgente-ig">
                 <!-- Renderizado via app.js -->
               </div>
             </div>
 
+            <!-- Bloco 2: Janela Macro 24h / Diretriz Estratégica -->
+            <div class="bloco-tatico-macro" id="bloco-macro-ig">
+              <div class="subcab-tatico macro">
+                <span class="tag-macro">🟢 DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE DE AVANÇO</span>
+              </div>
+              <div class="conteudo-tatico-diretriz" id="conteudo-diretriz-macro-ig">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
           </div>
-
         </div>
 
         <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR · INSTAGRAM -->
@@ -351,64 +316,73 @@
               <h3>Temperatura das Menções & Humor Popular · Instagram</h3>
               <p class="sentimento-desc">Classificação dos comentários dos perfis monitorados de lideranças e veículos da mídia cearense.</p>
             </div>
-            <div class="sentimento-meta-badge">
-              <span id="sentimento-ig-total-label">Comentários analisados</span>
+            <div class="sentimento-acoes-dir" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <div class="filtro-janela-wrap" id="filtro-janela-ig">
+                <button type="button" id="btn-ig-1h" class="filtro-janela-btn" title="Filtrar última 1 hora no Instagram">1h</button>
+                <button type="button" id="btn-ig-2h" class="filtro-janela-btn on" title="Filtrar últimas 2 horas no Instagram">2h</button>
+                <button type="button" id="btn-ig-12h" class="filtro-janela-btn" title="Filtrar últimas 12 horas no Instagram">12h</button>
+                <button type="button" id="btn-ig-24h" class="filtro-janela-btn" title="Filtrar últimas 24 horas no Instagram">24h</button>
+                <button type="button" id="btn-ig-7d" class="filtro-janela-btn" title="Filtrar últimos 7 dias no Instagram">7d</button>
+              </div>
+              <div class="sentimento-meta-badge">
+                <span id="sentimento-ig-total-label">Comentários analisados</span>
+              </div>
             </div>
           </div>
 
-        <!-- Barra de Sentimento Proporcional -->
-        <div class="barra-sentimento-tripla">
-          <div class="barra-sentimento-seg pos" id="barra-sent-ig-pos" style="width: 0%;" title="Positivo / Apoio">
-            <span class="seg-rotulo" id="rotulo-sent-ig-pos">0% Positivo</span>
-          </div>
-          <div class="barra-sentimento-seg neu" id="barra-sent-ig-neu" style="width: 0%;" title="Neutro">
-            <span class="seg-rotulo" id="rotulo-sent-ig-neu">0% Neutro</span>
-          </div>
-          <div class="barra-sentimento-seg neg" id="barra-sent-ig-neg" style="width: 0%;" title="Crítica / Oposição">
-            <span class="seg-rotulo" id="rotulo-sent-ig-neg">0% Crítica / Oposição</span>
-          </div>
-        </div>
-
-        <!-- Grade de Análise Inteligente -->
-        <div class="grade-sentimento-cards">
-          
-          <!-- Coluna 1: Apoio Popular -->
-          <div class="card-sentimento card-sent-pos">
-            <div class="cab-card-sent">
-              <span class="icone-sent">🟢</span>
-              <h4>Apoio Popular & Pautas Favoráveis</h4>
-              <span class="pct-sent pos" id="pct-apoio-card-ig">0%</span>
+          <!-- Barra de Sentimento Proporcional -->
+          <div class="barra-sentimento-tripla">
+            <div class="barra-sentimento-seg pos" id="barra-sent-ig-pos" style="width: 0%;" title="Positivo / Apoio">
+              <span class="seg-rotulo" id="rotulo-sent-ig-pos">0% Positivo</span>
             </div>
-            <ul class="lista-temas-sent" id="lista-temas-pos-ig">
-              <!-- Renderizado via app.js -->
-            </ul>
-          </div>
-
-          <!-- Coluna 2: Ataques de Oposição & Cobranças -->
-          <div class="card-sentimento card-sent-neg">
-            <div class="cab-card-sent">
-              <span class="icone-sent">🔴</span>
-              <h4>Ataques de Oposição & Cobranças</h4>
-              <span class="pct-sent neg" id="pct-oposicao-card-ig">0%</span>
+            <div class="barra-sentimento-seg neu" id="barra-sent-ig-neu" style="width: 0%;" title="Neutro">
+              <span class="seg-rotulo" id="rotulo-sent-ig-neu">0% Neutro</span>
             </div>
-            <ul class="lista-temas-sent" id="lista-temas-neg-ig">
-              <!-- Renderizado via app.js -->
-            </ul>
-          </div>
-
-          <!-- Coluna 3: Amostras Reais Analisadas -->
-          <div class="card-sentimento card-sent-amostras">
-            <div class="cab-card-sent">
-              <span class="icone-sent">💬</span>
-              <h4 id="tit-col-comentarios-ig">Comentários Reais em Destaque</h4>
-              <span class="badge-amostras" id="badge-filtro-comentarios-ig">Auditoria em tempo real</span>
-            </div>
-            <div class="lista-amostras-comentarios" id="lista-amostras-comentarios-ig">
-              <!-- Renderizado via app.js -->
+            <div class="barra-sentimento-seg neg" id="barra-sent-ig-neg" style="width: 0%;" title="Crítica / Oposição">
+              <span class="seg-rotulo" id="rotulo-sent-ig-neg">0% Crítica / Oposição</span>
             </div>
           </div>
 
-        </div>
+          <!-- Grade de Análise Inteligente: Balanço de Disputa & Auditoria de Comentários -->
+          <div class="grade-sentimento-cards grade-balanco-layout">
+            
+            <!-- Bloco Principal: Balanço de Disputa Narrativa (Saldo Líquido em Cartões) -->
+            <div class="card-sentimento card-balanco-disputa">
+              <div class="cab-card-balanco">
+                <div class="topo-balanco-info">
+                  <span class="icone-sent">⚖️</span>
+                  <div>
+                    <h4>Balanço de Disputa Narrativa (Saldo Líquido)</h4>
+                    <p class="sub-balanco" id="sub-balanco-ig">Saldo líquido de menções nas últimas 2h</p>
+                  </div>
+                </div>
+                <div class="acoes-balanco-topo">
+                  <div class="botoes-ord-balanco">
+                    <button type="button" id="btn-ord-vol-ig" class="btn-ord-balanco on" title="Ordenar por Volume">Volume</button>
+                    <button type="button" id="btn-ord-saldo-ig" class="btn-ord-balanco" title="Ordenar por Criticidade do Saldo">Criticidade</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lista de Cartões Individuais de Pauta -->
+              <div class="lista-cards-pautas-balanco" id="tabela-balanco-ig-corpo">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
+
+            <!-- Coluna 2: Amostras Reais Analisadas -->
+            <div class="card-sentimento card-sent-amostras">
+              <div class="cab-card-sent">
+                <span class="icone-sent">💬</span>
+                <h4 id="tit-col-comentarios-ig">Comentários Reais em Destaque</h4>
+                <span class="badge-amostras" id="badge-filtro-comentarios-ig">Auditoria em tempo real</span>
+              </div>
+              <div class="lista-amostras-comentarios" id="lista-amostras-comentarios-ig">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
+
+          </div>
 
       </div>
       <!-- FIM PAINEL SENTIMENTO IG -->

@@ -28,9 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Radar Tático IA (YouTube)
+      // Radar Tático IA (YouTube & Instagram)
       if (data.radar_tatico_youtube) {
         renderizarRadarTatico(data.radar_tatico_youtube, "yt");
+      }
+      if (data.radar_tatico_instagram) {
+        renderizarRadarTatico(data.radar_tatico_instagram, "ig");
       }
 
       // Inicializa Hub do Instagram com seletor de janelas temporais (1h, 2h, 12h, 24h, 7d)
@@ -707,19 +710,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Alerta Imediato / Crise
     if (conteudoUrgenteEl && tatico.alerta_imediato) {
       const alerta = tatico.alerta_imediato;
+      const tagUrgente = document.getElementById(`tag-urgente-${prefix}`);
       if (blocoUrgente) {
         if (!alerta.existe_crise) {
           blocoUrgente.classList.add("calmo");
+          if (tagUrgente) tagUrgente.textContent = "🟢 SEM CRISE IMEDIATA (ÚLTIMA 1H)";
         } else {
           blocoUrgente.classList.remove("calmo");
+          if (tagUrgente) tagUrgente.textContent = "🚨 URGENTE (ÚLTIMA 1H)";
         }
       }
 
+      const rotuloPauta = alerta.existe_crise ? "Pauta sob ataque:" : "Status da pauta:";
+      const rotuloAcao = alerta.existe_crise ? "➔ Ação Imediata:" : "➔ Ação Recomendada:";
+
       conteudoUrgenteEl.innerHTML = `
-        <p><strong>Pauta em foco:</strong> <span style="font-weight:700;">${escapeHtml(alerta.pauta || "Geral")}</span> — ${escapeHtml(alerta.detalhe || "")}</p>
+        <p><strong>${rotuloPauta}</strong> <span style="font-weight:700;">${escapeHtml(alerta.pauta || "Nenhum Ataque Crítico Detectado")}</span> — ${escapeHtml(alerta.detalhe || "")}</p>
         <div class="tatico-acao-linha">
-          <strong>➔ Ação Imediata:</strong>
-          <span>${escapeHtml(alerta.acao_recomendada || "Monitorar os comentários.")}</span>
+          <strong>${rotuloAcao}</strong>
+          <span>${escapeHtml(alerta.acao_recomendada || "Manter monitoramento preventivo.")}</span>
         </div>
       `;
     }
@@ -727,12 +736,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. Diretriz Estratégica 24h
     if (conteudoMacroEl && tatico.diretriz_estrategica_24h) {
       const macro = tatico.diretriz_estrategica_24h;
+      let extrasHtml = "";
+      if (macro.gancho_conteudo) {
+        extrasHtml += `
+          <div class="tatico-acao-linha" style="margin-top:6px;">
+            <strong>🎬 Gancho / Ângulo:</strong>
+            <span>${escapeHtml(macro.gancho_conteudo)}</span>
+          </div>
+        `;
+      }
+      if (macro.segmentacao_trafego) {
+        extrasHtml += `
+          <div class="tatico-acao-linha" style="margin-top:6px;">
+            <strong>🎯 Tráfego & Segmentação:</strong>
+            <span>${escapeHtml(macro.segmentacao_trafego)}</span>
+          </div>
+        `;
+      }
+
       conteudoMacroEl.innerHTML = `
         <p><strong>Pauta:</strong> <span style="font-weight:700;">${escapeHtml(macro.oportunidade || "Pauta Popular")}</span> — ${escapeHtml(macro.detalhe || "")}</p>
         <div class="tatico-acao-linha">
           <strong>➔ Recomendação:</strong>
           <span>${escapeHtml(macro.recomendacao_acao || "")}</span>
         </div>
+        ${extrasHtml}
       `;
     }
 
@@ -741,18 +769,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const alerta = tatico.alerta_imediato || {};
       const macro = tatico.diretriz_estrategica_24h || {};
       const hora = tatico.atualizado_em || "Agora";
+      const nomeRede = prefix === "ig" ? "Instagram" : "YouTube";
+
+      let extrasZap = "";
+      if (macro.gancho_conteudo) {
+        extrasZap += `\n• Gancho: ${macro.gancho_conteudo}`;
+      }
+      if (macro.segmentacao_trafego) {
+        extrasZap += `\n• Tráfego: ${macro.segmentacao_trafego}`;
+      }
 
       const textoZap = `⚡ *RADAR TÁTICO (${hora})*
-Rede: YouTube | Status: *${tatico.status_dominio || "ANALISADO"}*
+Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
 
-🚨 *ALERTA URGENTE (ÚLTIMAS HORAS)*
+🚨 *ALERTA URGENTE (ÚLTIMA 1H)*
 • Pauta: ${alerta.pauta || "Monitoramento"}
 • Contexto: ${alerta.detalhe || tatico.diagnostico_urgente_1h || ""}
 ➔ *Ação Imediata:* ${alerta.acao_recomendada || "Seguir monitorando"}
 
 🟢 *DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE*
 • Pauta: ${macro.oportunidade || "Campo Popular"}
-• Fôlego: ${macro.detalhe || ""}
+• Fôlego: ${macro.detalhe || ""}${extrasZap}
 ➔ *Recomendação:* ${macro.recomendacao_acao || "Gravar cortes e orientar tráfego"}`;
 
       navigator.clipboard.writeText(textoZap).then(() => {
@@ -950,7 +987,7 @@ Rede: YouTube | Status: *${tatico.status_dominio || "ANALISADO"}*
   function inicializarHubInstagram(dadosInstagram) {
     if (!dadosInstagram) return;
 
-    let janelaAtualIG = "7d";
+    let janelaAtualIG = "2h";
 
     function trocarJanelaInstagram(janela) {
       janelaAtualIG = janela;
@@ -963,21 +1000,15 @@ Rede: YouTube | Status: *${tatico.status_dominio || "ANALISADO"}*
         }
       });
 
-      const badgeHoraNuvemIg = document.getElementById("hora-nuvem-ig");
-      if (badgeHoraNuvemIg) {
-        badgeHoraNuvemIg.textContent = `Instagram · ${janela}`;
+      // Sentimento e Termômetro Popular do Instagram
+      let sentAtual = (dadosInstagram.por_janela && dadosInstagram.por_janela[janela]) || dadosInstagram;
+      // Garante que a lista de comentários para auditoria e disputa narrativa esteja disponível
+      if ((!sentAtual.comentarios_todos || sentAtual.comentarios_todos.length === 0) &&
+          (!sentAtual.todos_comentarios || sentAtual.todos_comentarios.length === 0)) {
+        const todosBase = dadosInstagram.todos_comentarios || dadosInstagram.comentarios_todos || [];
+        sentAtual = { ...sentAtual, todos_comentarios: todosBase };
       }
 
-      // Nuvem de Palavras
-      const nuvemDados = (dadosInstagram.nuvens_por_janela && dadosInstagram.nuvens_por_janela[janela]) || dadosInstagram.nuvem;
-      renderizarNuvemInstagram(nuvemDados);
-
-      // Ranking de Posts
-      const postsDados = (dadosInstagram.posts_por_janela && dadosInstagram.posts_por_janela[janela]) || dadosInstagram.posts_mais_falados;
-      renderizarPostsInstagram(postsDados, janela);
-
-      // Sentimento e Termômetro Popular do Instagram
-      const sentAtual = (dadosInstagram.por_janela && dadosInstagram.por_janela[janela]) || dadosInstagram;
       renderizarBlocoSentimento(sentAtual, "ig", {
         tipoRede: "instagram",
         nomeRede: "Instagram",
@@ -995,8 +1026,8 @@ Rede: YouTube | Status: *${tatico.status_dominio || "ANALISADO"}*
       });
     });
 
-    // Renderização inicial na janela de 7 dias
-    trocarJanelaInstagram("7d");
+    // Renderização inicial na janela padrão de 2h
+    trocarJanelaInstagram("2h");
   }
 
   // 4. Painel Meta Ads

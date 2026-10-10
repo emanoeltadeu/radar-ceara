@@ -346,6 +346,8 @@ def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
             "tipo": c.get("tipo", "neutro"),
             "tema": c.get("tema", ""),
             "resumo_ia": c.get("resumo_ia", ""),
+            "origem_tipo": c.get("origem_tipo") or ("hashtag" if str(c.get("origem_titulo", "")).startswith("#") else "perfil"),
+            "hashtag": c.get("hashtag") or (c.get("origem_titulo", "").split()[0] if str(c.get("origem_titulo", "")).startswith("#") else ""),
             "link_yt": link,
             "link_youtube": link,
             "link_instagram": link,
