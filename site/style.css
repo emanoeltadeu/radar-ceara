@@ -704,6 +704,12 @@ body {
 .card-transversal-google.recolhido .hub-corpo {
   display: none !important;
 }
+.trends-sub-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 .sub-chapeu-mini {
   font-family: var(--f-mono);
   font-size: 10px;
@@ -711,7 +717,20 @@ body {
   text-transform: uppercase;
   color: var(--tx-3);
   letter-spacing: .08em;
-  display: block;
+  display: inline-block;
+}
+.trends-auditoria-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #1a73e8;
+  background: rgba(66, 133, 244, 0.08);
+  border: 1px solid rgba(66, 133, 244, 0.2);
+  padding: 1px 7px;
+  border-radius: 12px;
+  letter-spacing: .02em;
 }
 .transversal-titulo {
   margin: 2px 0 0;

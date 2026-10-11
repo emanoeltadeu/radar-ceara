@@ -241,6 +241,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (monitor.google_trends_ce) {
       const gt = monitor.google_trends_ce;
+      
+      // Atualiza o badge de auditoria temporal
+      const badgeAuditoria = document.getElementById("trends-auditoria-badge");
+      if (badgeAuditoria) {
+        const hora = gt.atualizado_em ? (gt.atualizado_em.split("às")[1]?.trim() || gt.atualizado_em) : "recente";
+        const freq = gt.frequencia_atualizacao || "A cada 4h";
+        badgeAuditoria.textContent = `Atualizado às ${hora} • Renovação ${freq.toLowerCase()}`;
+      }
+
       renderItensGoogle(gt.itens_4h && gt.itens_4h.length > 0 ? gt.itens_4h : gt.itens);
 
       btnTrends4h?.addEventListener("click", () => {

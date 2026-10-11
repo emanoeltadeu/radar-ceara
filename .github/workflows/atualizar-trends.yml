@@ -1,0 +1,44 @@
+name: Radar Ceará · Micro-Workflow Google Trends
+
+on:
+  # Agendamento a cada 4 horas (Horário de Fortaleza/CE, UTC-3):
+  # 08:00 CE -> 11:00 UTC
+  # 12:00 CE -> 15:00 UTC
+  # 16:00 CE -> 19:00 UTC
+  # 20:00 CE -> 23:00 UTC
+  # 00:00 CE -> 03:00 UTC (D+1)
+  schedule:
+    - cron: '0 11 * * *'  # 08:00 Fortaleza/CE
+    - cron: '0 15 * * *'  # 12:00 Fortaleza/CE
+    - cron: '0 19 * * *'  # 16:00 Fortaleza/CE
+    - cron: '0 23 * * *'  # 20:00 Fortaleza/CE
+    - cron: '0 3 * * *'   # 00:00 Fortaleza/CE
+
+  # Disparo manual sob demanda
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar-trends:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Executar Micro-Script Google Trends
+        run: |
+          python3 scripts/atualizar_trends_isolado.py
+
+      - name: Commit e Push dos Dados do Trends
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/radar_ce.json
+          git diff --staged --quiet || (git commit -m "chore(trends): atualizacao periodica do google trends ceara [skip ci]" && git push)
