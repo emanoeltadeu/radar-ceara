@@ -97,8 +97,15 @@ def main():
     from coletores.google_trends import extrair_termos_socioeconomicos
     termos_socioeconomicos = extrair_termos_socioeconomicos(trends_4h) or extrair_termos_socioeconomicos(trends_24h)
 
+    # Data/Hora da coleta no fuso de Fortaleza/CE (UTC-3)
+    from zoneinfo import ZoneInfo
+    agora_ce = datetime.now(ZoneInfo("America/Fortaleza"))
+    timestamp_trends = agora_ce.strftime("%d/%m/%Y às %H:%M")
+
     monitor_redes = {
         "google_trends_ce": {
+            "atualizado_em": timestamp_trends,
+            "frequencia_atualizacao": "A cada 4 horas",
             "itens_4h": trends_4h,
             "itens_24h": trends_24h,
             "itens": trends_4h if trends_4h else trends_24h,

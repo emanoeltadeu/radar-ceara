@@ -287,7 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Atualiza o badge de auditoria temporal
       const badgeAuditoria = document.getElementById("trends-auditoria-badge");
       if (badgeAuditoria) {
-        const hora = gt.atualizado_em ? (gt.atualizado_em.split("às")[1]?.trim() || gt.atualizado_em) : "recente";
+        const rawHora = gt.atualizado_em || (DADOS && DADOS.gerado_em) || "";
+        const hora = rawHora.includes("às") ? rawHora.split("às")[1].trim() : (rawHora || "recente");
         const freq = gt.frequencia_atualizacao || "A cada 4h";
         badgeAuditoria.textContent = `Atualizado às ${hora} • Renovação ${freq.toLowerCase()}`;
       }
