@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
       SENTIMENTO_YOUTUBE = data.sentimento_youtube || data.sentimento_mencoes;
       SENTIMENTO_INSTAGRAM = data.sentimento_instagram;
 
+      // 0. Hero Banner (Panorama Geral das Redes)
+      renderizarPanoramaGeral(data);
+
       // Hub YouTube (janelas temporais 1h, 2h, 12h, 24h, 7d)
       if (SENTIMENTO_YOUTUBE) {
         inicializarHubYouTube(SENTIMENTO_YOUTUBE);
@@ -42,6 +45,105 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => {
       console.error("Falha ao carregar radar_ce.json:", err);
     });
+
+  // 1. RENDERIZADOR DO HERO BANNER (PANORAMA GERAL DAS REDES · CEARÁ HOJE)
+  function renderizarPanoramaGeral(data) {
+    if (!data) return;
+
+    const elHora = document.getElementById("panorama-hora-atualizacao");
+    if (elHora && data.gerado_em) {
+      elHora.textContent = data.gerado_em;
+    }
+
+    // --- YOUTUBE ---
+    const yt = data.radar_tatico_youtube || {};
+    const badgeYT = document.getElementById("hero-badge-yt");
+    const rotuloPautaYT = document.getElementById("hero-rotulo-pauta-yt");
+    const pautaYT = document.getElementById("hero-pauta-yt");
+    const diretrizYT = document.getElementById("hero-diretriz-yt");
+
+    const statusYT = (yt.status_dominio || "ANALISANDO").toUpperCase();
+    if (badgeYT) {
+      badgeYT.textContent = statusYT;
+      badgeYT.className = "badge-status-hero";
+      if (statusYT === "DOMINANDO") badgeYT.classList.add("dominando");
+      else if (statusYT === "SOB_PRESSAO" || statusYT === "SOB PRESSÃO") badgeYT.classList.add("sob-pressao");
+      else badgeYT.classList.add("equilibrado");
+    }
+
+    const alertaYT = yt.alerta_imediato || {};
+    const macroYT = yt.diretriz_estrategica_24h || {};
+
+    let textoPautaYT = "";
+    if (alertaYT.pauta && alertaYT.pauta !== "Nenhum Ataque Crítico Detectado") {
+      textoPautaYT = alertaYT.pauta;
+    } else if (macroYT.pautas_favoraveis && macroYT.pautas_favoraveis.length > 0) {
+      textoPautaYT = macroYT.pautas_favoraveis[0];
+    } else {
+      textoPautaYT = "Consolidação de Pautas Populares & Mandato";
+    }
+
+    if (rotuloPautaYT) {
+      rotuloPautaYT.textContent = statusYT === "DOMINANDO" ? "Pauta Positiva:" : "Pauta em Foco:";
+    }
+    if (pautaYT) {
+      pautaYT.textContent = textoPautaYT;
+    }
+    if (diretrizYT) {
+      diretrizYT.textContent = alertaYT.acao_recomendada || macroYT.orientacao_geral || "Manter monitoramento preventivo da base.";
+    }
+
+    // --- INSTAGRAM ---
+    const ig = data.radar_tatico_instagram || {};
+    const badgeIG = document.getElementById("hero-badge-ig");
+    const rotuloPautaIG = document.getElementById("hero-rotulo-pauta-ig");
+    const pautaIG = document.getElementById("hero-pauta-ig");
+    const diretrizIG = document.getElementById("hero-diretriz-ig");
+
+    const statusIG = (ig.status_dominio || "ANALISANDO").toUpperCase();
+    if (badgeIG) {
+      badgeIG.textContent = statusIG;
+      badgeIG.className = "badge-status-hero";
+      if (statusIG === "DOMINANDO") badgeIG.classList.add("dominando");
+      else if (statusIG === "SOB_PRESSAO" || statusIG === "SOB PRESSÃO") badgeIG.classList.add("sob-pressao");
+      else badgeIG.classList.add("equilibrado");
+    }
+
+    const alertaIG = ig.alerta_imediato || {};
+    const macroIG = ig.diretriz_estrategica_24h || {};
+
+    let textoPautaIG = "";
+    if (alertaIG.pauta && alertaIG.pauta !== "Nenhum Ataque Crítico Detectado") {
+      textoPautaIG = alertaIG.pauta;
+    } else if (macroIG.pautas_favoraveis && macroIG.pautas_favoraveis.length > 0) {
+      textoPautaIG = macroIG.pautas_favoraveis[0];
+    } else {
+      textoPautaIG = "Debate Popular & Mandato";
+    }
+
+    if (rotuloPautaIG) {
+      rotuloPautaIG.textContent = "Pauta em Foco:";
+    }
+    if (pautaIG) {
+      pautaIG.textContent = textoPautaIG;
+    }
+    if (diretrizIG) {
+      diretrizIG.textContent = alertaIG.acao_recomendada || macroIG.orientacao_geral || "Acompanhar repercussão das publicações e debate.";
+    }
+
+    // --- LEGENDA DE AMOSTRA NOS CABEÇALHOS DO ACORDEÃO ---
+    const amostraYT = document.getElementById("amostra-header-yt");
+    if (amostraYT && data.sentimento_youtube) {
+      const totYT = formatarNum(data.sentimento_youtube.total_analisados || 0);
+      amostraYT.textContent = `${totYT} comentários`;
+    }
+
+    const amostraIG = document.getElementById("amostra-header-ig");
+    if (amostraIG && data.sentimento_instagram) {
+      const totIG = formatarNum(data.sentimento_instagram.total_analisados || 0);
+      amostraIG.textContent = `${totIG} comentários`;
+    }
+  }
 
   // 2. HELPER PARA FILTRAGEM EFICIENTE DE COMENTÁRIOS POR JANELA
   function obterComentariosJanela(todosBase, sentJanela, janela) {
@@ -542,43 +644,75 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // 5. Botão de Exportação de Tarefas para WhatsApp
+    // 5. Botão de Exportação de Tarefas para WhatsApp (Disparo Imediato via API)
     btnExportar?.addEventListener("click", () => {
       const alerta = tatico.alerta_imediato || {};
       const macro = tatico.diretriz_estrategica_24h || {};
-      const hora = tatico.atualizado_em || "Agora";
+      const hora = tatico.atualizado_em || (DADOS && DADOS.gerado_em ? DADOS.gerado_em.split("às")[1]?.trim() : "Agora");
       const nomeRede = prefix === "ig" ? "Instagram" : "YouTube";
+      const statusDominio = (tatico.status_dominio || "ANALISADO").toUpperCase();
 
-      let extrasZap = "";
+      // Bloco 1: Alerta Urgente (Condicional Sem Crise vs Com Crise)
+      let blocoUrgenteZap = "";
+      if (alerta.existe_crise) {
+        blocoUrgenteZap = `----------------------------------------
+🚨 *ALERTA URGENTE (Janela 1h)*
+• *Pauta:* ${alerta.pauta || "Ataque Crítico Detectado"}
+• *Contexto:* ${alerta.detalhe || tatico.diagnostico_urgente_1h || "Volume elevado de negatividade na última hora."}
+👉 *Ação Imediata:* ${alerta.acao_recomendada || "Intervir com contenção imediata nos comentários."}
+----------------------------------------`;
+      } else {
+        blocoUrgenteZap = `----------------------------------------
+🚨 *ALERTA URGENTE (Janela 1h)*
+• *Pauta:* Nenhum Ataque Crítico Detectado
+• *Contexto:* ${alerta.detalhe || "Cenário estável na última hora sem novos ataques coordenados."}
+👉 *Ação Imediata:* ${alerta.acao_recomendada || "Monitoramento preventivo ativo; foco total na produção da diretriz do dia."}
+----------------------------------------`;
+      }
+
+      // Bloco 2: Equipe de Vídeo & Tráfego Pago
+      let blocoVideoZap = "";
       if (macro.gancho_conteudo) {
-        extrasZap += `\n• Gancho: ${macro.gancho_conteudo}`;
+        blocoVideoZap = `\n🎬 *EQUIPE DE VÍDEO (Gancho/Ângulo):*\n"${macro.gancho_conteudo}"\n`;
       }
+
+      let blocoTrafegoZap = "";
       if (macro.segmentacao_trafego) {
-        extrasZap += `\n• Tráfego: ${macro.segmentacao_trafego}`;
+        blocoTrafegoZap = `\n🎯 *GESTÃO DE TRÁFEGO:*\n• Público & Território: ${macro.segmentacao_trafego}\n`;
       }
 
-      const textoZap = `⚡ *RADAR TÁTICO (${hora})*
-Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
+      const textoZap = `⚡ *RADAR TÁTICO MANDATO LÉO SURICATE*
+📅 *Atualizado às:* ${hora} | *Rede:* ${nomeRede}
+🎯 *Status:* *${statusDominio}*
 
-🚨 *ALERTA URGENTE (ÚLTIMA 1H)*
-• Pauta: ${alerta.pauta || "Monitoramento"}
-• Contexto: ${alerta.detalhe || tatico.diagnostico_urgente_1h || ""}
-➔ *Ação Imediata:* ${alerta.acao_recomendada || "Seguir monitorando"}
+${blocoUrgenteZap}
 
-🟢 *DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE*
-• Pauta: ${macro.oportunidade || "Campo Popular"}
-• Fôlego: ${macro.detalhe || ""}${extrasZap}
-➔ *Recomendação:* ${macro.recomendacao_acao || "Gravar cortes e orientar tráfego"}`;
+🟢 *DIRETRIZ DO DIA (Janela 24h)*
+• *Pauta com Tração:* ${macro.oportunidade || "Pauta Popular & Mandato"}
+• *Métrica/Respaldo:* ${macro.detalhe || "Alto saldo líquido favorável consolidado nas últimas 24h."}
+${blocoVideoZap}${blocoTrafegoZap}
+👉 *Diretriz Operacional:* ${macro.recomendacao_acao || "Gravar cortes prioritários e amplificar narrativa nas redes."}
 
-      navigator.clipboard.writeText(textoZap).then(() => {
-        const textoOriginal = btnExportar.innerHTML;
-        btnExportar.innerHTML = "<span>✅</span> Tarefas Copiadas!";
-        btnExportar.style.background = "#16A34A";
-        setTimeout(() => {
-          btnExportar.innerHTML = textoOriginal;
-          btnExportar.style.background = "";
-        }, 3000);
-      });
+----------------------------------------
+🔗 *Painel em Tempo Real:* https://radar-ceara.pages.dev`;
+
+      // 1. Tentar copiar para a área de transferência como backup
+      try {
+        navigator.clipboard?.writeText(textoZap);
+      } catch (e) {}
+
+      // 2. Feedback visual no botão
+      const textoOriginal = btnExportar.innerHTML;
+      btnExportar.innerHTML = "<span>🚀</span> Abrindo WhatsApp...";
+      btnExportar.style.background = "#16A34A";
+      setTimeout(() => {
+        btnExportar.innerHTML = textoOriginal;
+        btnExportar.style.background = "";
+      }, 3000);
+
+      // 3. Disparo imediato da API do WhatsApp
+      const urlZap = `https://api.whatsapp.com/send?text=${encodeURIComponent(textoZap)}`;
+      window.open(urlZap, "_blank");
     });
   }
 
@@ -701,6 +835,11 @@ Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
     }
   }
 
+  // Inicializa rótulos com base no estado inicial
+  atualizarRotuloToggle(btnToggleYt, hubYtSec);
+  atualizarRotuloToggle(btnToggleIg, hubIgSec);
+  atualizarRotuloToggle(btnToggleTrends, cardTrends);
+
   function setFocoAtivo(btnAtivo) {
     [btnFocoTodos, btnFocoYt, btnFocoIg].forEach(b => {
       if (b) b.classList.remove("on");
@@ -728,6 +867,22 @@ Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
       atualizarRotuloToggle(btnToggleIg, hubIgSec);
     });
   }
+
+  document.getElementById("cab-hub-yt")?.addEventListener("click", (e) => {
+    if (e.target.closest("button") === btnToggleYt) return;
+    if (hubYtSec) {
+      hubYtSec.classList.toggle("recolhido");
+      atualizarRotuloToggle(btnToggleYt, hubYtSec);
+    }
+  });
+
+  document.getElementById("cab-hub-ig")?.addEventListener("click", (e) => {
+    if (e.target.closest("button") === btnToggleIg) return;
+    if (hubIgSec) {
+      hubIgSec.classList.toggle("recolhido");
+      atualizarRotuloToggle(btnToggleIg, hubIgSec);
+    }
+  });
 
   if (btnFocoTodos) {
     btnFocoTodos.addEventListener("click", () => {
@@ -772,6 +927,161 @@ Rede: ${nomeRede} | Status: *${tatico.status_dominio || "ANALISADO"}*
       hubIgSec?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
+
+  // =========================================================================
+  // MODAL DE FONTES MONITORADAS (CANAIS E PERFIS)
+  // =========================================================================
+  const modalOverlay = document.getElementById("modal-fontes-overlay");
+  const modalTitulo = document.getElementById("modal-fontes-titulo");
+  const modalSubtitulo = document.getElementById("modal-fontes-subtitulo");
+  const modalIcone = document.getElementById("modal-fontes-icone");
+  const modalCorpo = document.getElementById("modal-fontes-corpo");
+  const modalContagem = document.getElementById("modal-contagem-total");
+  const btnFecharModalX = document.getElementById("btn-fechar-modal-x");
+  const btnFecharModalBase = document.getElementById("btn-fechar-modal-base");
+  const btnFontesIg = document.getElementById("btn-fontes-ig");
+  const btnFontesYt = document.getElementById("btn-fontes-yt");
+
+  function abrirModalFontes(tipo) {
+    if (!modalOverlay || !modalCorpo) return;
+
+    const fontes = (DADOS && DADOS.fontes_monitoradas) || {};
+
+    if (tipo === "instagram") {
+      const ig = fontes.instagram || {};
+      const perfis = ig.perfis || [];
+      const hashtags = ig.hashtags || [];
+      const total = perfis.length + hashtags.length;
+
+      if (modalIcone) modalIcone.textContent = "📸";
+      if (modalTitulo) modalTitulo.textContent = "Perfis & Hashtags Monitorados · Instagram";
+      if (modalSubtitulo) modalSubtitulo.textContent = "Relação de perfis do campo popular, imprensa cearense e hashtags ativas";
+      if (modalContagem) modalContagem.textContent = `${perfis.length} perfis e ${hashtags.length} hashtags em monitoramento`;
+
+      let html = "";
+
+      if (perfis.length > 0) {
+        html += `
+          <div class="modal-secao-grupo">
+            <span class="modal-grupo-titulo">Perfis Monitorados (${perfis.length})</span>
+            <div class="modal-chips-grid">
+              ${perfis.map(p => {
+                const username = p.replace(/^@/, "");
+                return `
+                  <a href="https://www.instagram.com/${encodeURIComponent(username)}/" target="_blank" rel="noopener noreferrer" class="chip-fonte" title="Abrir perfil @${escapeHtml(username)} no Instagram">
+                    <span>${escapeHtml(p)}</span>
+                    <span class="chip-icone">↗</span>
+                  </a>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      if (hashtags.length > 0) {
+        html += `
+          <div class="modal-secao-grupo">
+            <span class="modal-grupo-titulo">Hashtags Prioritárias (${hashtags.length})</span>
+            <div class="modal-chips-grid">
+              ${hashtags.map(h => {
+                const tag = h.replace(/^#/, "");
+                return `
+                  <a href="https://www.instagram.com/explore/tags/${encodeURIComponent(tag)}/" target="_blank" rel="noopener noreferrer" class="chip-fonte" title="Ver hashtag ${escapeHtml(h)} no Instagram">
+                    <span>${escapeHtml(h)}</span>
+                    <span class="chip-icone">↗</span>
+                  </a>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      if (!html) {
+        html = `<p style="color: var(--tx-2); font-size: 13px;">Nenhuma fonte cadastrada no momento.</p>`;
+      }
+
+      modalCorpo.innerHTML = html;
+
+    } else if (tipo === "youtube") {
+      const yt = fontes.youtube || {};
+      const canais = yt.canais || [];
+
+      if (modalIcone) modalIcone.textContent = "▶";
+      if (modalTitulo) modalTitulo.textContent = "Canais Monitorados · YouTube";
+      if (modalSubtitulo) modalSubtitulo.textContent = "Emissoras, portais jornalísticos e comunicadores políticos do Ceará";
+      if (modalContagem) modalContagem.textContent = `${canais.length} canais cearenses em monitoramento`;
+
+      let html = "";
+
+      if (canais.length > 0) {
+        html += `
+          <div class="modal-secao-grupo">
+            <span class="modal-grupo-titulo">Canais Ativos (${canais.length})</span>
+            <div class="modal-chips-grid">
+              ${canais.map(c => {
+                return `
+                  <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(c)}" target="_blank" rel="noopener noreferrer" class="chip-fonte" title="Pesquisar canal '${escapeHtml(c)}' no YouTube">
+                    <span>${escapeHtml(c)}</span>
+                    <span class="chip-icone">↗</span>
+                  </a>
+                `;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      } else {
+        html = `<p style="color: var(--tx-2); font-size: 13px;">Nenhum canal cadastrado no momento.</p>`;
+      }
+
+      modalCorpo.innerHTML = html;
+    }
+
+    modalOverlay.style.display = "flex";
+    // Forçar reflow para ativar a animação de opacidade/transform
+    void modalOverlay.offsetWidth;
+    modalOverlay.classList.add("aberto");
+    modalOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function fecharModalFontes() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove("aberto");
+    modalOverlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      if (!modalOverlay.classList.contains("aberto")) {
+        modalOverlay.style.display = "none";
+      }
+    }, 200);
+  }
+
+  btnFontesIg?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    abrirModalFontes("instagram");
+  });
+
+  btnFontesYt?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    abrirModalFontes("youtube");
+  });
+
+  btnFecharModalX?.addEventListener("click", fecharModalFontes);
+  btnFecharModalBase?.addEventListener("click", fecharModalFontes);
+
+  modalOverlay?.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      fecharModalFontes();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modalOverlay?.classList.contains("aberto")) {
+      fecharModalFontes();
+    }
+  });
 
   // Utilitários
   function formatarNum(n) {

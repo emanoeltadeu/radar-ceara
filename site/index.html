@@ -31,7 +31,7 @@
   <!-- Navegação Fixa -->
   <nav class="nav-fixa">
     <div class="wrap nav-wrap">
-      <a href="#monitor-sec" class="nav-link on">🔥 Radar de Redes (Ceará Hoje)</a>
+      <a href="#panorama-geral-sec" class="nav-link on">🔥 Panorama Geral (Ceará Hoje)</a>
       <div class="nav-atualizacao">
         <span class="ponto-ao-vivo-nav"></span>
         <span>Atualizado: <strong id="hora-atualizacao">Carregando...</strong></span>
@@ -41,6 +41,72 @@
 
   <main class="wrap">
     
+    <!-- HERO BANNER: PANORAMA GERAL DAS REDES · CEARÁ HOJE -->
+    <section id="panorama-geral-sec" class="panorama-geral-sec">
+      <div class="panorama-geral-card">
+        <div class="panorama-geral-topo">
+          <div class="panorama-titulo-wrap">
+            <span class="icone-raio-panorama">⚡</span>
+            <div>
+              <h2 class="panorama-titulo">PANORAMA GERAL DAS REDES · CEARÁ HOJE</h2>
+              <span class="panorama-subtitulo">Síntese Unificada em Tempo Real</span>
+            </div>
+          </div>
+          <div class="panorama-meta-topo">
+            <span id="panorama-hora-atualizacao">Atualizado</span>
+          </div>
+        </div>
+
+        <div class="panorama-cards-grid">
+          <!-- Card Instagram -->
+          <div class="panorama-card-plataforma card-ig" id="panorama-card-ig">
+            <div class="panorama-card-cab">
+              <div class="panorama-plataforma-nome">
+                <svg class="icone-rede-hero" width="20" height="20" viewBox="0 0 24 24" fill="#E1306C">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <strong>Instagram (Perfis & Mandato)</strong>
+              </div>
+              <span class="badge-status-hero" id="hero-badge-ig">ANALISANDO</span>
+            </div>
+            <div class="panorama-card-conteudo">
+              <div class="panorama-linha-info panorama-bloco-pauta">
+                <strong id="hero-rotulo-pauta-ig" class="panorama-rotulo">Pauta em Foco:</strong>
+                <span id="hero-pauta-ig" class="panorama-texto-desc">Carregando síntese...</span>
+              </div>
+              <div class="panorama-linha-info panorama-bloco-diretriz">
+                <strong class="panorama-rotulo">Diretriz:</strong>
+                <span id="hero-diretriz-ig" class="panorama-texto-desc">Carregando diretriz...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card YouTube -->
+          <div class="panorama-card-plataforma card-yt" id="panorama-card-yt">
+            <div class="panorama-card-cab">
+              <div class="panorama-plataforma-nome">
+                <svg class="icone-rede-hero" width="20" height="20" viewBox="0 0 24 24" fill="#FF0000">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <strong>YouTube Cearense</strong>
+              </div>
+              <span class="badge-status-hero" id="hero-badge-yt">ANALISANDO</span>
+            </div>
+            <div class="panorama-card-conteudo">
+              <div class="panorama-linha-info panorama-bloco-pauta">
+                <strong id="hero-rotulo-pauta-yt" class="panorama-rotulo">Pauta em Foco:</strong>
+                <span id="hero-pauta-yt" class="panorama-texto-desc">Carregando síntese...</span>
+              </div>
+              <div class="panorama-linha-info panorama-bloco-diretriz">
+                <strong class="panorama-rotulo">Diretriz:</strong>
+                <span id="hero-diretriz-yt" class="panorama-texto-desc">Carregando diretriz...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SEÇÃO 0: CONTEXTO GERAL DE BUSCAS (GOOGLE TRENDS CEARÁ) -->
     <section id="google-trends-sec" class="secao secao-transversal-trends">
       <div class="card-transversal-google recolhido">
@@ -80,12 +146,175 @@
     <div class="barra-foco-hubs">
       <span class="foco-label">Visualização:</span>
       <button type="button" class="btn-foco-hub on" id="btn-foco-todos">👁️ Ver Todos</button>
-      <button type="button" class="btn-foco-hub" id="btn-foco-yt">▶ Focar YouTube</button>
       <button type="button" class="btn-foco-hub" id="btn-foco-ig">📸 Focar Instagram</button>
+      <button type="button" class="btn-foco-hub" id="btn-foco-yt">▶ Focar YouTube</button>
     </div>
 
-    <!-- SEÇÃO 1: HUB DE INTELIGÊNCIA · YOUTUBE CEARENSE -->
-    <section id="monitor-sec" class="secao hub-plataforma-sec hub-youtube-sec">
+    <!-- SEÇÃO 1: HUB DE INTELIGÊNCIA · INSTAGRAM -->
+    <section id="hub-instagram-sec" class="secao hub-plataforma-sec hub-instagram-sec recolhido">
+      <div class="cab-hub-plataforma" id="cab-hub-ig">
+        <div class="hub-titulo-wrap">
+          <svg class="hub-icone-marca" width="28" height="28" viewBox="0 0 24 24" fill="#E1306C">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <div>
+            <span class="sub-chapeu-plataforma ig">📸 Ecossistema Instagram</span>
+            <h2>Monitoramento Instagram (Perfis & Hashtags)</h2>
+            <div class="sub-detalhes-acordeao">
+              <div class="linha-sub-acordeao">
+                <span class="sub-desc-texto">Mandato e Perfis Cearenses em Foco</span>
+                <span class="ponto-separador-sub">•</span>
+                <span class="amostra-acordeao-badge" id="amostra-header-ig">...</span>
+                <span class="ponto-separador-sub">•</span>
+                <button type="button" class="btn-ver-fontes" id="btn-fontes-ig" title="Consultar lista de perfis e hashtags monitorados">
+                  Ver perfis monitorados ℹ️
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hub-acoes-topo">
+          <button type="button" class="btn-toggle-hub" id="btn-toggle-hub-ig" title="Minimizar ou expandir painel do Instagram">
+            <span class="rotulo-toggle">Expandir</span>
+            <svg class="icone-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="hub-corpo" id="hub-corpo-ig">
+        <!-- ========================================================================= -->
+        <!-- MÓDULO DE INTELIGÊNCIA: RADAR TÁTICO · INSTAGRAM                          -->
+        <!-- ========================================================================= -->
+        <div class="card-radar-tatico" id="radar-tatico-ig-card">
+          <div class="cab-radar-tatico">
+            <div class="topo-tatico-esq">
+              <span class="icone-raio">⚡</span>
+              <div>
+                <div class="linha-titulo-tatico">
+                  <h3>RADAR TÁTICO</h3>
+                  <span class="badge-status-tatico" id="badge-status-dominio-ig">ANALISANDO</span>
+                </div>
+                <p class="sub-tatico">Base: Janela Urgente (última 1h de dados) + Janela Macro (últimas 24h consolidadas).</p>
+              </div>
+            </div>
+            <div class="acoes-tatico-dir">
+              <span class="tempo-atualizacao-tatico" id="tempo-tatico-ig">Atualizado agora</span>
+              <button type="button" class="btn-copiar-tatico" id="btn-exportar-tarefas-ig" title="Copiar tarefas formatadas para colar no WhatsApp">
+                <span>📋</span> Exportar Tarefas para WhatsApp
+              </button>
+            </div>
+          </div>
+
+          <div class="corpo-radar-tatico" id="corpo-radar-tatico-ig">
+            <!-- Bloco 1: Janela Urgente / Crise -->
+            <div class="bloco-tatico-urgente" id="bloco-urgente-ig">
+              <div class="subcab-tatico urgente">
+                <span class="tag-urgente" id="tag-urgente-ig">🚨 URGENTE (ÚLTIMA 1H)</span>
+                <span class="diagnostico-resumo-1h" id="diagnostico-urgente-1h-ig">Carregando diagnóstico...</span>
+              </div>
+              <div class="conteudo-tatico-alerta" id="conteudo-alerta-urgente-ig">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
+
+            <!-- Bloco 2: Janela Macro 24h / Diretriz Estratégica -->
+            <div class="bloco-tatico-macro" id="bloco-macro-ig">
+              <div class="subcab-tatico macro">
+                <span class="tag-macro">🟢 DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE DE AVANÇO</span>
+              </div>
+              <div class="conteudo-tatico-diretriz" id="conteudo-diretriz-macro-ig">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR · INSTAGRAM -->
+        <div class="painel-sentimento-gemini painel-sentimento-instagram" id="painel-sentimento-ig">
+          <div class="sentimento-topo">
+            <div class="sentimento-titulo-wrap">
+              <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+                <span class="badge-instagram">📸 Instagram · Redes & Mandato</span>
+              </div>
+              <h3>Temperatura das Menções & Humor Popular · Instagram</h3>
+              <p class="sentimento-desc">Classificação dos comentários dos perfis monitorados de lideranças e veículos da mídia cearense.</p>
+            </div>
+            <div class="sentimento-acoes-dir" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <div class="filtro-janela-wrap" id="filtro-janela-ig">
+                <button type="button" id="btn-ig-1h" class="filtro-janela-btn on" title="Filtrar última 1 hora no Instagram">1h</button>
+                <button type="button" id="btn-ig-2h" class="filtro-janela-btn" title="Filtrar últimas 2 horas no Instagram">2h</button>
+                <button type="button" id="btn-ig-12h" class="filtro-janela-btn" title="Filtrar últimas 12 horas no Instagram">12h</button>
+                <button type="button" id="btn-ig-24h" class="filtro-janela-btn" title="Filtrar últimas 24 horas no Instagram">24h</button>
+                <button type="button" id="btn-ig-7d" class="filtro-janela-btn" title="Filtrar últimos 7 dias no Instagram">7d</button>
+              </div>
+              <div class="sentimento-meta-badge">
+                <span id="sentimento-ig-total-label">Comentários analisados</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Sentimento Proporcional -->
+          <div class="barra-sentimento-tripla">
+            <div class="barra-sentimento-seg pos" id="barra-sent-ig-pos" style="width: 0%;" title="Positivo / Apoio">
+              <span class="seg-rotulo" id="rotulo-sent-ig-pos">0% Positivo</span>
+            </div>
+            <div class="barra-sentimento-seg neu" id="barra-sent-ig-neu" style="width: 0%;" title="Neutro">
+              <span class="seg-rotulo" id="rotulo-sent-ig-neu">0% Neutro</span>
+            </div>
+            <div class="barra-sentimento-seg neg" id="barra-sent-ig-neg" style="width: 0%;" title="Crítica / Oposição">
+              <span class="seg-rotulo" id="rotulo-sent-ig-neg">0% Crítica / Oposição</span>
+            </div>
+          </div>
+
+          <!-- Grade de Análise Inteligente: Balanço de Disputa & Auditoria de Comentários -->
+          <div class="grade-sentimento-cards grade-balanco-layout">
+            
+            <!-- Bloco Principal: Balanço de Disputa Narrativa (Saldo Líquido em Cartões) -->
+            <div class="card-sentimento card-balanco-disputa">
+              <div class="cab-card-balanco">
+                <div class="topo-balanco-info">
+                  <span class="icone-sent">⚖️</span>
+                  <div>
+                    <h4>Balanço de Disputa Narrativa (Saldo Líquido)</h4>
+                    <p class="sub-balanco" id="sub-balanco-ig">Saldo líquido de menções nas últimas 2h</p>
+                  </div>
+                </div>
+                <div class="acoes-balanco-topo">
+                  <div class="botoes-ord-balanco">
+                    <button type="button" id="btn-ord-vol-ig" class="btn-ord-balanco on" title="Ordenar por Volume">Volume</button>
+                    <button type="button" id="btn-ord-saldo-ig" class="btn-ord-balanco" title="Ordenar por Criticidade do Saldo">Criticidade</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lista de Cartões Individuais de Pauta -->
+              <div class="lista-cards-pautas-balanco" id="tabela-balanco-ig-corpo">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
+
+            <!-- Coluna 2: Amostras Reais Analisadas -->
+            <div class="card-sentimento card-sent-amostras">
+              <div class="cab-card-sent">
+                <span class="icone-sent">💬</span>
+                <h4 id="tit-col-comentarios-ig">Comentários Reais em Destaque</h4>
+                <span class="badge-amostras" id="badge-filtro-comentarios-ig">Auditoria em tempo real</span>
+              </div>
+              <div class="lista-amostras-comentarios" id="lista-amostras-comentarios-ig">
+                <!-- Renderizado via app.js -->
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+      <!-- FIM PAINEL SENTIMENTO IG -->
+    </div>
+    <!-- FIM HUB CORPO IG -->
+  </section>
+
+    <!-- SEÇÃO 2: HUB DE INTELIGÊNCIA · YOUTUBE CEARENSE -->
+    <section id="monitor-sec" class="secao hub-plataforma-sec hub-youtube-sec recolhido">
       <div class="cab-hub-plataforma" id="cab-hub-yt">
         <div class="hub-titulo-wrap">
           <svg class="hub-icone-marca" width="28" height="28" viewBox="0 0 24 24" fill="#FF0000">
@@ -94,11 +323,22 @@
           <div>
             <span class="sub-chapeu-plataforma yt">▶ Ecossistema de Vídeos</span>
             <h2>Monitoramento YouTube</h2>
+            <div class="sub-detalhes-acordeao">
+              <div class="linha-sub-acordeao">
+                <span class="sub-desc-texto">Principais Canais e Tendências de Busca</span>
+                <span class="ponto-separador-sub">•</span>
+                <span class="amostra-acordeao-badge" id="amostra-header-yt">...</span>
+                <span class="ponto-separador-sub">•</span>
+                <button type="button" class="btn-ver-fontes" id="btn-fontes-yt" title="Consultar lista de canais monitorados no YouTube">
+                  Ver canais monitorados ℹ️
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="hub-acoes-topo">
           <button type="button" class="btn-toggle-hub" id="btn-toggle-hub-yt" title="Minimizar ou expandir painel do YouTube">
-            <span class="rotulo-toggle">Minimizar</span>
+            <span class="rotulo-toggle">Expandir</span>
             <svg class="icone-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
         </div>
@@ -238,158 +478,6 @@
       <!-- FIM HUB CORPO YT -->
     </section>
 
-    <!-- SEÇÃO 2: HUB DE INTELIGÊNCIA · INSTAGRAM -->
-    <section id="hub-instagram-sec" class="secao hub-plataforma-sec hub-instagram-sec">
-      <div class="cab-hub-plataforma" id="cab-hub-ig">
-        <div class="hub-titulo-wrap">
-          <svg class="hub-icone-marca" width="28" height="28" viewBox="0 0 24 24" fill="#E1306C">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-          <div>
-            <span class="sub-chapeu-plataforma ig">📸 Ecossistema Instagram</span>
-            <h2>Monitoramento Instagram (Perfis & Hashtags)</h2>
-          </div>
-        </div>
-        <div class="hub-acoes-topo">
-          <button type="button" class="btn-toggle-hub" id="btn-toggle-hub-ig" title="Minimizar ou expandir painel do Instagram">
-            <span class="rotulo-toggle">Minimizar</span>
-            <svg class="icone-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="hub-corpo" id="hub-corpo-ig">
-        <!-- ========================================================================= -->
-        <!-- MÓDULO DE INTELIGÊNCIA: RADAR TÁTICO · INSTAGRAM                          -->
-        <!-- ========================================================================= -->
-        <div class="card-radar-tatico" id="radar-tatico-ig-card">
-          <div class="cab-radar-tatico">
-            <div class="topo-tatico-esq">
-              <span class="icone-raio">⚡</span>
-              <div>
-                <div class="linha-titulo-tatico">
-                  <h3>RADAR TÁTICO</h3>
-                  <span class="badge-status-tatico" id="badge-status-dominio-ig">ANALISANDO</span>
-                </div>
-                <p class="sub-tatico">Base: Janela Urgente (última 1h de dados) + Janela Macro (últimas 24h consolidadas).</p>
-              </div>
-            </div>
-            <div class="acoes-tatico-dir">
-              <span class="tempo-atualizacao-tatico" id="tempo-tatico-ig">Atualizado agora</span>
-              <button type="button" class="btn-copiar-tatico" id="btn-exportar-tarefas-ig" title="Copiar tarefas formatadas para colar no WhatsApp">
-                <span>📋</span> Exportar Tarefas para WhatsApp
-              </button>
-            </div>
-          </div>
-
-          <div class="corpo-radar-tatico" id="corpo-radar-tatico-ig">
-            <!-- Bloco 1: Janela Urgente / Crise -->
-            <div class="bloco-tatico-urgente" id="bloco-urgente-ig">
-              <div class="subcab-tatico urgente">
-                <span class="tag-urgente" id="tag-urgente-ig">🚨 URGENTE (ÚLTIMA 1H)</span>
-                <span class="diagnostico-resumo-1h" id="diagnostico-urgente-1h-ig">Carregando diagnóstico...</span>
-              </div>
-              <div class="conteudo-tatico-alerta" id="conteudo-alerta-urgente-ig">
-                <!-- Renderizado via app.js -->
-              </div>
-            </div>
-
-            <!-- Bloco 2: Janela Macro 24h / Diretriz Estratégica -->
-            <div class="bloco-tatico-macro" id="bloco-macro-ig">
-              <div class="subcab-tatico macro">
-                <span class="tag-macro">🟢 DIRETRIZ DO DIA (ÚLTIMAS 24H) · OPORTUNIDADE DE AVANÇO</span>
-              </div>
-              <div class="conteudo-tatico-diretriz" id="conteudo-diretriz-macro-ig">
-                <!-- Renderizado via app.js -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAINEL DE SENTIMENTO & HUMOR POPULAR · INSTAGRAM -->
-        <div class="painel-sentimento-gemini painel-sentimento-instagram" id="painel-sentimento-ig">
-          <div class="sentimento-topo">
-            <div class="sentimento-titulo-wrap">
-              <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
-                <span class="badge-instagram">📸 Instagram · Redes & Mandato</span>
-              </div>
-              <h3>Temperatura das Menções & Humor Popular · Instagram</h3>
-              <p class="sentimento-desc">Classificação dos comentários dos perfis monitorados de lideranças e veículos da mídia cearense.</p>
-            </div>
-            <div class="sentimento-acoes-dir" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-              <div class="filtro-janela-wrap" id="filtro-janela-ig">
-                <button type="button" id="btn-ig-1h" class="filtro-janela-btn on" title="Filtrar última 1 hora no Instagram">1h</button>
-                <button type="button" id="btn-ig-2h" class="filtro-janela-btn" title="Filtrar últimas 2 horas no Instagram">2h</button>
-                <button type="button" id="btn-ig-12h" class="filtro-janela-btn" title="Filtrar últimas 12 horas no Instagram">12h</button>
-                <button type="button" id="btn-ig-24h" class="filtro-janela-btn" title="Filtrar últimas 24 horas no Instagram">24h</button>
-                <button type="button" id="btn-ig-7d" class="filtro-janela-btn" title="Filtrar últimos 7 dias no Instagram">7d</button>
-              </div>
-              <div class="sentimento-meta-badge">
-                <span id="sentimento-ig-total-label">Comentários analisados</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Barra de Sentimento Proporcional -->
-          <div class="barra-sentimento-tripla">
-            <div class="barra-sentimento-seg pos" id="barra-sent-ig-pos" style="width: 0%;" title="Positivo / Apoio">
-              <span class="seg-rotulo" id="rotulo-sent-ig-pos">0% Positivo</span>
-            </div>
-            <div class="barra-sentimento-seg neu" id="barra-sent-ig-neu" style="width: 0%;" title="Neutro">
-              <span class="seg-rotulo" id="rotulo-sent-ig-neu">0% Neutro</span>
-            </div>
-            <div class="barra-sentimento-seg neg" id="barra-sent-ig-neg" style="width: 0%;" title="Crítica / Oposição">
-              <span class="seg-rotulo" id="rotulo-sent-ig-neg">0% Crítica / Oposição</span>
-            </div>
-          </div>
-
-          <!-- Grade de Análise Inteligente: Balanço de Disputa & Auditoria de Comentários -->
-          <div class="grade-sentimento-cards grade-balanco-layout">
-            
-            <!-- Bloco Principal: Balanço de Disputa Narrativa (Saldo Líquido em Cartões) -->
-            <div class="card-sentimento card-balanco-disputa">
-              <div class="cab-card-balanco">
-                <div class="topo-balanco-info">
-                  <span class="icone-sent">⚖️</span>
-                  <div>
-                    <h4>Balanço de Disputa Narrativa (Saldo Líquido)</h4>
-                    <p class="sub-balanco" id="sub-balanco-ig">Saldo líquido de menções nas últimas 2h</p>
-                  </div>
-                </div>
-                <div class="acoes-balanco-topo">
-                  <div class="botoes-ord-balanco">
-                    <button type="button" id="btn-ord-vol-ig" class="btn-ord-balanco on" title="Ordenar por Volume">Volume</button>
-                    <button type="button" id="btn-ord-saldo-ig" class="btn-ord-balanco" title="Ordenar por Criticidade do Saldo">Criticidade</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Lista de Cartões Individuais de Pauta -->
-              <div class="lista-cards-pautas-balanco" id="tabela-balanco-ig-corpo">
-                <!-- Renderizado via app.js -->
-              </div>
-            </div>
-
-            <!-- Coluna 2: Amostras Reais Analisadas -->
-            <div class="card-sentimento card-sent-amostras">
-              <div class="cab-card-sent">
-                <span class="icone-sent">💬</span>
-                <h4 id="tit-col-comentarios-ig">Comentários Reais em Destaque</h4>
-                <span class="badge-amostras" id="badge-filtro-comentarios-ig">Auditoria em tempo real</span>
-              </div>
-              <div class="lista-amostras-comentarios" id="lista-amostras-comentarios-ig">
-                <!-- Renderizado via app.js -->
-              </div>
-            </div>
-
-          </div>
-
-      </div>
-      <!-- FIM PAINEL SENTIMENTO IG -->
-    </div>
-    <!-- FIM HUB CORPO IG -->
-  </section>
-
   </main>
 
   <footer class="rodape">
@@ -403,6 +491,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- MODAL: FONTES MONITORADAS (CANAIS E PERFIS) -->
+  <div id="modal-fontes-overlay" class="modal-fontes-overlay fechar-modal" style="display: none;" aria-hidden="true" role="dialog">
+    <div class="modal-fontes-card" role="document">
+      <div class="modal-fontes-cab">
+        <div class="modal-fontes-titulo-wrap">
+          <span class="modal-icone-rede" id="modal-fontes-icone">📱</span>
+          <div>
+            <h3 class="modal-fontes-titulo" id="modal-fontes-titulo">Fontes Monitoradas</h3>
+            <span class="modal-fontes-subtitulo" id="modal-fontes-subtitulo">Alvos e canais em tempo real</span>
+          </div>
+        </div>
+        <button type="button" class="btn-fechar-modal-x" id="btn-fechar-modal-x" title="Fechar modal (Esc)">✕</button>
+      </div>
+
+      <div class="modal-fontes-corpo" id="modal-fontes-corpo">
+        <!-- Renderizado dinamicamente via app.js -->
+      </div>
+
+      <div class="modal-fontes-rodape">
+        <span class="modal-contagem-total" id="modal-contagem-total">0 fontes cadastradas</span>
+        <button type="button" class="btn-modal-fechar-base" id="btn-fechar-modal-base">Fechar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

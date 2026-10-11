@@ -1,9 +1,16 @@
 name: Radar Ceará · Atualização Automática de Dados com IA
 
 on:
-  # Agendamento único às 23h do Ceará (pausado temporariamente a pedido):
-  # schedule:
-  #   - cron: '0 2 * * *'
+  # Agendamento estratégico de 4 rodadas diárias no fuso de Fortaleza/CE (UTC-3):
+  # 07:30 CE -> 10:30 UTC
+  # 12:30 CE -> 15:30 UTC
+  # 17:30 CE -> 20:30 UTC
+  # 21:30 CE -> 00:30 UTC (D+1)
+  schedule:
+    - cron: '30 10 * * *'  # 07:30 Fortaleza/CE
+    - cron: '30 15 * * *'  # 12:30 Fortaleza/CE
+    - cron: '30 20 * * *'  # 17:30 Fortaleza/CE
+    - cron: '30 0 * * *'   # 21:30 Fortaleza/CE
 
   # Permite disparar manualmente pelo botão "Run workflow" no GitHub Actions
   workflow_dispatch:

@@ -1,5 +1,236 @@
 [
   {
+    "id": "s1hJ-QArmJA",
+    "titulo": "Motorista do amor...Trio Parada Dura...karaoke ",
+    "canal": "Valdeci karaoke",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.486433+00:00"
+  },
+  {
+    "id": "yK27btXZRj8",
+    "titulo": "MOVIMENTAÇÃO DE ÔNIBUS / TERMINAL DO SIQUEIRA FORTALEZA CE",
+    "canal": "Ottodanger_onibusbrasil",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.282328+00:00"
+  },
+  {
+    "id": "-QvKU5zS-hg",
+    "titulo": "ÔNIBUS URBANO: AUTOVIARIA SÃO VICENTE DE PAULO A MAIOR DE FORTALEZA!",
+    "canal": "Mundo dos Ônibus Fortaleza-CE (Brazil)",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.282327+00:00"
+  },
+  {
+    "id": "ObFz9ZO_670",
+    "titulo": "Ônibus Articulados em Fortaleza",
+    "canal": "TVSindiônibus",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.282319+00:00"
+  },
+  {
+    "id": "IVwgmildjfI",
+    "titulo": "Fortaleza avança com mutirão de saúde e novas tecnologias",
+    "canal": "Prefeitura de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.266355+00:00"
+  },
+  {
+    "id": "tNWjXdR9z70",
+    "titulo": "Fortaleza tá cheia de coisa acontecendo! ✨",
+    "canal": "Prefeitura de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.266352+00:00"
+  },
+  {
+    "id": "rnIOzAg2vUo",
+    "titulo": "Sigilo Roots no Viradão da Juventude 2018 (Cuca do Mondubim) #2",
+    "canal": "Sigilo Roots",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.116401+00:00"
+  },
+  {
+    "id": "vpUfa4BYVLI",
+    "titulo": "ABERTURA REGIONAL DE LISIEUX SANTA QUITÉRIA, CLÁSSICO! FORTALEZA X JUVENTUDE.",
+    "canal": "TAPERUABA ESPORTES ",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:30.116329+00:00"
+  },
+  {
+    "id": "KFMPa301a2M",
+    "titulo": "APURAÇÃO DAS ELEIÇÕES 2026 -  ESTADO DO CEARÁ",
+    "canal": "🔰 Tv Millennium 🌐",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.956505+00:00"
+  },
+  {
+    "id": "Qn0hMKmQfzE",
+    "titulo": "Cuidar das pessoas, avançar o Ceará! | #governodoceará overnodoCeará",
+    "canal": "Governo do Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.956479+00:00"
+  },
+  {
+    "id": "cHqosDWOAzk",
+    "titulo": "SESSÃO SOLENE EM COMEMORAÇÃO AO DIA DO CONTABILISTA 22.09.26",
+    "canal": "Câmara de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.767439+00:00"
+  },
+  {
+    "id": "Df7LYU-E6fY",
+    "titulo": "Ciro Gomes e Elmano batem boca e trocam acusações em debate no Ceará: 'Na minha cara, não'",
+    "canal": "UOL",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.759163+00:00"
+  },
+  {
+    "id": "cQP9kMpD2Wo",
+    "titulo": "Onde Elmano e Ciro foram mais votados? Saiba como votou cada região do Ceará | #OP News",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.759153+00:00"
+  },
+  {
+    "id": "NVbhwLLoT1U",
+    "titulo": "Programa de Estreia | Elmano 13 é Ceará Forte, do Lado Certo",
+    "canal": "Elmano de Freitas",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.759136+00:00"
+  },
+  {
+    "id": "PJGKwSeL6Ro",
+    "titulo": "🔥“Vocês sabem o que era o Nordeste antes da gente chegar?” O povo nordestino sabe a resposta🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.659437+00:00"
+  },
+  {
+    "id": "Rl8KRb0sbaE",
+    "titulo": "🚨Se você votou no Renan Santos para presidente da República, fique nesse vídeo🚨",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.659428+00:00"
+  },
+  {
+    "id": "ZJ5s9EFQVfI",
+    "titulo": "🔥Fátima Bezerra se emociona em Natal e diz que Nordeste tem sabedoria de reconhecer feitos de Lula🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.659423+00:00"
+  },
+  {
+    "id": "MicTtZC3vMA",
+    "titulo": "🔴 Meio-dia Ceará | Plus FM | 09.10.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.499091+00:00"
+  },
+  {
+    "id": "DUBx_6q9iRY",
+    "titulo": "Nova rodada  Focus/Atlasintel - Fortaleza",
+    "canal": "Focus Poder",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.168235+00:00"
+  },
+  {
+    "id": "Xb08rk-efec",
+    "titulo": "Pesquisa AtlasIntel Fortaleza: André 50,5% contra Evandro 49,5%",
+    "canal": "Focus Poder",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:29.168230+00:00"
+  },
+  {
+    "id": "MhpENpcOrIE",
+    "titulo": "BALANÇO DAS URNAS: OS NÚMEROS, AS SURPRESAS E OS IMPACTOS DO RESULTADO ELEITORAL.",
+    "canal": "Ceará Acontece",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.963331+00:00"
+  },
+  {
+    "id": "CylrFnnn7Jc",
+    "titulo": "Roberto Cláudio celebra adesão popular em atos no Ceará #fortaleza #notícias #politica",
+    "canal": "Radar do Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.943568+00:00"
+  },
+  {
+    "id": "tw4jqEtdMlc",
+    "titulo": "O Retorno ao Brasil e, posteriormente, ao Ceará ⚠️ 2° EPISÓDIO de 4",
+    "canal": "TV Atitude Popular",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.892958+00:00"
+  },
+  {
+    "id": "aAaPhUVDzqQ",
+    "titulo": "Eleita nova Mesa Diretora da Alece para o biênio 2025-2026",
+    "canal": "Jornalismo - ALECE",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.766680+00:00"
+  },
+  {
+    "id": "BWFED2ebWxA",
+    "titulo": "Jornal Alece - Edição da Manhã - 06.08.2026",
+    "canal": "Jornalismo - ALECE",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.766633+00:00"
+  },
+  {
+    "id": "mtIp5gDjR-I",
+    "titulo": "AO VIVO: Debate entre os candidatos à Prefeitura de Fortaleza em 2024 | TV Cidade Fortaleza",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.667552+00:00"
+  },
+  {
+    "id": "YOQ2l9A5DJ4",
+    "titulo": "Fortaleza encara São Paulo com transmissão da TV Cidade, emissora Record no CE | Jornal da Cidade",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.667546+00:00"
+  },
+  {
+    "id": "rYdNmx97VYc",
+    "titulo": "TV Cidade Fortaleza reúne emissoras Record no Nordeste para 2025 | Balanço Geral CE Manhã",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.667541+00:00"
+  },
+  {
+    "id": "XZtV0ZDb-xs",
+    "titulo": "TV Cidade Fortaleza lança nova identidade visual rumo aos 50 anos | Balanço Geral CE",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.667535+00:00"
+  },
+  {
+    "id": "3CFn06-6W2g",
+    "titulo": "🔴AO VIVO: Acompanhe os dados da pesquisa Datafolha para o Senado no Ceará | OP NEWS",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.462672+00:00"
+  },
+  {
+    "id": "oydH4UwCAxA",
+    "titulo": "Eleições 2026: análise das pesquisas mais recentes e dos cenários no CE, AL, MA, PI, AM e PA",
+    "canal": "UrbNews",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.229134+00:00"
+  },
+  {
+    "id": "VmsdUBk_stE",
+    "titulo": "🔴AO VIVO | Entrevista com Elmano; Datafolha: Flávio 52%, Lula 48% | OPR | 09/10/26",
+    "canal": "Rádio O POVO CBN",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.185620+00:00"
+  },
+  {
+    "id": "1MB8dVd4bgM",
+    "titulo": "🔴AO VIVO | Restrição a impeachment de ministro do STF; entrevista a governador Elmano | OPR 5/12/25",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-11T03:19:28.185610+00:00"
+  },
+  {
     "id": "yRwmMKZvu24",
     "titulo": "Ônibus de Fortaleza em 2017 (1) (Brazilian Buses)",
     "canal": "Nícolas Gordiano",

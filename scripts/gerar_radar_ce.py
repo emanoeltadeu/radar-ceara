@@ -58,7 +58,7 @@ def executar_coleta_paralela():
         return vids, comentarios
 
     def tarefa_instagram():
-        return coletar_comentarios_instagram_apify(max_posts_por_perfil=3, max_espera_segundos=35)
+        return coletar_comentarios_instagram_apify(limite_perfis=8, max_posts_por_perfil=5, max_espera_segundos=45)
 
     def tarefa_trends():
         t4 = coletar_trends_ceara(hours=4)
@@ -123,6 +123,45 @@ def main():
     comentarios_classificados_ig = sentimento_instagram.get("todos_comentarios") or sentimento_instagram.get("comentarios_todos") or []
     radar_tatico_ig = gerar_insights_radar_tatico_ig(comentarios_classificados_ig, chaves.get("gemini", ""))
 
+    # 4.2 Carregamento dinâmico das fontes monitoradas (alvos cadastrados nos .txt)
+    def carregar_fontes_monitoradas():
+        raiz = os.path.dirname(DIRETORIO_SCRIPTS)
+        p_ig = os.path.join(raiz, "dados", "perfis_instagram.txt")
+        h_ig = os.path.join(raiz, "dados", "hashtags_instagram.txt")
+        c_yt = os.path.join(raiz, "dados", "canais_youtube_ce.txt")
+        if not os.path.exists(c_yt):
+            c_yt = os.path.join(raiz, "dados", "canais_youtube.txt")
+
+        perfis = []
+        if os.path.exists(p_ig):
+            with open(p_ig, "r", encoding="utf-8") as f:
+                perfis = [l.strip() for l in f if l.strip().startswith("@")]
+
+        hashtags = []
+        if os.path.exists(h_ig):
+            with open(h_ig, "r", encoding="utf-8") as f:
+                for l in f:
+                    linha = l.strip()
+                    if linha.startswith("#") and " " not in linha and len(linha) > 1 and not linha.startswith("##") and not linha.startswith("# =") and not linha.startswith("# -"):
+                        hashtags.append(linha)
+
+        canais = []
+        if os.path.exists(c_yt):
+            with open(c_yt, "r", encoding="utf-8") as f:
+                canais = [l.strip() for l in f if l.strip() and not l.strip().startswith("#")]
+
+        return {
+            "instagram": {
+                "perfis": perfis,
+                "hashtags": hashtags
+            },
+            "youtube": {
+                "canais": canais
+            }
+        }
+
+    fontes_monitoradas = carregar_fontes_monitoradas()
+
     # 5. Consolidação e Gravação do Arquivo Final
     hora_ce = datetime.now(FUSO_CE).strftime("%d/%m/%Y às %H:%M")
     payload = {
@@ -135,7 +174,8 @@ def main():
         "monitor_redes": monitor_redes,
         "sentimento_youtube": sentimento_youtube,
         "sentimento_instagram": sentimento_instagram,
-        "meta_transparencia": meta_ads
+        "meta_transparencia": meta_ads,
+        "fontes_monitoradas": fontes_monitoradas
     }
 
     os.makedirs(os.path.dirname(SAIDA_RADAR_JSON), exist_ok=True)

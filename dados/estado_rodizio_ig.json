@@ -1,19 +1,16 @@
 {
-  "proximo_indice": 15,
-  "indice_rodada_anterior": 4,
+  "proximo_indice": 3,
+  "indice_rodada_anterior": 15,
   "total_perfis_cadastrados": 21,
   "lote_selecionado": [
-    "prefeituradefortaleza",
-    "rede_cuca",
-    "midianinja",
-    "opovoonline",
-    "opovocbn",
-    "diariodonordeste",
-    "gcmais",
-    "jornaljangadeiro",
-    "tvceara",
-    "assembleiace",
-    "focuspoder"
+    "urbnews",
+    "radardoceara",
+    "cearanoticias",
+    "etufortaleza",
+    "centraldoonibusfortaleza",
+    "suricateseboso",
+    "elmanodefreitas",
+    "camilosantanaoficial"
   ],
-  "atualizado_em": "2026-10-10T12:41:35.674866"
+  "atualizado_em": "2026-10-11T00:19:27.364820"
 }

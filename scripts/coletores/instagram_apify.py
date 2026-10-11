@@ -14,7 +14,6 @@ import json
 import os
 import time
 import urllib.request
-import urllib.parse
 from datetime import datetime
 
 from config import (
@@ -27,42 +26,29 @@ from config import (
     carregar_chaves_api
 )
 
-def carregar_perfis_instagram(tamanho_lote=5, limite_perfis=None):
+def carregar_perfis_instagram(tamanho_lote=8, limite_perfis=None):
     if limite_perfis is not None:
         tamanho_lote = limite_perfis
     """
     =============================================================================
-    RODÍZIO INTELIGENTE DE PERFIS DO INSTAGRAM (CUSTO ZERO & COBERTURA TOTAL)
+    RODÍZIO CIRCULAR DE PERFIS DO INSTAGRAM (CUSTO ZERO & COBERTURA HOMOGÊNEA)
     =============================================================================
-    POR QUE FOI IMPLEMENTADO ASSIM?
-        O arquivo 'dados/perfis_instagram.txt' contém 24 perfis estratégicos no Ceará
-        (mandato popular, imprensa, oposição e transporte público).
-        Se enviássemos os 24 perfis de uma só vez a cada hora para a nuvem da Apify:
-        1. O tempo de execução por rodada aumentaria para ~2 minutos;
-        2. O consumo mensal de computação ultrapassaria a cota gratuita de US$ 5.00/mês da Apify.
-
-    COMO FUNCIONA O RODÍZIO INTELIGENTE:
-        1. PERFIL DO MANDATO É FIXO (@leosuricate):
-           O perfil oficial de Léo Suricate é SEMPRE incluído em 100% das rodadas,
-           garantindo que nenhuma postagem ou debate do mandato seja perdido.
+    COMO FUNCIONA O RODÍZIO:
+        1. FILA CIRCULAR COMPLETA (SEM PERFIL FIXO):
+           Todos os perfis cadastrados em 'dados/perfis_instagram.txt' (incluindo
+           @leosuricate, lideranças e imprensa) participam igualmente da rotação circular.
         
-        2. FILA CIRCULAR DOS DEMAIS 23 PERFIS:
-           Os demais 23 perfis são organizados em uma fila circular rotativa.
-           A cada execução, o sistema carrega uma fatia de 'tamanho_lote' (padrão: 5 perfis)
+        2. LOTE ROTATIVO POR RODADA:
+           A cada execução, o sistema carrega uma fatia de 'tamanho_lote' (padrão: 8 perfis)
            a partir do ponteiro salvo em 'dados/estado_rodizio_ig.json'.
         
         3. AVANÇO AUTOMÁTICO DO PONTEIRO:
-           A cada rodada, o ponteiro avança (0 -> 5 -> 10 -> 15 -> 20 -> 0...),
-           salvando o estado para a próxima execução.
+           A cada rodada, o ponteiro avança, salvando o estado para a próxima execução.
         
         4. COBERTURA COMPLETA AO LONGO DO DIA:
-           Como o GitHub Actions roda 8 vezes por dia (08h, 11h, 13h, 15h, 17h, 20h, 22h, 23h):
-           - 8 execuções x 5 perfis rotativos = 40 consultas de perfis por dia.
-           - Como temos 23 perfis rotativos, CADA PERFIL É VISITADO CERCA DE 2 VEZES POR DIA.
-        
-        5. CUSTO ZERO GARANTIDO:
-           Com 6 perfis por rodada (1 fixo + 5 rotativos), o consumo mensal da Apify
-           fica em aproximadamente US$ 2.40/mês, 100% DENTRO da cota gratuita de US$ 5.00/mês.
+           Na grade de 4 rodadas diárias em Fortaleza/CE (07:30, 12:30, 17:30 e 21:30):
+           4 rodadas x 8 perfis = 32 consultas de perfis por dia.
+           Como temos 21 perfis ativos, cada perfil é visitado ~1,5 a 2 vezes ao dia.
     =============================================================================
     """
     perfis = []
@@ -77,22 +63,17 @@ def carregar_perfis_instagram(tamanho_lote=5, limite_perfis=None):
                         continue
                     if linha.startswith("@"):
                         user = linha.lstrip("@").strip()
-                        perfis.append(f"https://www.instagram.com/{user}/")
+                        url = f"https://www.instagram.com/{user}/"
+                        if url not in perfis:
+                            perfis.append(url)
         except Exception:
             pass
 
-    # 1. Garante perfil do Léo Suricate como fixo e prioritário
-    leo_url = "https://www.instagram.com/leosuricate/"
-    if leo_url not in perfis:
-        perfis.insert(0, leo_url)
+    total_perfis = len(perfis)
+    if total_perfis == 0:
+        return ["https://www.instagram.com/leosuricate/"]
 
-    outros_perfis = [p for p in perfis if p != leo_url]
-    total_outros = len(outros_perfis)
-
-    if total_outros == 0:
-        return [leo_url]
-
-    # 2. Recupera o ponteiro da última execução
+    # 1. Recupera o ponteiro da última execução
     caminho_estado = ESTADO_RODIZIO_IG if os.path.exists(os.path.dirname(ESTADO_RODIZIO_IG)) else os.path.join("dados", "estado_rodizio_ig.json")
     indice_atual = 0
 
@@ -104,33 +85,31 @@ def carregar_perfis_instagram(tamanho_lote=5, limite_perfis=None):
         except Exception:
             indice_atual = 0
 
-    indice_atual = indice_atual % total_outros
+    indice_atual = indice_atual % total_perfis
 
-    # 3. Seleciona o lote rotativo circular desta rodada
+    # 2. Seleciona o lote rotativo circular desta rodada
     lote_rotativo = []
-    for i in range(tamanho_lote):
-        idx = (indice_atual + i) % total_outros
-        perfil_escolhido = outros_perfis[idx]
+    for i in range(min(tamanho_lote, total_perfis)):
+        idx = (indice_atual + i) % total_perfis
+        perfil_escolhido = perfis[idx]
         if perfil_escolhido not in lote_rotativo:
             lote_rotativo.append(perfil_escolhido)
 
-    # 4. Atualiza e persiste o novo ponteiro para a próxima execução
-    proximo_indice = (indice_atual + tamanho_lote) % total_outros
+    # 3. Atualiza e persiste o novo ponteiro para a próxima execução
+    proximo_indice = (indice_atual + len(lote_rotativo)) % total_perfis
     try:
         with open(caminho_estado, "w", encoding="utf-8") as f:
             json.dump({
                 "proximo_indice": proximo_indice,
                 "indice_rodada_anterior": indice_atual,
-                "total_perfis_cadastrados": len(perfis),
+                "total_perfis_cadastrados": total_perfis,
                 "lote_selecionado": [p.split("/")[-2] for p in lote_rotativo],
                 "atualizado_em": datetime.now().isoformat()
             }, f, ensure_ascii=False, indent=2)
     except Exception:
         pass
 
-    # Retorna o perfil de Léo Suricate + o lote rotativo (ex: 1 fixo + 5 rotativos = 6 alvos)
-    alvos_finais = [leo_url] + lote_rotativo
-    return alvos_finais
+    return lote_rotativo
 
 def carregar_hashtags_instagram():
     """
@@ -216,13 +195,12 @@ def _disparar_e_aguardar_ator(actor_id, payload, apify_token, max_espera=45):
         print(f"Aviso ao buscar dataset de {actor_id}: {e}")
         return []
 
-def coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_por_perfil=5):
+def coletar_comentarios_perfis_apify(apify_token, limite_perfis=8, max_posts_por_perfil=5):
     """
-    Coleta comentários dos perfis monitorados via 'apify/instagram-scraper'.
-    1. Varre os alvos (Léo Suricate fixo + 11 rotativos = 12 perfis no total);
-    2. Coleta os últimos posts de cada um (padrão: 5 posts);
-    3. Para os posts com debate ativo (especialmente perfil de mandato e posts com alto volume de comentários),
-       extrai até 100 comentários em lote focado.
+    Coleta comentários dos perfis monitorados via 'apify/instagram-scraper' de forma ultraenxuta:
+    1. Varre os alvos em rodízio circular homogêneo (lote de 8 perfis por rodada);
+    2. Coleta os últimos posts de cada um (padrão: até 5 posts);
+    3. Extrai estritamente os comentários retornados nativamente no nó 'latestComments' (1 única chamada ao ator).
     """
     alvos = carregar_perfis_instagram(limite_perfis=limite_perfis)
     payload = {
@@ -231,29 +209,15 @@ def coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_po
         "resultsLimit": max_posts_por_perfil
     }
 
-    posts = _disparar_e_aguardar_ator("apify/instagram-scraper", payload, apify_token, max_espera=60)
+    posts = _disparar_e_aguardar_ator("apify/instagram-scraper", payload, apify_token, max_espera=45)
     comentarios = []
-    posts_para_comentarios_profundos = []
-
-    # 0. Mapeia contagem de comentários e data mais recente já existente por post no cache
-    cache_post_stats = {}
-    for c in carregar_cache_instagram():
-        url = c.get("post_url") or c.get("link_origem")
-        if url:
-            if url not in cache_post_stats:
-                cache_post_stats[url] = {"total_comentarios": 0, "ultima_data": ""}
-            cache_post_stats[url]["total_comentarios"] += 1
-            dt = c.get("data", "")
-            if dt > cache_post_stats[url]["ultima_data"]:
-                cache_post_stats[url]["ultima_data"] = dt
 
     for p in posts:
         post_url = p.get("url", "")
         post_caption = p.get("caption", "").strip()
         post_titulo = (post_caption.split("\n")[0][:90] + "...") if len(post_caption) > 90 else (post_caption or "Post no Instagram")
-        comments_count = p.get("commentsCount", 0)
 
-        # Comentários rápidos retornados diretamente no grid de posts
+        # Comentários rápidos retornados diretamente no grid de posts (sem Deep Scan)
         for comm in p.get("latestComments", []):
             c_id = comm.get("id")
             txt = (comm.get("text") or "").strip()
@@ -277,69 +241,12 @@ def coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_po
                 "link_instagram": post_url
             })
 
-        # OTIMIZAÇÃO INCREMENTAL:
-        # Só aprofunda se:
-        # 1. Post é do mandato @leosuricate OU tem debate ativo (>= 8 comentários);
-        # 2. E o post ainda NÃO está no cache OU o número de comentários no Instagram aumentou em relação ao cache.
-        eh_leo = "leosuricate" in post_url.lower() or "leosuricate" in (p.get("ownerUsername") or "").lower()
-        comentarios_ja_salvos = cache_post_stats.get(post_url, {}).get("total_comentarios", 0)
-
-        # Se já coletamos todos ou quase todos os comentários deste post, não gasta requisição repetida
-        tem_novidades = comments_count > (comentarios_ja_salvos + 2) or (comentarios_ja_salvos == 0 and comments_count > 0)
-
-        if post_url and (eh_leo or comments_count >= 8) and tem_novidades:
-            posts_para_comentarios_profundos.append((post_url, post_titulo, comments_count))
-
-    # Se identificamos posts de debate ativo, extrai até 100 comentários nos top 3 posts de maior engajamento
-    if posts_para_comentarios_profundos:
-        # Ordena dando prioridade aos com mais comentários ou Léo Suricate
-        posts_ordenados = sorted(
-            posts_para_comentarios_profundos,
-            key=lambda x: (1 if "leosuricate" in x[0].lower() else 0, x[2]),
-            reverse=True
-        )[:3]
-
-        urls_debate = [p[0] for p in posts_ordenados]
-        mapa_titulos = {p[0]: p[1] for p in posts_ordenados}
-
-        payload_deep_comments = {
-            "directUrls": urls_debate,
-            "resultsType": "comments",
-            "resultsLimit": 100
-        }
-        comms_deep = _disparar_e_aguardar_ator("apify/instagram-scraper", payload_deep_comments, apify_token, max_espera=45)
-        for comm in comms_deep:
-            c_id = comm.get("id")
-            txt = (comm.get("text") or "").strip()
-            if not c_id or len(txt) < 3:
-                continue
-
-            autor = comm.get("ownerUsername") or "usuário"
-            autor_formatado = f"@{autor}" if not autor.startswith("@") else autor
-            p_url = comm.get("postUrl") or comm.get("commentUrl") or urls_debate[0]
-            p_titulo = mapa_titulos.get(p_url, "Debate no Instagram")
-
-            comentarios.append({
-                "id": str(c_id),
-                "rede": "instagram",
-                "origem_tipo": "perfil",
-                "autor": autor_formatado,
-                "texto": txt,
-                "likes": comm.get("likesCount", 0),
-                "data": comm.get("timestamp", ""),
-                "origem_titulo": p_titulo,
-                "post_url": p_url,
-                "link_origem": p_url,
-                "link_instagram": p_url
-            })
-
     return comentarios
 
 def coletar_comentarios_hashtag_apify(apify_token, tags=None, max_posts=2):
     """
-    Coleta posts e comentários das hashtags via 'apify/instagram-hashtag-scraper'
-    e complementa com 'apify/instagram-scraper' (comments) caso necessário.
-    Suporta receber uma tag única (str) ou lista de tags (list).
+    Coleta posts e comentários das hashtags via 'apify/instagram-hashtag-scraper'.
+    Aproveita exclusivamente os comentários retornados nativamente no nó 'latestComments' (1 única chamada ao ator).
     """
     if tags is None:
         tags = ["fimda6x1"]
@@ -351,90 +258,41 @@ def coletar_comentarios_hashtag_apify(apify_token, tags=None, max_posts=2):
         return []
 
     # O ator apify/instagram-hashtag-scraper aceita múltiplas hashtags numa só execução
-    limite_total_posts = max(20, max_posts * len(tags_limpas))
+    limite_total_posts = max(10, max_posts * len(tags_limpas))
     payload_tag = {
         "hashtags": tags_limpas,
         "resultsType": "posts",
         "resultsLimit": limite_total_posts
     }
 
-    posts_tag = _disparar_e_aguardar_ator("apify/instagram-hashtag-scraper", payload_tag, apify_token, max_espera=45)
+    posts_tag = _disparar_e_aguardar_ator("apify/instagram-hashtag-scraper", payload_tag, apify_token, max_espera=35)
     comentarios = []
-    posts_com_comentarios = []
-
-    # Mapeamento de URLs já vistas no cache para evitar buscar comentários de posts antigos
-    cache_post_urls = set()
-    for c in carregar_cache_instagram():
-        u = c.get("post_url") or c.get("link_origem")
-        if u:
-            cache_post_urls.add(u)
 
     for p in posts_tag:
         p_url = p.get("url") or p.get("postUrl") or ""
         p_caption = (p.get("caption") or "").strip()
-        p_comments_count = p.get("commentsCount", 0)
         p_hashtag = p.get("inputHashtag") or p.get("hashtag") or tags_limpas[0]
         tag_formatada = f"#{p_hashtag.lstrip('#')}"
 
-        # 1. Verifica se já vieram latestComments
-        latest = p.get("latestComments", [])
-        if latest:
-            for comm in latest:
-                c_id = comm.get("id")
-                txt = (comm.get("text") or "").strip()
-                if not c_id or len(txt) < 3:
-                    continue
-                autor = comm.get("ownerUsername") or comm.get("owner", {}).get("username") or "usuário"
-                autor_formatado = f"@{autor}" if not autor.startswith("@") else autor
-
-                comentarios.append({
-                    "id": str(c_id),
-                    "rede": "instagram",
-                    "origem_tipo": "hashtag",
-                    "hashtag": tag_formatada,
-                    "autor": autor_formatado,
-                    "texto": txt,
-                    "likes": comm.get("likesCount", 0),
-                    "data": comm.get("timestamp", ""),
-                    "origem_titulo": f"{tag_formatada} · {p_caption[:80]}..." if len(p_caption) > 80 else tag_formatada,
-                    "post_url": p_url,
-                    "link_origem": p_url,
-                    "link_instagram": p_url
-                })
-        elif p_url and p_comments_count > 0 and p_url not in cache_post_urls:
-            posts_com_comentarios.append((p_url, tag_formatada))
-
-    # 2. Se houver posts da hashtag com comentários que não vieram no grid, busca direto os comentários
-    if posts_com_comentarios:
-        urls_para_buscar = [item[0] for item in posts_com_comentarios[:15]]
-        mapa_tag_url = {item[0]: item[1] for item in posts_com_comentarios[:15]}
-        payload_comm = {
-            "directUrls": urls_para_buscar,
-            "resultsType": "comments",
-            "resultsLimit": 15
-        }
-        comms_extraidos = _disparar_e_aguardar_ator("apify/instagram-scraper", payload_comm, apify_token, max_espera=35)
-        for comm in comms_extraidos:
+        # Extrai exclusivamente os comentários que já vierem no retorno da hashtag
+        for comm in p.get("latestComments", []):
             c_id = comm.get("id")
             txt = (comm.get("text") or "").strip()
             if not c_id or len(txt) < 3:
                 continue
-
-            autor = comm.get("ownerUsername") or "usuário"
+            autor = comm.get("ownerUsername") or comm.get("owner", {}).get("username") or "usuário"
             autor_formatado = f"@{autor}" if not autor.startswith("@") else autor
-            p_url = comm.get("postUrl") or comm.get("commentUrl") or ""
-            tag_fmt = mapa_tag_url.get(p_url, tag_formatada)
 
             comentarios.append({
                 "id": str(c_id),
                 "rede": "instagram",
                 "origem_tipo": "hashtag",
-                "hashtag": tag_fmt,
+                "hashtag": tag_formatada,
                 "autor": autor_formatado,
                 "texto": txt,
                 "likes": comm.get("likesCount", 0),
                 "data": comm.get("timestamp", ""),
-                "origem_titulo": f"{tag_fmt} · Debate Popular",
+                "origem_titulo": f"{tag_formatada} · {p_caption[:80]}..." if len(p_caption) > 80 else tag_formatada,
                 "post_url": p_url,
                 "link_origem": p_url,
                 "link_instagram": p_url
@@ -442,11 +300,13 @@ def coletar_comentarios_hashtag_apify(apify_token, tags=None, max_posts=2):
 
     return comentarios
 
-def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=5, max_espera_segundos=60):
+def coletar_comentarios_instagram_apify(apify_token=None, limite_perfis=8, max_posts_por_perfil=5, max_espera_segundos=45):
     """
-    Orquestra a coleta de comentários no Instagram:
-    - Perfis oficiais e locais (apify/instagram-scraper) com 12 perfis e 5 posts por perfil
-    - Hashtags prioritárias e de mobilização (apify/instagram-hashtag-scraper)
+    Orquestra a coleta de comentários no Instagram de forma ultraenxuta:
+    - Perfis oficiais e locais (apify/instagram-scraper): rotação circular homogênea de 8 alvos por rodada
+    - Coleta de até 5 posts por perfil
+    - Hashtags prioritárias e de mobilização (apify/instagram-hashtag-scraper): 1 chamada direta
+    - Extração estritamente via 'latestComments' nativo (zero Deep Scan)
     - Mesclagem com o cache existente sem duplicação
     """
     if apify_token is None:
@@ -461,9 +321,9 @@ def coletar_comentarios_instagram_apify(apify_token=None, max_posts_por_perfil=5
         if c.get("id"):
             comentarios_existentes[c["id"]] = c
 
-    # 1. Coleta dos Perfis (1 fixo + 11 rotativos = 12 perfis)
+    # 1. Coleta dos Perfis (1 fixo + 8 rotativos = 9 perfis)
     try:
-        novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=11, max_posts_por_perfil=max_posts_por_perfil)
+        novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=limite_perfis, max_posts_por_perfil=max_posts_por_perfil)
         for c in novos_perfis:
             comentarios_existentes[c["id"]] = c
     except Exception as e:
