@@ -53,76 +53,78 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
+      "atualizado_em": "11/10/2026 às 16:19",
+      "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "seedorf",
-          "volume": "50 mil+",
+          "termo": "atlético-mg x santos",
+          "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: clarence seedorf"
+          "pauta": "Busca associada: onde assistir atlético-mg x santos futebol clube"
         },
         {
-          "termo": "liverpool x city",
+          "termo": "betis x osasuna",
           "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: real betis"
         },
         {
-          "termo": "crystal palace x nottingham forest",
-          "volume": "10 mil+",
+          "termo": "paysandu",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: brasileirão série c"
         },
         {
-          "termo": "f1 classificação",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: fórmula 1 classificação"
-        },
-        {
-          "termo": "hull city x everton",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: everton"
-        },
-        {
-          "termo": "resultado da loteria federal de hoje",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: resultado da loteria federal"
-        },
-        {
-          "termo": "loterias caixa",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: mega sena 3069 resultado"
-        },
-        {
-          "termo": "rayan",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "união são joão x são josé",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: copa paulista"
-        },
-        {
-          "termo": "justiça",
-          "volume": "2 mil+",
+          "termo": "décimo terceiro salário",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "jogo do corinthians",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: palmeiras hoje"
+        },
+        {
+          "termo": "atlético-go x sport recife",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "que horas é o jogo do flamengo",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do flamengo hoje"
+        },
+        {
+          "termo": "manchester city",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: erling haaland"
+        },
+        {
+          "termo": "cagliari x juventus",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "benfica x vitória sc",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: benfica"
         }
       ],
       "itens_24h": [
@@ -134,150 +136,148 @@
           "pauta": "Busca associada: classificações de vasco x clube do remo"
         },
         {
-          "termo": "real madrid x villarreal",
+          "termo": "atlético-mg x santos",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: vini jr"
+          "pauta": "Busca associada: onde assistir atlético-mg x santos futebol clube"
         },
         {
-          "termo": "brusque x paysandu",
+          "termo": "liverpool x city",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: paysandu"
+          "pauta": "Busca associada: liverpool"
+        },
+        {
+          "termo": "paysandu",
+          "volume": "200 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: brasileirão série c"
         },
         {
           "termo": "seedorf",
-          "volume": "50 mil+",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Busca associada: clarence seedorf"
         },
         {
-          "termo": "inter miami x dc united",
+          "termo": "ferroviária x inter de limeira",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: classificações de inter miami x dc united"
-        },
-        {
-          "termo": "classificações de botafogo-pb x santa cruz futebol clube",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: botafogo-pb x santa cruz"
-        },
-        {
-          "termo": "liverpool x city",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: ferroviaria"
         },
         {
           "termo": "fábio faria",
-          "volume": "20 mil+",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "virginia e vini jr",
+          "termo": "betis x osasuna",
           "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: virginia"
+          "pauta": "Busca associada: real betis"
         },
         {
-          "termo": "nome namorado da mae da eliana",
+          "termo": "edson silva",
           "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: namorado da mãe da eliana"
+          "pauta": "Busca associada: edson silva ator"
+        },
+        {
+          "termo": "palmeiras e corinthians",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do corinthians"
         }
       ],
       "itens": [
         {
-          "termo": "seedorf",
-          "volume": "50 mil+",
+          "termo": "atlético-mg x santos",
+          "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: clarence seedorf"
+          "pauta": "Busca associada: onde assistir atlético-mg x santos futebol clube"
         },
         {
-          "termo": "liverpool x city",
+          "termo": "betis x osasuna",
           "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: real betis"
         },
         {
-          "termo": "crystal palace x nottingham forest",
-          "volume": "10 mil+",
+          "termo": "paysandu",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: brasileirão série c"
         },
         {
-          "termo": "f1 classificação",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: fórmula 1 classificação"
-        },
-        {
-          "termo": "hull city x everton",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: everton"
-        },
-        {
-          "termo": "resultado da loteria federal de hoje",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: resultado da loteria federal"
-        },
-        {
-          "termo": "loterias caixa",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: mega sena 3069 resultado"
-        },
-        {
-          "termo": "rayan",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "união são joão x são josé",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: copa paulista"
-        },
-        {
-          "termo": "justiça",
-          "volume": "2 mil+",
+          "termo": "décimo terceiro salário",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "jogo do corinthians",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: palmeiras hoje"
+        },
+        {
+          "termo": "atlético-go x sport recife",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "que horas é o jogo do flamengo",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do flamengo hoje"
+        },
+        {
+          "termo": "manchester city",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: erling haaland"
+        },
+        {
+          "termo": "cagliari x juventus",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "benfica x vitória sc",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: benfica"
         }
       ],
       "termos_socioeconomicos_ceara": [
         {
-          "termo": "justiça",
-          "volume": "2 mil+",
+          "termo": "décimo terceiro salário",
+          "volume": "20 mil+",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         }
-      ],
-      "atualizado_em": "11/10/2026 às 12:25",
-      "frequencia_atualizacao": "A cada 4 horas"
+      ]
     }
   },
   "sentimento_youtube": {
