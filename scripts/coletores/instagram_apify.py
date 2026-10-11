@@ -143,7 +143,8 @@ def _disparar_e_aguardar_ator(actor_id, payload, apify_token, max_espera=45):
     Retorna a lista de itens do dataset resultante.
     """
     actor_endpoint = actor_id.replace("/", "~")
-    url_run = f"https://api.apify.com/v2/acts/{actor_endpoint}/runs?token={apify_token}"
+    # Força alocação leve de memória (1024 MB) e timeout estrito (45s) para blindar a cota gratuita contra consumo de 4GB
+    url_run = f"https://api.apify.com/v2/acts/{actor_endpoint}/runs?token={apify_token}&memory=1024&timeout=45"
 
     req = urllib.request.Request(
         url_run,
