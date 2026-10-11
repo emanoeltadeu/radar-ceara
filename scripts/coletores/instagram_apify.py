@@ -135,7 +135,7 @@ def carregar_hashtags_instagram():
         except Exception:
             pass
 
-    return tags or ["fimda6x1"]
+    return tags
 
 def _disparar_e_aguardar_ator(actor_id, payload, apify_token, max_espera=45):
     """
