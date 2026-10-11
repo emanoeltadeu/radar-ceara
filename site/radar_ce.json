@@ -53,94 +53,108 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "11/10/2026 às 16:38",
+      "atualizado_em": "11/10/2026 às 19:40",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "atlético-mg x santos",
+          "termo": "corinthians",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: palmeiras"
+        },
+        {
+          "termo": "flamengo",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do flamengo"
+        },
+        {
+          "termo": "classificações de atlético-mg x santos futebol clube",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: brasileirao"
+        },
+        {
+          "termo": "gremio",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: onde assistir atlético-mg x santos futebol clube"
+          "pauta": "Busca associada: tabela do brasileirão"
         },
         {
-          "termo": "atlético-go x sport recife",
-          "volume": "20 mil+",
+          "termo": "brasileirão série a",
+          "volume": "200 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do corinthians"
+        },
+        {
+          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "paysandu",
-          "volume": "20 mil+",
+          "termo": "internacional",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do paysandu"
+          "pauta": "Busca associada: gremio x"
         },
         {
-          "termo": "décimo terceiro salário",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "jogo do corinthians",
-          "volume": "20 mil+",
+          "termo": "tabela do brasileirão 2026",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: palmeiras hoje"
+          "pauta": "Busca associada: jogos de brasileirão série a"
         },
         {
-          "termo": "flamengo hoje",
-          "volume": "20 mil+",
+          "termo": "bahia x mirassol",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: que horas é o jogo do flamengo"
+          "pauta": "Busca associada: mirassol"
         },
         {
-          "termo": "corinthians hoje",
-          "volume": "10 mil+",
+          "termo": "corinthians x",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do corinthians hoje"
-        },
-        {
-          "termo": "serie c",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "cagliari x juventus",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "benfica x vitória sc",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: benfica"
+          "pauta": "Busca associada: jogos de corinthians"
         }
       ],
       "itens_24h": [
         {
-          "termo": "vasco da gama x remo",
+          "termo": "grêmio x internacional",
           "volume": "500 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: classificações de vasco x clube do remo"
+          "pauta": "Busca associada: tabela do brasileirão"
         },
         {
-          "termo": "atlético-mg x santos",
+          "termo": "flamengo",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do flamengo"
+        },
+        {
+          "termo": "brasileirão série a",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: onde assistir atlético-mg x santos futebol clube"
+          "pauta": "Busca associada: jogo do corinthians"
+        },
+        {
+          "termo": "corinthians x",
+          "volume": "200 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: seedorf"
         },
         {
           "termo": "liverpool x city",
@@ -150,134 +164,114 @@
           "pauta": "Busca associada: liverpool"
         },
         {
-          "termo": "paysandu",
+          "termo": "classificações de são paulo futebol clube x ec vitória",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do paysandu"
+          "pauta": "Busca associada: tabela de classificação do campeonato brasileiro"
         },
         {
-          "termo": "seedorf",
+          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: clarence seedorf"
+          "pauta": "Busca associada: pesquisa segundo turno"
         },
         {
-          "termo": "fábio faria",
+          "termo": "internacional",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: gremio x"
+        },
+        {
+          "termo": "tabela do brasileirão 2026",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogos de brasileirão série a"
+        },
+        {
+          "termo": "bahia x mirassol",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "atlético-go x sport recife",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "betis x osasuna",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: real betis"
-        },
-        {
-          "termo": "grenal hoje",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: gremio x inter"
-        },
-        {
-          "termo": "palmeiras e corinthians",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do corinthians"
+          "pauta": "Busca associada: mirassol"
         }
       ],
       "itens": [
         {
-          "termo": "atlético-mg x santos",
+          "termo": "corinthians",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: palmeiras"
+        },
+        {
+          "termo": "flamengo",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do flamengo"
+        },
+        {
+          "termo": "classificações de atlético-mg x santos futebol clube",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: brasileirao"
+        },
+        {
+          "termo": "gremio",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: onde assistir atlético-mg x santos futebol clube"
+          "pauta": "Busca associada: tabela do brasileirão"
         },
         {
-          "termo": "atlético-go x sport recife",
-          "volume": "20 mil+",
+          "termo": "brasileirão série a",
+          "volume": "200 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do corinthians"
+        },
+        {
+          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "paysandu",
-          "volume": "20 mil+",
+          "termo": "internacional",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do paysandu"
+          "pauta": "Busca associada: gremio x"
         },
         {
-          "termo": "décimo terceiro salário",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "jogo do corinthians",
-          "volume": "20 mil+",
+          "termo": "tabela do brasileirão 2026",
+          "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: palmeiras hoje"
+          "pauta": "Busca associada: jogos de brasileirão série a"
         },
         {
-          "termo": "flamengo hoje",
-          "volume": "20 mil+",
+          "termo": "bahia x mirassol",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: que horas é o jogo do flamengo"
+          "pauta": "Busca associada: mirassol"
         },
         {
-          "termo": "corinthians hoje",
-          "volume": "10 mil+",
+          "termo": "corinthians x",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do corinthians hoje"
-        },
-        {
-          "termo": "serie c",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "cagliari x juventus",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "benfica x vitória sc",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: benfica"
+          "pauta": "Busca associada: jogos de corinthians"
         }
       ],
-      "termos_socioeconomicos_ceara": [
-        {
-          "termo": "décimo terceiro salário",
-          "volume": "20 mil+",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        }
-      ]
+      "termos_socioeconomicos_ceara": []
     }
   },
   "sentimento_youtube": {
