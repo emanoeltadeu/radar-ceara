@@ -1,16 +1,16 @@
 {
-  "proximo_indice": 3,
-  "indice_rodada_anterior": 15,
+  "proximo_indice": 6,
+  "indice_rodada_anterior": 19,
   "total_perfis_cadastrados": 21,
   "lote_selecionado": [
-    "urbnews",
-    "radardoceara",
-    "cearanoticias",
     "etufortaleza",
     "centraldoonibusfortaleza",
+    "leosuricate",
     "suricateseboso",
     "elmanodefreitas",
-    "camilosantanaoficial"
+    "camilosantanaoficial",
+    "governodoceara",
+    "prefeituradefortaleza"
   ],
-  "atualizado_em": "2026-10-11T00:19:27.364820"
+  "atualizado_em": "2026-10-11T12:23:44.945453"
 }

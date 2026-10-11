@@ -94,11 +94,15 @@ def main():
     # 2. Inteligência Territorial e Monitor de Tendências Transversais
     print("2/4 Consolidando tendências de busca no Ceará (Google Trends)...")
     chaves = carregar_chaves_api()
+    from coletores.google_trends import extrair_termos_socioeconomicos
+    termos_socioeconomicos = extrair_termos_socioeconomicos(trends_4h) or extrair_termos_socioeconomicos(trends_24h)
+
     monitor_redes = {
         "google_trends_ce": {
             "itens_4h": trends_4h,
             "itens_24h": trends_24h,
-            "itens": trends_4h if trends_4h else trends_24h
+            "itens": trends_4h if trends_4h else trends_24h,
+            "termos_socioeconomicos_ceara": termos_socioeconomicos
         }
     }
 
@@ -114,14 +118,14 @@ def main():
     )
     print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários")
 
-    # 4.1 Radar Tático IA (Diagnóstico Urgente Recente vs Diretriz Estratégica 24h)
-    print("   -> Gerando Radar Tático IA (YouTube: Alerta Imediato + Consolidado 24h)...")
+    # 4.1 Radar Tático IA (Diagnóstico Urgente Recente vs Diretriz Estratégica 24h cruzando com Trends)
+    print("   -> Gerando Radar Tático IA (YouTube: Alerta Imediato + Consolidado 24h + Cruzamento Trends)...")
     comentarios_classificados_yt = sentimento_youtube.get("todos_comentarios") or sentimento_youtube.get("comentarios_todos") or []
-    radar_tatico_yt = gerar_insights_radar_tatico_yt(comentarios_classificados_yt, chaves.get("gemini", ""))
+    radar_tatico_yt = gerar_insights_radar_tatico_yt(comentarios_classificados_yt, chaves.get("gemini", ""), contexto_trends=termos_socioeconomicos)
 
-    print("   -> Gerando Radar Tático IA (Instagram: Alerta Imediato + Consolidado 24h)...")
+    print("   -> Gerando Radar Tático IA (Instagram: Alerta Imediato + Consolidado 24h + Cruzamento Trends)...")
     comentarios_classificados_ig = sentimento_instagram.get("todos_comentarios") or sentimento_instagram.get("comentarios_todos") or []
-    radar_tatico_ig = gerar_insights_radar_tatico_ig(comentarios_classificados_ig, chaves.get("gemini", ""))
+    radar_tatico_ig = gerar_insights_radar_tatico_ig(comentarios_classificados_ig, chaves.get("gemini", ""), contexto_trends=termos_socioeconomicos)
 
     # 4.2 Carregamento dinâmico das fontes monitoradas (alvos cadastrados nos .txt)
     def carregar_fontes_monitoradas():

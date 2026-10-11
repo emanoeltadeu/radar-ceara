@@ -59,13 +59,17 @@ def atualizar_trends_isolado():
     agora_ce = datetime.now(ZoneInfo("America/Fortaleza"))
     timestamp_formatado = agora_ce.strftime("%d/%m/%Y às %H:%M")
 
+    from coletores.google_trends import extrair_termos_socioeconomicos
+    termos_socioeconomicos = extrair_termos_socioeconomicos(itens_4h_final) or extrair_termos_socioeconomicos(itens_24h_final)
+
     # Atualiza estritamente o bloco google_trends_ce
     monitor_redes["google_trends_ce"] = {
         "atualizado_em": timestamp_formatado,
         "frequencia_atualizacao": "A cada 4 horas",
         "itens_4h": itens_4h_final,
         "itens_24h": itens_24h_final,
-        "itens": itens_4h_final if itens_4h_final else itens_24h_final
+        "itens": itens_4h_final if itens_4h_final else itens_24h_final,
+        "termos_socioeconomicos_ceara": termos_socioeconomicos
     }
 
     # Grava de volta no radar_ce.json de forma atômica

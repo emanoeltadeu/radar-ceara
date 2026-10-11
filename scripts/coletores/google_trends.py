@@ -63,6 +63,9 @@ def extrair_itens_trends_html(html_content):
         pauta = f"Busca associada: {detalhes[0]}" if detalhes else "Tendência de pesquisa registrada no Ceará."
 
         t_low = (termo + " " + pauta).lower()
+        t_norm = normalizar_texto(t_low)
+
+        # Classificação de alinhamento político tradicional
         if any(k in t_low for k in ["lula", "nordestino", "6x1", "suricate", "passe livre", "cuca", "pe-de-meia"]):
             lado = "nossa"
         elif any(k in t_low for k in ["bolsonaro", "direita", "faccao", "crime", "ipva"]):
@@ -70,15 +73,48 @@ def extrair_itens_trends_html(html_content):
         else:
             lado = "disputa"
 
+        # Classificação Temática: 'politica_social' vs 'entretenimento_esporte'
+        termos_civicos_sociais = [
+            "lula", "bolsonaro", "elmano", "camilo", "evandro", "sarto", "wagner",
+            "leosuricate", "suricate", "politica", "eleicao", "eleicoes", "voto",
+            "alece", "prefeitura", "governo", "stf", "tse", "camara", "senado", "justica", "anistia",
+            "enel", "cagece", "transporte", "passagem", "onibus", "frota", "metrofor", "vlt",
+            "concurso", "escala 6x1", "6x1", "inflacao", "salario", "auxilio", "emprego",
+            "saude", "seguranca", "faccao", "faccoes", "policia", "hospitais", "upa", "escola",
+            "educacao", "pe-de-meia", "cuca", "passe livre", "tarifa zero", "trabalhador", "trabalho",
+            "greve", "sindicato", "previdencia", "reforma", "imposto", "ipva", "iptu", "icms"
+        ]
+
+        if any(k in t_norm for k in termos_civicos_sociais):
+            categoria = "politica_social"
+        else:
+            categoria = "entretenimento_esporte"
+
         items.append({
             "termo": termo,
             "volume": vol,
             "lado": lado,
+            "categoria": categoria,
             "pauta": pauta
         })
 
     items.sort(key=lambda x: parse_volume_buscas(x["volume"]), reverse=True)
     return items[:10]
+
+def extrair_termos_socioeconomicos(itens_trends):
+    """
+    Filtra os termos classificados como 'politica_social' para injeção de contexto na IA.
+    Retorna uma lista resumida de dicionários ou strings.
+    """
+    destaques = []
+    for it in itens_trends or []:
+        if it.get("categoria") == "politica_social":
+            destaques.append({
+                "termo": it.get("termo"),
+                "volume": it.get("volume"),
+                "pauta": it.get("pauta")
+            })
+    return destaques
 
 def coletar_trends_ceara(hours=4):
     """
@@ -91,17 +127,19 @@ def coletar_trends_ceara(hours=4):
     param_hours = f"&hours={hours}" if hours == 4 else ""
     url = f"https://trends.google.com.br/trending?geo=BR-CE{param_hours}"
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
     }
 
     try:
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=8) as resp:
+        with urllib.request.urlopen(req, timeout=12) as resp:
             html_content = resp.read().decode("utf-8")
             with open(cache_path, "w", encoding="utf-8") as f:
                 f.write(html_content)
-    except Exception:
+    except Exception as e:
+        print(f"   [Trends {hours}h] Falha na requisição ao vivo ({e}). Tentando carregar cache local...")
         if os.path.exists(cache_path):
             try:
                 with open(cache_path, "r", encoding="utf-8") as f:

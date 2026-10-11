@@ -87,7 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
       rotuloPautaYT.textContent = statusYT === "DOMINANDO" ? "Pauta Positiva:" : "Pauta em Foco:";
     }
     if (pautaYT) {
-      pautaYT.textContent = textoPautaYT;
+      let extraBadgeYT = "";
+      if (macroYT.validado_no_google_trends) {
+        extraBadgeYT = ` <span class="badge-hero-trends-inline" title="Tração confirmada nas buscas do Ceará: '${escapeHtml(macroYT.termo_trends_relacionado || '')}'">🔥 Validada no Google Trends</span>`;
+      }
+      pautaYT.innerHTML = `${escapeHtml(textoPautaYT)}${extraBadgeYT}`;
     }
     if (diretrizYT) {
       diretrizYT.textContent = alertaYT.acao_recomendada || macroYT.orientacao_geral || "Manter monitoramento preventivo da base.";
@@ -125,7 +129,11 @@ document.addEventListener("DOMContentLoaded", () => {
       rotuloPautaIG.textContent = "Pauta em Foco:";
     }
     if (pautaIG) {
-      pautaIG.textContent = textoPautaIG;
+      let extraBadgeIG = "";
+      if (macroIG.validado_no_google_trends) {
+        extraBadgeIG = ` <span class="badge-hero-trends-inline" title="Tração confirmada nas buscas do Ceará: '${escapeHtml(macroIG.termo_trends_relacionado || '')}'">🔥 Validada no Google Trends</span>`;
+      }
+      pautaIG.innerHTML = `${escapeHtml(textoPautaIG)}${extraBadgeIG}`;
     }
     if (diretrizIG) {
       diretrizIG.textContent = alertaIG.acao_recomendada || macroIG.orientacao_geral || "Acompanhar repercussão das publicações e debate.";
@@ -213,23 +221,57 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderizarMonitorRedes(monitor) {
     if (!monitor) return;
 
-    // Em Alta no Google (Ceará - 4h vs 24h)
+    // Em Alta no Google (Ceará - 4h vs 24h & Filtro Cívico/Social)
     const listaGoogle = document.getElementById("lista-google-ce");
     const btnTrends4h = document.getElementById("btn-trends-4h");
     const btnTrends24h = document.getElementById("btn-trends-24h");
+    const btnCatTodas = document.getElementById("btn-trends-cat-todas");
+    const btnCatCivica = document.getElementById("btn-trends-cat-civica");
+
+    let janelaTrendsAtual = "4h";
+    let filtroCatAtual = "todas";
 
     function renderItensGoogle(itens) {
       if (!listaGoogle) return;
-      listaGoogle.innerHTML = (itens || []).map(item => {
+      
+      const filtrados = (itens || []).filter(item => {
+        if (filtroCatAtual === "civica") {
+          return item.categoria === "politica_social";
+        }
+        return true;
+      });
+
+      if (filtrados.length === 0) {
+        listaGoogle.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--tx-2); font-size: 13px;">
+            Nenhuma busca de relevância cívico-social identificada nesta janela. As buscas estão concentradas em esportes e entretenimento.
+          </div>
+        `;
+        return;
+      }
+
+      listaGoogle.innerHTML = filtrados.map(item => {
         const clsPonto = item.lado === "nossa" ? "nossa" : (item.lado === "deles" ? "deles" : "disputa");
+        const isCivico = item.categoria === "politica_social";
+        const badgeCatHtml = isCivico
+          ? `<span class="badge-cat-trends civica" title="Pauta de relevância cívica, política ou de serviços públicos">🏛️ Cívico</span>`
+          : `<span class="badge-cat-trends esporte" title="Busca relacionada a entretenimento, cultura pop ou esporte">⚽ Esporte</span>`;
+
+        const urlBusca = `https://trends.google.com.br/trending?geo=BR-CE&q=${encodeURIComponent(item.termo)}`;
+
         return `
-          <div class="item-google-ce">
+          <div class="item-google-ce ${isCivico ? 'item-civico-destaque' : ''}">
             <div class="item-google-topo">
               <span class="termo-com-ponto">
                 <span class="ponto-busca ${clsPonto}"></span>
-                ${escapeHtml(item.termo)}
+                <a href="${urlBusca}" target="_blank" rel="noopener noreferrer" class="link-termo-trends" title="Ver busca no Google Trends ↗">
+                  ${escapeHtml(item.termo)}
+                </a>
               </span>
-              <span class="volume-badge-verde">${escapeHtml(item.volume)}</span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                ${badgeCatHtml}
+                <span class="volume-badge-verde">${escapeHtml(item.volume)}</span>
+              </div>
             </div>
             <div class="item-google-pauta">
               <strong>Pauta:</strong> ${escapeHtml(item.pauta)}
@@ -250,18 +292,41 @@ document.addEventListener("DOMContentLoaded", () => {
         badgeAuditoria.textContent = `Atualizado às ${hora} • Renovação ${freq.toLowerCase()}`;
       }
 
-      renderItensGoogle(gt.itens_4h && gt.itens_4h.length > 0 ? gt.itens_4h : gt.itens);
+      function atualizarLista() {
+        const baseItens = (janelaTrendsAtual === "4h")
+          ? (gt.itens_4h && gt.itens_4h.length > 0 ? gt.itens_4h : gt.itens)
+          : (gt.itens_24h && gt.itens_24h.length > 0 ? gt.itens_24h : gt.itens);
+        renderItensGoogle(baseItens);
+      }
+
+      atualizarLista();
 
       btnTrends4h?.addEventListener("click", () => {
+        janelaTrendsAtual = "4h";
         btnTrends4h.classList.add("on");
         btnTrends24h?.classList.remove("on");
-        renderItensGoogle(gt.itens_4h || gt.itens);
+        atualizarLista();
       });
 
       btnTrends24h?.addEventListener("click", () => {
+        janelaTrendsAtual = "24h";
         btnTrends24h.classList.add("on");
         btnTrends4h?.classList.remove("on");
-        renderItensGoogle(gt.itens_24h || gt.itens);
+        atualizarLista();
+      });
+
+      btnCatTodas?.addEventListener("click", () => {
+        filtroCatAtual = "todas";
+        btnCatTodas.classList.add("on");
+        btnCatCivica?.classList.remove("on");
+        atualizarLista();
+      });
+
+      btnCatCivica?.addEventListener("click", () => {
+        filtroCatAtual = "civica";
+        btnCatCivica.classList.add("on");
+        btnCatTodas?.classList.remove("on");
+        atualizarLista();
       });
     }
   }
@@ -643,7 +708,18 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       }
 
+      let badgeTrendsHtml = "";
+      if (macro.validado_no_google_trends) {
+        const termoValidado = escapeHtml(macro.termo_trends_relacionado || "Pautas Populares em Alta");
+        badgeTrendsHtml = `
+          <div class="badge-trends-validado" title="Esta pauta corresponde ao interesse ativo de busca da população cearense no Google">
+            🔥 <strong>Tração Validada nas Buscas do Google</strong> (Ceará: "${termoValidado}")
+          </div>
+        `;
+      }
+
       conteudoMacroEl.innerHTML = `
+        ${badgeTrendsHtml}
         <p><strong>Pauta:</strong> <span style="font-weight:700;">${escapeHtml(macro.oportunidade || "Pauta Popular")}</span> — ${escapeHtml(macro.detalhe || "")}</p>
         <div class="tatico-acao-linha">
           <strong>➔ Recomendação:</strong>
@@ -690,6 +766,12 @@ document.addEventListener("DOMContentLoaded", () => {
         blocoTrafegoZap = `\n🎯 *GESTÃO DE TRÁFEGO:*\n• Público & Território: ${macro.segmentacao_trafego}\n`;
       }
 
+      // Bloco Validação Google Trends (se houver correspondência)
+      let linhaTrendsZap = "";
+      if (macro.validado_no_google_trends && macro.termo_trends_relacionado) {
+        linhaTrendsZap = `\n🔍 *Google Trends CE:* Em alta com o termo "${macro.termo_trends_relacionado}"`;
+      }
+
       const textoZap = `⚡ *RADAR TÁTICO MANDATO LÉO SURICATE*
 📅 *Atualizado às:* ${hora} | *Rede:* ${nomeRede}
 🎯 *Status:* *${statusDominio}*
@@ -698,7 +780,7 @@ ${blocoUrgenteZap}
 
 🟢 *DIRETRIZ DO DIA (Janela 24h)*
 • *Pauta com Tração:* ${macro.oportunidade || "Pauta Popular & Mandato"}
-• *Métrica/Respaldo:* ${macro.detalhe || "Alto saldo líquido favorável consolidado nas últimas 24h."}
+• *Métrica/Respaldo:* ${macro.detalhe || "Alto saldo líquido favorável consolidado nas últimas 24h."}${linhaTrendsZap}
 ${blocoVideoZap}${blocoTrafegoZap}
 👉 *Diretriz Operacional:* ${macro.recomendacao_acao || "Gravar cortes prioritários e amplificar narrativa nas redes."}
 

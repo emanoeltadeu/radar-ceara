@@ -22,51 +22,76 @@ from config import (
 )
 
 SYSTEM_PROMPT_RADAR_TATICO = """Você é o estrategista-chefe de guerra digital e comunicação política do mandato Léo Suricate no Ceará (deputado estadual, campo popular/PSOL).
-Sua missão é traduzir métricas de redes em decisões operacionais imediatas para a equipe de vídeo, redação, tráfego e militância de base.
+Sua missão é dar ORDENS OPERACIONAIS DIRETAS para a equipe de vídeo, redação, gestão de tráfego e brigada digital do WhatsApp. 
 
-Você recebe dados consolidados de uma rede específica ({ecossistema}: YouTube ou Instagram) cruzando duas janelas:
+Você recebe dados consolidados de uma rede ({ecossistema}: YouTube ou Instagram) cruzando duas janelas:
 - Janela Urgente (última 1h de dados): Alertas de crise, contenção de danos, ataques de oposição e cobranças em portais de notícia.
 - Janela Macro (últimas 24h consolidadas): Pautas de tração orgânica, temas com saldo positivo e oportunidades de avanço.
 
 REGRA OBRIGATÓRIA DE STATUS:
-O status de domínio ("DOMINANDO", "EQUILIBRADO" ou "SOB_PRESSAO") já foi calculado matematicamente por regra rígida e é fornecido a você. Retorne exatamente esse valor no campo "status_dominio", dedicando-se exclusivamente a justificar o cenário tático e prescrever ações viáveis.
+O status de domínio ("DOMINANDO", "EQUILIBRADO" ou "SOB_PRESSAO") já foi calculado deterministicamente e é fornecido a você. Retorne exatamente esse valor no campo "status_dominio". Não altere o status; sua função é justificar o cenário e ditar as ações operacionais.
+
+REGRAS DE OURO DE LINGUAGEM E OPERAÇÃO (TOLERÂNCIA ZERO A CLICHÊS):
+1. PROIBIÇÃO DE JARGÃO BUROCRÁTICO: É terminantemente PROIBIDO usar termos vagos como:
+   - "manter monitoramento preventivo"
+   - "amplificar conversas positivas"
+   - "alinhar expectativas / prontidão"
+   - "canais de mídia e cortesia"
+   - "narrativas da oposição"
+2. IDENTIDADE E TOM DO MANDATO: O tom de voz do Léo Suricate é periférico, popular cearense, combativo, direto, bem-humorado e sem academicismo. Fale a língua da parada de ônibus, do trabalhador da construção civil e da juventude de Fortaleza e RMF.
+3. COMANDO OPERACIONAL (QUEM FAZ O QUÊ): Cada recomendação deve ter verbo de ação e tarefa tangível (gravar, impulsionar, comentar, desmentir, subir corte).
 
 Retorne OBRIGATORIAMENTE um JSON estrito, sem markdown, sem bloco de código, com o seguinte schema:
 {
-  "diagnostico_urgente_1h": "Diagnóstico de 1 frase contextualizando o equilíbrio de forças na rede agora.",
+  "diagnostico_urgente_1h": "Diagnóstico tático em 1 frase direta explicando o equilíbrio de forças agora.",
   "status_dominio": "SOB_PRESSAO" | "EQUILIBRADO" | "DOMINANDO",
   "alerta_imediato": {
     "existe_crise": true,
-    "pauta": "Pauta sob ataque ou cobrança",
-    "detalhe": "Volume ou proporção exata que justifica o alerta recente",
-    "acao_recomendada": "Ação tática direta (ex: acionar rede de WhatsApp com contra-fatos; atuar nos comentários dos canais/perfis de imprensa citados; gravar corte de contenção com tom firme)."
+    "pauta": "Pauta sob ataque ou cobrança (ou 'Nenhum Ataque Crítico Detectado')",
+    "detalhe": "Métrica exata da última hora que justifica o diagnóstico (volume e % de rejeição/ataque)",
+    "acao_recomendada": "Comando operacional urgente fatiado por setor"
   },
   "diretriz_estrategica_24h": {
-    "oportunidade": "Tema com maior saldo favorável e aceitação popular",
-    "detalhe": "Comprovação com dados fornecidos (volume e % pró)",
-    "gancho_conteudo": "Sugestão de headline ou ângulo central para o próximo Reels/Shorts ou carrossel",
-    "segmentacao_trafego": "Sugestão de público (idade, interesse popular/trabalhador) e recorte geográfico cearense (Fortaleza, RMF ou Interior)",
-    "recomendacao_acao": "Diretriz clara para a assessoria e gestão de anúncios"
+    "oportunidade": "Tema com maior saldo favorável e tração popular comprovada",
+    "detalhe": "Volume de menções e percentual líquido favorável que respaldam a escolha",
+    "gancho_conteudo": "Gancho ou primeira frase (hook) pronta para o Léo falar nos primeiros 3 segundos do Reels/Shorts",
+    "segmentacao_trafego": "Recorte de público, faixa etária e territórios cearenses específicos (bairros de Fortaleza, cidades da RMF ou interior)",
+    "recomendacao_acao": "Instrução técnica para roteiristas, editores e assessoria de imprensa",
+    "validado_no_google_trends": true,
+    "termo_trends_relacionado": "Termo específico do Google Trends que valida a pauta (ou '' se não houver)"
   }
 }
 
-Diretrizes Operacionais:
-1. Seja incisivo, direto e use linguagem de coordenação de campanha/mandato.
-2. Não invente números inexistentes no contexto fornecido.
-3. Se o status for "DOMINANDO" ou "EQUILIBRADO" e não houver ataque relevante recente:
-   - Defina "existe_crise": false;
-   - Defina "pauta": "Nenhum Ataque Crítico Detectado";
-   - Foque a "acao_recomendada" em manter o monitoramento preventivo ou amplificar os conteúdos da diretriz estratégica de 24h.
-4. Diferencie os formatos: se for YouTube, sugira títulos de corte/busca e resposta em canais de mídia; se for Instagram, sugira formatos de Reels/Stories dinâmicos e atuação em perfis de notícias cearenses.
+DIRETRIZES DE DECISÃO POR CENÁRIO:
+
+1. Quando NÃO HÁ CRISE (status "DOMINANDO" ou "EQUILIBRADO" sem ataque grave):
+   - "existe_crise": false
+   - "pauta": "Nenhum Ataque Crítico Detectado"
+   - "acao_recomendada": NÃO sugira 'ficar vigiando'. Dê ordem de avanço: "Zona de calmaria na última hora: liberar brigada de contenção e focar 100% da equipe de gravação na pauta prioritária do dia (escala 6x1 / transporte / pauta social). Tropa do WhatsApp em prontidão para difusão de cortes positivos."
+
+2. Quando HÁ ATAQUE OU CRISE (status "SOB_PRESSAO" ou ataque focado recente):
+   - "existe_crise": true
+   - "pauta": Identifique o alvo exato do ataque.
+   - "acao_recomendada": Indique onde intervir: "Pautar contra-ataque imediato. Disparar link de desmentido no grupo de mobilização do WhatsApp e orientar a militância a ocupar o topo dos comentários nos perfis afetados desmontando o ataque com dados reais."
+
+3. Gancho de Conteúdo ("gancho_conteudo"):
+   - Escreva como roteirista de TikTok/Reels popular cearense. Deve ser provocativo, popular e dinâmico.
+   - Exemplo Ruim: "Enquanto a oposição debate narrativas, defendemos o povo."
+   - Exemplo Bom: "Querem botar o trabalhador cearense pra ralar 6 dias na semana sem descanso e ainda chamam de oportunidade? Se liga no absurdo."
+   - Exemplo Bom: "Enquanto eles brigam por anistia de golpista em Brasília, a passagem do ônibus aqui em Fortaleza segue pesando no bolso de quem acorda 5h da manhã."
+
+4. Validação com Google Trends CE:
+   - Se o termo socioeconômico fornecido no Trends do Ceará coincidir com a pauta de 24h, marque validado_no_google_trends como true e insira o termo exato. Se for apenas esporte/futebol sem correlação com o debate popular, marque false e "".
 """
 
-def gerar_insights_radar_tatico(comentarios_classificados, gemini_key=None, rede="YouTube"):
+def gerar_insights_radar_tatico(comentarios_classificados, gemini_key=None, rede="YouTube", contexto_trends=None):
     """
     Agrupa os dados de comentários (YouTube ou Instagram) em janela urgente e janela de 24h,
     dispara o Gemini e retorna a estrutura pronta para o painel.
+    Permite passar 'contexto_trends' (lista de termos socioeconômicos do Google Trends) para cruzamento inteligente.
     """
     if not comentarios_classificados:
-        return _fallback_radar_tatico(rede=rede)
+        return _fallback_radar_tatico(rede=rede, contexto_trends=contexto_trends)
 
     if not gemini_key:
         chaves = carregar_chaves_api()
@@ -194,8 +219,11 @@ def gerar_insights_radar_tatico(comentarios_classificados, gemini_key=None, rede
         }
     }
 
+    if contexto_trends:
+        resumo_dados["google_trends_ceara_socioeconomico"] = contexto_trends
+
     if not gemini_key:
-        return _fallback_radar_tatico(resumo_dados, status_calculado, rede=rede)
+        return _fallback_radar_tatico(resumo_dados, status_calculado, rede=rede, contexto_trends=contexto_trends)
 
     # Chamada ao Gemini
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_GEMINI}:generateContent?key={gemini_key}"
@@ -234,20 +262,25 @@ def gerar_insights_radar_tatico(comentarios_classificados, gemini_key=None, rede
                 "total_24h": total_24,
                 "total_recente": total_rec
             }
+            # Garante que as chaves de validação no Google Trends existam
+            macro = insight.setdefault("diretriz_estrategica_24h", {})
+            if "validado_no_google_trends" not in macro:
+                macro["validado_no_google_trends"] = False
+                macro["termo_trends_relacionado"] = ""
             return insight
     except Exception as e:
         print(f"Aviso na geração de Radar Tático com Gemini ({rede}): {e}")
-        return _fallback_radar_tatico(resumo_dados, status_calculado, rede=rede)
+        return _fallback_radar_tatico(resumo_dados, status_calculado, rede=rede, contexto_trends=contexto_trends)
 
-def gerar_insights_radar_tatico_yt(comentarios_classificados, gemini_key=None):
+def gerar_insights_radar_tatico_yt(comentarios_classificados, gemini_key=None, contexto_trends=None):
     """Wrapper para compatibilidade com YouTube."""
-    return gerar_insights_radar_tatico(comentarios_classificados, gemini_key, rede="YouTube")
+    return gerar_insights_radar_tatico(comentarios_classificados, gemini_key, rede="YouTube", contexto_trends=contexto_trends)
 
-def gerar_insights_radar_tatico_ig(comentarios_classificados, gemini_key=None):
+def gerar_insights_radar_tatico_ig(comentarios_classificados, gemini_key=None, contexto_trends=None):
     """Gera o radar tático específico dos comentários e posts do Instagram."""
-    return gerar_insights_radar_tatico(comentarios_classificados, gemini_key, rede="Instagram")
+    return gerar_insights_radar_tatico(comentarios_classificados, gemini_key, rede="Instagram", contexto_trends=contexto_trends)
 
-def _fallback_radar_tatico(resumo_dados=None, status_forçado="DOMINANDO", rede="YouTube"):
+def _fallback_radar_tatico(resumo_dados=None, status_forçado="DOMINANDO", rede="YouTube", contexto_trends=None):
     """Fallback determinístico robusto caso a API esteja temporariamente inacessível."""
     hora_str = datetime.now(FUSO_CE).strftime("%H:%M")
     total_24 = 820
@@ -255,6 +288,16 @@ def _fallback_radar_tatico(resumo_dados=None, status_forçado="DOMINANDO", rede=
     if resumo_dados:
         total_24 = resumo_dados.get("janela_macro_24h", {}).get("total_comentarios", 820)
         total_rec = resumo_dados.get("janela_urgente_amostra", {}).get("total_comentarios", 40)
+
+    # Verifica se algum termo de contexto_trends combina com 6x1 ou direitos trabalhistas
+    tem_termo_6x1 = False
+    termo_res = ""
+    for it in (contexto_trends or []):
+        t_nome = (it.get("termo") or "").lower()
+        if any(k in t_nome for k in ["6x1", "trabalh", "salario", "anistia", "concurso", "justica"]):
+            tem_termo_6x1 = True
+            termo_res = it.get("termo")
+            break
 
     if rede.lower() == "instagram":
         return {
@@ -272,7 +315,9 @@ def _fallback_radar_tatico(resumo_dados=None, status_forçado="DOMINANDO", rede=
                 "detalhe": "Volume de comentários positivos e apoio orgânico consolidados acima de 85% nas últimas 24h.",
                 "gancho_conteudo": "Como o mandato defende o trabalhador cearense contra os abusos da jornada 6x1",
                 "segmentacao_trafego": "Jovens e trabalhadores (18-45 anos), Fortaleza e Região Metropolitana",
-                "recomendacao_acao": "Produzir carrosséis e Reels de prestação de contas de mandato com impulsionamento para seguidores e lookalike em Fortaleza e RMF."
+                "recomendacao_acao": "Produzir carrosséis e Reels de prestação de contas de mandato com impulsionamento para seguidores e lookalike em Fortaleza e RMF.",
+                "validado_no_google_trends": tem_termo_6x1,
+                "termo_trends_relacionado": termo_res
             },
             "amostra_base": {
                 "total_24h": total_24,
@@ -295,7 +340,9 @@ def _fallback_radar_tatico(resumo_dados=None, status_forçado="DOMINANDO", rede=
             "detalhe": "Aceitação orgânica acima de 90% no debate de trabalhadores cearenses.",
             "gancho_conteudo": "A verdade que a oposição esconde sobre a escala 6x1 no Ceará",
             "segmentacao_trafego": "Trabalhadores e estudantes (16-35 anos), Fortaleza, RMF e polos do interior",
-            "recomendacao_acao": "Produzir novos vídeos curtos (Shorts/Reels) explicando a escala e orientar impulsionamento para jovens (16-29 anos) em Fortaleza e RMF."
+            "recomendacao_acao": "Produzir novos vídeos curtos (Shorts/Reels) explicando a escala e orientar impulsionamento para jovens (16-29 anos) em Fortaleza e RMF.",
+            "validado_no_google_trends": tem_termo_6x1,
+            "termo_trends_relacionado": termo_res
         },
         "amostra_base": {
             "total_24h": total_24,

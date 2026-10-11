@@ -756,6 +756,78 @@ body {
   transform: translateY(-1px);
   border-color: #4285F4;
 }
+.lista-google-ce-transversal .item-google-ce.item-civico-destaque {
+  border-left: 3.5px solid #2563EB;
+  background: #fdfefe;
+}
+.link-termo-trends {
+  color: var(--tinta);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color .15s ease;
+}
+.link-termo-trends:hover {
+  color: #1a73e8;
+  text-decoration: underline;
+}
+.badge-cat-trends {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--f-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  letter-spacing: .01em;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+.badge-cat-trends.civica {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.badge-cat-trends.esporte {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.filtro-categoria-wrap {
+  margin-left: 6px;
+  border-left: 1px solid var(--linha);
+  padding-left: 6px;
+}
+
+/* Badge de Validação Popular no Radar Tático */
+.badge-trends-validado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(234, 67, 53, 0.1), rgba(251, 188, 5, 0.15));
+  border: 1px solid rgba(234, 67, 53, 0.3);
+  color: #c5221f;
+  padding: 5px 11px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.badge-trends-validado strong {
+  font-weight: 800;
+}
+.badge-hero-trends-inline {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(234, 67, 53, 0.12);
+  color: #c5221f;
+  border: 1px solid rgba(234, 67, 53, 0.25);
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
 
 /* Barra de Foco Rápido em Hubs */
 .barra-foco-hubs {
