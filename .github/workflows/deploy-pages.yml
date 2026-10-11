@@ -1,9 +1,9 @@
 name: Radar Ceará · Atualização Automática de Dados com IA
 
 on:
-  # Agendamento único às 23h do Ceará (02:00 UTC):
-  schedule:
-    - cron: '0 2 * * *'
+  # Agendamento único às 23h do Ceará (pausado temporariamente a pedido):
+  # schedule:
+  #   - cron: '0 2 * * *'
 
   # Permite disparar manualmente pelo botão "Run workflow" no GitHub Actions
   workflow_dispatch:
