@@ -954,9 +954,15 @@ ${blocoVideoZap}${blocoTrafegoZap}
       const total = perfis.length + hashtags.length;
 
       if (modalIcone) modalIcone.textContent = "📸";
-      if (modalTitulo) modalTitulo.textContent = "Perfis & Hashtags Monitorados · Instagram";
-      if (modalSubtitulo) modalSubtitulo.textContent = "Relação de perfis do campo popular, imprensa cearense e hashtags ativas";
-      if (modalContagem) modalContagem.textContent = `${perfis.length} perfis e ${hashtags.length} hashtags em monitoramento`;
+      if (hashtags.length > 0) {
+        if (modalTitulo) modalTitulo.textContent = "Perfis & Hashtags Monitorados · Instagram";
+        if (modalSubtitulo) modalSubtitulo.textContent = "Relação de perfis do campo popular, imprensa cearense e hashtags ativas";
+        if (modalContagem) modalContagem.textContent = `${perfis.length} perfis e ${hashtags.length} hashtags em monitoramento`;
+      } else {
+        if (modalTitulo) modalTitulo.textContent = "Perfis Monitorados · Instagram";
+        if (modalSubtitulo) modalSubtitulo.textContent = "Relação de perfis do campo popular e imprensa cearense";
+        if (modalContagem) modalContagem.textContent = `${perfis.length} perfis cearenses em monitoramento`;
+      }
 
       let html = "";
 
