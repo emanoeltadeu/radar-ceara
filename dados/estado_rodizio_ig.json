@@ -1,16 +1,16 @@
 {
-  "proximo_indice": 6,
-  "indice_rodada_anterior": 19,
+  "proximo_indice": 14,
+  "indice_rodada_anterior": 6,
   "total_perfis_cadastrados": 21,
   "lote_selecionado": [
-    "etufortaleza",
-    "centraldoonibusfortaleza",
-    "leosuricate",
-    "suricateseboso",
-    "elmanodefreitas",
-    "camilosantanaoficial",
-    "governodoceara",
-    "prefeituradefortaleza"
+    "rede_cuca",
+    "midianinja",
+    "opovoonline",
+    "opovocbn",
+    "diariodonordeste",
+    "gcmais",
+    "jornaljangadeiro",
+    "tvceara"
   ],
-  "atualizado_em": "2026-10-11T12:23:44.945453"
+  "atualizado_em": "2026-10-11T16:37:21.647059"
 }
