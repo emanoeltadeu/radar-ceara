@@ -1,16 +1,28 @@
 # 🎯 Radar Léo Suricate · Mandato Popular CE
 
-> Painel de inteligência estratégica e monitoramento digital em tempo real das redes sociais no Ceará (YouTube, Instagram, Google Trends e Meta Ads) com análise de sentimento, Balanço de Disputa Narrativa e Radar Tático acionável via IA Generativa (**Google Gemini**).
+> Central de inteligência de guerra digital e monitoramento em tempo real das redes sociais no Ceará (YouTube, Instagram, Google Trends e Meta Ads) com análise de sentimento, Balanço de Disputa Narrativa e Radar Tático operacional acionável via IA Generativa (**Google Gemini**).
 
 ---
 
 ## 🌟 Funcionalidades Principais
 
-1. **Radar Tático IA (YouTube & Instagram):**
-   - **Alerta Imediato / Urgência (1h):** Detecção precoce de crises emergentes, pautas em ascensão rápida e ataques coordenados na última hora.
-   - **Diretriz Estratégica Consolidada (24h):** Síntese aprofundada das narrativas dominantes, pautas favorecidas e recomendações de comunicação e posicionamento tático formuladas pelo Gemini.
+1. **Panorama Geral das Redes (Hero Banner):**
+   - Síntese executiva unificada no topo da página destacando o status de domínio em cada rede (*DOMINANDO*, *EQUILIBRADO* ou *SOB PRESSÃO*), a pauta principal em foco e a diretriz estratégica recomendada para o dia.
 
-2. **Balanço de Disputa Narrativa (Saldo Líquido):**
+2. **Radar Tático IA (Ordens Operacionais Sem Clichês):**
+   - **Alerta Imediato / Urgência (1h):** Detecção de calor recente e ataques da oposição. Em calmaria, libera a equipe para avanço ofensivo de pauta; em crise, aciona contenção imediata com contra-fatos.
+   - **Diretriz Estratégica Consolidada (24h):** 
+     - **Hook de 3 Segundos:** Gancho popular cearense pronto para o Léo falar na abertura do Reels/Shorts.
+     - **Segmentação Territorial de Tráfego:** Recomendações de público e municípios/bairros de Fortaleza e RMF para impulsionamento no Meta Ads.
+     - **Comando por Setor:** Tarefas tangíveis para roteiristas, editores e assessoria.
+   - **📋 Exportação Direta para WhatsApp:** Botão que formata e envia o briefing tático completo direto para o WhatsApp da equipe e da militância de base com 1 clique.
+
+3. **Cruzamento Estratégico com Google Trends Ceará:**
+   - **Classificação Temática Automática:** Separação entre pautas de interesse público (`🏛️ Cívico / Social`) e entretenimento/futebol (`⚽ Esporte / Cultura`), com botão de filtro rápido no painel.
+   - **Selo de Validação Popular:** Injeção do contexto do Google Trends no prompt da IA, gerando o badge `🔥 Tração Validada nas Buscas do Google` quando a pauta do mandato rompe a bolha das redes e corresponde ao interesse ativo de pesquisa do povo cearense.
+   - **Links Oficiais:** Cada termo possui link direto `↗` para a busca oficial correspondente no Google Trends.
+
+4. **Balanço de Disputa Narrativa (Saldo Líquido):**
    - Termômetro dinâmico por tema que agrupa comentários e calcula o **Saldo Líquido** (% Pró vs % Contra).
    - Classificação estratégica em 5 faixas:
      - 🟢 **Terreno Seguro** (+70% a +100%)
@@ -20,62 +32,65 @@
      - 🔴 **Crítica / Contenção** (-70% a -100%)
    - Ordenação dinâmica por **Volume de Menções** ou por **Criticidade / Crise** (menor saldo primeiro).
 
-3. **Janelas Temporais Sincronizadas (1h, 2h, 12h, 24h e 7d):**
+5. **Janelas Temporais Sincronizadas (1h, 2h, 12h, 24h e 7d):**
    - Controles independentes para **YouTube** e **Instagram** com alternância instantânea entre 5 horizontes de tempo.
    - Recálculo dinâmico do termômetro de humor popular, do balanço de disputa e da lista de comentários da janela selecionada.
 
-4. **Auditoria de Comentários Reais com Deep Link:**
+6. **Auditoria de Comentários Reais com Deep Link:**
    - Lista interativa de comentários reais classificados por sentimento (*Positivo*, *Neutro*, *Crítica / Oposição*).
-   - Filtro interativo: clique em qualquer pauta do balanço para auditar estritamente os comentários daquele tema.
-   - **Link Direto:** Botão `Ver no YouTube ↗` com link profundo (`&lc=`) abrindo o comentário fixado no topo do vídeo, e `Ver no Instagram ↗` levando diretamente à publicação original.
+   - Filtro interativo por tema e botão direto `Ver no YouTube ↗` (com link profundo `&lc=`) ou `Ver no Instagram ↗`.
 
-5. **Em Alta no Google Trends (Ceará):**
-   - Monitor de buscas com janelas de **4h** e **24h**, destacando termos relacionados ao campo popular, oposição ou pautas de disputa geral no estado.
+7. **Modal de Fontes Monitoradas Transparente:**
+   - Modal dinâmico no cabeçalho das redes exibindo a lista completa de perfis e canais monitorados com links externos `↗`, sem expor infraestrutura de coleta.
 
-6. **Transparência Meta Ads:**
+8. **Transparência Meta Ads:**
    - Monitoramento de gastos declarados com impulsionamento de anúncios políticos no Ceará e distribuição percentual por município.
 
 ---
 
 ## 📡 Alvos Monitorados (YouTube & Instagram)
 
-| Rede Social | Arquivo de Alvos | Total de Alvos Ativos | Volume na Base (7d) |
+| Rede Social | Arquivo de Alvos | Total de Alvos Ativos | Status da Coleta |
 | :--- | :--- | :--- | :--- |
-| **YouTube** | [`dados/canais_youtube_ce.txt`](dados/canais_youtube_ce.txt) | **32 canais cearenses** | **2.000+ comentários reais** |
-| **Instagram (Perfis)** | [`dados/perfis_instagram.txt`](dados/perfis_instagram.txt) | **24 perfis prioritários (@)** | **Comentários de debate e seguidores** |
-| **Instagram (Hashtags)** | [`dados/hashtags_instagram.txt`](dados/hashtags_instagram.txt) | **Hashtags de mobilização (#)** | **Debate popular e mobilização** |
-| **Total Combinado** | — | **56+ alvos no Ceará** | **~3.700 comentários analisados** |
+| **YouTube** | [`dados/canais_youtube_ce.txt`](dados/canais_youtube_ce.txt) | **28 canais cearenses** | **Ativo contínuo** (Vídeos recentes e comentários via YouTube Data API v3) |
+| **Instagram (Perfis)** | [`dados/perfis_instagram.txt`](dados/perfis_instagram.txt) | **21 perfis prioritários (@)** | **Ativo em rotação FIFO** (8 perfis por ciclo, 5 posts mais recentes via Apify) |
+| **Instagram (Hashtags)** | [`dados/hashtags_instagram.txt`](dados/hashtags_instagram.txt) | *17 hashtags mapeadas (#)* | **⏸️ Pausado temporariamente** (Economia de cota Apify; ativável sob demanda) |
+| **Total Combinado** | — | **49 alvos monitorados no CE** | **Milhares de comentários processados e classificados** |
 
 ---
 
 ### ▶ Coleta no YouTube (YouTube Data API v3)
-- **Imprensa & Notícias (14 canais):** *O POVO Online, Diário do Nordeste, GCMAIS / TV Cidade, Jornal Jangadeiro, TV Ceará, ALECE Notícias, Focus Poder, UrbNews, etc.*
-- **Mandato & Campo Popular (7 canais):** *Léo Suricate / Suricate Seboso, Mídia NINJA, Elmano de Freitas, Governo do Ceará, Prefeitura de Fortaleza, Coletivo Cuca, Batalha do Cuca.*
-- **Debate Político & Oposição (7 canais):** *André Fernandes, Capitão Wagner, Carmelo Neto, Rubão TV, Direita Já, etc.*
+- **Imprensa & Notícias (12 canais):** *O POVO Online, Diário do Nordeste, GCMAIS / TV Cidade, Jornal Jangadeiro, TV Ceará, ALECE Notícias, Focus Poder, UrbNews, etc.*
+- **Mandato & Campo Popular (6 canais):** *Léo Suricate / Suricate Seboso, Mídia NINJA, Elmano de Freitas, Governo do Ceará, Prefeitura de Fortaleza, Coletivo Cuca / Batalha do Cuca.*
+- **Debate Político & Oposição (8 canais):** *André Fernandes, Capitão Wagner, Carmelo Neto, Rubão TV, Direita Já, etc.*
 - **Cotidiano Urbano & Transporte (2 canais):** *Central do Ônibus Fortaleza, No Ponto Fortaleza.*
 
 ### 📸 Coleta no Instagram (Apify Cloud)
-- **Perfis Monitorados:** `@leosuricate`, `@suricateseboso`, `@midianinja`, imprensa cearense (`@opovoonline`, `@diariodonordeste`, `@gcmais`), oposição (`@andrefernandes`, `@capitaowagnersousa`, `@carmeloneto`) e perfis de mobilização urbana.
-- **Hashtags de Mobilização:** `#fimda6x1`, `#boralula`, `#eleicoes2026`, entre outras.
-- **Estrutura:** Extração via atores Apify com rotação inteligente para otimização de custo e limite de chamadas.
+- **Perfis Monitorados (21 perfis):** Mandato popular e aliados (`@leosuricate`, `@suricateseboso`, `@midianinja`), imprensa cearense (`@opovoonline`, `@diariodonordeste`, `@gcmais`, `@portalgcm`, etc.), oposição (`@andrefernandes`, `@capitaowagnersousa`, `@carmeloneto`) e veículos de mobilização urbana/comunitária.
+- **Estratégia de Cota e Rotação Circular (FIFO):**
+  - Cada execução coleta em lote circular de 8 perfis (`batch_size=8`), extraindo os 5 posts mais recentes de cada um (`resultsLimit=5`).
+  - O cursor de rotação é persistido em `dados/cursor_perfis_ig.json`, garantindo cobertura equitativa de todos os 21 perfis ao longo dos ciclos.
+  - Memória do container Apify limitada a 1024 MB com timeout de 45s, garantindo custo previsível (~US\$ 0,08 por ciclo).
+- **Hashtags de Mobilização:**
+  - A varredura de hashtags via Apify está **temporariamente em pausa** para preservação de cota mensal da plataforma. O arquivo de alvos (`dados/hashtags_instagram.txt`) permanece pronto para reativação estratégica em períodos eleitorais ou mobilizações pontuais.
 
 ---
 
 ## 🧠 Inteligência & Classificação com IA (Google Gemini)
 
-1. Os comentários do YouTube e do Instagram são classificados semanticamente via `scripts/inteligencia/gemini.py`.
+1. Os comentários do YouTube e do Instagram são classificados semanticamente via `scripts/inteligencia/gemini.py` com o modelo **Google Gemini**.
 2. Para cada comentário, o modelo identifica:
    - **Sentimento:** Positivo (apoio), Crítica / Oposição (cobrança/ataque) ou Neutro.
    - **Pauta / Tema específico:** (ex.: *"Escala 6x1"*, *"Segurança Pública"*, *"Transporte / Tarifa Zero"*, *"Lula vs Bolsonaro"*, etc.).
    - **Resumo IA:** Síntese em uma frase da mensagem central do comentário.
-3. O módulo `scripts/inteligencia/radar_tatico.py` sintetiza as métricas da última hora vs últimas 24h e gera o relatório tático executivo com recomendações de blindagem e contra-ataque.
+3. O módulo `scripts/inteligencia/radar_tatico.py` cruza o calor das redes com as buscas reais do Google Trends Ceará e gera ordens operacionais sem jargões para comunicação rápida do mandato (hooks, segmentação de tráfego e comandos para a equipe).
 
 ---
 
 ## ⚡ Arquitetura de Dados & Payload Otimizado
 
 O payload central [`site/radar_ce.json`](site/radar_ce.json) foi projetado para alta performance:
-- **Redução de ~78% de peso (de ~12,6 MB para 2,8 MB)**.
+- **Redução de ~78% de peso (de ~12,6 MB para ~2,8 MB)**.
 - **Desduplicação Mestra:** Os comentários completos ficam armazenados apenas uma vez por rede (`sentimento_youtube.todos_comentarios` e `sentimento_instagram.todos_comentarios`).
 - **Ponteiros de ID por Janela:** Cada uma das 5 janelas temporais (`1h`, `2h`, `12h`, `24h`, `7d`) armazena apenas métricas percentuais consolidadas e um array de IDs (`ids_comentarios`), resolvido instantaneamente em memória pelo frontend.
 
@@ -86,11 +101,13 @@ O payload central [`site/radar_ce.json`](site/radar_ce.json) foi projetado para 
 ```text
 ├── .github/
 │   └── workflows/
-│       └── deploy-pages.yml         # Automação agendada diária no GitHub Actions
+│       ├── deploy-pages.yml         # Pipeline completo diário/manual no GitHub Actions
+│       └── atualizar-trends.yml     # Micro-workflow rápido (a cada 4h) para o Google Trends
 ├── dados/
-│   ├── canais_youtube_ce.txt        # 32 canais prioritários monitorados no Ceará
-│   ├── perfis_instagram.txt         # 24 perfis do Instagram (@)
-│   ├── hashtags_instagram.txt       # Hashtags prioritárias (#fimda6x1, etc.)
+│   ├── canais_youtube_ce.txt        # 28 canais prioritários monitorados no Ceará
+│   ├── perfis_instagram.txt         # 21 perfis do Instagram (@) em rotação circular
+│   ├── hashtags_instagram.txt       # Hashtags mapeadas (pausadas temporariamente)
+│   ├── cursor_perfis_ig.json        # Ponteiro persistente do lote circular de perfis
 │   ├── cache_youtube.json           # Acervo persistente de vídeos políticos cearenses
 │   ├── cache_comentarios.json       # Base bruta de comentários do YouTube
 │   ├── cache_instagram.json         # Base bruta de comentários do Instagram
@@ -100,18 +117,19 @@ O payload central [`site/radar_ce.json`](site/radar_ce.json) foi projetado para 
 │   ├── config.py                    # Configurações de caminhos, fuso horário e chaves
 │   ├── coletores/                   # Camada de Coleta (Extract)
 │   │   ├── youtube.py               # Extração de vídeos e comentários na YouTube API v3
-│   │   ├── instagram_apify.py       # Extração de perfis e hashtags via Apify
-│   │   ├── google_trends.py         # Coleta e parsing do Google Trends CE (4h e 24h)
+│   │   ├── instagram_apify.py       # Extração de perfis via Apify (rotação FIFO)
+│   │   ├── google_trends.py         # Coleta e categorização do Google Trends CE (4h e 24h)
 │   │   └── meta_ads.py              # Análise de gastos e distribuição Meta Ads
 │   ├── inteligencia/                # Camada de IA & Análise (Transform)
 │   │   ├── gemini.py                # Classificação de sentimento, temas e resumo
-│   │   └── radar_tatico.py          # Geração do Radar Tático IA (1h urgente vs 24h)
+│   │   └── radar_tatico.py          # Radar Tático IA com cruzamento de Trends e ordens
+│   ├── atualizar_trends_isolado.py  # Script de atualização rápida apenas do Google Trends
 │   ├── migrar_radar_ce.py           # Utilitário de migração e compactação do payload
-│   └── gerar_radar_ce.py            # Orquestrador do pipeline de dados (Load)
+│   └── gerar_radar_ce.py            # Orquestrador do pipeline completo (Load)
 ├── site/
-│   ├── index.html                   # Interface do painel de monitoramento (SPA)
-│   ├── style.css                    # Folha de estilos responsiva
-│   ├── app.js                       # Lógica de interação, filtros e janelas temporais
+│   ├── index.html                   # Interface do painel de inteligência de guerra digital
+│   ├── style.css                    # Folha de estilos moderna com tema escuro e responsiva
+│   ├── app.js                       # Lógica de filtros, janelas temporais e modal de fontes
 │   └── radar_ce.json                # Payload consolidado consumido pelo frontend
 ├── .env.example                     # Modelo de variáveis de ambiente
 ├── .gitignore                       # Proteção de credenciais e caches
