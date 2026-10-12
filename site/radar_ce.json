@@ -53,75 +53,75 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "11/10/2026 às 23:06",
+      "atualizado_em": "12/10/2026 às 07:28",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "debate presidencial",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: debate presidencial 2026"
-        },
-        {
-          "termo": "bahia x",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do bahia"
-        },
-        {
-          "termo": "esportes",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: quanto foi o jogo do flamengo-fluminense"
-        },
-        {
-          "termo": "campeonato brasileiro",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo palmeiras x corinthians"
-        },
-        {
-          "termo": "jogos de brasileirão série a",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: campeonato brasileiro a"
-        },
-        {
-          "termo": "tiririca",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "avai",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: cuiabá esporte clube"
-        },
-        {
-          "termo": "br-153",
+          "termo": "janaina paschoal",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "record ao vivo",
-          "volume": "2 mil+",
+          "termo": "hoje e feriado",
+          "volume": "1 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: hoje é feriado?"
+        },
+        {
+          "termo": "feriado",
+          "volume": "1 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: feriado dia 12 de outubro"
+        },
+        {
+          "termo": "oração a nossa senhora aparecida",
+          "volume": "500+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: aparecida"
+        },
+        {
+          "termo": "quaest",
+          "volume": "500+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "ebola",
-          "volume": "2 mil+",
+          "termo": "bolsonarismo",
+          "volume": "500+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "camilo santana",
+          "volume": "500+",
+          "lado": "disputa",
+          "categoria": "politica_social",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "goleada",
+          "volume": "200+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "jiu-jítsu",
+          "volume": "200+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "al cleland jr",
+          "volume": "200+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
@@ -133,7 +133,7 @@
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: mirassol"
+          "pauta": "Busca associada: classificações de esporte clube bahia x mirassol"
         },
         {
           "termo": "pesquisa datafolha para presidente 2026 segundo turno",
@@ -161,111 +161,111 @@
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do sport"
+          "pauta": "Busca associada: classificações de atlético-go x sport recife"
         },
         {
-          "termo": "debate eleitoral",
-          "volume": "100 mil+",
-          "lado": "nossa",
-          "categoria": "politica_social",
-          "pauta": "Busca associada: debate lula e flavio"
-        },
-        {
-          "termo": "fla x flu",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: flamengo hoje"
-        },
-        {
-          "termo": "tabela do brasileirão",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "tabela brasileirão",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: tabela brasileirao"
-        },
-        {
-          "termo": "fábio faria",
+          "termo": "classificações de náutico x vila nova futebol clube",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: náutico x vila nova"
+        },
+        {
+          "termo": "juventude x são bernardo",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: classificações de esporte clube juventude x são bernardo futebol clube"
+        },
+        {
+          "termo": "edson silva ator",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: ator edson silva"
+        },
+        {
+          "termo": "lula na paulista",
+          "volume": "20 mil+",
+          "lado": "nossa",
+          "categoria": "politica_social",
+          "pauta": "Busca associada: manifestação lula paulista"
+        },
+        {
+          "termo": "cuiabá x avaí",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: classificações de cuiabá esporte clube x avaí"
         }
       ],
       "itens": [
         {
-          "termo": "debate presidencial",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: debate presidencial 2026"
-        },
-        {
-          "termo": "bahia x",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do bahia"
-        },
-        {
-          "termo": "esportes",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: quanto foi o jogo do flamengo-fluminense"
-        },
-        {
-          "termo": "campeonato brasileiro",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo palmeiras x corinthians"
-        },
-        {
-          "termo": "jogos de brasileirão série a",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: campeonato brasileiro a"
-        },
-        {
-          "termo": "tiririca",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "avai",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: cuiabá esporte clube"
-        },
-        {
-          "termo": "br-153",
+          "termo": "janaina paschoal",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "record ao vivo",
-          "volume": "2 mil+",
+          "termo": "hoje e feriado",
+          "volume": "1 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: hoje é feriado?"
+        },
+        {
+          "termo": "feriado",
+          "volume": "1 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: feriado dia 12 de outubro"
+        },
+        {
+          "termo": "oração a nossa senhora aparecida",
+          "volume": "500+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: aparecida"
+        },
+        {
+          "termo": "quaest",
+          "volume": "500+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "ebola",
-          "volume": "2 mil+",
+          "termo": "bolsonarismo",
+          "volume": "500+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "camilo santana",
+          "volume": "500+",
+          "lado": "disputa",
+          "categoria": "politica_social",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "goleada",
+          "volume": "200+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "jiu-jítsu",
+          "volume": "200+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "al cleland jr",
+          "volume": "200+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
@@ -273,9 +273,9 @@
       ],
       "termos_socioeconomicos_ceara": [
         {
-          "termo": "debate eleitoral",
-          "volume": "100 mil+",
-          "pauta": "Busca associada: debate lula e flavio"
+          "termo": "camilo santana",
+          "volume": "500+",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ]
     }
