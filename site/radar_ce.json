@@ -53,239 +53,229 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "12/10/2026 às 17:03",
+      "atualizado_em": "12/10/2026 às 19:22",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "fortaleza x crb",
+          "termo": "classificações de coritiba x botafogo",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: botafogo"
+        },
+        {
+          "termo": "rj mitte",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: breaking bad"
+        },
+        {
+          "termo": "classificações de fortaleza esporte clube x crb",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: fortaleza"
         },
         {
-          "termo": "botafogo",
-          "volume": "50 mil+",
+          "termo": "chapecoense x athletico-pr",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: coritiba"
+          "pauta": "Busca associada: chapecoense"
         },
         {
-          "termo": "coventry city x newcastle",
-          "volume": "5 mil+",
+          "termo": "big brother brasil",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: big brother"
+        },
+        {
+          "termo": "novorizontino x ponte preta",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: coventry city"
-        },
-        {
-          "termo": "al nassr",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: al-nassr"
-        },
-        {
-          "termo": "batalhão de operações policiais especiais",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "janaina paschoal hoje",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "copacabana",
-          "volume": "2 mil+",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: manifestação copacabana"
         },
         {
-          "termo": "levante x sevilla",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "cyberleek gta 6",
-          "volume": "2 mil+",
+          "termo": "al nassr",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: vazamentos gta 6"
+          "pauta": "Busca associada: al-nassr"
         },
         {
-          "termo": "nova pesquisa quaest para presidente 2026",
+          "termo": "selma blair",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "criciúma x américa-mg",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "categoria": "esporte",
+          "pauta": "Busca associada: criciuma"
         }
       ],
       "itens_24h": [
-        {
-          "termo": "classificações de sociedade esportiva palmeiras x corinthians",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: goleada"
-        },
-        {
-          "termo": "classificações de grêmio x internacional",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: tabela do brasileirão"
-        },
         {
           "termo": "coritiba x botafogo",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: botafogo"
+          "pauta": "Busca associada: classificações de coritiba x botafogo"
         },
         {
-          "termo": "pesquisa segundo turno presidente 2026 datafolha",
-          "volume": "200 mil+",
+          "termo": "fortaleza x crb",
+          "volume": "100 mil+",
           "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Busca associada: pesquisa datafolha para presidente 2026 segundo turno"
+          "categoria": "esporte",
+          "pauta": "Busca associada: classificações de fortaleza esporte clube x crb"
         },
         {
           "termo": "classificações de esporte clube bahia x mirassol",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: mirassol"
+          "pauta": "Busca associada: jogo do bahia"
         },
         {
-          "termo": "fortaleza x crb",
+          "termo": "rj mitte",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: breaking bad"
+        },
+        {
+          "termo": "al-nassr x fk neftchi farg'ona",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: fortaleza"
+          "pauta": "Busca associada: liga dos campeões da afc"
+        },
+        {
+          "termo": "janaina paschoal",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "politica_social",
+          "pauta": "Busca associada: janaina paschoal hoje"
         },
         {
           "termo": "feliz dia das crianças",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: mensagem feliz dia das crianças frases"
+          "pauta": "Busca associada: mensagem dia das crianças"
         },
         {
-          "termo": "janaina paschoal",
+          "termo": "chapecoense x athletico-pr",
           "volume": "20 mil+",
           "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Busca associada: janaina paschoal hoje"
+          "categoria": "esporte",
+          "pauta": "Busca associada: chapecoense"
         },
         {
-          "termo": "manifestação lula paulista",
-          "volume": "20 mil+",
-          "lado": "nossa",
-          "categoria": "politica_social",
-          "pauta": "Busca associada: depredação na paulista"
-        },
-        {
-          "termo": "aparecida",
+          "termo": "big brother brasil",
           "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: nossa senhora"
+          "pauta": "Busca associada: big brother"
+        },
+        {
+          "termo": "caixão",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
       "itens": [
         {
-          "termo": "fortaleza x crb",
+          "termo": "classificações de coritiba x botafogo",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: botafogo"
+        },
+        {
+          "termo": "rj mitte",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: breaking bad"
+        },
+        {
+          "termo": "classificações de fortaleza esporte clube x crb",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: fortaleza"
         },
         {
-          "termo": "botafogo",
-          "volume": "50 mil+",
+          "termo": "chapecoense x athletico-pr",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: coritiba"
+          "pauta": "Busca associada: chapecoense"
         },
         {
-          "termo": "coventry city x newcastle",
-          "volume": "5 mil+",
+          "termo": "big brother brasil",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: big brother"
+        },
+        {
+          "termo": "novorizontino x ponte preta",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: coventry city"
-        },
-        {
-          "termo": "al nassr",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: al-nassr"
-        },
-        {
-          "termo": "batalhão de operações policiais especiais",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "janaina paschoal hoje",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "copacabana",
-          "volume": "2 mil+",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: manifestação copacabana"
         },
         {
-          "termo": "levante x sevilla",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "cyberleek gta 6",
-          "volume": "2 mil+",
+          "termo": "al nassr",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: vazamentos gta 6"
+          "pauta": "Busca associada: al-nassr"
         },
         {
-          "termo": "nova pesquisa quaest para presidente 2026",
+          "termo": "selma blair",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "criciúma x américa-mg",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "categoria": "esporte",
+          "pauta": "Busca associada: criciuma"
         }
       ],
       "termos_socioeconomicos_ceara": [
         {
-          "termo": "batalhão de operações policiais especiais",
-          "volume": "2 mil+",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "janaina paschoal hoje",
-          "volume": "2 mil+",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "nova pesquisa quaest para presidente 2026",
-          "volume": "2 mil+",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "termo": "janaina paschoal",
+          "volume": "50 mil+",
+          "pauta": "Busca associada: janaina paschoal hoje"
         }
       ]
     }
