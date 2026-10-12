@@ -40,6 +40,7 @@ VERSAO_RADAR = "2.2.0-instagram"
 # Modelo de IA Generativa padrão para análise semântica e radar tático
 MODELO_GEMINI = "gemini-3.5-flash-lite"
 
+
 def calcular_idade_horas(data_str):
     """
     Calcula a idade em horas de uma string de data ISO-8601 UTC.
@@ -56,6 +57,7 @@ def calcular_idade_horas(data_str):
         return max(0.0, (agora - dt).total_seconds() / 3600.0)
     except Exception:
         return 9999.0
+
 
 def carregar_chaves_api():
     """
@@ -96,11 +98,8 @@ def carregar_chaves_api():
         except Exception:
             pass
 
-    return {
-        "gemini": gemini_key,
-        "youtube": yt_key,
-        "apify": apify_token
-    }
+    return {"gemini": gemini_key, "youtube": yt_key, "apify": apify_token}
+
 
 def obter_hora_ce_formatada(formato="%H:%M"):
     """

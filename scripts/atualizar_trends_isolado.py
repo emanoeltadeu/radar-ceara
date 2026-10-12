@@ -18,9 +18,10 @@ DIRETORIO_ATUAL = os.path.dirname(os.path.abspath(__file__))
 if DIRETORIO_ATUAL not in sys.path:
     sys.path.insert(0, DIRETORIO_ATUAL)
 
-from coletores.google_trends import coletar_trends_ceara
+from coletores.google_trends import coletar_trends_ceara  # noqa: E402
 
 CAMINHO_RADAR_JSON = os.path.join(os.path.dirname(DIRETORIO_ATUAL), "site", "radar_ce.json")
+
 
 def atualizar_trends_isolado():
     print("📈 Iniciando micro-atualização do Google Trends Ceará...")
@@ -60,7 +61,10 @@ def atualizar_trends_isolado():
     timestamp_formatado = agora_ce.strftime("%d/%m/%Y às %H:%M")
 
     from coletores.google_trends import extrair_termos_socioeconomicos
-    termos_socioeconomicos = extrair_termos_socioeconomicos(itens_4h_final) or extrair_termos_socioeconomicos(itens_24h_final)
+
+    termos_socioeconomicos = extrair_termos_socioeconomicos(itens_4h_final) or extrair_termos_socioeconomicos(
+        itens_24h_final
+    )
 
     # Atualiza estritamente o bloco google_trends_ce
     monitor_redes["google_trends_ce"] = {
@@ -69,14 +73,12 @@ def atualizar_trends_isolado():
         "itens_4h": itens_4h_final,
         "itens_24h": itens_24h_final,
         "itens": itens_4h_final if itens_4h_final else itens_24h_final,
-        "termos_socioeconomicos_ceara": termos_socioeconomicos
+        "termos_socioeconomicos_ceara": termos_socioeconomicos,
     }
 
     # Sanitização determinística nos blocos de radar tático existentes (anti-inconsistência no Hero)
     termos_socio_reais = [
-        (it.get("termo") or "").lower().strip()
-        for it in termos_socioeconomicos
-        if (it.get("termo") or "").strip()
+        (it.get("termo") or "").lower().strip() for it in termos_socioeconomicos if (it.get("termo") or "").strip()
     ]
     for chave_radar in ["radar_tatico_youtube", "radar_tatico_instagram"]:
         radar_bloco = radar_dados.get(chave_radar)
@@ -96,6 +98,7 @@ def atualizar_trends_isolado():
     except Exception as e:
         print(f"❌ Erro ao salvar 'site/radar_ce.json': {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     atualizar_trends_isolado()

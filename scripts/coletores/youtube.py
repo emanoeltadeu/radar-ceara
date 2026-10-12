@@ -21,14 +21,24 @@ from config import (
     CANAIS_YOUTUBE,
     JANELA_MAXIMA_HORAS,
     calcular_idade_horas,
-    carregar_chaves_api
+    carregar_chaves_api,
 )
 
 # Termos para ignorar preventivamente na coleta de vídeos (evita gastar cota com fofoca/humor/futebol)
 TERMOS_IGNORAR_TITULO = [
-    "tiririca", "saf", "futebol", "campeonato", "cearense sub", "clássico-rei",
-    "fortaleza ec", "ceará sc", "brasileirão", "gol de", "humor"
+    "tiririca",
+    "saf",
+    "futebol",
+    "campeonato",
+    "cearense sub",
+    "clássico-rei",
+    "fortaleza ec",
+    "ceará sc",
+    "brasileirão",
+    "gol de",
+    "humor",
 ]
+
 
 def carregar_lista_canais_youtube(caminho=CANAIS_YOUTUBE):
     """
@@ -47,6 +57,7 @@ def carregar_lista_canais_youtube(caminho=CANAIS_YOUTUBE):
         pass
     return canais
 
+
 def _extrair_videos_recentes_canal_youtube(nome_canal, max_videos=15):
     """
     Extrai vídeos recentes de um canal sem gastar cota da API oficial,
@@ -59,15 +70,19 @@ def _extrair_videos_recentes_canal_youtube(nome_canal, max_videos=15):
         req = urllib.request.Request(
             url,
             headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                "Accept-Language": "pt-BR,pt;q=0.9"
-            }
+                "User-Agent": (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                ),
+                "Accept-Language": "pt-BR,pt;q=0.9",
+            },
         )
         with urllib.request.urlopen(req, timeout=8) as resp:
             html_raw = resp.read().decode("utf-8", errors="ignore")
 
         import re
-        m = re.search(r'var ytInitialData = ({.*?});</script>', html_raw)
+
+        m = re.search(r"var ytInitialData = ({.*?});</script>", html_raw)
         if m:
             data = json.loads(m.group(1))
             contents = (
@@ -78,7 +93,7 @@ def _extrair_videos_recentes_canal_youtube(nome_canal, max_videos=15):
                 .get("contents", [])
             )
             for c in contents:
-                items = c.get("itemSectionRenderer", {}) .get("contents", [])
+                items = c.get("itemSectionRenderer", {}).get("contents", [])
                 for it in items:
                     vr = it.get("videoRenderer")
                     if not vr:
@@ -88,13 +103,15 @@ def _extrair_videos_recentes_canal_youtube(nome_canal, max_videos=15):
                         continue
                     tit = vr.get("title", {}).get("runs", [{}])[0].get("text", "")
                     canal_nome = vr.get("ownerText", {}).get("runs", [{}])[0].get("text", nome_canal)
-                    vids.append({
-                        "id": vid_id,
-                        "titulo": html.unescape(tit),
-                        "canal": canal_nome,
-                        "desc": "",
-                        "publishedAt": datetime.now(timezone.utc).isoformat()
-                    })
+                    vids.append(
+                        {
+                            "id": vid_id,
+                            "titulo": html.unescape(tit),
+                            "canal": canal_nome,
+                            "desc": "",
+                            "publishedAt": datetime.now(timezone.utc).isoformat(),
+                        }
+                    )
                     if len(vids) >= max_videos:
                         break
                 if len(vids) >= max_videos:
@@ -102,6 +119,7 @@ def _extrair_videos_recentes_canal_youtube(nome_canal, max_videos=15):
     except Exception:
         pass
     return vids
+
 
 def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE):
     """
@@ -127,7 +145,9 @@ def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE):
     if canais_alvo:
         print(f"   -> Varrendo {len(canais_alvo)} canais cearenses mapeados (paralelo com 8 threads)...")
         with ThreadPoolExecutor(max_workers=8) as executor:
-            resultados = list(executor.map(lambda c: _extrair_videos_recentes_canal_youtube(c, max_videos=15), canais_alvo))
+            resultados = list(
+                executor.map(lambda c: _extrair_videos_recentes_canal_youtube(c, max_videos=15), canais_alvo)
+            )
             for vids_canal in resultados:
                 for v in vids_canal:
                     vid_id = v["id"]
@@ -135,10 +155,7 @@ def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE):
                         vids_map[vid_id] = v
 
     # Política de retenção de 7 dias: descarta vídeos fora da janela máxima
-    lista_ordenada = [
-        v for v in vids_map.values()
-        if calcular_idade_horas(v.get("publishedAt")) <= JANELA_MAXIMA_HORAS
-    ]
+    lista_ordenada = [v for v in vids_map.values() if calcular_idade_horas(v.get("publishedAt")) <= JANELA_MAXIMA_HORAS]
     lista_ordenada.sort(key=lambda x: x.get("publishedAt", ""), reverse=True)
 
     if lista_ordenada:
@@ -149,6 +166,7 @@ def atualizar_videos_youtube(yt_key=None, cache_path=CACHE_YOUTUBE):
             pass
 
     return lista_ordenada
+
 
 def carregar_corpus_videos(cache_path=CACHE_YOUTUBE):
     """
@@ -174,6 +192,7 @@ def carregar_corpus_videos(cache_path=CACHE_YOUTUBE):
 
     return vids_validos or vids[:50]
 
+
 def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vid=100):
     """
     O que faz:
@@ -195,8 +214,7 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
 
     # Filtrar títulos de futebol/ruído
     vids_filtrados = [
-        v for v in vids
-        if v.get("id") and not any(ign in v.get("titulo", "").lower() for ign in TERMOS_IGNORAR_TITULO)
+        v for v in vids if v.get("id") and not any(ign in v.get("titulo", "").lower() for ign in TERMOS_IGNORAR_TITULO)
     ]
 
     # Prioriza vídeos que citam o mandato ou temas centrais
@@ -267,18 +285,20 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
                     if len(texto_limpo) < 8:
                         continue
 
-                    encontrados.append({
-                        "id": c_id,
-                        "rede": "youtube",
-                        "video_id": vid_id,
-                        "video_titulo": v_tit,
-                        "canal": v_canal,
-                        "autor": top.get("authorDisplayName", "Anônimo"),
-                        "texto": texto_limpo,
-                        "likes": top.get("likeCount", 0),
-                        "data": c_data,
-                        "link_origem": f"https://www.youtube.com/watch?v={vid_id}&lc={c_id}"
-                    })
+                    encontrados.append(
+                        {
+                            "id": c_id,
+                            "rede": "youtube",
+                            "video_id": vid_id,
+                            "video_titulo": v_tit,
+                            "canal": v_canal,
+                            "autor": top.get("authorDisplayName", "Anônimo"),
+                            "texto": texto_limpo,
+                            "likes": top.get("likeCount", 0),
+                            "data": c_data,
+                            "link_origem": f"https://www.youtube.com/watch?v={vid_id}&lc={c_id}",
+                        }
+                    )
         except Exception:
             pass
         return encontrados
@@ -291,8 +311,7 @@ def coletar_comentarios_youtube(yt_key=None, max_vids=50, max_comentarios_por_vi
 
     # Política de retenção de 7 dias: descarta comentários mais antigos
     lista_final = [
-        c for c in comentarios_existentes.values()
-        if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
+        c for c in comentarios_existentes.values() if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
     ]
     if lista_final:
         try:

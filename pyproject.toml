@@ -1,0 +1,11 @@
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+exclude = [
+    ".venv",
+    "legado",
+    "dados"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]

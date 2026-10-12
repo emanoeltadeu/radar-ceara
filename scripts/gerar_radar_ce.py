@@ -19,26 +19,27 @@ DIRETORIO_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 if DIRETORIO_SCRIPTS not in sys.path:
     sys.path.insert(0, DIRETORIO_SCRIPTS)
 
-from config import (
-    SAIDA_RADAR_JSON,
-    FUSO_CE,
-    VERSAO_RADAR,
+from config import (  # noqa: E402
     CACHE_CLASSIFICADOS_IG,
-    carregar_chaves_api
+    FUSO_CE,
+    SAIDA_RADAR_JSON,
+    VERSAO_RADAR,
+    carregar_chaves_api,
 )
-from coletores.youtube import (
+from coletores.google_trends import coletar_trends_ceara  # noqa: E402
+from coletores.instagram_apify import coletar_comentarios_instagram_apify  # noqa: E402
+from coletores.meta_ads import coletar_meta_ads_ce  # noqa: E402
+from coletores.youtube import (  # noqa: E402
     atualizar_videos_youtube,
     carregar_corpus_videos,
-    coletar_comentarios_youtube
+    coletar_comentarios_youtube,
 )
-from coletores.google_trends import coletar_trends_ceara
-from coletores.meta_ads import coletar_meta_ads_ce
-from coletores.instagram_apify import coletar_comentarios_instagram_apify
-from inteligencia.gemini import processar_sentimento_comentarios
-from inteligencia.radar_tatico import (
+from inteligencia.gemini import processar_sentimento_comentarios  # noqa: E402
+from inteligencia.radar_tatico import (  # noqa: E402
+    gerar_insights_radar_tatico_ig,
     gerar_insights_radar_tatico_yt,
-    gerar_insights_radar_tatico_ig
 )
+
 
 def executar_coleta_paralela():
     """
@@ -49,6 +50,7 @@ def executar_coleta_paralela():
     Retorno:
         tuple: (corpus_videos, comentarios_youtube, comentarios_instagram, trends_4h, trends_24h, meta_ads)
     """
+
     def tarefa_youtube():
         chaves = carregar_chaves_api()
         vids = atualizar_videos_youtube(chaves["youtube"])
@@ -81,6 +83,7 @@ def executar_coleta_paralela():
 
     return vids, comentarios_yt, comentarios_ig, trends_4h, trends_24h, meta_ads
 
+
 def main():
     print("🚀 Iniciando Pipeline Modular do Radar Ceará (ETL)...")
     hora_inicio = datetime.now()
@@ -95,10 +98,12 @@ def main():
     print("2/4 Consolidando tendências de busca no Ceará (Google Trends)...")
     chaves = carregar_chaves_api()
     from coletores.google_trends import extrair_termos_socioeconomicos
+
     termos_socioeconomicos = extrair_termos_socioeconomicos(trends_4h) or extrair_termos_socioeconomicos(trends_24h)
 
     # Data/Hora da coleta no fuso de Fortaleza/CE (UTC-3)
     from zoneinfo import ZoneInfo
+
     agora_ce = datetime.now(ZoneInfo("America/Fortaleza"))
     timestamp_trends = agora_ce.strftime("%d/%m/%Y às %H:%M")
 
@@ -109,7 +114,7 @@ def main():
             "itens_4h": trends_4h,
             "itens_24h": trends_24h,
             "itens": trends_4h if trends_4h else trends_24h,
-            "termos_socioeconomicos_ceara": termos_socioeconomicos
+            "termos_socioeconomicos_ceara": termos_socioeconomicos,
         }
     }
 
@@ -119,20 +124,25 @@ def main():
     print(f"   -> YouTube analisado: {sentimento_youtube.get('total_analisados', 0)} comentários")
 
     print("4/4 Processando inteligência de sentimento no Instagram com Google Gemini...")
-    sentimento_instagram = processar_sentimento_comentarios(
-        comentarios_ig,
-        cache_path=CACHE_CLASSIFICADOS_IG
-    )
+    sentimento_instagram = processar_sentimento_comentarios(comentarios_ig, cache_path=CACHE_CLASSIFICADOS_IG)
     print(f"   -> Instagram analisado: {sentimento_instagram.get('total_analisados', 0)} comentários")
 
     # 4.1 Radar Tático IA (Diagnóstico Urgente Recente vs Diretriz Estratégica 24h cruzando com Trends)
     print("   -> Gerando Radar Tático IA (YouTube: Alerta Imediato + Consolidado 24h + Cruzamento Trends)...")
-    comentarios_classificados_yt = sentimento_youtube.get("todos_comentarios") or sentimento_youtube.get("comentarios_todos") or []
-    radar_tatico_yt = gerar_insights_radar_tatico_yt(comentarios_classificados_yt, chaves.get("gemini", ""), contexto_trends=termos_socioeconomicos)
+    comentarios_classificados_yt = (
+        sentimento_youtube.get("todos_comentarios") or sentimento_youtube.get("comentarios_todos") or []
+    )
+    radar_tatico_yt = gerar_insights_radar_tatico_yt(
+        comentarios_classificados_yt, chaves.get("gemini", ""), contexto_trends=termos_socioeconomicos
+    )
 
     print("   -> Gerando Radar Tático IA (Instagram: Alerta Imediato + Consolidado 24h + Cruzamento Trends)...")
-    comentarios_classificados_ig = sentimento_instagram.get("todos_comentarios") or sentimento_instagram.get("comentarios_todos") or []
-    radar_tatico_ig = gerar_insights_radar_tatico_ig(comentarios_classificados_ig, chaves.get("gemini", ""), contexto_trends=termos_socioeconomicos)
+    comentarios_classificados_ig = (
+        sentimento_instagram.get("todos_comentarios") or sentimento_instagram.get("comentarios_todos") or []
+    )
+    radar_tatico_ig = gerar_insights_radar_tatico_ig(
+        comentarios_classificados_ig, chaves.get("gemini", ""), contexto_trends=termos_socioeconomicos
+    )
 
     # 4.2 Carregamento dinâmico das fontes monitoradas (alvos cadastrados nos .txt)
     def carregar_fontes_monitoradas():
@@ -146,30 +156,29 @@ def main():
         perfis = []
         if os.path.exists(p_ig):
             with open(p_ig, "r", encoding="utf-8") as f:
-                perfis = [l.strip() for l in f if l.strip().startswith("@")]
+                perfis = [linha_p.strip() for linha_p in f if linha_p.strip().startswith("@")]
 
         hashtags = []
         if os.path.exists(h_ig):
             with open(h_ig, "r", encoding="utf-8") as f:
-                for l in f:
-                    linha = l.strip()
-                    if linha.startswith("#") and " " not in linha and len(linha) > 1 and not linha.startswith("##") and not linha.startswith("# =") and not linha.startswith("# -"):
+                for linha_h in f:
+                    linha = linha_h.strip()
+                    if (
+                        linha.startswith("#")
+                        and " " not in linha
+                        and len(linha) > 1
+                        and not linha.startswith("##")
+                        and not linha.startswith("# =")
+                        and not linha.startswith("# -")
+                    ):
                         hashtags.append(linha)
 
         canais = []
         if os.path.exists(c_yt):
             with open(c_yt, "r", encoding="utf-8") as f:
-                canais = [l.strip() for l in f if l.strip() and not l.strip().startswith("#")]
+                canais = [linha_c.strip() for linha_c in f if linha_c.strip() and not linha_c.strip().startswith("#")]
 
-        return {
-            "instagram": {
-                "perfis": perfis,
-                "hashtags": hashtags
-            },
-            "youtube": {
-                "canais": canais
-            }
-        }
+        return {"instagram": {"perfis": perfis, "hashtags": hashtags}, "youtube": {"canais": canais}}
 
     fontes_monitoradas = carregar_fontes_monitoradas()
 
@@ -186,7 +195,7 @@ def main():
         "sentimento_youtube": sentimento_youtube,
         "sentimento_instagram": sentimento_instagram,
         "meta_transparencia": meta_ads,
-        "fontes_monitoradas": fontes_monitoradas
+        "fontes_monitoradas": fontes_monitoradas,
     }
 
     os.makedirs(os.path.dirname(SAIDA_RADAR_JSON), exist_ok=True)
@@ -195,6 +204,7 @@ def main():
 
     tempo_decorrido = (datetime.now() - hora_inicio).total_seconds()
     print(f"\n✅ Sucesso! Radar gerado em {tempo_decorrido:.1f}s em: {SAIDA_RADAR_JSON}")
+
 
 if __name__ == "__main__":
     main()

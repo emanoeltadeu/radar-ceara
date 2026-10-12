@@ -14,6 +14,7 @@ import unicodedata
 
 from config import DADOS_DIR
 
+
 def normalizar_texto(texto):
     """
     Remove acentos e converte para minúsculas.
@@ -22,6 +23,7 @@ def normalizar_texto(texto):
         return ""
     nfd = unicodedata.normalize("NFD", texto.lower())
     return "".join(c for c in nfd if unicodedata.category(c) != "Mn")
+
 
 def parse_volume_buscas(vol_str):
     """
@@ -41,24 +43,27 @@ def parse_volume_buscas(vol_str):
     except Exception:
         return 0
 
+
 def extrair_itens_trends_html(html_content):
     """
     Extrai as linhas de tendências do HTML do Google Trends Ceará.
     """
-    rows = re.findall(r'<tr[^>]*class=\"[^\"]*enOdEe[^\"]*\"[^>]*>(.*?)</tr>', html_content, re.DOTALL)
+    rows = re.findall(r"<tr[^>]*class=\"[^\"]*enOdEe[^\"]*\"[^>]*>(.*?)</tr>", html_content, re.DOTALL)
     items = []
 
     for r in rows:
-        termo_m = re.search(r'<div class=\"mZ3RIc\">([^<]+)</div>', r)
+        termo_m = re.search(r"<div class=\"mZ3RIc\">([^<]+)</div>", r)
         if not termo_m:
             continue
         termo = html.unescape(termo_m.group(1)).strip()
 
-        vol_m = re.search(r'<div class=\"qNpYPd\">([^<]+)</div>', r)
+        vol_m = re.search(r"<div class=\"qNpYPd\">([^<]+)</div>", r)
         vol = vol_m.group(1).replace(" pesquisas", "").strip() if vol_m else ""
 
         detalhes_raw = re.findall(r"ssk='[0-9]+:([^']+)'", r)
-        detalhes = [html.unescape(d).strip() for d in detalhes_raw if len(d) > 6 and not re.match(r'^[A-Za-z0-9]{6}$', d)]
+        detalhes = [
+            html.unescape(d).strip() for d in detalhes_raw if len(d) > 6 and not re.match(r"^[A-Za-z0-9]{6}$", d)
+        ]
 
         detalhes_str = " ".join(detalhes) if detalhes else ""
         pauta = f"Busca associada: {detalhes[0]}" if detalhes else "Tendência de pesquisa registrada no Ceará."
@@ -77,39 +82,178 @@ def extrair_itens_trends_html(html_content):
         # 1. Termos Cívico-Sociais e Políticos
         termos_civicos_sociais = [
             # Lideranças e Figuras Políticas
-            "lula", "bolsonaro", "elmano", "camilo", "evandro", "sarto", "wagner",
-            "leosuricate", "suricate", "janaina paschoal", "tarcisio", "haddad", "marcal",
-            "moraes", "dino", "barroso", "zanin",
+            "lula",
+            "bolsonaro",
+            "elmano",
+            "camilo",
+            "evandro",
+            "sarto",
+            "wagner",
+            "leosuricate",
+            "suricate",
+            "janaina paschoal",
+            "tarcisio",
+            "haddad",
+            "marcal",
+            "moraes",
+            "dino",
+            "barroso",
+            "zanin",
             # Eleições & Pesquisas
-            "politica", "eleicao", "eleicoes", "voto", "pesquisa", "datafolha", "quaest",
-            "ipolitica", "parana pesquisas", "presidente", "presidencial", "governador",
-            "prefeito", "senador", "deputado", "segundo turno", "primeiro turno",
-            "candidato", "candidatura", "urna", "urnas", "horario eleitoral",
+            "politica",
+            "eleicao",
+            "eleicoes",
+            "voto",
+            "pesquisa",
+            "datafolha",
+            "quaest",
+            "ipolitica",
+            "parana pesquisas",
+            "presidente",
+            "presidencial",
+            "governador",
+            "prefeito",
+            "senador",
+            "deputado",
+            "segundo turno",
+            "primeiro turno",
+            "candidato",
+            "candidatura",
+            "urna",
+            "urnas",
+            "horario eleitoral",
             # Instituições & Poderes
-            "alece", "prefeitura", "governo", "stf", "tse", "camara", "senado", "congresso",
-            "justica", "anistia", "enel", "cagece", "ministerio",
+            "alece",
+            "prefeitura",
+            "governo",
+            "stf",
+            "tse",
+            "camara",
+            "senado",
+            "congresso",
+            "justica",
+            "anistia",
+            "enel",
+            "cagece",
+            "ministerio",
             # Direitos, Trabalho & Economia
-            "transporte", "passagem", "onibus", "frota", "metrofor", "vlt",
-            "concurso", "escala 6x1", "6x1", "inflacao", "salario", "auxilio", "emprego",
-            "desemprego", "trabalhador", "trabalho", "greve", "sindicato", "previdencia",
-            "reforma", "imposto", "ipva", "iptu", "icms", "fgts", "pib", "renda",
+            "transporte",
+            "passagem",
+            "onibus",
+            "frota",
+            "metrofor",
+            "vlt",
+            "concurso",
+            "escala 6x1",
+            "6x1",
+            "inflacao",
+            "salario",
+            "auxilio",
+            "emprego",
+            "desemprego",
+            "trabalhador",
+            "trabalho",
+            "greve",
+            "sindicato",
+            "previdencia",
+            "reforma",
+            "imposto",
+            "ipva",
+            "iptu",
+            "icms",
+            "fgts",
+            "pib",
+            "renda",
             # Serviços Públicos e Cidadania
-            "saude", "seguranca", "faccao", "faccoes", "policia", "hospitais", "upa",
-            "escola", "educacao", "enem", "professor", "professores", "pe-de-meia",
-            "cuca", "passe livre", "tarifa zero", "moradia", "saneamento"
+            "saude",
+            "seguranca",
+            "faccao",
+            "faccoes",
+            "policia",
+            "hospitais",
+            "upa",
+            "escola",
+            "educacao",
+            "enem",
+            "professor",
+            "professores",
+            "pe-de-meia",
+            "cuca",
+            "passe livre",
+            "tarifa zero",
+            "moradia",
+            "saneamento",
         ]
 
         # 2. Termos Específicos de Esporte / Futebol
         termos_esporte = [
-            "futebol", "goleada", "jogo", "jogos", "partida", "campeonato", "copa", "libertadores",
-            "brasileirao", "champions", "serie a", "serie b", "rodada", "tabela", "classificacao",
-            "escalacao", "gol", "gols", "estadio", "arena", "castelao", "placar", "resultado",
-            "ceara sc", "fortaleza ec", "ferroviario", "flamengo", "palmeiras", "corinthians",
-            "sao paulo", "vasco", "gremio", "internacional", "botafogo", "fluminense", "bahia",
-            "sport", "nautico", "vitoria", "atletico", "cruzeiro", "mirassol", "vila nova",
-            "avai", "cuiaba", "liverpool", "city", "real madrid", "barcelona", "seedorf",
-            "alcaraz", "tenis", "cleland", "surf", "ufc", "boxe", "nba", "basquete", "volei",
-            "treinador", "tecnico", "abel ferreira", "dorival", "neymar", "messi", "cr7", "ronaldo"
+            "futebol",
+            "goleada",
+            "jogo",
+            "jogos",
+            "partida",
+            "campeonato",
+            "copa",
+            "libertadores",
+            "brasileirao",
+            "champions",
+            "serie a",
+            "serie b",
+            "rodada",
+            "tabela",
+            "classificacao",
+            "escalacao",
+            "gol",
+            "gols",
+            "estadio",
+            "arena",
+            "castelao",
+            "placar",
+            "resultado",
+            "ceara sc",
+            "fortaleza ec",
+            "ferroviario",
+            "flamengo",
+            "palmeiras",
+            "corinthians",
+            "sao paulo",
+            "vasco",
+            "gremio",
+            "internacional",
+            "botafogo",
+            "fluminense",
+            "bahia",
+            "sport",
+            "nautico",
+            "vitoria",
+            "atletico",
+            "cruzeiro",
+            "mirassol",
+            "vila nova",
+            "avai",
+            "cuiaba",
+            "liverpool",
+            "city",
+            "real madrid",
+            "barcelona",
+            "seedorf",
+            "alcaraz",
+            "tenis",
+            "cleland",
+            "surf",
+            "ufc",
+            "boxe",
+            "nba",
+            "basquete",
+            "volei",
+            "treinador",
+            "tecnico",
+            "abel ferreira",
+            "dorival",
+            "neymar",
+            "messi",
+            "cr7",
+            "ronaldo",
         ]
 
         if any(k in t_norm for k in termos_civicos_sociais):
@@ -119,16 +263,11 @@ def extrair_itens_trends_html(html_content):
         else:
             categoria = "cotidiano_cultura"
 
-        items.append({
-            "termo": termo,
-            "volume": vol,
-            "lado": lado,
-            "categoria": categoria,
-            "pauta": pauta
-        })
+        items.append({"termo": termo, "volume": vol, "lado": lado, "categoria": categoria, "pauta": pauta})
 
     items.sort(key=lambda x: parse_volume_buscas(x["volume"]), reverse=True)
     return items[:10]
+
 
 def extrair_termos_socioeconomicos(itens_trends):
     """
@@ -138,12 +277,9 @@ def extrair_termos_socioeconomicos(itens_trends):
     destaques = []
     for it in itens_trends or []:
         if it.get("categoria") == "politica_social":
-            destaques.append({
-                "termo": it.get("termo"),
-                "volume": it.get("volume"),
-                "pauta": it.get("pauta")
-            })
+            destaques.append({"termo": it.get("termo"), "volume": it.get("volume"), "pauta": it.get("pauta")})
     return destaques
+
 
 def coletar_trends_ceara(hours=4):
     """
@@ -156,9 +292,12 @@ def coletar_trends_ceara(hours=4):
     param_hours = f"&hours={hours}" if hours == 4 else ""
     url = f"https://trends.google.com.br/trending?geo=BR-CE{param_hours}"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+        ),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"
+        "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
     }
 
     try:

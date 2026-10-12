@@ -1,0 +1,40 @@
+name: CI · Linting & Validação de Sanidade (Double Check)
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  qualidade-e-sanidade:
+    name: Lint (Ruff) e Testes de Integridade
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Ambiente Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalar Dependências e Ruff
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install ruff
+
+      - name: 1. Checagem de Formatação (Ruff Format)
+        run: |
+          ruff format --check scripts/
+
+      - name: 2. Checagem de Lint e Boas Práticas (Ruff Check)
+        run: |
+          ruff check scripts/
+
+      - name: 3. Executar Bateria de Testes de Sanidade e Contrato de Dados
+        run: |
+          python -m unittest scripts/testes/test_sanidade.py -v

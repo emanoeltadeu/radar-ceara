@@ -11,7 +11,6 @@ import json
 import os
 import time
 import urllib.request
-from collections import Counter
 from datetime import datetime
 
 from config import (
@@ -20,25 +19,33 @@ from config import (
     JANELA_MAXIMA_HORAS,
     calcular_idade_horas,
     carregar_chaves_api,
-    FUSO_CE
+    FUSO_CE,
 )
 
 SYSTEM_PROMPT_POLITICA_CE = """
 Você é um analista sênior de inteligência digital e comunicação política no Ceará.
-Sua função é analisar comentários reais de redes sociais e classificar o sentimento e a pauta sob a ótica do Mandato Popular de LÉO SURICATE (Deputado Estadual do Ceará, PSOL / Campo Popular).
+Sua função é analisar comentários reais de redes sociais e classificar o sentimento e a pauta sob a ótica
+do Mandato Popular de LÉO SURICATE (Deputado Estadual do Ceará, PSOL / Campo Popular).
 
 CONTEXTO POLÍTICO E LOCAL DO CEARÁ:
 - Campo Popular / Mandato: Léo Suricate, Lula, Elmano de Freitas, Camilo Santana.
-- Principais Pautas e Lutas: Fim da escala 6x1, Passe Livre Estudantil, tempo de espera e melhoria dos ônibus/terminais (Messejana, Siqueira, Parangaba, Papicu), juventude periférica, Cucas, Areninhas, Pé-de-Meia, combate à fome, cultura popular.
-- Campo Adversário / Oposição: André Fernandes, Capitão Wagner, Carmelo Neto, discursos bolsonaristas, críticas a Elmano/Lula.
-- Nuance Linguística: Atenção ao linguajar cearense ("massa", "paia", "arre égua", "botou pra descer", "marmota", "arrochar") e sarcasmos/ironias cotidianas.
+- Principais Pautas e Lutas: Fim da escala 6x1, Passe Livre Estudantil, tempo de espera e melhoria dos
+  ônibus/terminais (Messejana, Siqueira, Parangaba, Papicu), juventude periférica, Cucas, Areninhas,
+  Pé-de-Meia, combate à fome, cultura popular.
+- Campo Adversário / Oposição: André Fernandes, Capitão Wagner, Carmelo Neto, discursos bolsonaristas,
+  críticas a Elmano/Lula.
+- Nuance Linguística: Atenção ao linguajar cearense ("massa", "paia", "arre égua", "botou pra descer",
+  "marmota", "arrochar") e sarcasmos/ironias cotidianas.
 
 REGRA MANDATÓRIA DE CORTE DE RELEVÂNCIA (DESCARTE DE RUÍDO):
-Avalie primeiramente se a publicação (contexto) e o comentário tratam de debate político, serviços públicos ou pautas sociais relevantes para o Ceará.
+Avalie primeiramente se a publicação (contexto) e o comentário tratam de debate político, serviços públicos
+ou pautas sociais relevantes para o Ceará.
 - CLASSIFIQUE COMO "irrelevante" (DESCARTE):
-  * Fofocas, deboches vazios, piadas ou polêmicas de figuras folclóricas/cômicas (ex: Tiririca comentando derrota, gestos com dinheiro, palhaçadas);
+  * Fofocas, deboches vazios, piadas ou polêmicas de figuras folclóricas/cômicas (ex: Tiririca comentando
+    derrota, gestos com dinheiro, palhaçadas);
   * Memes superficiais sem crítica social ou reivindicação de direitos;
-  * Notícias de entretenimento, futebol, celebridades ou bate-bocas puramente pessoais desprovidos de impacto político/social;
+  * Notícias de entretenimento, futebol, celebridades ou bate-bocas puramente pessoais desprovidos de
+    impacto político/social;
   * Comentários genéricos de spam ou emojis sem mensagem.
 
 REGRAS DE CLASSIFICAÇÃO DE SENTIMENTO (APENAS PARA ITENS RELEVANTES):
@@ -61,7 +68,10 @@ REGRAS DE CLASSIFICAÇÃO DE SENTIMENTO (APENAS PARA ITENS RELEVANTES):
    - Qualquer comentário associado aos critérios de corte/ruído definidos acima.
 
 IDENTIFICAÇÃO LIVRE E DINÂMICA DO TEMA / GATILHO ("tema"):
-Não use categorias genéricas. Extraia o assunto ou gatilho específico da conversa em 2 a 5 palavras no padrão Título (ex: 'Fim da Escala 6x1', 'Superlotação no Terminal Messejana', 'Mandato Popular Léo Suricate', 'Greve da Educação Infantil', 'Reeleição de Elmano de Freitas', 'Críticas da Oposição ao PT', 'Disputa Lula vs Bolsonaro', 'Passe Livre Estudantil', 'Segurança e Facções', 'Cultura e Areninhas').
+Não use categorias genéricas. Extraia o assunto ou gatilho específico da conversa em 2 a 5 palavras no padrão Título
+(ex: 'Fim da Escala 6x1', 'Superlotação no Terminal Messejana', 'Mandato Popular Léo Suricate',
+'Greve da Educação Infantil', 'Reeleição de Elmano de Freitas', 'Críticas da Oposição ao PT',
+'Disputa Lula vs Bolsonaro', 'Passe Livre Estudantil', 'Segurança e Facções', 'Cultura e Areninhas').
 
 FORMATO DE RESPOSTA OBRIGATÓRIO (JSON ARRAY):
 Responda APENAS com um array JSON com a seguinte estrutura:
@@ -76,11 +86,14 @@ Responda APENAS com um array JSON com a seguinte estrutura:
 ]
 """
 
+
 def classificar_lote_comentarios_gemini(lote_comentarios, gemini_key):
     """
     Envia um sublote de até 15 comentários para a API do Gemini.
     """
-    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_GEMINI}:generateContent?key={gemini_key}"
+    endpoint = (
+        f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO_GEMINI}:generateContent?key={gemini_key}"
+    )
 
     linhas_prompt = []
     mapa_ids = {}
@@ -89,7 +102,7 @@ def classificar_lote_comentarios_gemini(lote_comentarios, gemini_key):
         mapa_ids[cid_local] = c
         origem = c.get("video_titulo") or c.get("origem_titulo") or "Vídeo Político CE"
         rede = c.get("rede", "youtube").upper()
-        linhas_prompt.append(f"[{cid_local}] ({rede} - {origem}) {c['autor']}: \"{c['texto']}\"")
+        linhas_prompt.append(f'[{cid_local}] ({rede} - {origem}) {c["autor"]}: "{c["texto"]}"')
 
     prompt_usuario = (
         "Classifique cada um dos comentários abaixo segundo as instruções do sistema.\n\n"
@@ -98,28 +111,13 @@ def classificar_lote_comentarios_gemini(lote_comentarios, gemini_key):
     )
 
     payload = {
-        "system_instruction": {
-            "parts": [{"text": SYSTEM_PROMPT_POLITICA_CE}]
-        },
-        "contents": [
-            {
-                "role": "user",
-                "parts": [{"text": prompt_usuario}]
-            }
-        ],
-        "generationConfig": {
-            "temperature": 0.2,
-            "response_mime_type": "application/json"
-        }
+        "system_instruction": {"parts": [{"text": SYSTEM_PROMPT_POLITICA_CE}]},
+        "contents": [{"role": "user", "parts": [{"text": prompt_usuario}]}],
+        "generationConfig": {"temperature": 0.2, "response_mime_type": "application/json"},
     }
 
     req_data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        endpoint,
-        data=req_data,
-        headers={"Content-Type": "application/json"},
-        method="POST"
-    )
+    req = urllib.request.Request(endpoint, data=req_data, headers={"Content-Type": "application/json"}, method="POST")
 
     for tentativa in range(3):
         try:
@@ -136,15 +134,17 @@ def classificar_lote_comentarios_gemini(lote_comentarios, gemini_key):
                     lid = a.get("id")
                     if lid in mapa_ids:
                         orig = mapa_ids[lid]
-                        descartar = (a.get("sentimento") == "irrelevante" or a.get("tipo") == "ruido_irrelevante")
-                        classificados.append({
-                            **orig,
-                            "sentimento": a.get("sentimento", "neutro"),
-                            "tipo": a.get("tipo", "neutro"),
-                            "tema": a.get("tema", "Geral Ceará"),
-                            "resumo_ia": a.get("resumo", ""),
-                            "descartado": descartar
-                        })
+                        descartar = a.get("sentimento") == "irrelevante" or a.get("tipo") == "ruido_irrelevante"
+                        classificados.append(
+                            {
+                                **orig,
+                                "sentimento": a.get("sentimento", "neutro"),
+                                "tipo": a.get("tipo", "neutro"),
+                                "tema": a.get("tema", "Geral Ceará"),
+                                "resumo_ia": a.get("resumo", ""),
+                                "descartado": descartar,
+                            }
+                        )
                 return classificados
         except urllib.error.HTTPError as e:
             if e.code in [429, 503] and tentativa < 2:
@@ -158,6 +158,7 @@ def classificar_lote_comentarios_gemini(lote_comentarios, gemini_key):
             return []
 
     return []
+
 
 def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CACHE_CLASSIFICADOS):
     """
@@ -193,8 +194,7 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
     # Se recebemos comentários unificados novos, filtra para a janela de 7 dias antes de enviar ao Gemini
     if comentarios_unificados and gemini_key:
         comentarios_recentes = [
-            c for c in comentarios_unificados
-            if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
+            c for c in comentarios_unificados if calcular_idade_horas(c.get("data")) <= JANELA_MAXIMA_HORAS
         ]
         ja_classificados_ids = {c.get("id") for c in classificados if c.get("id")}
         pendentes = [c for c in comentarios_recentes if c.get("id") and c["id"] not in ja_classificados_ids]
@@ -205,7 +205,7 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
             pendentes_para_rodar = pendentes[:limite_novos]
 
             for i in range(0, len(pendentes_para_rodar), tamanho_sublote):
-                sublote = pendentes_para_rodar[i:i + tamanho_sublote]
+                sublote = pendentes_para_rodar[i : i + tamanho_sublote]
                 novos_classificados = classificar_lote_comentarios_gemini(sublote, gemini_key)
                 if novos_classificados:
                     for nv in novos_classificados:
@@ -256,15 +256,10 @@ def processar_sentimento_comentarios(comentarios_unificados=None, cache_path=CAC
 
     res_final = dict(res_7d)
     res_7d_janela = {k: v for k, v in res_7d.items() if k not in ("todos_comentarios", "amostras_destaque")}
-    res_final["por_janela"] = {
-        "1h": res_1h,
-        "2h": res_2h,
-        "12h": res_12h,
-        "24h": res_24h,
-        "7d": res_7d_janela
-    }
+    res_final["por_janela"] = {"1h": res_1h, "2h": res_2h, "12h": res_12h, "24h": res_24h, "7d": res_7d_janela}
 
     return res_final
+
 
 def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
     """
@@ -284,7 +279,7 @@ def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
             "positivo_pct": 0.0,
             "neutro_pct": 0.0,
             "negativo_pct": 0.0,
-            "ids_comentarios": []
+            "ids_comentarios": [],
         }
         if janela_label == "7d":
             res["amostras_destaque"] = []
@@ -311,7 +306,7 @@ def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
         "positivo_pct": round((pos / total) * 100, 1),
         "neutro_pct": round((neu / total) * 100, 1),
         "negativo_pct": round((neg / total) * 100, 1),
-        "ids_comentarios": ids_comentarios
+        "ids_comentarios": ids_comentarios,
     }
 
     if janela_label == "7d":
@@ -327,26 +322,27 @@ def _calcular_metricas_sentimento(sub_validos, janela_label="7d", hora_ce=""):
             )
             origem_tit = c.get("origem_titulo") or c.get("video_titulo", "")
 
-            payload_comentarios.append({
-                "id": c_id,
-                "rede": c.get("rede", "youtube"),
-                "origem_titulo": origem_tit,
-                "autor": c.get("autor", "Anônimo"),
-                "texto": c.get("texto", ""),
-                "likes": c.get("likes", 0),
-                "data": c.get("data", ""),
-                "sentimento": c.get("sentimento", "neutro"),
-                "tipo": c.get("tipo", "neutro"),
-                "tema": c.get("tema", ""),
-                "resumo_ia": c.get("resumo_ia", ""),
-                "origem_tipo": c.get("origem_tipo") or ("hashtag" if str(origem_tit).startswith("#") else "perfil"),
-                "hashtag": c.get("hashtag") or (origem_tit.split()[0] if str(origem_tit).startswith("#") else ""),
-                "link_origem": link
-            })
+            payload_comentarios.append(
+                {
+                    "id": c_id,
+                    "rede": c.get("rede", "youtube"),
+                    "origem_titulo": origem_tit,
+                    "autor": c.get("autor", "Anônimo"),
+                    "texto": c.get("texto", ""),
+                    "likes": c.get("likes", 0),
+                    "data": c.get("data", ""),
+                    "sentimento": c.get("sentimento", "neutro"),
+                    "tipo": c.get("tipo", "neutro"),
+                    "tema": c.get("tema", ""),
+                    "resumo_ia": c.get("resumo_ia", ""),
+                    "origem_tipo": c.get("origem_tipo") or ("hashtag" if str(origem_tit).startswith("#") else "perfil"),
+                    "hashtag": c.get("hashtag") or (origem_tit.split()[0] if str(origem_tit).startswith("#") else ""),
+                    "link_origem": link,
+                }
+            )
 
         amostras = sorted(payload_comentarios, key=lambda x: x.get("likes", 0), reverse=True)[:5]
         resultado["amostras_destaque"] = amostras
         resultado["todos_comentarios"] = payload_comentarios
 
     return resultado
-

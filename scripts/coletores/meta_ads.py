@@ -14,6 +14,7 @@ from datetime import datetime
 
 from config import BASE_DIR, DADOS_DIR, FUSO_CE
 
+
 def buscar_relatorio_diario_meta(diretorio_dados=DADOS_DIR):
     """
     Verifica se existe um arquivo CSV baixado da Biblioteca de Anúncios da Meta.
@@ -21,13 +22,14 @@ def buscar_relatorio_diario_meta(diretorio_dados=DADOS_DIR):
     padroes = [
         os.path.join(diretorio_dados, "*FacebookAdLibraryReport*.csv"),
         os.path.join(diretorio_dados, "*meta*.csv"),
-        os.path.join(diretorio_dados, "*ad_library*.csv")
+        os.path.join(diretorio_dados, "*ad_library*.csv"),
     ]
     for padrao in padroes:
         arquivos = glob.glob(padrao)
         if arquivos:
             return arquivos[0]
     return None
+
 
 def processar_relatorio_csv_meta(caminho_csv):
     """
@@ -49,8 +51,7 @@ def processar_relatorio_csv_meta(caminho_csv):
             return None
 
         df["valor_num"] = pd.to_numeric(
-            df[col_valor].astype(str).str.replace(r"[^\d,\.]", "", regex=True).str.replace(",", "."),
-            errors="coerce"
+            df[col_valor].astype(str).str.replace(r"[^\d,\.]", "", regex=True).str.replace(",", "."), errors="coerce"
         ).fillna(0)
 
         agrupado = df.groupby(col_pagina)["valor_num"].agg(["sum", "count"]).reset_index()
@@ -58,13 +59,15 @@ def processar_relatorio_csv_meta(caminho_csv):
 
         top_anunciantes = []
         for _, row in agrupado.head(5).iterrows():
-            top_anunciantes.append({
-                "pagina": str(row[col_pagina]),
-                "gasto_estimado": f"R$ {row['sum']:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."),
-                "anuncios_ativos": int(row["count"]),
-                "foco_pautas": ["Impulsionamento no Ceará", "Conteúdo Político/Eleitoral"],
-                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
-            })
+            top_anunciantes.append(
+                {
+                    "pagina": str(row[col_pagina]),
+                    "gasto_estimado": f"R$ {row['sum']:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."),
+                    "anuncios_ativos": int(row["count"]),
+                    "foco_pautas": ["Impulsionamento no Ceará", "Conteúdo Político/Eleitoral"],
+                    "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
+                }
+            )
 
         total_gasto = df["valor_num"].sum()
         hora_ce = datetime.now(FUSO_CE).strftime("%d/%m/%Y às %H:%M")
@@ -74,16 +77,19 @@ def processar_relatorio_csv_meta(caminho_csv):
             "atualizado_em": hora_ce,
             "estado": "CE",
             "total_anuncios_ativos": len(df),
-            "investimento_estimado_ce_7d": f"R$ {total_gasto:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."),
+            "investimento_estimado_ce_7d": f"R$ {total_gasto:,.2f}".replace(",", "X")
+            .replace(".", ",")
+            .replace("X", "."),
             "top_anunciantes": top_anunciantes,
             "distribuicao_geografica_anuncios": [
                 {"municipio": "Fortaleza", "percentual": 68, "estrategia": "Foco prioritário"},
                 {"municipio": "Região Metropolitana", "percentual": 18, "estrategia": "Caucaia e Maracanaú"},
-                {"municipio": "Interior", "percentual": 14, "estrategia": "Cariri e Sobral"}
-            ]
+                {"municipio": "Interior", "percentual": 14, "estrategia": "Cariri e Sobral"},
+            ],
         }
     except Exception:
         return None
+
 
 def processar_prestacao_contas_tse_meta(diretorio_base=BASE_DIR):
     """
@@ -105,32 +111,43 @@ def processar_prestacao_contas_tse_meta(diretorio_base=BASE_DIR):
                     return None
 
                 df_meta["VR_DESPESA_NUM"] = pd.to_numeric(
-                    df_meta["VR_PAGTO"].astype(str).str.replace(",", "."),
-                    errors="coerce"
+                    df_meta["VR_PAGTO"].astype(str).str.replace(",", "."), errors="coerce"
                 ).fillna(0)
 
-                agrupado = df_meta.groupby(["NM_CANDIDATO", "SG_PARTIDO", "DS_CARGO"])["VR_DESPESA_NUM"].agg(["sum", "count"]).reset_index()
+                agrupado = (
+                    df_meta.groupby(["NM_CANDIDATO", "SG_PARTIDO", "DS_CARGO"])["VR_DESPESA_NUM"]
+                    .agg(["sum", "count"])
+                    .reset_index()
+                )
                 agrupado = agrupado.sort_values(by="sum", ascending=False)
 
                 top_anunciantes = []
                 for _, row in agrupado.head(5).iterrows():
-                    top_anunciantes.append({
-                        "pagina": f"{row['NM_CANDIDATO']} ({row['SG_PARTIDO']})",
-                        "gasto_estimado": f"R$ {row['sum']:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."),
-                        "anuncios_ativos": int(row["count"]),
-                        "foco_pautas": [f"{row['DS_CARGO']} Ceará", "Impulsionamento de Conteúdo Oficial"],
-                        "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
-                    })
+                    top_anunciantes.append(
+                        {
+                            "pagina": f"{row['NM_CANDIDATO']} ({row['SG_PARTIDO']})",
+                            "gasto_estimado": f"R$ {row['sum']:,.2f}".replace(",", "X")
+                            .replace(".", ",")
+                            .replace("X", "."),
+                            "anuncios_ativos": int(row["count"]),
+                            "foco_pautas": [f"{row['DS_CARGO']} Ceará", "Impulsionamento de Conteúdo Oficial"],
+                            "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
+                        }
+                    )
 
                 total_gasto = df_meta["VR_DESPESA_NUM"].sum()
                 hora_ce = datetime.now(FUSO_CE).strftime("%d/%m/%Y às %H:%M")
 
                 return {
-                    "fonte": "Prestação Oficial de Contas TSE 2026 (Gastos Reais Declarados com Facebook/Meta no Ceará)",
+                    "fonte": (
+                        "Prestação Oficial de Contas TSE 2026 (Gastos Reais Declarados com Facebook/Meta no Ceará)"
+                    ),
                     "atualizado_em": hora_ce,
                     "estado": "CE",
                     "total_anuncios_ativos": len(df_meta),
-                    "investimento_estimado_ce_7d": f"R$ {total_gasto:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."),
+                    "investimento_estimado_ce_7d": f"R$ {total_gasto:,.2f}".replace(",", "X")
+                    .replace(".", ",")
+                    .replace("X", "."),
                     "top_anunciantes": top_anunciantes,
                     "distribuicao_geografica_anuncios": [
                         {"municipio": "Fortaleza", "percentual": 65, "estrategia": "Concentração máxima"},
@@ -138,11 +155,12 @@ def processar_prestacao_contas_tse_meta(diretorio_base=BASE_DIR):
                         {"municipio": "Maracanaú", "percentual": 9, "estrategia": "Polo Industrial"},
                         {"municipio": "Juazeiro do Norte", "percentual": 8, "estrategia": "Cariri"},
                         {"municipio": "Sobral", "percentual": 5, "estrategia": "Zona Norte"},
-                        {"municipio": "Outros", "percentual": 2, "estrategia": "Interior"}
-                    ]
+                        {"municipio": "Outros", "percentual": 2, "estrategia": "Interior"},
+                    ],
                 }
     except Exception:
         return None
+
 
 def coletar_meta_ads_ce(diretorio_base=BASE_DIR):
     """
@@ -172,36 +190,36 @@ def coletar_meta_ads_ce(diretorio_base=BASE_DIR):
                 "gasto_estimado": "R$ 64.600,55",
                 "anuncios_ativos": 4,
                 "foco_pautas": ["Deputado Estadual Ceará", "Impulsionamento de Conteúdo Oficial"],
-                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
+                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
             },
             {
                 "pagina": "DANNIEL OLIVEIRA (MDB)",
                 "gasto_estimado": "R$ 45.600,00",
                 "anuncios_ativos": 2,
                 "foco_pautas": ["Deputado Estadual Ceará", "Impulsionamento de Conteúdo Oficial"],
-                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
+                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
             },
             {
                 "pagina": "VALDIVINO LOPES (PP)",
                 "gasto_estimado": "R$ 5.000,00",
                 "anuncios_ativos": 2,
                 "foco_pautas": ["Deputado Estadual Ceará", "Impulsionamento de Conteúdo Oficial"],
-                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
+                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
             },
             {
                 "pagina": "ALICE PEQUENO (REPUBLICANOS)",
                 "gasto_estimado": "R$ 3.003,00",
                 "anuncios_ativos": 4,
                 "foco_pautas": ["Deputada Estadual Ceará", "Impulsionamento de Conteúdo Oficial"],
-                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
+                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
             },
             {
                 "pagina": "CAMILA SILVEIRA (PSB)",
                 "gasto_estimado": "R$ 1.800,00",
                 "anuncios_ativos": 2,
                 "foco_pautas": ["Deputada Estadual Ceará", "Impulsionamento de Conteúdo Oficial"],
-                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)"
-            }
+                "publico_alvo": "Eleitores no Instagram e Facebook (Ceará)",
+            },
         ],
         "distribuicao_geografica_anuncios": [
             {"municipio": "Fortaleza", "percentual": 65, "estrategia": "Concentração máxima"},
@@ -209,6 +227,6 @@ def coletar_meta_ads_ce(diretorio_base=BASE_DIR):
             {"municipio": "Maracanaú", "percentual": 9, "estrategia": "Polo Industrial"},
             {"municipio": "Juazeiro do Norte", "percentual": 8, "estrategia": "Cariri"},
             {"municipio": "Sobral", "percentual": 5, "estrategia": "Zona Norte"},
-            {"municipio": "Outros", "percentual": 2, "estrategia": "Interior"}
-        ]
+            {"municipio": "Outros", "percentual": 2, "estrategia": "Interior"},
+        ],
     }
