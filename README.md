@@ -18,8 +18,8 @@
    - **📋 Exportação Direta para WhatsApp:** Botão que formata e envia o briefing tático completo direto para o WhatsApp da equipe e da militância de base com 1 clique.
 
 3. **Cruzamento Estratégico com Google Trends Ceará:**
-   - **Classificação Temática Automática:** Separação entre pautas de interesse público (`🏛️ Cívico / Social`) e entretenimento/futebol (`⚽ Esporte / Cultura`), com botão de filtro rápido no painel.
-   - **Selo de Validação Popular:** Injeção do contexto do Google Trends no prompt da IA, gerando o badge `🔥 Tração Validada nas Buscas do Google` quando a pauta do mandato rompe a bolha das redes e corresponde ao interesse ativo de pesquisa do povo cearense.
+   - **Classificação Temática em 3 Vias:** Separação automática e precisa entre pautas de interesse público (`🏛️ Cívico`), futebol/esportes (`⚽ Esporte`) e cultura pop/feriados/datas comemorativas (`🎉 Cotidiano`), com botão de filtro rápido no painel.
+   - **Selo de Validação Popular com Blindagem Anti-Alucinação:** Injeção do contexto real do Google Trends no prompt da IA, gerando o badge `🔥 Tração Validada nas Buscas do Google` no Hero Banner estritamente quando comprovada a correspondência com pesquisas reais capturadas no Ceará.
    - **Links Oficiais:** Cada termo possui link direto `↗` para a busca oficial correspondente no Google Trends.
 
 4. **Balanço de Disputa Narrativa (Saldo Líquido):**

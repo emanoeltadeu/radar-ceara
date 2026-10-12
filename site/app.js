@@ -253,9 +253,16 @@ document.addEventListener("DOMContentLoaded", () => {
       listaGoogle.innerHTML = filtrados.map(item => {
         const clsPonto = item.lado === "nossa" ? "nossa" : (item.lado === "deles" ? "deles" : "disputa");
         const isCivico = item.categoria === "politica_social";
-        const badgeCatHtml = isCivico
-          ? `<span class="badge-cat-trends civica" title="Pauta de relevância cívica, política ou de serviços públicos">🏛️ Cívico</span>`
-          : `<span class="badge-cat-trends esporte" title="Busca relacionada a entretenimento, cultura pop ou esporte">⚽ Esporte</span>`;
+        const isEsporte = item.categoria === "esporte";
+        
+        let badgeCatHtml = "";
+        if (isCivico) {
+          badgeCatHtml = `<span class="badge-cat-trends civica" title="Pauta de relevância cívica, política ou de serviços públicos">🏛️ Cívico</span>`;
+        } else if (isEsporte) {
+          badgeCatHtml = `<span class="badge-cat-trends esporte" title="Busca relacionada a futebol e esportes">⚽ Esporte</span>`;
+        } else {
+          badgeCatHtml = `<span class="badge-cat-trends cotidiano" title="Busca relacionada a datas comemorativas, feriados e cultura popular">🎉 Cotidiano</span>`;
+        }
 
         const urlBusca = `https://trends.google.com.br/trending?geo=BR-CE&q=${encodeURIComponent(item.termo)}`;
 

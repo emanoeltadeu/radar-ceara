@@ -262,11 +262,32 @@ def gerar_insights_radar_tatico(comentarios_classificados, gemini_key=None, rede
                 "total_24h": total_24,
                 "total_recente": total_rec
             }
-            # Garante que as chaves de validação no Google Trends existam
+            # Garante que as chaves de validação no Google Trends existam e sejam blindadas contra alucinações
             macro = insight.setdefault("diretriz_estrategica_24h", {})
-            if "validado_no_google_trends" not in macro:
+            termos_reais = [
+                (it.get("termo") or "").lower().strip()
+                for it in (contexto_trends or [])
+                if (it.get("termo") or "").strip()
+            ]
+
+            termo_indicado = (macro.get("termo_trends_relacionado") or "").lower().strip()
+            val_ia = macro.get("validado_no_google_trends", False)
+
+            # Só valida se houver termos reais e houver correspondência semântica/substring
+            if val_ia and termos_reais and termo_indicado:
+                encontrou = any(
+                    (tr in termo_indicado or termo_indicado in tr)
+                    for tr in termos_reais
+                )
+                if encontrou:
+                    macro["validado_no_google_trends"] = True
+                else:
+                    macro["validado_no_google_trends"] = False
+                    macro["termo_trends_relacionado"] = ""
+            else:
                 macro["validado_no_google_trends"] = False
                 macro["termo_trends_relacionado"] = ""
+
             return insight
     except Exception as e:
         print(f"Aviso na geração de Radar Tático com Gemini ({rede}): {e}")

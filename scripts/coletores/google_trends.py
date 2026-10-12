@@ -60,9 +60,10 @@ def extrair_itens_trends_html(html_content):
         detalhes_raw = re.findall(r"ssk='[0-9]+:([^']+)'", r)
         detalhes = [html.unescape(d).strip() for d in detalhes_raw if len(d) > 6 and not re.match(r'^[A-Za-z0-9]{6}$', d)]
 
+        detalhes_str = " ".join(detalhes) if detalhes else ""
         pauta = f"Busca associada: {detalhes[0]}" if detalhes else "Tendência de pesquisa registrada no Ceará."
 
-        t_low = (termo + " " + pauta).lower()
+        t_low = (termo + " " + detalhes_str).lower()
         t_norm = normalizar_texto(t_low)
 
         # Classificação de alinhamento político tradicional
@@ -73,22 +74,50 @@ def extrair_itens_trends_html(html_content):
         else:
             lado = "disputa"
 
-        # Classificação Temática: 'politica_social' vs 'entretenimento_esporte'
+        # 1. Termos Cívico-Sociais e Políticos
         termos_civicos_sociais = [
+            # Lideranças e Figuras Políticas
             "lula", "bolsonaro", "elmano", "camilo", "evandro", "sarto", "wagner",
-            "leosuricate", "suricate", "politica", "eleicao", "eleicoes", "voto",
-            "alece", "prefeitura", "governo", "stf", "tse", "camara", "senado", "justica", "anistia",
-            "enel", "cagece", "transporte", "passagem", "onibus", "frota", "metrofor", "vlt",
+            "leosuricate", "suricate", "janaina paschoal", "tarcisio", "haddad", "marcal",
+            "moraes", "dino", "barroso", "zanin",
+            # Eleições & Pesquisas
+            "politica", "eleicao", "eleicoes", "voto", "pesquisa", "datafolha", "quaest",
+            "ipolitica", "parana pesquisas", "presidente", "presidencial", "governador",
+            "prefeito", "senador", "deputado", "segundo turno", "primeiro turno",
+            "candidato", "candidatura", "urna", "urnas", "horario eleitoral",
+            # Instituições & Poderes
+            "alece", "prefeitura", "governo", "stf", "tse", "camara", "senado", "congresso",
+            "justica", "anistia", "enel", "cagece", "ministerio",
+            # Direitos, Trabalho & Economia
+            "transporte", "passagem", "onibus", "frota", "metrofor", "vlt",
             "concurso", "escala 6x1", "6x1", "inflacao", "salario", "auxilio", "emprego",
-            "saude", "seguranca", "faccao", "faccoes", "policia", "hospitais", "upa", "escola",
-            "educacao", "pe-de-meia", "cuca", "passe livre", "tarifa zero", "trabalhador", "trabalho",
-            "greve", "sindicato", "previdencia", "reforma", "imposto", "ipva", "iptu", "icms"
+            "desemprego", "trabalhador", "trabalho", "greve", "sindicato", "previdencia",
+            "reforma", "imposto", "ipva", "iptu", "icms", "fgts", "pib", "renda",
+            # Serviços Públicos e Cidadania
+            "saude", "seguranca", "faccao", "faccoes", "policia", "hospitais", "upa",
+            "escola", "educacao", "enem", "professor", "professores", "pe-de-meia",
+            "cuca", "passe livre", "tarifa zero", "moradia", "saneamento"
+        ]
+
+        # 2. Termos Específicos de Esporte / Futebol
+        termos_esporte = [
+            "futebol", "goleada", "jogo", "jogos", "partida", "campeonato", "copa", "libertadores",
+            "brasileirao", "champions", "serie a", "serie b", "rodada", "tabela", "classificacao",
+            "escalacao", "gol", "gols", "estadio", "arena", "castelao", "placar", "resultado",
+            "ceara sc", "fortaleza ec", "ferroviario", "flamengo", "palmeiras", "corinthians",
+            "sao paulo", "vasco", "gremio", "internacional", "botafogo", "fluminense", "bahia",
+            "sport", "nautico", "vitoria", "atletico", "cruzeiro", "mirassol", "vila nova",
+            "avai", "cuiaba", "liverpool", "city", "real madrid", "barcelona", "seedorf",
+            "alcaraz", "tenis", "cleland", "surf", "ufc", "boxe", "nba", "basquete", "volei",
+            "treinador", "tecnico", "abel ferreira", "dorival", "neymar", "messi", "cr7", "ronaldo"
         ]
 
         if any(k in t_norm for k in termos_civicos_sociais):
             categoria = "politica_social"
+        elif any(k in t_norm for k in termos_esporte) or " x " in t_norm:
+            categoria = "esporte"
         else:
-            categoria = "entretenimento_esporte"
+            categoria = "cotidiano_cultura"
 
         items.append({
             "termo": termo,

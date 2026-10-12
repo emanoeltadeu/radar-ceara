@@ -72,6 +72,22 @@ def atualizar_trends_isolado():
         "termos_socioeconomicos_ceara": termos_socioeconomicos
     }
 
+    # Sanitização determinística nos blocos de radar tático existentes (anti-inconsistência no Hero)
+    termos_socio_reais = [
+        (it.get("termo") or "").lower().strip()
+        for it in termos_socioeconomicos
+        if (it.get("termo") or "").strip()
+    ]
+    for chave_radar in ["radar_tatico_youtube", "radar_tatico_instagram"]:
+        radar_bloco = radar_dados.get(chave_radar)
+        if isinstance(radar_bloco, dict):
+            macro = radar_bloco.get("diretriz_estrategica_24h")
+            if isinstance(macro, dict) and macro.get("validado_no_google_trends"):
+                t_ind = (macro.get("termo_trends_relacionado") or "").lower().strip()
+                if not termos_socio_reais or not any(tr in t_ind or t_ind in tr for tr in termos_socio_reais):
+                    macro["validado_no_google_trends"] = False
+                    macro["termo_trends_relacionado"] = ""
+
     # Grava de volta no radar_ce.json de forma atômica
     try:
         with open(CAMINHO_RADAR_JSON, "w", encoding="utf-8") as f:

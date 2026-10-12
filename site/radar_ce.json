@@ -18,8 +18,8 @@
       "gancho_conteudo": "Tu acorda cinco da manhã, pega o busão lotado no Siqueira e o patrão ainda quer meter escala 6x1? O buraco é mais embaixo.",
       "segmentacao_trafegu": "Periferias de Fortaleza (Conjunto Ceará, Siqueira, Bom Jardim, Messejana) e trabalhadores da RMF entre 18 e 45 anos.",
       "recomendacao_acao": "Roteiristas devem gravar Reel dinâmico usando o terminal do Siqueira como cenário de fundo. Editor deve cortar legendas grandes e destacar o impacto no bolso do trabalhador.",
-      "validado_no_google_trends": true,
-      "termo_trends_relacionado": "transporte publico fortaleza"
+      "validado_no_google_trends": false,
+      "termo_trends_relacionado": ""
     },
     "atualizado_em": "10:25",
     "amostra_base": {
@@ -42,8 +42,8 @@
       "gancho_conteudo": "Enquanto essa corja chora a derrota na urna e tenta golpe, o Ceará tá preocupado é em botar comida na mesa e garantir direito de trabalhador. Se liga!",
       "segmentacao_trafego": "Periferias de Fortaleza (Bom Jardim, Conjunto Ceará, Jangurussu) e municípios da Região Metropolitana (Maracanaú, Caucaia), público de 18 a 45 anos.",
       "recomendacao_acao": "Roteiristas devem produzir um Reels dinâmico com o Léo na Assembleia rebatendo a oposição bolsonarista. Editor deve legendar pesado com cortes rápidos. Tráfego deve injetar impulso imediato nas primeiras 2h de publicação.",
-      "validado_no_google_trends": true,
-      "termo_trends_relacionado": "Lula Ceará"
+      "validado_no_google_trends": false,
+      "termo_trends_relacionado": ""
     },
     "atualizado_em": "10:25",
     "amostra_base": {
@@ -53,77 +53,77 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "12/10/2026 às 10:24",
+      "atualizado_em": "12/10/2026 às 11:05",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
           "termo": "janaina paschoal",
           "volume": "10 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "mensagem dia das crianças",
           "volume": "10 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: hoje é dia das crianças"
         },
         {
           "termo": "pesquisa, presidente 2026",
           "volume": "5 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Busca associada: pesquisa para presidente 2026"
         },
         {
           "termo": "feriado dia 12 de outubro",
           "volume": "5 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: aparecida"
         },
         {
           "termo": "goleada",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: abel ferreira"
         },
         {
           "termo": "feriado hoje",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: hoje é feriado nacional"
         },
         {
           "termo": "grand theft auto vi",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: vazamento gta vi lucia"
         },
         {
           "termo": "alcaraz",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: carlos alcaraz"
         },
         {
           "termo": "professor",
           "volume": "1 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "al cleland jr",
           "volume": "1 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
@@ -132,70 +132,70 @@
           "termo": "bahia x mirassol",
           "volume": "200 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: classificações de esporte clube bahia x mirassol"
         },
         {
           "termo": "pesquisa datafolha para presidente 2026 segundo turno",
           "volume": "200 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Busca associada: pesquisa, presidente 2026"
         },
         {
           "termo": "seedorf",
           "volume": "100 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: clarence seedorf"
         },
         {
           "termo": "liverpool x city",
           "volume": "100 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: liverpool x"
         },
         {
           "termo": "classificações de atlético-go x sport recife",
           "volume": "100 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: atlético-go x sport recife"
         },
         {
           "termo": "classificações de náutico x vila nova futebol clube",
           "volume": "50 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: náutico x vila nova"
         },
         {
           "termo": "edson silva ator",
           "volume": "20 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: ator edson silva"
         },
         {
           "termo": "feliz dia das crianças",
           "volume": "20 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: mensagem dia das crianças"
         },
         {
           "termo": "12 de outubro",
           "volume": "20 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: 12 de outubro é feriado"
         },
         {
           "termo": "cuiabá x avaí",
           "volume": "20 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: classificações de cuiabá esporte clube x avaí"
         }
       ],
@@ -204,74 +204,90 @@
           "termo": "janaina paschoal",
           "volume": "10 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "mensagem dia das crianças",
           "volume": "10 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: hoje é dia das crianças"
         },
         {
           "termo": "pesquisa, presidente 2026",
           "volume": "5 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Busca associada: pesquisa para presidente 2026"
         },
         {
           "termo": "feriado dia 12 de outubro",
           "volume": "5 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: aparecida"
         },
         {
           "termo": "goleada",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: abel ferreira"
         },
         {
           "termo": "feriado hoje",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: hoje é feriado nacional"
         },
         {
           "termo": "grand theft auto vi",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: vazamento gta vi lucia"
         },
         {
           "termo": "alcaraz",
           "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Busca associada: carlos alcaraz"
         },
         {
           "termo": "professor",
           "volume": "1 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "al cleland jr",
           "volume": "1 mil+",
           "lado": "disputa",
-          "categoria": "entretenimento_esporte",
+          "categoria": "esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
-      "termos_socioeconomicos_ceara": []
+      "termos_socioeconomicos_ceara": [
+        {
+          "termo": "janaina paschoal",
+          "volume": "10 mil+",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "pesquisa, presidente 2026",
+          "volume": "5 mil+",
+          "pauta": "Busca associada: pesquisa para presidente 2026"
+        },
+        {
+          "termo": "professor",
+          "volume": "1 mil+",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        }
+      ]
     }
   },
   "sentimento_youtube": {

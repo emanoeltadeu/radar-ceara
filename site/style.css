@@ -793,6 +793,11 @@ body {
   color: #475569;
   border: 1px solid #e2e8f0;
 }
+.badge-cat-trends.cotidiano {
+  background: #fdf4ff;
+  color: #a21caf;
+  border: 1px solid #f5d0fe;
+}
 .filtro-categoria-wrap {
   margin-left: 6px;
   border-left: 1px solid var(--linha);
