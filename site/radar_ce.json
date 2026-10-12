@@ -53,108 +53,94 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "11/10/2026 às 19:40",
+      "atualizado_em": "11/10/2026 às 23:06",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "corinthians",
-          "volume": "500 mil+",
+          "termo": "debate presidencial",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: palmeiras"
+          "pauta": "Busca associada: debate presidencial 2026"
         },
         {
-          "termo": "flamengo",
-          "volume": "500 mil+",
+          "termo": "bahia x",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do flamengo"
+          "pauta": "Busca associada: jogo do bahia"
         },
         {
-          "termo": "classificações de atlético-mg x santos futebol clube",
-          "volume": "500 mil+",
+          "termo": "esportes",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: brasileirao"
+          "pauta": "Busca associada: quanto foi o jogo do flamengo-fluminense"
         },
         {
-          "termo": "gremio",
-          "volume": "200 mil+",
+          "termo": "campeonato brasileiro",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: tabela do brasileirão"
+          "pauta": "Busca associada: jogo palmeiras x corinthians"
         },
         {
-          "termo": "brasileirão série a",
-          "volume": "200 mil+",
+          "termo": "jogos de brasileirão série a",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do corinthians"
+          "pauta": "Busca associada: campeonato brasileiro a"
         },
         {
-          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
-          "volume": "100 mil+",
+          "termo": "tiririca",
+          "volume": "5 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "internacional",
-          "volume": "100 mil+",
+          "termo": "avai",
+          "volume": "5 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: gremio x"
+          "pauta": "Busca associada: cuiabá esporte clube"
         },
         {
-          "termo": "tabela do brasileirão 2026",
-          "volume": "100 mil+",
+          "termo": "br-153",
+          "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogos de brasileirão série a"
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
+        {
+          "termo": "record ao vivo",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "ebola",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        }
+      ],
+      "itens_24h": [
         {
           "termo": "bahia x mirassol",
-          "volume": "50 mil+",
+          "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Busca associada: mirassol"
         },
         {
-          "termo": "corinthians x",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogos de corinthians"
-        }
-      ],
-      "itens_24h": [
-        {
-          "termo": "grêmio x internacional",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: tabela do brasileirão"
-        },
-        {
-          "termo": "flamengo",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do flamengo"
-        },
-        {
-          "termo": "brasileirão série a",
+          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do corinthians"
-        },
-        {
-          "termo": "corinthians x",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: seedorf"
+          "pauta": "Busca associada: pesquisa segundo turno"
         },
         {
           "termo": "liverpool x city",
@@ -164,114 +150,134 @@
           "pauta": "Busca associada: liverpool"
         },
         {
-          "termo": "classificações de são paulo futebol clube x ec vitória",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: tabela de classificação do campeonato brasileiro"
-        },
-        {
-          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
+          "termo": "seedorf",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: pesquisa segundo turno"
+          "pauta": "Busca associada: clarence seedorf"
         },
         {
-          "termo": "internacional",
+          "termo": "atlético-go x sport recife",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: gremio x"
+          "pauta": "Busca associada: jogo do sport"
         },
         {
-          "termo": "tabela do brasileirão 2026",
+          "termo": "debate eleitoral",
+          "volume": "100 mil+",
+          "lado": "nossa",
+          "categoria": "politica_social",
+          "pauta": "Busca associada: debate lula e flavio"
+        },
+        {
+          "termo": "fla x flu",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogos de brasileirão série a"
+          "pauta": "Busca associada: flamengo hoje"
         },
         {
-          "termo": "bahia x mirassol",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: mirassol"
-        }
-      ],
-      "itens": [
-        {
-          "termo": "corinthians",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: palmeiras"
-        },
-        {
-          "termo": "flamengo",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do flamengo"
-        },
-        {
-          "termo": "classificações de atlético-mg x santos futebol clube",
-          "volume": "500 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: brasileirao"
-        },
-        {
-          "termo": "gremio",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: tabela do brasileirão"
-        },
-        {
-          "termo": "brasileirão série a",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogo do corinthians"
-        },
-        {
-          "termo": "pesquisa datafolha para presidente 2026 segundo turno",
+          "termo": "tabela do brasileirão",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "internacional",
+          "termo": "tabela brasileirão",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: gremio x"
+          "pauta": "Busca associada: tabela brasileirao"
         },
         {
-          "termo": "tabela do brasileirão 2026",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogos de brasileirão série a"
-        },
-        {
-          "termo": "bahia x mirassol",
+          "termo": "fábio faria",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: mirassol"
-        },
-        {
-          "termo": "corinthians x",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "entretenimento_esporte",
-          "pauta": "Busca associada: jogos de corinthians"
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
-      "termos_socioeconomicos_ceara": []
+      "itens": [
+        {
+          "termo": "debate presidencial",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: debate presidencial 2026"
+        },
+        {
+          "termo": "bahia x",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo do bahia"
+        },
+        {
+          "termo": "esportes",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: quanto foi o jogo do flamengo-fluminense"
+        },
+        {
+          "termo": "campeonato brasileiro",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: jogo palmeiras x corinthians"
+        },
+        {
+          "termo": "jogos de brasileirão série a",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: campeonato brasileiro a"
+        },
+        {
+          "termo": "tiririca",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "avai",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Busca associada: cuiabá esporte clube"
+        },
+        {
+          "termo": "br-153",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "record ao vivo",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "ebola",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "entretenimento_esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        }
+      ],
+      "termos_socioeconomicos_ceara": [
+        {
+          "termo": "debate eleitoral",
+          "volume": "100 mil+",
+          "pauta": "Busca associada: debate lula e flavio"
+        }
+      ]
     }
   },
   "sentimento_youtube": {
