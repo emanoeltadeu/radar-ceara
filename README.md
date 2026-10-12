@@ -69,7 +69,7 @@
 - **Perfis Monitorados (21 perfis):** Mandato popular e aliados (`@leosuricate`, `@suricateseboso`, `@midianinja`), imprensa cearense (`@opovoonline`, `@diariodonordeste`, `@gcmais`, `@portalgcm`, etc.), oposição (`@andrefernandes`, `@capitaowagnersousa`, `@carmeloneto`) e veículos de mobilização urbana/comunitária.
 - **Estratégia de Cota e Rotação Circular (FIFO):**
   - Cada execução coleta em lote circular de 8 perfis (`batch_size=8`), extraindo os 5 posts mais recentes de cada um (`resultsLimit=5`).
-  - O cursor de rotação é persistido em `dados/cursor_perfis_ig.json`, garantindo cobertura equitativa de todos os 21 perfis ao longo dos ciclos.
+  - O cursor de rotação é persistido em `dados/estado_rodizio_ig.json`, garantindo cobertura equitativa de todos os 21 perfis ao longo dos ciclos.
   - Memória do container Apify limitada a 1024 MB com timeout de 45s, garantindo custo previsível (~US\$ 0,08 por ciclo).
 - **Hashtags de Mobilização:**
   - A varredura de hashtags via Apify está **temporariamente em pausa** para preservação de cota mensal da plataforma. O arquivo de alvos (`dados/hashtags_instagram.txt`) permanece pronto para reativação estratégica em períodos eleitorais ou mobilizações pontuais.
@@ -78,7 +78,7 @@
 
 ## 🧠 Inteligência & Classificação com IA (Google Gemini)
 
-1. Os comentários do YouTube e do Instagram são classificados semanticamente via `scripts/inteligencia/gemini.py` com o modelo **Google Gemini**.
+1. Os comentários do YouTube e do Instagram são classificados semanticamente via `scripts/inteligencia/gemini.py` com o modelo **Google Gemini (`gemini-3.5-flash-lite`)**.
 2. Para cada comentário, o modelo identifica:
    - **Sentimento:** Positivo (apoio), Crítica / Oposição (cobrança/ataque) ou Neutro.
    - **Pauta / Tema específico:** (ex.: *"Escala 6x1"*, *"Segurança Pública"*, *"Transporte / Tarifa Zero"*, *"Lula vs Bolsonaro"*, etc.).
@@ -107,12 +107,14 @@ O payload central [`site/radar_ce.json`](site/radar_ce.json) foi projetado para 
 │   ├── canais_youtube_ce.txt        # 28 canais prioritários monitorados no Ceará
 │   ├── perfis_instagram.txt         # 21 perfis do Instagram (@) em rotação circular
 │   ├── hashtags_instagram.txt       # Hashtags mapeadas (pausadas temporariamente)
-│   ├── cursor_perfis_ig.json        # Ponteiro persistente do lote circular de perfis
+│   ├── estado_rodizio_ig.json       # Ponteiro persistente do lote circular de perfis
 │   ├── cache_youtube.json           # Acervo persistente de vídeos políticos cearenses
 │   ├── cache_comentarios.json       # Base bruta de comentários do YouTube
 │   ├── cache_instagram.json         # Base bruta de comentários do Instagram
 │   ├── cache_comentarios_classificados.json    # Comentários do YouTube classificados
 │   └── cache_comentarios_classificados_ig.json # Comentários do Instagram classificados
+├── legado/                          # Arquivo morto com scripts anteriores (TSE DuckDB, NLP regex)
+│   └── README.md                    # Histórico e motivos da descontinuação dos módulos
 ├── scripts/
 │   ├── config.py                    # Configurações de caminhos, fuso horário e chaves
 │   ├── coletores/                   # Camada de Coleta (Extract)
@@ -124,7 +126,6 @@ O payload central [`site/radar_ce.json`](site/radar_ce.json) foi projetado para 
 │   │   ├── gemini.py                # Classificação de sentimento, temas e resumo
 │   │   └── radar_tatico.py          # Radar Tático IA com cruzamento de Trends e ordens
 │   ├── atualizar_trends_isolado.py  # Script de atualização rápida apenas do Google Trends
-│   ├── migrar_radar_ce.py           # Utilitário de migração e compactação do payload
 │   └── gerar_radar_ce.py            # Orquestrador do pipeline completo (Load)
 ├── site/
 │   ├── index.html                   # Interface do painel de inteligência de guerra digital

@@ -27,11 +27,9 @@ from config import (
 )
 
 def carregar_perfis_instagram(tamanho_lote=8, limite_perfis=None):
-    if limite_perfis is not None:
-        tamanho_lote = limite_perfis
     """
     =============================================================================
-    RODÍZIO CIRCULAR DE PERFIS DO INSTAGRAM (CUSTO ZERO & COBERTURA HOMOGÊNEA)
+    RODÍZIO CIRCULAR DE PERFIS DO INSTAGRAM (CUSTO PREVISÍVEL & COBERTURA EQUITATIVA)
     =============================================================================
     COMO FUNCIONA O RODÍZIO:
         1. FILA CIRCULAR COMPLETA (SEM PERFIL FIXO):
@@ -48,9 +46,11 @@ def carregar_perfis_instagram(tamanho_lote=8, limite_perfis=None):
         4. COBERTURA COMPLETA AO LONGO DO DIA:
            Na grade de 4 rodadas diárias em Fortaleza/CE (07:30, 12:30, 17:30 e 21:30):
            4 rodadas x 8 perfis = 32 consultas de perfis por dia.
-           Como temos 21 perfis ativos, cada perfil é visitado ~1,5 a 2 vezes ao dia.
+           Como temos 21 perfis ativos, cada perfil é visitado ~1,5 vezes ao dia.
     =============================================================================
     """
+    if limite_perfis is not None:
+        tamanho_lote = limite_perfis
     perfis = []
     caminho = PERFIS_INSTAGRAM if os.path.exists(PERFIS_INSTAGRAM) else os.path.join("dados", "perfis_instagram.txt")
 
@@ -322,7 +322,7 @@ def coletar_comentarios_instagram_apify(apify_token=None, limite_perfis=8, max_p
         if c.get("id"):
             comentarios_existentes[c["id"]] = c
 
-    # 1. Coleta dos Perfis (1 fixo + 8 rotativos = 9 perfis)
+    # 1. Coleta dos Perfis (lote circular de 8 perfis por rodada)
     try:
         novos_perfis = coletar_comentarios_perfis_apify(apify_token, limite_perfis=limite_perfis, max_posts_por_perfil=max_posts_por_perfil)
         for c in novos_perfis:

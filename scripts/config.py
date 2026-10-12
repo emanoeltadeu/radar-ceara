@@ -24,13 +24,10 @@ CACHE_COMENTARIOS = os.path.join(DADOS_DIR, "cache_comentarios.json")
 CACHE_CLASSIFICADOS = os.path.join(DADOS_DIR, "cache_comentarios_classificados.json")
 CACHE_INSTAGRAM = os.path.join(DADOS_DIR, "cache_instagram.json")
 CACHE_CLASSIFICADOS_IG = os.path.join(DADOS_DIR, "cache_comentarios_classificados_ig.json")
-CACHE_VIDEOS_CLASSIFICADOS = os.path.join(DADOS_DIR, "cache_videos_classificados.json")
-PAUTAS_CEARA = os.path.join(DADOS_DIR, "pautas_ceara.json")
 CANAIS_YOUTUBE = os.path.join(DADOS_DIR, "canais_youtube_ce.txt")
 PERFIS_INSTAGRAM = os.path.join(DADOS_DIR, "perfis_instagram.txt")
 HASHTAGS_INSTAGRAM = os.path.join(DADOS_DIR, "hashtags_instagram.txt")
 ESTADO_RODIZIO_IG = os.path.join(DADOS_DIR, "estado_rodizio_ig.json")
-PERFIS_HASHTAGS_INSTAGRAM = PERFIS_INSTAGRAM  # compatibilidade reversa
 SAIDA_RADAR_JSON = os.path.join(SITE_DIR, "radar_ce.json")
 
 # Janela máxima temporal de retenção e análise (7 dias)
@@ -40,7 +37,7 @@ JANELA_MAXIMA_HORAS = JANELA_MAXIMA_DIAS * 24  # 168 horas
 # Versão da aplicação
 VERSAO_RADAR = "2.2.0-instagram"
 
-# Modelo de IA Generativa padrão
+# Modelo de IA Generativa padrão para análise semântica e radar tático
 MODELO_GEMINI = "gemini-3.5-flash-lite"
 
 def calcular_idade_horas(data_str):

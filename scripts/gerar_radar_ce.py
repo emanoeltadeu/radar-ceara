@@ -3,9 +3,9 @@ Pipeline Master · Radar Léo Suricate (Mandato Popular CE).
 
 O que faz:
     Orquestrador único do pipeline de dados (ETL).
-    1. Extract: Coleta concorrente do YouTube, Google Trends e Meta/TSE;
-    2. Transform: Processamento de NLP, nuvem de termos e IA Generativa (Gemini);
-    3. Load: Consolidação e geração atômica de 'site/radar_ce.json' para o Cloudflare Pages.
+    1. Extract: Coleta concorrente do YouTube, Instagram (Apify), Google Trends CE e Meta Ads;
+    2. Transform: Inteligência semântica e Radar Tático com IA Generativa (Google Gemini);
+    3. Load: Consolidação atômica e otimizada de 'site/radar_ce.json' para o Cloudflare Pages.
 """
 
 import json
