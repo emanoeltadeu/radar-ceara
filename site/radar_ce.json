@@ -53,87 +53,108 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "12/10/2026 às 19:22",
+      "atualizado_em": "12/10/2026 às 22:06",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "classificações de coritiba x botafogo",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: botafogo"
-        },
-        {
-          "termo": "rj mitte",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: breaking bad"
-        },
-        {
-          "termo": "classificações de fortaleza esporte clube x crb",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: fortaleza"
-        },
-        {
           "termo": "chapecoense x athletico-pr",
-          "volume": "20 mil+",
+          "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: chapecoense"
+          "pauta": "Busca associada: classificações de chapecoense x athletico-pr"
         },
         {
-          "termo": "big brother brasil",
-          "volume": "20 mil+",
+          "termo": "cruzeiro",
+          "volume": "50 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: big brother"
+          "categoria": "esporte",
+          "pauta": "Busca associada: cruzeiro x"
         },
         {
           "termo": "novorizontino x ponte preta",
-          "volume": "10 mil+",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: classificações de novorizontino x ponte preta"
         },
         {
-          "termo": "copacabana",
-          "volume": "10 mil+",
+          "termo": "botafogo sp x ceará sc",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: manifestação copacabana"
-        },
-        {
-          "termo": "al nassr",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: al-nassr"
-        },
-        {
-          "termo": "selma blair",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: botafogo sp"
         },
         {
           "termo": "criciúma x américa-mg",
-          "volume": "2 mil+",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: criciuma"
+        },
+        {
+          "termo": "classificações de al-nassr x fk neftchi farg'ona",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "walter jr ator",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: rj mitte breaking bad"
+        },
+        {
+          "termo": "menina acorda no velorio",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: menina acorda no velorio na guatemala"
+        },
+        {
+          "termo": "amber siyavus",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "ceara",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
       "itens_24h": [
         {
           "termo": "coritiba x botafogo",
-          "volume": "200 mil+",
+          "volume": "500 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: classificações de coritiba x botafogo"
+        },
+        {
+          "termo": "bragantino x cruzeiro",
+          "volume": "200 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: cruzeiro"
+        },
+        {
+          "termo": "chapecoense x athletico-pr",
+          "volume": "200 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: classificações de chapecoense x athletico-pr"
+        },
+        {
+          "termo": "rj mitte",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: breaking bad"
         },
         {
           "termo": "fortaleza x crb",
@@ -143,25 +164,25 @@
           "pauta": "Busca associada: classificações de fortaleza esporte clube x crb"
         },
         {
-          "termo": "classificações de esporte clube bahia x mirassol",
+          "termo": "al-nassr x fk neftchi farg'ona",
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: jogo do bahia"
+          "pauta": "Busca associada: al nassr"
         },
         {
-          "termo": "rj mitte",
+          "termo": "big brother",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: breaking bad"
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "al-nassr x fk neftchi farg'ona",
+          "termo": "novorizontino x ponte preta",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: liga dos campeões da afc"
+          "pauta": "Busca associada: classificações de novorizontino x ponte preta"
         },
         {
           "termo": "janaina paschoal",
@@ -176,99 +197,78 @@
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: mensagem dia das crianças"
-        },
-        {
-          "termo": "chapecoense x athletico-pr",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: chapecoense"
-        },
-        {
-          "termo": "big brother brasil",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: big brother"
-        },
-        {
-          "termo": "caixão",
-          "volume": "20 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
       "itens": [
         {
-          "termo": "classificações de coritiba x botafogo",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: botafogo"
-        },
-        {
-          "termo": "rj mitte",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: breaking bad"
-        },
-        {
-          "termo": "classificações de fortaleza esporte clube x crb",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: fortaleza"
-        },
-        {
           "termo": "chapecoense x athletico-pr",
-          "volume": "20 mil+",
+          "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: chapecoense"
+          "pauta": "Busca associada: classificações de chapecoense x athletico-pr"
         },
         {
-          "termo": "big brother brasil",
-          "volume": "20 mil+",
+          "termo": "cruzeiro",
+          "volume": "50 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: big brother"
+          "categoria": "esporte",
+          "pauta": "Busca associada: cruzeiro x"
         },
         {
           "termo": "novorizontino x ponte preta",
-          "volume": "10 mil+",
+          "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: classificações de novorizontino x ponte preta"
         },
         {
-          "termo": "copacabana",
-          "volume": "10 mil+",
+          "termo": "botafogo sp x ceará sc",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: manifestação copacabana"
-        },
-        {
-          "termo": "al nassr",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: al-nassr"
-        },
-        {
-          "termo": "selma blair",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "pauta": "Busca associada: botafogo sp"
         },
         {
           "termo": "criciúma x américa-mg",
-          "volume": "2 mil+",
+          "volume": "20 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: criciuma"
+        },
+        {
+          "termo": "classificações de al-nassr x fk neftchi farg'ona",
+          "volume": "20 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "walter jr ator",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: rj mitte breaking bad"
+        },
+        {
+          "termo": "menina acorda no velorio",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: menina acorda no velorio na guatemala"
+        },
+        {
+          "termo": "amber siyavus",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "ceara",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
       "termos_socioeconomicos_ceara": [
