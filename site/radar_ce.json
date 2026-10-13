@@ -53,74 +53,74 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "12/10/2026 às 22:06",
+      "atualizado_em": "13/10/2026 às 00:22",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "chapecoense x athletico-pr",
+          "termo": "classificações de bragantino x cruzeiro esporte clube",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: classificações de chapecoense x athletico-pr"
+          "pauta": "Busca associada: cruzeiro"
         },
         {
-          "termo": "cruzeiro",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: cruzeiro x"
-        },
-        {
-          "termo": "novorizontino x ponte preta",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: classificações de novorizontino x ponte preta"
-        },
-        {
-          "termo": "botafogo sp x ceará sc",
-          "volume": "20 mil+",
+          "termo": "classificações de botafogo sp x ceará sc",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: botafogo sp"
         },
         {
-          "termo": "criciúma x américa-mg",
-          "volume": "20 mil+",
+          "termo": "amber siyavus",
+          "volume": "10 mil+",
           "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: criciuma"
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "classificações de al-nassr x fk neftchi farg'ona",
-          "volume": "20 mil+",
+          "termo": "classificações de novorizontino x ponte preta",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "walter jr ator",
-          "volume": "10 mil+",
+          "termo": "classificações de criciuma ec x américa-mg",
+          "volume": "5 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: rj mitte breaking bad"
+          "categoria": "esporte",
+          "pauta": "Busca associada: américa futebol clube"
         },
         {
-          "termo": "menina acorda no velorio",
+          "termo": "ceara",
           "volume": "5 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: menina acorda no velorio na guatemala"
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "amber siyavus",
+          "termo": "resumo da novela quem ama cuida",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: resumo de quem ama cuida"
+        },
+        {
+          "termo": "menina acorda no velorio na guatemala",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "ceara",
+          "termo": "rams x bills",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "walter jr ator",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
@@ -129,18 +129,18 @@
       ],
       "itens_24h": [
         {
+          "termo": "bragantino x cruzeiro",
+          "volume": "500 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: classificações de bragantino x cruzeiro esporte clube"
+        },
+        {
           "termo": "coritiba x botafogo",
           "volume": "500 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: classificações de coritiba x botafogo"
-        },
-        {
-          "termo": "bragantino x cruzeiro",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: cruzeiro"
         },
         {
           "termo": "chapecoense x athletico-pr",
@@ -157,6 +157,13 @@
           "pauta": "Busca associada: breaking bad"
         },
         {
+          "termo": "big brother",
+          "volume": "100 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: big brother brasil"
+        },
+        {
           "termo": "fortaleza x crb",
           "volume": "100 mil+",
           "lado": "disputa",
@@ -171,11 +178,11 @@
           "pauta": "Busca associada: al nassr"
         },
         {
-          "termo": "big brother",
+          "termo": "botafogo sp x ceará sc",
           "volume": "50 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "categoria": "esporte",
+          "pauta": "Busca associada: classificações de botafogo sp x ceará sc"
         },
         {
           "termo": "novorizontino x ponte preta",
@@ -185,99 +192,86 @@
           "pauta": "Busca associada: classificações de novorizontino x ponte preta"
         },
         {
-          "termo": "janaina paschoal",
+          "termo": "criciúma x américa-mg",
           "volume": "50 mil+",
           "lado": "disputa",
-          "categoria": "politica_social",
-          "pauta": "Busca associada: janaina paschoal hoje"
-        },
-        {
-          "termo": "feliz dia das crianças",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: mensagem dia das crianças"
+          "categoria": "esporte",
+          "pauta": "Busca associada: classificações de criciuma ec x américa-mg"
         }
       ],
       "itens": [
         {
-          "termo": "chapecoense x athletico-pr",
+          "termo": "classificações de bragantino x cruzeiro esporte clube",
           "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: classificações de chapecoense x athletico-pr"
+          "pauta": "Busca associada: cruzeiro"
         },
         {
-          "termo": "cruzeiro",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: cruzeiro x"
-        },
-        {
-          "termo": "novorizontino x ponte preta",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: classificações de novorizontino x ponte preta"
-        },
-        {
-          "termo": "botafogo sp x ceará sc",
-          "volume": "20 mil+",
+          "termo": "classificações de botafogo sp x ceará sc",
+          "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: botafogo sp"
         },
         {
-          "termo": "criciúma x américa-mg",
-          "volume": "20 mil+",
+          "termo": "amber siyavus",
+          "volume": "10 mil+",
           "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: criciuma"
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "classificações de al-nassr x fk neftchi farg'ona",
-          "volume": "20 mil+",
+          "termo": "classificações de novorizontino x ponte preta",
+          "volume": "10 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "classificações de criciuma ec x américa-mg",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: américa futebol clube"
+        },
+        {
+          "termo": "ceara",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "resumo da novela quem ama cuida",
+          "volume": "5 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: resumo de quem ama cuida"
+        },
+        {
+          "termo": "menina acorda no velorio na guatemala",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "rams x bills",
+          "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
           "termo": "walter jr ator",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: rj mitte breaking bad"
-        },
-        {
-          "termo": "menina acorda no velorio",
-          "volume": "5 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: menina acorda no velorio na guatemala"
-        },
-        {
-          "termo": "amber siyavus",
-          "volume": "2 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "ceara",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         }
       ],
-      "termos_socioeconomicos_ceara": [
-        {
-          "termo": "janaina paschoal",
-          "volume": "50 mil+",
-          "pauta": "Busca associada: janaina paschoal hoje"
-        }
-      ]
+      "termos_socioeconomicos_ceara": []
     }
   },
   "sentimento_youtube": {
