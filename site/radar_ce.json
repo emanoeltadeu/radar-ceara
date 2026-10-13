@@ -53,78 +53,78 @@
   },
   "monitor_redes": {
     "google_trends_ce": {
-      "atualizado_em": "13/10/2026 às 00:22",
+      "atualizado_em": "13/10/2026 às 07:18",
       "frequencia_atualizacao": "A cada 4 horas",
       "itens_4h": [
         {
-          "termo": "classificações de bragantino x cruzeiro esporte clube",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: cruzeiro"
-        },
-        {
-          "termo": "classificações de botafogo sp x ceará sc",
+          "termo": "previsão do tempo são paulo",
           "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: botafogo sp"
+          "pauta": "Busca associada: climatempo são paulo"
         },
         {
-          "termo": "amber siyavus",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "classificações de novorizontino x ponte preta",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "classificações de criciuma ec x américa-mg",
+          "termo": "chuva",
           "volume": "5 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: américa futebol clube"
+          "pauta": "Busca associada: clima tempo são paulo"
         },
         {
-          "termo": "ceara",
-          "volume": "5 mil+",
+          "termo": "plenário do senado federal",
+          "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
+          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "resumo da novela quem ama cuida",
-          "volume": "5 mil+",
+          "termo": "pesquisa para presidente 2026, segundo turno",
+          "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: resumo de quem ama cuida"
+          "categoria": "politica_social",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "menina acorda no velorio na guatemala",
+          "termo": "notícia",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "rams x bills",
+          "termo": "pablo marçal",
           "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "politica_social",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "quem ama cuida",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: resumo novelas quem ama cuida"
+        },
+        {
+          "termo": "libertadores",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: conmebol libertadores"
+        },
+        {
+          "termo": "futebol",
+          "volume": "1 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "walter jr ator",
-          "volume": "2 mil+",
+          "termo": "sul americana",
+          "volume": "1 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "categoria": "esporte",
+          "pauta": "Busca associada: copa sul-americana"
         }
       ],
       "itens_24h": [
@@ -151,17 +151,10 @@
         },
         {
           "termo": "rj mitte",
-          "volume": "100 mil+",
+          "volume": "200 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
           "pauta": "Busca associada: breaking bad"
-        },
-        {
-          "termo": "big brother",
-          "volume": "100 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: big brother brasil"
         },
         {
           "termo": "fortaleza x crb",
@@ -175,7 +168,7 @@
           "volume": "100 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: al nassr"
+          "pauta": "Busca associada: liga dos campeões da afc"
         },
         {
           "termo": "botafogo sp x ceará sc",
@@ -185,93 +178,116 @@
           "pauta": "Busca associada: classificações de botafogo sp x ceará sc"
         },
         {
+          "termo": "big brother",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "big brother brasil",
+          "volume": "50 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: amber siyavus"
+        },
+        {
           "termo": "novorizontino x ponte preta",
           "volume": "50 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Busca associada: classificações de novorizontino x ponte preta"
-        },
-        {
-          "termo": "criciúma x américa-mg",
-          "volume": "50 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: classificações de criciuma ec x américa-mg"
         }
       ],
       "itens": [
         {
-          "termo": "classificações de bragantino x cruzeiro esporte clube",
-          "volume": "200 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Busca associada: cruzeiro"
-        },
-        {
-          "termo": "classificações de botafogo sp x ceará sc",
+          "termo": "previsão do tempo são paulo",
           "volume": "10 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: botafogo sp"
+          "pauta": "Busca associada: climatempo são paulo"
         },
         {
-          "termo": "amber siyavus",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "classificações de novorizontino x ponte preta",
-          "volume": "10 mil+",
-          "lado": "disputa",
-          "categoria": "esporte",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
-        },
-        {
-          "termo": "classificações de criciuma ec x américa-mg",
+          "termo": "chuva",
           "volume": "5 mil+",
           "lado": "disputa",
           "categoria": "esporte",
-          "pauta": "Busca associada: américa futebol clube"
+          "pauta": "Busca associada: clima tempo são paulo"
         },
         {
-          "termo": "ceara",
-          "volume": "5 mil+",
+          "termo": "plenário do senado federal",
+          "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
+          "categoria": "politica_social",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "resumo da novela quem ama cuida",
-          "volume": "5 mil+",
+          "termo": "pesquisa para presidente 2026, segundo turno",
+          "volume": "2 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Busca associada: resumo de quem ama cuida"
+          "categoria": "politica_social",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "menina acorda no velorio na guatemala",
+          "termo": "notícia",
           "volume": "2 mil+",
           "lado": "disputa",
           "categoria": "cotidiano_cultura",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "rams x bills",
+          "termo": "pablo marçal",
           "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "politica_social",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "quem ama cuida",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "cotidiano_cultura",
+          "pauta": "Busca associada: resumo novelas quem ama cuida"
+        },
+        {
+          "termo": "libertadores",
+          "volume": "2 mil+",
+          "lado": "disputa",
+          "categoria": "esporte",
+          "pauta": "Busca associada: conmebol libertadores"
+        },
+        {
+          "termo": "futebol",
+          "volume": "1 mil+",
           "lado": "disputa",
           "categoria": "esporte",
           "pauta": "Tendência de pesquisa registrada no Ceará."
         },
         {
-          "termo": "walter jr ator",
-          "volume": "2 mil+",
+          "termo": "sul americana",
+          "volume": "1 mil+",
           "lado": "disputa",
-          "categoria": "cotidiano_cultura",
-          "pauta": "Tendência de pesquisa registrada no Ceará."
+          "categoria": "esporte",
+          "pauta": "Busca associada: copa sul-americana"
         }
       ],
-      "termos_socioeconomicos_ceara": []
+      "termos_socioeconomicos_ceara": [
+        {
+          "termo": "plenário do senado federal",
+          "volume": "2 mil+",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "pesquisa para presidente 2026, segundo turno",
+          "volume": "2 mil+",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        },
+        {
+          "termo": "pablo marçal",
+          "volume": "2 mil+",
+          "pauta": "Tendência de pesquisa registrada no Ceará."
+        }
+      ]
     }
   },
   "sentimento_youtube": {
