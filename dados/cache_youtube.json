@@ -1,5 +1,649 @@
 [
   {
+    "id": "RzzoPhsRSb4",
+    "titulo": "CEARÁ X FORTALEZA- SUB 11 - TAÇA CIDADE FORTALEZA DE FUTSAL",
+    "canal": "ISAAC QUE FASE",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.668157+00:00"
+  },
+  {
+    "id": "Dlfwhrh-LAQ",
+    "titulo": "Transmissão da 32° Sessão Ordinária da Câmara Municipal de Fortaleza (02/12/2020)",
+    "canal": "Câmara de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.540797+00:00"
+  },
+  {
+    "id": "cxq4GdsijXA",
+    "titulo": "🔥Dríade Aguiar da Mídia Ninja foi ovacionada no ato “O Samba Não Se Cala” 🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.439668+00:00"
+  },
+  {
+    "id": "0YPenr7Cvc0",
+    "titulo": "🚨Votou em Renan Santos? Chegou a hora de encarar o que está em jogo no 2º turno🚨",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.439665+00:00"
+  },
+  {
+    "id": "gTxnkPnNvFE",
+    "titulo": "🔥Lula desafiou Flávio a responder: de onde vão sair os R$ 250 bilhões do “tesouraço”?🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.439663+00:00"
+  },
+  {
+    "id": "jgX0RTCB6WY",
+    "titulo": "A saída de Diego Jovino do projeto Suricate Seboso",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.427111+00:00"
+  },
+  {
+    "id": "rnBFrDoKJzU",
+    "titulo": "Com ‘Fortaleza Ordinária’ e ‘Meu País Ceará’, Assembleia Legislativa homenageia influenciadores",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.427001+00:00"
+  },
+  {
+    "id": "KYZruRr52cg",
+    "titulo": "🔥Leo Suricate conquista vaga na Alece e leva a cultura periférica para o Parlamento🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:56.426978+00:00"
+  },
+  {
+    "id": "1Tn8lceLycw",
+    "titulo": "ANP confirma petróleo em sítio no Ceará | Jornal da Band",
+    "canal": "Band Jornalismo",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:55.776123+00:00"
+  },
+  {
+    "id": "rsXKR0-dhNc",
+    "titulo": "Vereadora Larissa Linhares se pronuncia a respeito de vídeo do Prefeito de Granja",
+    "canal": "Ceará Acontece",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:55.669194+00:00"
+  },
+  {
+    "id": "2_KuhHKLG84",
+    "titulo": "Forças Armadas reforçarão segurança do primeiro turno em oito estados, incluindo o Ceará",
+    "canal": "UrbNews",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:55.147811+00:00"
+  },
+  {
+    "id": "fQJCi0kzu-I",
+    "titulo": "ETs no Ceará? De Rachel de Queiroz a fenômeno pop, OVNIs permeiam imaginário popular | PAUSE AO VIVO",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:54.902231+00:00"
+  },
+  {
+    "id": "qNKVRoNAT_w",
+    "titulo": "TV Cidade transmite campeonato cearense pelas próximas três temporadas",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:15:54.849815+00:00"
+  },
+  {
+    "id": "PbuIta6fcAA",
+    "titulo": "AO VIVO EM FORTALEZA: Pôr do sol no feriadão! ☀️🏖️",
+    "canal": "Léozão Azevedo ",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.798844+00:00"
+  },
+  {
+    "id": "_xpOF6wRXmY",
+    "titulo": "SERÁ QUE PRESTA ESSE PONTO DE APOIO DO IFOOD ENTREGADOR EM FORTALEZA? ",
+    "canal": "Breno de Freitas ",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.798839+00:00"
+  },
+  {
+    "id": "VJynU7o3Dyo",
+    "titulo": "JOGOS ESCOLARES DE FORTALEZA 2026: MEDALHA MILAGROSA x DEOCLÉCIO FERRO -",
+    "canal": "Rede Cuca",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.361175+00:00"
+  },
+  {
+    "id": "My6RJPOtKjg",
+    "titulo": "JOGOS ESCOLARES DE FORTALEZA 2026: JOAQUIM FRANCISCO DE SOUSA FILHO x EM JACINTO BOTELHO",
+    "canal": "Rede Cuca",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.361150+00:00"
+  },
+  {
+    "id": "AtObDG7ZW2Y",
+    "titulo": "JOGOS ESCOLARES DE FORTALEZA 2026: EMTI AGERSON TABOSA PINTO x EMTI FILGUEIRAS LIMA - FINAL HANDEBOL",
+    "canal": "Rede Cuca",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.361144+00:00"
+  },
+  {
+    "id": "Ph6_qEOY0KU",
+    "titulo": "Quaest no Ceará: Ciro Gomes lidera nos dois turnos contra Elmano de Freitas",
+    "canal": "UOL",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.019628+00:00"
+  },
+  {
+    "id": "hY_GBM5hCFs",
+    "titulo": "Jingle Oficial do Governo do Estado do Ceará- Cuidar das pessoas, avançar o Ceará (2023-2027).",
+    "canal": "Sérgio Pires",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:09.019623+00:00"
+  },
+  {
+    "id": "jznAeW3o3jA",
+    "titulo": "Câmara Municipal de Fortaleza empossa novos servidores",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.983390+00:00"
+  },
+  {
+    "id": "0BZoQqdMn8g",
+    "titulo": "QUESTÕES INÉDITAS com GABARITO - Regimento Interno da Câmara Municipal de Fortaleza/CE",
+    "canal": "Som de concurseiro",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.983347+00:00"
+  },
+  {
+    "id": "D3u_yFlp7m0",
+    "titulo": "Câmara Municipal de Fortaleza lança novo site",
+    "canal": "CamaraCMF",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.983343+00:00"
+  },
+  {
+    "id": "cQFTe1Geh0A",
+    "titulo": "Elmano de Freitas (PT) é reeleito governador do Ceará #g1 #shorts",
+    "canal": "g1",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.932432+00:00"
+  },
+  {
+    "id": "U4oD4YFlISI",
+    "titulo": "Lula diz que Elmano “enterrou a carreira política de Ciro Gomes”",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.932423+00:00"
+  },
+  {
+    "id": "GTEtXTPeH0w",
+    "titulo": "Datapovo confirma: Ceará é Elmano e Lula 1️⃣3️⃣❤️",
+    "canal": "Elmano de Freitas",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.932416+00:00"
+  },
+  {
+    "id": "6eDgIDAZ3Rg",
+    "titulo": "LÉO SURICATE NO CONJUNTO CEARÁ NO MOVIMENTO PRÓ LULA",
+    "canal": "Johnatha Kalazans",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.914806+00:00"
+  },
+  {
+    "id": "-OkMswStRJk",
+    "titulo": "Ciro e Elmano têm novo embate na briga pela Federação União Progressista | Live PontoPoder",
+    "canal": "Diário do Nordeste",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.391255+00:00"
+  },
+  {
+    "id": "opy5-xrIaz8",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 24.08.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219629+00:00"
+  },
+  {
+    "id": "uT6SRWGbMho",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 07.05.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219627+00:00"
+  },
+  {
+    "id": "LuNNrsuwqwk",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 07.09.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219623+00:00"
+  },
+  {
+    "id": "k1OVCb7TLSM",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 18.09.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219614+00:00"
+  },
+  {
+    "id": "UP3OhWd7cNk",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 16.09.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219609+00:00"
+  },
+  {
+    "id": "w99-w0TXRpc",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 26.08.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219595+00:00"
+  },
+  {
+    "id": "RglDFSTntYk",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 19.08.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:08.219585+00:00"
+  },
+  {
+    "id": "WjXpihRgZnQ",
+    "titulo": "Notícias, informações, dicas e mais | Jornal Jangadeiro | (03/08/2026)",
+    "canal": "Jornal Jangadeiro",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.562112+00:00"
+  },
+  {
+    "id": "n7ftZfbZm5E",
+    "titulo": "JANGADEIRO ELEIÇÕES 2026",
+    "canal": "Jornal Jangadeiro",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.562053+00:00"
+  },
+  {
+    "id": "GZXxX-xWtZA",
+    "titulo": "RÁDIO O POVO CBN DO CEARÁ ENTREVISTA LULA",
+    "canal": "PT no Senado",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.471104+00:00"
+  },
+  {
+    "id": "KRUU-YUDJ2k",
+    "titulo": "🔴 AO VIVO | Debates do POVO: resultados e análise do 1º turno das Eleições 2026 - 05/10",
+    "canal": "Rádio O POVO CBN",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.471087+00:00"
+  },
+  {
+    "id": "QESNnQDC33w",
+    "titulo": "CURTA CEARÁ | Vozes Ocultas",
+    "canal": "ALECE TV  ",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.423531+00:00"
+  },
+  {
+    "id": "WoNwbi273Jo",
+    "titulo": "29 vereadores e deputados cearenses disputam novos cargos nas eleições de 2026",
+    "canal": "UrbNews",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.301867+00:00"
+  },
+  {
+    "id": "NCOJbo8-ynY",
+    "titulo": "🔴AO VIVO: Os impactos da pesquisa Quaest no Ceará, Goiás e RS; Cleitinho em fúria | Jogo Político BR",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:12:07.223843+00:00"
+  },
+  {
+    "id": "ys1wjd3_E9A",
+    "titulo": "Motorista do Amor",
+    "canal": "Release - Topic",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:30.785671+00:00"
+  },
+  {
+    "id": "rK9HxiK-6Ak",
+    "titulo": "Movimentação no tabuleiro do norte #busologo #bus #busologia #ônibus #viagem #vida #amo #paixão #top",
+    "canal": "Fvbusologo Motorista do Amor ",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:30.785640+00:00"
+  },
+  {
+    "id": "5mcQm6aFZCE",
+    "titulo": "Programa Ceará em Pauta - 13/10/2026",
+    "canal": "Ceará em Pauta",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.935232+00:00"
+  },
+  {
+    "id": "z8TJqrsK2O0",
+    "titulo": "🔴FORTALEZA VACILA DE NOVO; CEARÁ PERDE FORA DE CASA  | ESPORTES O POVO",
+    "canal": "Esportes O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.935218+00:00"
+  },
+  {
+    "id": "irGKeKKeCDM",
+    "titulo": "CEARÁ X CRIAS DA VASSALLO- SUB 12 SEMI FINAL - TAÇA CIDADE FORTALEZA DE FUTSAL",
+    "canal": "ISAAC QUE FASE",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.807260+00:00"
+  },
+  {
+    "id": "aprx8-VzDsI",
+    "titulo": "SUPERLIGA C FEMININA: BNB REDE CUCA (CE) X INSTITUTO CAPIXABA (ES) - FASE NACIONAL",
+    "canal": "BNB Clube Fortaleza | O seu clube de todos os dias",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.807172+00:00"
+  },
+  {
+    "id": "fIvcSmrMHKA",
+    "titulo": "GIRO FORTALEZA MANHÃ 13 10 26",
+    "canal": "TV TERRA DO SOL",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.719714+00:00"
+  },
+  {
+    "id": "82fhmwUIgwU",
+    "titulo": "GIRO FORTALEZA MANHÃ - 09 10 26",
+    "canal": "TV TERRA DO SOL",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.719695+00:00"
+  },
+  {
+    "id": "26467sDcJqk",
+    "titulo": "Pesquisa Quaest Ceará: a evolução da disputa entre Ciro Gomes e Elmano de Freitas",
+    "canal": "Canal da Quaest",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.699743+00:00"
+  },
+  {
+    "id": "0eQPCOL1aQ4",
+    "titulo": "Eleições 2022: Debate entre os candidatos ao governo do Ceará na TV Verdes Mares (27/09/2022)",
+    "canal": "televinhetas",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.673489+00:00"
+  },
+  {
+    "id": "f9c_45jgeQU",
+    "titulo": "🚨ESPALHEM ESSE VÍDEO! Isso foram 4 dias. Imagina 4 anos?🚨",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.294301+00:00"
+  },
+  {
+    "id": "jhBcslE4Ljs",
+    "titulo": "🔥Lula declarou: votação da 6x1 é o primeiro teste de Flávio pra mostrar o que ele quer pro país🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.294296+00:00"
+  },
+  {
+    "id": "hwfTTlLGp8Y",
+    "titulo": "🔥Que recepção! No ato no RJ, Dríade Aguiar, uma das fundadoras da NINJA foi chamada ao microfone🔥",
+    "canal": "Mídia NINJA",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:29.294292+00:00"
+  },
+  {
+    "id": "Ipa3I-FHgtM",
+    "titulo": "Léo Suricate comemora eleição para deputado estadual e diz: “A gente fez história”",
+    "canal": "Rubão Tv",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.959400+00:00"
+  },
+  {
+    "id": "JG1bcJPH2ec",
+    "titulo": "Eleições 2026: Léo Suricate Manda Recado para o PL",
+    "canal": "TV ANC",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.959335+00:00"
+  },
+  {
+    "id": "rwvU53Cy2ng",
+    "titulo": "TRANSMISSÃO DA SESSÃO PLENÁRIA DA CÂMARA MUNICIPAL DE FORTALEZA - 16.11.2017",
+    "canal": "Câmara de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.949329+00:00"
+  },
+  {
+    "id": "yIQO5aTLV0A",
+    "titulo": "Transmissão da Sessão Plenária da Câmara Municipal de Fortaleza (31/10/2019)",
+    "canal": "Câmara de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.949325+00:00"
+  },
+  {
+    "id": "MnU5i_X7cpY",
+    "titulo": "Transmissão da Sessão Plenária da Câmara Municipal de Fortaleza (24/10/2019)",
+    "canal": "Câmara de Fortaleza",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.949318+00:00"
+  },
+  {
+    "id": "S4YaiQroxzE",
+    "titulo": "🔴 AO VIVO | TV DA TRANSPARÊNCIA",
+    "canal": "TV da Transparência",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.813592+00:00"
+  },
+  {
+    "id": "soOEfD7GGBA",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 25.08.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.791824+00:00"
+  },
+  {
+    "id": "SjQ-dgT4rKY",
+    "titulo": "Caso Isabelle: polícia do Ceará mantém prisão preventiva do namorado da vítima | #SBTBrasil",
+    "canal": "SBT News e SBT Jornalismo",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.777178+00:00"
+  },
+  {
+    "id": "y9gA7U-OaDo",
+    "titulo": "Polícia do Ceará prende suspeito de participar do ataque a tiros que matou 2 alunos de uma escola",
+    "canal": "g1",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.777176+00:00"
+  },
+  {
+    "id": "00V2ZX77obc",
+    "titulo": "Ceará recebe o Criciúma com a volta de Sanchez e Júlio César",
+    "canal": "CEARÁ CLUB",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.777174+00:00"
+  },
+  {
+    "id": "zDFLhVEnNko",
+    "titulo": "Balanço Geral CE | 12/10/26 | Acompanhe as principais notícias do dia!",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.777151+00:00"
+  },
+  {
+    "id": "CkzSuU5BgD4",
+    "titulo": "🔴 Deu B.O. e Ceará News | Plus FM | 13.10.2026",
+    "canal": "CN7",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.777148+00:00"
+  },
+  {
+    "id": "h8gMz2RQs84",
+    "titulo": "Dr. Inocêncio Uchôa da os parabéns para a TV Atitude Popular",
+    "canal": "TV Atitude Popular",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.353654+00:00"
+  },
+  {
+    "id": "12m0evnxdDU",
+    "titulo": "CEARÁ CABOCLO - 06 I 09 I 2026",
+    "canal": "TV Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252892+00:00"
+  },
+  {
+    "id": "4f8jVFQdpbU",
+    "titulo": "Ô Povo Fêi! - Falcão e Banda Tô Nem Vendo | Leruaite 🌻",
+    "canal": "TV Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252888+00:00"
+  },
+  {
+    "id": "nogucoQunII",
+    "titulo": "🔴 AO VIVO: JORNAL DA TVC 20/08/26",
+    "canal": "TV Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252885+00:00"
+  },
+  {
+    "id": "IFhVZmwQcec",
+    "titulo": "Ceará x Criciúma | Melhores Momentos | Série B 2026",
+    "canal": "Lances Dahora",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252883+00:00"
+  },
+  {
+    "id": "lhSXmQpFj2g",
+    "titulo": "🔴 ASSISTA AGORA: Leruaite | Cheiro do Queijo | 30/09/2026",
+    "canal": "TV Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252880+00:00"
+  },
+  {
+    "id": "YffFv9DPZF8",
+    "titulo": "Ceara vs times grandes ☠️",
+    "canal": "Jesiel luizzz",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252875+00:00"
+  },
+  {
+    "id": "--OfJrhogeM",
+    "titulo": "CEARÁ CONTA COM GOLAÇO ABSURDO NA GAVETA PARA BATER CRICIÚMA EM CASA | MELHORES MOMENTOS",
+    "canal": "ESPN Brasil",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252873+00:00"
+  },
+  {
+    "id": "ygaEcR2p9Y8",
+    "titulo": "Ceará X Fortaleza #shortsviral #football",
+    "canal": "EL  Bart",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252871+00:00"
+  },
+  {
+    "id": "rIMlvp1HVsc",
+    "titulo": "GOLEIRO EXPULSO | CEARÁ X OPERÁRIO | BRASILEIRÃO SÉRIE B 2024 | #Shorts | ge.globo",
+    "canal": "ge tv",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.252861+00:00"
+  },
+  {
+    "id": "mVfck6QtH2g",
+    "titulo": "Eleições redefinem bancadas do Ceará no Congresso e na Alece",
+    "canal": "TV Ceará",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.109691+00:00"
+  },
+  {
+    "id": "nMJPnAGT0VQ",
+    "titulo": "Jornal Alece - Edição da manhã - 13/09/2026",
+    "canal": "Sistema ALECE de Comunicação",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:28.109687+00:00"
+  },
+  {
+    "id": "ZRSf2Lu_0PY",
+    "titulo": "🔴FORTALEZA X CRB - AO VIVO NA RÁDIO O POVO CBN, BRASILEIRO SÉRIE B - 33ª RODADA",
+    "canal": "Rádio O POVO CBN",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.869941+00:00"
+  },
+  {
+    "id": "QDGtH4u5qSY",
+    "titulo": "🔴BOTAFOGO-SP X CEARÁ  - AO VIVO NA RÁDIO O POVO CBN, BRASILEIRO SÉRIE B - 33ª RODADA",
+    "canal": "Rádio O POVO CBN",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.869868+00:00"
+  },
+  {
+    "id": "H_58hjtoyew",
+    "titulo": "Balanço Geral CE Manhã | 13/10/26 | Acompanhe as principais notícias do dia!",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.858202+00:00"
+  },
+  {
+    "id": "5aqa_b160jg",
+    "titulo": "Cidade Alerta CE | 12/10/26 | Acompanhe as principais notícias do dia!",
+    "canal": "GCMAIS",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.858194+00:00"
+  },
+  {
+    "id": "WMuiCdrhwUo",
+    "titulo": "Cidade 190 | 12/10/26 | Acompanhe as principais notícias do dia!",
+    "canal": "Cidade 190",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.858176+00:00"
+  },
+  {
+    "id": "jcHTONDWr7g",
+    "titulo": "🔴FORTALEZA X CRB - AO VIVO AGORA COM ALESSANDRO OLIVEIRA, BRASILEIRO SÉRIE B - 33ª RODADA",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.813047+00:00"
+  },
+  {
+    "id": "N0r9T9DV2k4",
+    "titulo": "Flávio Bolsonaro pode encurtar vantagem de Lula no Nordeste? | O POVO NEWS",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.813023+00:00"
+  },
+  {
+    "id": "Uk5ZM00E6nI",
+    "titulo": "🔴As principais notícias de Ceará e Fortaleza | Esportes O POVO",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.813016+00:00"
+  },
+  {
+    "id": "rOirZ6l2h8g",
+    "titulo": "🔴BOTAFOGO-SP X CEARÁ - AO VIVO COM FELIPE BARBOSA, BRASILEIRO SÉRIE B - 33ª RODADA",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.813013+00:00"
+  },
+  {
+    "id": "fq7KMvb6trE",
+    "titulo": "🔴As principais notícias de Ceará e Fortaleza | Esportes O POVO",
+    "canal": "O POVO",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.813009+00:00"
+  },
+  {
+    "id": "2LsZ13cFfEM",
+    "titulo": "Notícias, informações, dicas e mais | Jornal Jangadeiro | (04/09/2026)",
+    "canal": "Jornal Jangadeiro",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.581316+00:00"
+  },
+  {
+    "id": "XGvkrh5OUg0",
+    "titulo": "A Armadilha das Pesquisas: Como seu voto está sendo manipulado",
+    "canal": "Ceará Acontece",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:27.134772+00:00"
+  },
+  {
+    "id": "VLk9GyM0jYc",
+    "titulo": "UrbCast: Evandro Leitão fala de rivalidade com o Fortaleza quando era presidente do Ceará",
+    "canal": "UrbNews",
+    "desc": "",
+    "publishedAt": "2026-10-13T15:07:26.304983+00:00"
+  },
+  {
     "id": "81gixOQ8LW4",
     "titulo": "Essa é a PRAIA PERFEITA para morar no Ceará",
     "canal": "Dream Big",
@@ -10925,40 +11569,5 @@
     "canal": "Rubão Tv",
     "desc": "LéoSuricate #Lula #Fortaleza #Ceará #ProgramaDoRubão O deputado estadual eleito Léo Suricate convocou apoiadores para ...",
     "publishedAt": "2026-10-06T18:52:17Z"
-  },
-  {
-    "id": "LHCxCDhV9mY",
-    "titulo": "RC e Wagner se pronunciam após derrota nas eleições, mas não mencionam Elmano",
-    "canal": "O POVO",
-    "desc": "Roberto Cláudio e Capitão Wagner agradeceram aos eleitores após as eleições no Ceará, mas não fizeram menção à reeleição ...",
-    "publishedAt": "2026-10-06T14:25:58Z"
-  },
-  {
-    "id": "WhEImHGmxwo",
-    "titulo": "🔴AO VIVO | Alcolumbre mantém fim da escala 6x1 na pauta do plenário do Senado | OPR | 06/10/26",
-    "canal": "O POVO",
-    "desc": "Confira as informações ao longo do programa com Letícia Lopes e Bruna Lira. Participe nos comentários, pelo Whatsapp (85) 9 ...",
-    "publishedAt": "2026-10-06T14:08:26Z"
-  },
-  {
-    "id": "I6ifL2ifPrY",
-    "titulo": "🚨 URGENTE! COMO VOTARAM OS PRESÍDIOS DO BRASIL PARA PRESIDENTE ",
-    "canal": "ANTÔNIO LOPES DA SILVA ",
-    "desc": "eleições2026 #noticias #notícias - O deputado estadual e candidato a deputado federal eleito Carmelo Neto (PL - CE) e sua ...",
-    "publishedAt": "2026-10-06T01:01:33Z"
-  },
-  {
-    "id": "MO3iOdlSMxc",
-    "titulo": "Fenômeno André Fernandes, derrotas de Tiririca e do capitão 'paraguaio'",
-    "canal": "Honorio Barbosa",
-    "desc": "Aqui analiso fênomeno eleitoral André Fernandes que bateu recorde de votos para deputado federal no Ceará e a derrota do ...",
-    "publishedAt": "2026-10-06T00:15:45Z"
-  },
-  {
-    "id": "ombE70SnOv0",
-    "titulo": "Semana do Direito 2026 da Unifanor debate Direitos Humanos e Acesso à Justiça",
-    "canal": "Câmara de Fortaleza",
-    "desc": "A Semana do Direito 2026 da Unifanor promoveu uma discussão sobre direitos humanos e acesso à justiça. A palestra ...",
-    "publishedAt": "2026-10-05T14:30:27Z"
   }
 ]

@@ -1,16 +1,16 @@
 {
-  "proximo_indice": 1,
-  "indice_rodada_anterior": 14,
+  "proximo_indice": 12,
+  "indice_rodada_anterior": 4,
   "total_perfis_cadastrados": 21,
   "lote_selecionado": [
-    "assembleiace",
-    "focuspoder",
-    "urbnews",
-    "radardoceara",
-    "cearanoticias",
-    "etufortaleza",
-    "centraldoonibusfortaleza",
-    "leosuricate"
+    "governodoceara",
+    "prefeituradefortaleza",
+    "rede_cuca",
+    "midianinja",
+    "opovoonline",
+    "opovocbn",
+    "diariodonordeste",
+    "gcmais"
   ],
-  "atualizado_em": "2026-10-12T10:23:38.048515"
+  "atualizado_em": "2026-10-13T12:15:53.853923"
 }
